@@ -11,6 +11,8 @@ import { Process } from "@/components/home/Process";
 import { WhyAbelen } from "@/components/home/WhyAbelen";
 import { CtaSection } from "@/components/home/CtaSection";
 
+export const revalidate = 60;
+
 export default function HomePage() {
   return (
     <>

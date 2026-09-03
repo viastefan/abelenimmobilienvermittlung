@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
 import { PropertyPlaceholder } from "@/components/graphics/PropertyPlaceholder";
 import { references } from "@/data/references";
 
@@ -14,7 +15,7 @@ export function ReferencesPreview() {
   return (
     <section className="border-y border-border bg-surface py-24 lg:py-32">
       <Container>
-        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
+        <Reveal className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
           <SectionHeading
             eyebrow="Erfolgreich vermittelt"
             size="lg"
@@ -30,12 +31,13 @@ export function ReferencesPreview() {
           <Button href="/referenzen" variant="secondary" withArrow className="group shrink-0">
             Alle Referenzen
           </Button>
-        </div>
+        </Reveal>
 
         <div className="mt-14 grid auto-rows-[180px] grid-cols-2 gap-4 sm:grid-cols-3 lg:auto-rows-[220px]">
           {references.map((item, index) => (
-            <div
+            <Reveal
               key={`${item.type}-${item.region}`}
+              delay={index * 60}
               className={`group relative overflow-hidden rounded-md ${sizeClasses[item.size]}`}
             >
               <div className="absolute inset-0 transition-transform duration-700 ease-smooth group-hover:scale-105">
@@ -52,7 +54,7 @@ export function ReferencesPreview() {
               >
                 {item.region}
               </span>
-            </div>
+            </Reveal>
           ))}
         </div>
       </Container>

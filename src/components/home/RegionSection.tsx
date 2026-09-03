@@ -1,13 +1,14 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RegionMap } from "@/components/graphics/RegionMap";
+import { Reveal } from "@/components/ui/Reveal";
 import { regionMapPoints } from "@/data/region-map";
 
 export function RegionSection() {
   return (
     <section className="bg-surface-soft py-24 lg:py-32">
       <Container className="grid gap-16 lg:grid-cols-2 lg:items-center lg:gap-24">
-        <div>
+        <Reveal>
           <SectionHeading
             eyebrow="Vor Ort für Sie da"
             size="lg"
@@ -27,11 +28,11 @@ export function RegionSection() {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
 
-        <div className="rounded-lg border border-border bg-surface p-8">
+        <Reveal delay={150} className="rounded-lg border border-border bg-surface p-8">
           <RegionMap className="h-auto w-full text-ink" />
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

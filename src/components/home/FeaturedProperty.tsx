@@ -1,24 +1,32 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
 import { FloorPlanMotif } from "@/components/graphics/ArchMotif";
-import { PropertyPlaceholder } from "@/components/graphics/PropertyPlaceholder";
+import { Reveal } from "@/components/ui/Reveal";
 import { getFeaturedProperty } from "@/data/properties";
 
-export function FeaturedProperty() {
-  const property = getFeaturedProperty();
+export async function FeaturedProperty() {
+  const property = await getFeaturedProperty();
   if (!property) return null;
 
   return (
     <section className="bg-surface-soft py-24 lg:py-32">
       <Container>
-        <Eyebrow>Aktuell im Verkauf</Eyebrow>
+        <Reveal>
+          <Eyebrow>Aktuell im Verkauf</Eyebrow>
+        </Reveal>
 
-        <div className="mt-10 grid gap-10 overflow-hidden rounded-lg border border-border bg-surface lg:grid-cols-2">
+        <Reveal delay={100} className="mt-10 grid gap-10 overflow-hidden rounded-lg border border-border bg-surface lg:grid-cols-2">
           <div className="relative aspect-[4/3] lg:aspect-auto">
             {property.images[0] ? (
-              // Replace with next/image once real listing photography is provided.
-              <PropertyPlaceholder label={property.city} />
+              <Image
+                src={property.images[0]}
+                alt={property.title}
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
             ) : (
               <div className="relative h-full w-full bg-ink">
                 <FloorPlanMotif className="absolute inset-0 h-full w-full p-10 text-white/40 sm:p-14" />
@@ -61,7 +69,7 @@ export function FeaturedProperty() {
               Exposé ansehen
             </Button>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

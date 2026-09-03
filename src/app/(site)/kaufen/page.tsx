@@ -35,8 +35,8 @@ const steps = [
   },
 ];
 
-export default function KaufenPage() {
-  const activeProperties = getActiveProperties();
+export default async function KaufenPage() {
+  const activeProperties = await getActiveProperties();
 
   return (
     <>

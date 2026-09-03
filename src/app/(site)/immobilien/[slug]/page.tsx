@@ -9,11 +9,14 @@ import { PropertyPlaceholder } from "@/components/graphics/PropertyPlaceholder";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, propertySchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
-import { getProperty, properties } from "@/data/properties";
+import { getAllPropertySlugs, getPropertyBySlug } from "@/data/properties";
 import { site } from "@/data/site";
 
-export function generateStaticParams() {
-  return properties.map((property) => ({ slug: property.slug }));
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const slugs = await getAllPropertySlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -22,7 +25,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const property = getProperty(slug);
+  const property = await getPropertyBySlug(slug);
   if (!property) return {};
 
   return pageSeo({
@@ -38,7 +41,7 @@ export default async function PropertyDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const property = getProperty(slug);
+  const property = await getPropertyBySlug(slug);
   if (!property) notFound();
 
   return (
@@ -64,6 +67,22 @@ export default async function PropertyDetailPage({
               <PropertyPlaceholder label={property.city} />
             )}
           </div>
+
+          {property.images.length > 1 && (
+            <div className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6">
+              {property.images.slice(1).map((image, index) => (
+                <div key={image} className="relative aspect-square overflow-hidden rounded-md border border-border">
+                  <Image
+                    src={image}
+                    alt={`${property.title} — Bild ${index + 2}`}
+                    fill
+                    sizes="200px"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </Container>
       </section>
 

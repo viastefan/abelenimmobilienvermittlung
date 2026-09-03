@@ -25,6 +25,14 @@ const config: Config = {
           light: "#B79E85",
         },
         ink: "#15160F",
+        success: {
+          DEFAULT: "#4B6350",
+          soft: "#E4EBE2",
+        },
+        warning: {
+          DEFAULT: "#96591F",
+          soft: "#F3E7D6",
+        },
       },
       fontFamily: {
         display: ["var(--font-manrope)", "sans-serif"],

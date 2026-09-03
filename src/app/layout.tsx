@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Manrope, Inter } from "next/font/google";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationSchema } from "@/lib/schema";
 import { site } from "@/data/site";
@@ -61,18 +59,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de" className={`${manrope.variable} ${inter.variable}`}>
-      <body className="flex min-h-screen flex-col">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-white"
-        >
-          Zum Inhalt springen
-        </a>
-        <Header />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+      <body className="flex min-h-screen flex-col bg-background">
+        {children}
         <JsonLd data={organizationSchema()} />
       </body>
     </html>

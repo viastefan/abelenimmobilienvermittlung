@@ -1,8 +1,10 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/data/site";
-import { properties } from "@/data/properties";
+import { getPublishedProperties } from "@/data/properties";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 60;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
     "",
     "/immobilien",
@@ -22,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "" ? 1 : 0.7,
   }));
 
+  const properties = await getPublishedProperties();
   const propertyRoutes = properties.map((property) => ({
     url: new URL(`/immobilien/${property.slug}`, site.url).toString(),
     lastModified: new Date(),

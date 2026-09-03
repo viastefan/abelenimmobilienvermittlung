@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
 import { whyAbelen } from "@/data/services";
 
 export function WhyAbelen() {
@@ -6,11 +7,11 @@ export function WhyAbelen() {
     <section className="border-y border-border bg-surface py-24 lg:py-32">
       <Container>
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {whyAbelen.map((item) => (
-            <div key={item.title} className="border-l border-border pl-6">
+          {whyAbelen.map((item, index) => (
+            <Reveal key={item.title} delay={index * 80} className="border-l border-border pl-6">
               <h3 className="font-display text-xl font-semibold text-ink">{item.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-text-muted">{item.description}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </Container>

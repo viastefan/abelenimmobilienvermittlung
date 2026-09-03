@@ -5,7 +5,7 @@ import { PropertyCard } from "@/components/property/PropertyCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
-import { properties } from "@/data/properties";
+import { getPublishedProperties } from "@/data/properties";
 
 export const metadata: Metadata = pageSeo({
   title: "Immobilien in Leichlingen, Leverkusen & Solingen",
@@ -14,7 +14,11 @@ export const metadata: Metadata = pageSeo({
   path: "/immobilien",
 });
 
-export default function ImmobilienPage() {
+export const revalidate = 60;
+
+export default async function ImmobilienPage() {
+  const properties = await getPublishedProperties();
+
   return (
     <>
       <PageHero
