@@ -4,23 +4,31 @@ import { mapRowToProperty, type Property } from "@/types/property";
 /**
  * Public, anonymous reads — backed by Supabase, restricted to published
  * listings by Row Level Security. Safe to call from Server Components,
- * generateStaticParams and the sitemap alike.
+ * generateStaticParams and the sitemap alike. Degrades to empty results
+ * (rather than throwing) if Supabase env vars are missing or the request
+ * fails, so a misconfigured deployment shows an empty state instead of a
+ * hard 500.
  */
 
 export async function getPublishedProperties(): Promise<Property[]> {
-  const { data, error } = await supabasePublic()
-    .from("properties")
-    .select("*")
-    .eq("published", true)
-    .order("sort_order", { ascending: true })
-    .order("created_at", { ascending: false });
+  try {
+    const { data, error } = await supabasePublic()
+      .from("properties")
+      .select("*")
+      .eq("published", true)
+      .order("sort_order", { ascending: true })
+      .order("created_at", { ascending: false });
 
-  if (error) {
-    console.error("Konnte Immobilien nicht laden:", error.message);
+    if (error) {
+      console.error("Konnte Immobilien nicht laden:", error.message);
+      return [];
+    }
+
+    return data.map(mapRowToProperty);
+  } catch (error) {
+    console.error("Konnte Immobilien nicht laden:", error);
     return [];
   }
-
-  return data.map(mapRowToProperty);
 }
 
 export async function getActiveProperties(): Promise<Property[]> {
@@ -34,19 +42,29 @@ export async function getFeaturedProperty(): Promise<Property | undefined> {
 }
 
 export async function getPropertyBySlug(slug: string): Promise<Property | undefined> {
-  const { data, error } = await supabasePublic()
-    .from("properties")
-    .select("*")
-    .eq("slug", slug)
-    .eq("published", true)
-    .maybeSingle();
+  try {
+    const { data, error } = await supabasePublic()
+      .from("properties")
+      .select("*")
+      .eq("slug", slug)
+      .eq("published", true)
+      .maybeSingle();
 
-  if (error || !data) return undefined;
-  return mapRowToProperty(data);
+    if (error || !data) return undefined;
+    return mapRowToProperty(data);
+  } catch (error) {
+    console.error("Konnte Immobilie nicht laden:", error);
+    return undefined;
+  }
 }
 
 export async function getAllPropertySlugs(): Promise<string[]> {
-  const { data, error } = await supabasePublic().from("properties").select("slug").eq("published", true);
-  if (error || !data) return [];
-  return data.map((row) => row.slug);
+  try {
+    const { data, error } = await supabasePublic().from("properties").select("slug").eq("published", true);
+    if (error || !data) return [];
+    return data.map((row) => row.slug);
+  } catch (error) {
+    console.error("Konnte Immobilien-Slugs nicht laden:", error);
+    return [];
+  }
 }
