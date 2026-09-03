@@ -12,7 +12,9 @@ let client: ReturnType<typeof createClient<Database>> | null = null;
  */
 export function supabasePublic() {
   if (!client) {
-    const { url, anonKey } = getSupabaseEnv();
+    const env = getSupabaseEnv();
+    if (!env) return null;
+    const { url, anonKey } = env;
     client = createClient<Database>(url, anonKey, {
       auth: { persistSession: false },
     });

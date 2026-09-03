@@ -12,7 +12,10 @@ import { mapRowToProperty, type Property } from "@/types/property";
 
 export async function getPublishedProperties(): Promise<Property[]> {
   try {
-    const { data, error } = await supabasePublic()
+    const client = supabasePublic();
+    if (!client) return [];
+
+    const { data, error } = await client
       .from("properties")
       .select("*")
       .eq("published", true)
@@ -43,7 +46,10 @@ export async function getFeaturedProperty(): Promise<Property | undefined> {
 
 export async function getPropertyBySlug(slug: string): Promise<Property | undefined> {
   try {
-    const { data, error } = await supabasePublic()
+    const client = supabasePublic();
+    if (!client) return undefined;
+
+    const { data, error } = await client
       .from("properties")
       .select("*")
       .eq("slug", slug)
@@ -60,7 +66,10 @@ export async function getPropertyBySlug(slug: string): Promise<Property | undefi
 
 export async function getAllPropertySlugs(): Promise<string[]> {
   try {
-    const { data, error } = await supabasePublic().from("properties").select("slug").eq("published", true);
+    const client = supabasePublic();
+    if (!client) return [];
+
+    const { data, error } = await client.from("properties").select("slug").eq("published", true);
     if (error || !data) return [];
     return data.map((row) => row.slug);
   } catch (error) {

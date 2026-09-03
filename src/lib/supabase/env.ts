@@ -3,9 +3,7 @@ export function getSupabaseEnv() {
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!url || !anonKey) {
-    throw new Error(
-      "Supabase ist nicht konfiguriert. Bitte NEXT_PUBLIC_SUPABASE_URL und NEXT_PUBLIC_SUPABASE_ANON_KEY setzen."
-    );
+    return null;
   }
 
   return { url, anonKey };

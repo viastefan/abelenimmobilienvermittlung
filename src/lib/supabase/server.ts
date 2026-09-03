@@ -5,7 +5,13 @@ import { getSupabaseEnv } from "./env";
 
 export async function createClient() {
   const cookieStore = await cookies();
-  const { url, anonKey } = getSupabaseEnv();
+  const env = getSupabaseEnv();
+  if (!env) {
+    throw new Error(
+      "Supabase ist nicht konfiguriert. Bitte NEXT_PUBLIC_SUPABASE_URL und NEXT_PUBLIC_SUPABASE_ANON_KEY auf Vercel oder in .env.local setzen."
+    );
+  }
+  const { url, anonKey } = env;
 
   return createServerClient<Database>(url, anonKey, {
     cookies: {
