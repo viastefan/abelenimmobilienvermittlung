@@ -76,6 +76,67 @@ export function KeyMotif({ className = "" }: MotifProps) {
   );
 }
 
+export function StreetMotif({ className = "" }: MotifProps) {
+  const houses = [
+    { x: 10, w: 90, h: 130, roof: 34 },
+    { x: 108, w: 110, h: 165, roof: 42 },
+    { x: 226, w: 84, h: 110, roof: 28 },
+    { x: 318, w: 100, h: 150, roof: 38 },
+  ];
+  const base = 300;
+
+  return (
+    <svg viewBox="0 0 440 300" className={className} aria-hidden="true" fill="none">
+      <line x1="0" y1={base} x2="440" y2={base} stroke="currentColor" strokeOpacity="0.35" strokeWidth="1.5" />
+      {houses.map((house, i) => {
+        const top = base - house.h;
+        const roofTop = top - house.roof;
+        const midX = house.x + house.w / 2;
+        return (
+          <g key={i}>
+            <rect
+              x={house.x}
+              y={top}
+              width={house.w}
+              height={house.h}
+              stroke="currentColor"
+              strokeOpacity="0.7"
+              strokeWidth="2"
+              fill="currentColor"
+              fillOpacity={i % 2 === 0 ? 0.06 : 0.1}
+            />
+            <path
+              d={`M${house.x - 6} ${top} L${midX} ${roofTop} L${house.x + house.w + 6} ${top}`}
+              stroke="currentColor"
+              strokeOpacity="0.85"
+              strokeWidth="2"
+              strokeLinejoin="round"
+            />
+            <rect
+              x={midX - house.w * 0.12}
+              y={base - house.h * 0.42}
+              width={house.w * 0.24}
+              height={house.h * 0.42}
+              stroke="currentColor"
+              strokeOpacity="0.7"
+              strokeWidth="1.5"
+            />
+            <rect
+              x={house.x + house.w * 0.18}
+              y={top + house.h * 0.22}
+              width={house.w * 0.22}
+              height={house.h * 0.2}
+              stroke="currentColor"
+              strokeOpacity="0.5"
+              strokeWidth="1.5"
+            />
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
 export function DoorMotif({ className = "" }: MotifProps) {
   return (
     <svg viewBox="0 0 200 320" className={className} aria-hidden="true" fill="none">

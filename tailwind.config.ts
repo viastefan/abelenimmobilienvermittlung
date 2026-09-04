@@ -9,29 +9,31 @@ const config: Config = {
     },
     extend: {
       colors: {
-        background: "#F8F6F2",
+        background: "#FFFFFF",
         surface: "#FFFFFF",
-        "surface-soft": "#F1EEE8",
+        "surface-soft": "#F4F8F7",
         text: {
-          DEFAULT: "#1F211F",
-          muted: "#5F625C",
+          DEFAULT: "#16242C",
+          muted: "#5B6B72",
         },
         border: {
-          DEFAULT: "#DEDAD2",
+          DEFAULT: "#E1E8E7",
         },
         accent: {
-          DEFAULT: "#8D6F52",
-          dark: "#6F5740",
-          light: "#B79E85",
+          DEFAULT: "#1E9C81",
+          dark: "#157A64",
+          light: "#5CC2A9",
+          soft: "#E3F5F0",
         },
-        ink: "#15160F",
+        ink: "#0E2C3B",
+        "ink-soft": "#173D50",
         success: {
-          DEFAULT: "#4B6350",
-          soft: "#E4EBE2",
+          DEFAULT: "#1E9C81",
+          soft: "#E3F5F0",
         },
         warning: {
-          DEFAULT: "#96591F",
-          soft: "#F3E7D6",
+          DEFAULT: "#B4611C",
+          soft: "#F6E9D9",
         },
       },
       fontFamily: {

@@ -1,28 +1,35 @@
+import { Home } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
-import { site } from "@/data/site";
 
-export function CtaSection() {
+export function CtaSection({
+  title = "Sie möchten wissen, was Ihre Immobilie wert ist?",
+  description = "Wir bewerten Ihre Immobilie kostenlos und unverbindlich.",
+  buttonLabel = "Jetzt bewerten",
+  href = "/bewertung",
+}: {
+  title?: string;
+  description?: string;
+  buttonLabel?: string;
+  href?: string;
+}) {
   return (
-    <section className="bg-ink py-24 lg:py-32">
-      <Container className="max-w-3xl text-center">
-        <Reveal>
-          <h2 className="balance text-display-lg font-display font-semibold text-white">
-            Sie möchten Ihre Immobilie verkaufen?
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/70">
-            Lassen Sie uns unverbindlich über Ihre Immobilie sprechen. Gemeinsam klären wir, wo Sie
-            stehen und welcher nächste Schritt sinnvoll ist.
-          </p>
-          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button href="/kontakt" variant="inverted">
-              Persönliches Gespräch starten
-            </Button>
-            <a href={site.phoneHref} className="text-sm font-semibold text-white/80 hover:text-white">
-              {site.phone}
-            </a>
+    <section className="bg-ink py-10">
+      <Container>
+        <Reveal className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+          <div className="flex items-center gap-5">
+            <span className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/10 text-white sm:flex">
+              <Home className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <div>
+              <p className="font-display text-lg font-semibold text-white">{title}</p>
+              <p className="mt-1 text-sm text-white/70">{description}</p>
+            </div>
           </div>
+          <Button href={href} variant="primary" className="w-full shrink-0 sm:w-auto">
+            {buttonLabel}
+          </Button>
         </Reveal>
       </Container>
     </section>

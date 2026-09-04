@@ -1,16 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { Ruler, DoorOpen } from "lucide-react";
 import { PropertyPlaceholder } from "@/components/graphics/PropertyPlaceholder";
 import type { Property } from "@/types/property";
 
 export function PropertyCard({ property }: { property: Property }) {
   const image = property.images[0];
+  const badgeLabel = property.featured ? "Neu im Angebot" : property.statusLabel;
 
   return (
     <Link
       href={`/immobilien/${property.slug}`}
-      className="group block overflow-hidden rounded-md border border-border bg-surface transition-shadow duration-500 ease-smooth hover:shadow-soft"
+      className="group block overflow-hidden rounded-lg border border-border bg-white transition-all duration-500 ease-smooth hover:-translate-y-1 hover:shadow-soft"
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         {image ? (
@@ -26,28 +27,33 @@ export function PropertyCard({ property }: { property: Property }) {
             <PropertyPlaceholder label={property.city} />
           </div>
         )}
-        <span className="absolute left-4 top-4 rounded-sm bg-background/95 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-ink">
-          {property.statusLabel}
+        <span
+          className={`absolute left-4 top-4 rounded-sm px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.06em] text-white ${
+            property.featured ? "bg-accent" : "bg-ink"
+          }`}
+        >
+          {badgeLabel}
         </span>
       </div>
 
-      <div className="flex items-start justify-between gap-4 p-6">
-        <div>
-          <h3 className="font-display text-lg font-semibold text-ink">{property.title}</h3>
-          <p className="mt-1 text-sm text-text-muted">{property.city}</p>
-          <p className="mt-4 text-sm text-text-muted">
-            {property.rooms} Zimmer · ca. {property.livingSpace.toString().replace(".", ",")} m²
-          </p>
-        </div>
-        <div className="flex flex-col items-end gap-3">
-          <ArrowUpRight
-            className="h-5 w-5 text-text-muted transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
-            aria-hidden="true"
-          />
-          <span className="whitespace-nowrap font-display text-base font-semibold text-ink">
-            {property.priceLabel}
+      <div className="p-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.1em] text-accent">{property.city}</p>
+        <h3 className="mt-2 font-display text-lg font-semibold text-ink">{property.title}</h3>
+
+        <div className="mt-4 flex items-center gap-4 text-sm text-text-muted">
+          <span className="inline-flex items-center gap-1.5">
+            <Ruler className="h-4 w-4 text-accent" aria-hidden="true" />
+            {property.livingSpace.toString().replace(".", ",")} m²
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <DoorOpen className="h-4 w-4 text-accent" aria-hidden="true" />
+            {property.rooms} Zimmer
           </span>
         </div>
+
+        <p className="mt-4 border-t border-border pt-4 font-display text-lg font-semibold text-ink">
+          {property.priceLabel}
+        </p>
       </div>
     </Link>
   );

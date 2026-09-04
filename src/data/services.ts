@@ -1,30 +1,33 @@
 export const services = [
   {
     number: "01",
-    slug: "verkaufen",
-    title: "Immobilie verkaufen",
+    slug: "bewertung",
+    icon: "home",
+    title: "Immobilienbewertung",
     description:
-      "Professionelle Vermarktung, realistische Einschätzung, hochwertige Präsentation, Interessentenmanagement und persönliche Begleitung bis zum Notartermin.",
+      "Professionelle und marktgerechte Bewertung Ihrer Immobilie — transparent und zuverlässig.",
+    cta: "Bewertung anfragen",
+    href: "/bewertung",
+  },
+  {
+    number: "02",
+    slug: "verkaufen",
+    icon: "handshake",
+    title: "Immobilienverkauf",
+    description:
+      "Wir begleiten Sie von der ersten Beratung bis zum erfolgreichen Verkauf Ihrer Immobilie.",
     cta: "Immobilie verkaufen",
     href: "/verkaufen",
   },
   {
-    number: "02",
-    slug: "kaufen",
-    title: "Immobilie kaufen",
-    description:
-      "Gemeinsam herausfinden, welche Immobilie wirklich zu Ihren Vorstellungen und Bedürfnissen passt — mit ehrlicher Beratung statt Verkaufsdruck.",
-    cta: "Immobilie finden",
-    href: "/kaufen",
-  },
-  {
     number: "03",
-    slug: "bewertung",
-    title: "Immobilienbewertung",
+    slug: "vermieten",
+    icon: "key",
+    title: "Vermietung",
     description:
-      "Persönliche Einschätzung und fundierte Marktpreisermittlung als verlässliche Grundlage für Ihre nächsten Schritte.",
-    cta: "Bewertung anfragen",
-    href: "/kontakt?anliegen=bewertung",
+      "Wir finden den passenden Mieter für Ihre Immobilie — schnell, sicher und unkompliziert.",
+    cta: "Immobilie vermieten",
+    href: "/vermieten",
   },
 ] as const;
 

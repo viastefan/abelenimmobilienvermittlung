@@ -10,32 +10,25 @@ export async function PropertiesPreview() {
   if (propertiesList.length === 0) return null;
 
   return (
-    <section className="py-24 lg:py-32">
+    <section className="bg-surface py-24 lg:py-28">
       <Container>
-        <Reveal className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
-          <SectionHeading
-            eyebrow="Immobilien"
-            size="lg"
-            title={
-              <>
-                Aktuelle Objekte
-                <br />
-                im Überblick.
-              </>
-            }
-          />
-          <Button href="/immobilien" variant="secondary" withArrow className="group shrink-0">
-            Alle Immobilien
-          </Button>
+        <Reveal>
+          <SectionHeading eyebrow="Aktuelle Angebote" size="lg" align="center" title="Aktuelle Immobilien" />
         </Reveal>
 
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {propertiesList.map((property, index) => (
+          {propertiesList.slice(0, 3).map((property, index) => (
             <Reveal key={property.slug} delay={index * 80}>
               <PropertyCard property={property} />
             </Reveal>
           ))}
         </div>
+
+        <Reveal className="mt-12 flex justify-center">
+          <Button href="/immobilien" variant="secondary" withArrow className="group">
+            Alle Immobilien ansehen
+          </Button>
+        </Reveal>
       </Container>
     </section>
   );

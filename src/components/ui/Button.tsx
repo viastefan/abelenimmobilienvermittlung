@@ -6,7 +6,8 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-md px-6 py-3.5 text-sm font-semibold transition-all duration-300 ease-smooth focus-visible:outline-none disabled:opacity-50 disabled:pointer-events-none";
 
 const variants = {
-  primary: "bg-ink text-white hover:bg-accent-dark hover:-translate-y-0.5",
+  primary: "bg-accent text-white hover:bg-accent-dark hover:-translate-y-0.5",
+  dark: "bg-ink text-white hover:bg-ink-soft hover:-translate-y-0.5",
   // For use on dark (ink) backgrounds, e.g. the hero or CTA sections.
   inverted: "bg-white text-ink hover:bg-accent hover:text-white hover:-translate-y-0.5",
   secondary:

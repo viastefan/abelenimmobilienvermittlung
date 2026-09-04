@@ -1,49 +1,77 @@
+import { ShieldCheck, Award } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { FacadeMotif } from "@/components/graphics/ArchMotif";
-import { GrainOverlay } from "@/components/graphics/GrainOverlay";
-import { trustRegions } from "@/data/site";
+import { StreetMotif } from "@/components/graphics/ArchMotif";
+import { trustBadges } from "@/data/site";
+import { getFeaturedProperty } from "@/data/properties";
 
-export function Hero() {
+const badgeIcons = [ShieldCheck, Award];
+
+export async function Hero() {
+  const featured = await getFeaturedProperty();
+
   return (
-    <section className="relative flex min-h-[92vh] items-end overflow-hidden bg-ink pt-32">
-      <div className="absolute inset-0 bg-[radial-gradient(120%_100%_at_85%_0%,#3a352c_0%,#15160F_55%)]" />
-      <GrainOverlay />
-
-      <div
-        className="absolute inset-y-0 right-0 hidden w-[46%] text-accent/30 md:block"
-        aria-hidden="true"
-      >
-        <FacadeMotif className="h-full w-full" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/40 to-transparent" />
-      </div>
-
-      <Container className="relative z-10 pb-20 pt-10 lg:pb-28">
-        <div className="max-w-2xl fade-up">
-          <Eyebrow light>Immobilienvermittlung im Rheinland</Eyebrow>
-          <h1 className="mt-6 text-display-xl font-display font-bold text-white balance">
-            Immobilien.
+    <section className="relative overflow-hidden bg-white pb-20 pt-40 lg:pb-28 lg:pt-44">
+      <Container className="grid items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
+        <div className="fade-up">
+          <Eyebrow>Ihr Partner für Leverkusen &amp; Umgebung</Eyebrow>
+          <h1 className="mt-6 text-display-xl font-display font-bold text-ink balance">
+            Ihre Immobilie.
             <br />
-            Persönlich vermittelt.
+            In guten Händen.
           </h1>
-          <p className="mt-7 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg">
-            Persönliche Immobilienvermittlung mit Erfahrung, klarer Beratung und einem Anspruch,
-            der über den erfolgreichen Abschluss hinausgeht.
+          <p className="mt-6 max-w-md text-base leading-relaxed text-text-muted sm:text-lg">
+            Wir sind Ihr zuverlässiger Partner für die Bewertung, Vermittlung und Vermietung von
+            Immobilien in Leverkusen und Umgebung.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Button href="/verkaufen" variant="inverted">
-              Immobilie verkaufen
+          <div className="mt-9 flex flex-wrap items-center gap-4">
+            <Button href="/bewertung" variant="primary">
+              Immobilie bewerten
             </Button>
-            <Button href="/immobilien" variant="secondaryInverted" withArrow className="group">
-              Immobilien entdecken
+            <Button href="/kontakt" variant="secondary">
+              Kontakt aufnehmen
             </Button>
           </div>
 
-          <p className="mt-14 text-xs uppercase tracking-[0.16em] text-white/40">
-            {trustRegions.join(" · ")}
-          </p>
+          <div className="mt-11 flex flex-wrap items-center gap-6">
+            {trustBadges.map((badge, i) => {
+              const Icon = badgeIcons[i % badgeIcons.length]!;
+              return (
+                <div key={badge.title} className="flex items-center gap-3">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border bg-surface-soft text-accent">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <span className="max-w-[9.5rem] text-xs leading-snug text-text-muted">
+                    <span className="block font-semibold text-ink">{badge.title}</span>
+                    {badge.subtitle}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="relative fade-up" style={{ animationDelay: "120ms" }}>
+          <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-[linear-gradient(160deg,#E3F5F0_0%,#F4F8F7_55%,#FFFFFF_100%)]">
+            <StreetMotif className="absolute inset-0 h-full w-full p-10 text-ink/70 sm:p-14" />
+          </div>
+
+          {featured ? (
+            <div className="absolute -bottom-8 left-6 right-6 rounded-lg border border-border bg-white p-5 shadow-soft sm:left-8 sm:right-auto sm:w-[22rem]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+                Aktuelles Angebot
+              </p>
+              <p className="mt-2 font-display text-base font-semibold leading-snug text-ink">
+                {featured.title}
+              </p>
+              <div className="mt-3 flex items-center justify-between">
+                <p className="text-xs text-text-muted">{featured.city}</p>
+                <p className="font-display text-base font-semibold text-ink">{featured.priceLabel}</p>
+              </div>
+            </div>
+          ) : null}
         </div>
       </Container>
     </section>

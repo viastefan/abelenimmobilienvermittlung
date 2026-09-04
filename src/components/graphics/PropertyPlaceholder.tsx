@@ -14,7 +14,7 @@ export function PropertyPlaceholder({
 }) {
   return (
     <div
-      className={`relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-br from-surface-soft to-[#eae4d8] ${className}`}
+      className={`relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-br from-surface-soft to-accent-soft ${className}`}
     >
       <FacadeMotif className="absolute inset-y-0 right-[-10%] h-full w-2/3 text-ink/50" />
       <div className="absolute inset-0 bg-gradient-to-t from-surface-soft/90 via-transparent to-transparent" />
