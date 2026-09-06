@@ -11,26 +11,19 @@ export async function PropertiesPreview() {
   if (properties.length === 0) return null;
 
   return (
-    <section className="border-t border-border bg-white py-20 lg:py-28">
+    <section className="bg-white py-16 lg:py-20">
       <Container>
-        <Reveal className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <SectionHeading
-            eyebrow="Aktuelle Angebote"
-            size="lg"
-            title={
-              <>
-                Immobilien in Leverkusen
-                <br className="hidden sm:block" /> und Umgebung
-              </>
-            }
-          />
-          <Button href="/immobilien" variant="secondary" withArrow className="shrink-0">
-            Alle Immobilien ansehen
-          </Button>
+        <Reveal className="relative">
+          <SectionHeading eyebrow="Aktuelle Angebote" align="center" title="Aktuelle Immobilien" />
+          <div className="mt-6 flex justify-center lg:absolute lg:right-0 lg:top-1/2 lg:mt-0 lg:-translate-y-1/2">
+            <Button href="/immobilien" variant="secondary" className="text-[0.8125rem]">
+              Alle Immobilien ansehen
+            </Button>
+          </div>
         </Reveal>
 
         <div
-          className={`mt-12 grid gap-6 sm:grid-cols-2 ${
+          className={`mt-10 grid gap-5 sm:grid-cols-2 ${
             properties.length >= 3 ? "lg:grid-cols-3" : ""
           }`}
         >

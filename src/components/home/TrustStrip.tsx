@@ -17,14 +17,14 @@ export function TrustStrip() {
                 as="li"
                 key={item.title}
                 delay={index * 90}
-                className={`flex items-center gap-4 py-8 sm:py-10 ${
+                className={`flex items-center gap-4 py-7 sm:py-8 ${
                   index === 0 ? "sm:pr-8" : index === featureStrip.length - 1 ? "sm:pl-8" : "sm:px-8"
                 }`}
               >
-                <Icon className="h-7 w-7 shrink-0 text-accent-mid" strokeWidth={1.4} aria-hidden="true" />
+                <Icon className="h-8 w-8 shrink-0 text-accent-mid" strokeWidth={1.25} aria-hidden="true" />
                 <div>
-                  <p className="font-display text-[0.9375rem] font-bold text-ink">{item.title}</p>
-                  <p className="mt-1 text-sm leading-snug text-text-muted">{item.description}</p>
+                  <p className="font-display text-[0.875rem] font-bold text-ink">{item.title}</p>
+                  <p className="mt-1 text-[0.8125rem] leading-snug text-text-muted">{item.description}</p>
                 </div>
               </Reveal>
             );

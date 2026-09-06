@@ -14,7 +14,7 @@ function FooterColumn({ title, items }: { title: string; items: { label: string;
           <li key={item.href}>
             <Link
               href={item.href}
-              className="text-[0.9375rem] text-text-muted transition-colors duration-200 hover:text-accent-deep"
+              className="text-[0.8125rem] text-text-muted transition-colors duration-200 hover:text-accent-deep"
             >
               {item.label}
             </Link>
@@ -27,11 +27,11 @@ function FooterColumn({ title, items }: { title: string; items: { label: string;
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-surface-warm">
-      <Container className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.1fr] lg:gap-10 lg:py-20">
+    <footer className="border-t border-border bg-white">
+      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.1fr] lg:gap-10 lg:py-16">
         <div>
           <Logo />
-          <p className="mt-6 max-w-xs text-[0.9375rem] leading-relaxed text-text-muted">
+          <p className="mt-5 max-w-xs text-[0.8125rem] leading-relaxed text-text-muted">
             Ihr Partner für die Bewertung, Vermittlung und Vermietung von Immobilien in Leverkusen
             und Umgebung.
           </p>
@@ -43,7 +43,7 @@ export function Footer() {
 
         <div>
           <p className="font-display text-label font-bold uppercase text-ink">Kontakt</p>
-          <ul className="mt-5 space-y-3.5 text-[0.9375rem] text-text-muted">
+          <ul className="mt-5 space-y-3 text-[0.8125rem] text-text-muted">
             <li>
               <a href={site.phoneHref} className="inline-flex items-center gap-3 transition-colors hover:text-accent-deep">
                 <Phone className="h-4 w-4 shrink-0 text-accent-mid" aria-hidden="true" />

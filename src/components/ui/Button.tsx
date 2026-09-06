@@ -3,11 +3,11 @@ import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 import { ArrowRight } from "lucide-react";
 
 const base =
-  "group/btn inline-flex items-center justify-center gap-2 rounded-[11px] px-6 py-3 text-[0.9375rem] font-semibold leading-none tracking-[-0.005em] transition-all duration-300 ease-smooth focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50";
+  "group/btn inline-flex items-center justify-center gap-2 rounded-[10px] px-5 py-3 text-[0.875rem] font-semibold leading-none tracking-[-0.005em] transition-all duration-300 ease-smooth focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50";
 
 const variants = {
   /** Turquoise — the one primary action per section. */
-  primary: "bg-accent-deep text-white shadow-[0_10px_20px_-14px_rgba(27,122,125,0.9)] hover:bg-accent-dark hover:-translate-y-0.5",
+  primary: "bg-accent-deep text-white hover:bg-accent-dark hover:-translate-y-0.5",
   dark: "bg-ink text-white hover:bg-ink-soft hover:-translate-y-0.5",
   /** For navy surfaces. */
   inverted: "bg-white text-ink hover:bg-accent-soft hover:-translate-y-0.5",
@@ -21,7 +21,7 @@ type Size = "md" | "lg";
 
 const sizes: Record<Size, string> = {
   md: "",
-  lg: "px-7 py-4 text-base",
+  lg: "px-6 py-3.5 text-[0.9375rem]",
 };
 
 type CommonProps = {

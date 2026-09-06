@@ -79,7 +79,7 @@ export function PageHero({
                 src={image}
                 priority
                 sizes="(min-width: 1024px) 45vw, 100vw"
-                label={caption?.title}
+                label={caption ? undefined : eyebrow}
                 alt={imageAlt ?? ""}
               />
             </div>

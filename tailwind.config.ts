@@ -22,7 +22,8 @@ const config: Config = {
         "surface-warm": "#FBFCFC",
         // Light turquoise — used sparingly behind cards and quiet panels.
         "surface-soft": "#EAF8F8",
-        "surface-mist": "#F4F9FB",
+        "surface-mist": "#F1F5F8",
+        "surface-cool": "#F3F6F8",
         text: {
           DEFAULT: "#19324D",
           muted: "#687789",
@@ -36,10 +37,10 @@ const config: Config = {
           // Brand turquoise. Decorative use: logo, icons, rules, hover states.
           DEFAULT: "#65C6C7",
           light: "#A5DEDF",
-          mid: "#3FAEB0",
+          mid: "#2E9D9C",
           // Interactive turquoise — passes AA on white for text and buttons.
-          deep: "#1B7A7D",
-          dark: "#146366",
+          deep: "#1C8480",
+          dark: "#166B68",
           soft: "#EAF8F8",
           tint: "#F4FBFB",
         },
@@ -60,10 +61,10 @@ const config: Config = {
         sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
       },
       fontSize: {
-        "display-xl": ["clamp(2.25rem, 4.1vw, 3.5rem)", { lineHeight: "1.08", letterSpacing: "-0.028em" }],
-        "display-lg": ["clamp(1.875rem, 2.9vw, 2.625rem)", { lineHeight: "1.14", letterSpacing: "-0.024em" }],
-        "display-md": ["clamp(1.5rem, 2vw, 1.9375rem)", { lineHeight: "1.2", letterSpacing: "-0.018em" }],
-        "display-sm": ["clamp(1.1875rem, 1.4vw, 1.375rem)", { lineHeight: "1.3", letterSpacing: "-0.01em" }],
+        "display-xl": ["clamp(2.125rem, 3.2vw, 2.75rem)", { lineHeight: "1.14", letterSpacing: "-0.022em" }],
+        "display-lg": ["clamp(1.5rem, 2.1vw, 1.875rem)", { lineHeight: "1.24", letterSpacing: "-0.018em" }],
+        "display-md": ["clamp(1.375rem, 1.7vw, 1.625rem)", { lineHeight: "1.3", letterSpacing: "-0.014em" }],
+        "display-sm": ["clamp(1.0625rem, 1.2vw, 1.1875rem)", { lineHeight: "1.36", letterSpacing: "-0.008em" }],
         label: ["0.6875rem", { lineHeight: "1", letterSpacing: "0.16em" }],
       },
       maxWidth: {

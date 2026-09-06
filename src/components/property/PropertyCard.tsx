@@ -6,13 +6,20 @@ import type { Property } from "@/types/property";
 
 export function PropertyCard({ property }: { property: Property }) {
   const image = resolveFirstImage(property.images);
+  const year = property.features.find((feature) => feature.label.toLowerCase().includes("baujahr"));
+
+  const meta = [
+    { icon: Ruler, value: `${property.livingSpace.toString().replace(".", ",")} m²` },
+    { icon: DoorOpen, value: `${property.rooms} Zimmer` },
+    ...(year ? [{ icon: CalendarRange, value: `Baujahr ${year.value}` }] : []),
+  ];
 
   return (
     <Link
       href={`/immobilien/${property.slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-[16px] border border-border bg-white transition-all duration-300 ease-smooth hover:-translate-y-1 hover:border-accent-light hover:shadow-soft"
+      className="group flex h-full flex-col overflow-hidden rounded-[12px] border border-border bg-white transition-all duration-300 ease-smooth hover:-translate-y-1 hover:border-accent-light hover:shadow-soft"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-surface-mist">
+      <div className="relative aspect-[16/10] overflow-hidden bg-surface-mist">
         <div className="h-full w-full transition-transform duration-700 ease-smooth group-hover:scale-[1.04]">
           <SiteImage
             src={image}
@@ -21,38 +28,27 @@ export function PropertyCard({ property }: { property: Property }) {
             alt={`${property.title} in ${property.city}`}
           />
         </div>
-        <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-ink shadow-card backdrop-blur">
-          {property.statusLabel}
-        </span>
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
-        <p className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-accent-deep">
+      <div className="flex flex-1 flex-col px-5 py-4">
+        <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-accent-deep">
           {property.city}
         </p>
-        <h3 className="mt-2 font-display text-[1.125rem] font-bold leading-snug text-ink">
+        <h3 className="mt-1.5 font-display text-[0.9375rem] font-bold leading-snug text-ink">
           {property.title}
         </h3>
 
-        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[0.8125rem] text-text-muted">
-          <span className="inline-flex items-center gap-1.5">
-            <Ruler className="h-4 w-4 text-accent-mid" strokeWidth={1.5} aria-hidden="true" />
-            {property.livingSpace.toString().replace(".", ",")} m²
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <DoorOpen className="h-4 w-4 text-accent-mid" strokeWidth={1.5} aria-hidden="true" />
-            {property.rooms} Zimmer
-          </span>
-          {property.features.find((feature) => feature.label.toLowerCase().includes("baujahr")) && (
-            <span className="inline-flex items-center gap-1.5">
-              <CalendarRange className="h-4 w-4 text-accent-mid" strokeWidth={1.5} aria-hidden="true" />
-              Baujahr{" "}
-              {property.features.find((feature) => feature.label.toLowerCase().includes("baujahr"))!.value}
+        <div className="mt-3 flex flex-wrap items-center text-[0.75rem] text-text-muted">
+          {meta.map((item, index) => (
+            <span key={item.value} className="inline-flex items-center">
+              {index > 0 && <span className="mx-2.5 h-3 w-px bg-border" aria-hidden="true" />}
+              <item.icon className="mr-1.5 h-3.5 w-3.5 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
+              {item.value}
             </span>
-          )}
+          ))}
         </div>
 
-        <p className="mt-auto pt-5 font-display text-[1.25rem] font-extrabold text-ink">
+        <p className="mt-auto border-t border-border pt-3.5 font-display text-[1.0625rem] font-extrabold text-ink">
           {property.priceLabel}
         </p>
       </div>

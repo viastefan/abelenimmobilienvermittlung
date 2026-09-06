@@ -9,7 +9,7 @@ import { LogoMark } from "@/components/layout/Logo";
  */
 export function CtaSection({
   title = "Sie möchten wissen, was Ihre Immobilie wert ist?",
-  description = "Wir bewerten Ihre Immobilie persönlich und unverbindlich.",
+  description = "Wir bewerten Ihre Immobilie kostenlos und unverbindlich.",
   buttonLabel = "Jetzt bewerten",
   href = "/bewertung",
 }: {
@@ -19,17 +19,17 @@ export function CtaSection({
   href?: string;
 }) {
   return (
-    <section className="bg-ink-deep py-8">
+    <section className="bg-ink-deep py-7">
       <Container>
         <Reveal className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div className="flex items-center gap-5">
-            <LogoMark className="hidden h-11 w-11 shrink-0 text-accent sm:block" />
+            <LogoMark className="hidden h-10 w-10 shrink-0 text-accent sm:block" />
             <div>
-              <p className="font-display text-[1.0625rem] font-bold text-white">{title}</p>
-              <p className="mt-1 text-sm text-white/65">{description}</p>
+              <p className="font-display text-[0.9375rem] font-bold text-white">{title}</p>
+              <p className="mt-1 text-[0.8125rem] text-white/65">{description}</p>
             </div>
           </div>
-          <Button href={href} variant="primary" withArrow className="w-full shrink-0 sm:w-auto">
+          <Button href={href} variant="primary" className="w-full shrink-0 sm:w-auto">
             {buttonLabel}
           </Button>
         </Reveal>

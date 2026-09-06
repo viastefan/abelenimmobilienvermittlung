@@ -10,23 +10,20 @@ const icons = [ShieldCheck, Award];
  */
 export function TrustBadges({ className = "" }: { className?: string }) {
   return (
-    <ul className={`flex flex-wrap gap-3 ${className}`}>
+    <ul className={`flex flex-col gap-2.5 sm:flex-row sm:flex-wrap ${className}`}>
       {trustBadges.map((badge, index) => {
         const Icon = icons[index % icons.length]!;
         return (
           <li
             key={badge.title}
-            className="flex w-full items-center gap-3 rounded-[14px] border border-border bg-white/85 px-4 py-3 shadow-card backdrop-blur-sm sm:w-auto"
+            className="flex w-full items-center gap-3 rounded-[12px] border border-border bg-white px-4 py-3 shadow-card sm:w-auto"
           >
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent-deep">
-              <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent-deep">
+              <Icon className="h-4 w-4" aria-hidden="true" />
             </span>
             <span className="leading-snug sm:max-w-[11.5rem]">
-              <span className="block text-[0.8125rem] font-bold text-ink">{badge.title}</span>
-              <span className="block text-[0.75rem] text-text-muted">{badge.subtitle}</span>
-              <span className="mt-0.5 block text-[0.625rem] font-bold uppercase tracking-[0.14em] text-accent-deep">
-                {badge.issuer}
-              </span>
+              <span className="block text-[0.8125rem] font-bold leading-tight text-ink">{badge.title}</span>
+              <span className="mt-0.5 block text-[0.6875rem] leading-snug text-text-muted">{badge.subtitle}</span>
             </span>
           </li>
         );

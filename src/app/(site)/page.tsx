@@ -4,8 +4,7 @@ import { TrustStrip } from "@/components/home/TrustStrip";
 import { Services } from "@/components/home/Services";
 import { About } from "@/components/home/About";
 import { PropertiesPreview } from "@/components/home/PropertiesPreview";
-import { RegionSection } from "@/components/home/RegionSection";
-import { ValuationCta } from "@/components/home/CtaSection";
+import { CtaSection } from "@/components/home/CtaSection";
 import { pageSeo } from "@/lib/seo";
 import { site } from "@/data/site";
 
@@ -25,8 +24,7 @@ export default function HomePage() {
       <Services />
       <About />
       <PropertiesPreview />
-      <RegionSection />
-      <ValuationCta />
+      <CtaSection />
     </>
   );
 }

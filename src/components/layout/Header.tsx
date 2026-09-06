@@ -71,12 +71,12 @@ export function Header() {
           scrolled || open ? "border-border shadow-header" : "border-transparent"
         }`}
       >
-        <Container className="flex h-[72px] items-center justify-between gap-6 lg:h-20">
+        <Container className="flex h-[72px] items-center justify-between gap-6 lg:h-[84px]">
           <Link href="/" aria-label={`${site.legalName} — Startseite`} className="shrink-0 transition-opacity hover:opacity-80">
             <Logo />
           </Link>
 
-          <nav className="mx-auto hidden items-center gap-8 xl:flex" aria-label="Hauptnavigation">
+          <nav className="mx-auto hidden items-center gap-7 xl:flex" aria-label="Hauptnavigation">
             {primaryNav.map((item) => {
               const active = isActive(item.href);
               return (
@@ -100,22 +100,13 @@ export function Header() {
             })}
           </nav>
 
-          <div className="hidden shrink-0 items-center gap-4 lg:flex">
-            <a
-              href={site.phoneHref}
-              className="hidden items-center gap-2 text-sm font-semibold text-ink transition-colors hover:text-accent-deep 2xl:inline-flex"
-            >
-              <Phone className="h-4 w-4 text-accent-mid" aria-hidden="true" />
-              {site.phone}
-            </a>
-            <Link
-              href="/bewertung"
-              className="group/cta inline-flex items-center gap-2 rounded-[11px] bg-accent-deep px-5 py-3 text-sm font-semibold text-white shadow-[0_10px_20px_-14px_rgba(27,122,125,0.9)] transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-dark"
-            >
-              Immobilie bewerten
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/cta:translate-x-1" aria-hidden="true" />
-            </Link>
-          </div>
+          <a
+            href={site.phoneHref}
+            className="hidden shrink-0 items-center gap-2.5 rounded-[10px] bg-accent-deep px-5 py-3 text-sm font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-dark lg:inline-flex"
+          >
+            <Phone className="h-4 w-4" aria-hidden="true" />
+            {site.phone}
+          </a>
 
           <button
             type="button"
