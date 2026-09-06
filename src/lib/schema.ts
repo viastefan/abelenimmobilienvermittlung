@@ -9,6 +9,16 @@ export function organizationSchema() {
     legalName: site.legalName,
     url: site.url,
     telephone: site.phoneHref.replace("tel:", ""),
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        telephone: site.landlineHref.replace("tel:", ""),
+        email: site.email,
+        areaServed: "DE",
+        availableLanguage: "German",
+      },
+    ],
     email: site.email,
     image: `${site.url}/og-image.png`,
     address: {
@@ -24,7 +34,10 @@ export function organizationSchema() {
     founder: {
       "@type": "Person",
       name: site.owner,
+      jobTitle: site.ownerRole,
     },
+    knowsAbout: ["Immobilienbewertung", "Immobilienverkauf", "Vermietung"],
+    slogan: site.tagline,
   };
 }
 

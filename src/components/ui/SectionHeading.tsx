@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type SectionHeadingProps = {
   eyebrow?: string;
@@ -7,6 +8,7 @@ type SectionHeadingProps = {
   align?: "left" | "center";
   light?: boolean;
   size?: "md" | "lg";
+  className?: string;
 };
 
 export function SectionHeading({
@@ -16,28 +18,24 @@ export function SectionHeading({
   align = "left",
   light = false,
   size = "md",
+  className = "",
 }: SectionHeadingProps) {
   return (
-    <div className={`max-w-2xl ${align === "center" ? "mx-auto text-center" : ""}`}>
-      {eyebrow && (
-        <p
-          className={`mb-4 text-xs font-semibold uppercase tracking-[0.18em] ${
-            light ? "text-white/60" : "text-accent"
-          } ${align === "center" ? "flex items-center justify-center gap-2" : "flex items-center gap-2"}`}
-        >
-          <span className={`h-px w-6 ${light ? "bg-white/40" : "bg-accent"}`} aria-hidden="true" />
-          {eyebrow}
-        </p>
-      )}
+    <div className={`max-w-2xl ${align === "center" ? "mx-auto text-center" : ""} ${className}`}>
+      {eyebrow && <Eyebrow light={light}>{eyebrow}</Eyebrow>}
       <h2
-        className={`balance font-display font-semibold ${
+        className={`balance mt-4 font-display font-bold ${
           size === "lg" ? "text-display-lg" : "text-display-md"
         } ${light ? "text-white" : "text-ink"}`}
       >
         {title}
       </h2>
       {description && (
-        <p className={`mt-5 text-base leading-relaxed ${light ? "text-white/70" : "text-text-muted"}`}>
+        <p
+          className={`pretty mt-5 text-[1.0625rem] leading-relaxed ${
+            light ? "text-white/70" : "text-text-muted"
+          }`}
+        >
           {description}
         </p>
       )}

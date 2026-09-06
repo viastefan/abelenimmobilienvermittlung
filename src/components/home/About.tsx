@@ -1,35 +1,52 @@
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
-import { DoorMotif } from "@/components/graphics/ArchMotif";
 import { Reveal } from "@/components/ui/Reveal";
+import { SiteImage } from "@/components/graphics/SiteImage";
+import { resolveImage } from "@/lib/imagery";
+import { images } from "@/data/imagery";
 import { site } from "@/data/site";
 
 export function About() {
+  const portrait = resolveImage(images.portrait);
+
   return (
-    <section className="bg-surface-soft py-24 lg:py-28">
-      <Container className="grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
-        <Reveal className="flex flex-col justify-center">
+    <section className="bg-white py-20 lg:py-28">
+      <Container className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
+        <Reveal>
           <Eyebrow>Über uns</Eyebrow>
-          <h2 className="mt-6 text-display-lg font-display font-semibold text-ink balance">
-            Ihr Partner für Immobilien
+          <h2 className="balance mt-4 font-display text-display-lg font-bold text-ink">
+            Ihre Ansprechpartnerin
             <br />
-            in Leverkusen.
+            für Immobilien in Leverkusen
           </h2>
-          <p className="mt-7 max-w-xl text-base leading-relaxed text-text-muted">
+          <p className="pretty mt-6 max-w-lg text-[1.0625rem] leading-relaxed text-text-muted">
             Als inhabergeführtes Büro bieten wir Ihnen persönliche Beratung, fundiertes Fachwissen
             und eine ehrliche Einschätzung — für Ergebnisse, die überzeugen.
           </p>
-          <Button href="/ueber-mich" variant="primary" className="mt-8 w-fit">
-            Mehr erfahren
+
+          <figure className="mt-8 border-l-2 border-accent pl-6">
+            <blockquote className="font-display text-xl font-semibold leading-snug text-ink sm:text-2xl">
+              „Eine Immobilie ist nicht nur ein Objekt — sie ist ein Zuhause.“
+            </blockquote>
+            <figcaption className="mt-3 text-sm text-text-muted">
+              <span className="font-semibold text-ink">{site.owner}</span> — {site.ownerRole}
+            </figcaption>
+          </figure>
+
+          <Button href="/ueber-mich" variant="primary" withArrow className="mt-9">
+            Mehr über uns
           </Button>
         </Reveal>
 
-        <Reveal delay={120} className="relative flex aspect-[5/4] items-end overflow-hidden rounded-lg bg-ink">
-          <DoorMotif className="absolute inset-0 m-auto h-2/3 text-white/20" />
-          <div className="relative z-10 p-8">
-            <p className="font-display text-4xl font-semibold text-white">SA</p>
-            <p className="mt-1 text-sm text-white/60">{site.owner}</p>
+        <Reveal delay={120}>
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] bg-surface-mist shadow-lift">
+            <SiteImage
+              src={portrait}
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              label={site.owner}
+              alt={`${site.owner}, ${site.ownerRole} des Büros für Immobilien Bewertung & Vermittlung`}
+            />
           </div>
         </Reveal>
       </Container>

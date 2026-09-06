@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/Button";
 
 export default function NotFound() {
   return (
-    <section className="flex min-h-[70vh] items-center pt-24">
+    <section className="flex min-h-[60vh] items-center py-20">
       <Container className="max-w-xl text-center">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">404</p>
-        <h1 className="mt-4 font-display text-display-md font-semibold text-ink">
+        <p className="font-display text-label font-bold uppercase text-accent-deep">404</p>
+        <h1 className="balance mt-4 font-display text-display-md font-bold text-ink">
           Diese Seite gibt es nicht (mehr).
         </h1>
-        <p className="mt-5 text-base text-text-muted">
+        <p className="pretty mt-5 text-[1.0625rem] leading-relaxed text-text-muted">
           Möglicherweise wurde die Immobilie bereits vermittelt oder die Seite wurde verschoben.
           Schauen Sie sich gerne unsere aktuellen Angebote an oder kontaktieren Sie uns direkt.
         </p>

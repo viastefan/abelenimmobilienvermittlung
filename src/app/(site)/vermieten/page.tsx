@@ -1,17 +1,23 @@
 import type { Metadata } from "next";
-import { Users, ClipboardCheck, KeyRound, MessagesSquare } from "lucide-react";
+import { ClipboardCheck, KeyRound, MessagesSquare, Users } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Container } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
+import { Steps } from "@/components/ui/Steps";
 import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
+import { resolveImage } from "@/lib/imagery";
+import { images } from "@/data/imagery";
+import { rentingSteps } from "@/data/process";
 
 export const metadata: Metadata = pageSeo({
   title: "Immobilie vermieten in Leverkusen & Umgebung",
   description:
-    "Wir finden den passenden Mieter für Ihre Immobilie — schnell, sicher und unkompliziert, mit Bonitätsprüfung und persönlicher Begleitung.",
+    "Wir finden den passenden Mieter für Ihre Immobilie — schnell, sicher und unkompliziert, inklusive Bonitätsprüfung und persönlicher Begleitung bis zur Schlüsselübergabe.",
   path: "/vermieten",
 });
 
@@ -19,22 +25,22 @@ const benefits = [
   {
     icon: Users,
     title: "Passende Mieter finden",
-    description: "Wir prüfen Interessenten sorgfältig und stellen Ihnen nur passende Kandidaten vor.",
+    description: "Wir prüfen Interessenten sorgfältig und stellen Ihnen nur Kandidaten vor, die wirklich passen.",
   },
   {
     icon: ClipboardCheck,
-    title: "Bonitäts- & Unterlagenprüfung",
-    description: "Schufa-Auskunft, Einkommensnachweise und Mietschuldenfreiheitsbescheinigung — vollständig geprüft.",
+    title: "Unterlagen vollständig geprüft",
+    description: "Selbstauskunft, Einkommensnachweise und Bonitätsauskunft liegen vor, bevor Sie entscheiden.",
   },
   {
     icon: MessagesSquare,
     title: "Besichtigungen organisiert",
-    description: "Wir übernehmen Terminkoordination und Durchführung der Besichtigungen für Sie.",
+    description: "Terminkoordination und Durchführung übernehmen wir vollständig — Sie müssen nicht vor Ort sein.",
   },
   {
     icon: KeyRound,
     title: "Vom Vertrag bis zur Übergabe",
-    description: "Rechtssicherer Mietvertrag und persönliche Begleitung bis zur Schlüsselübergabe.",
+    description: "Rechtssicherer Mietvertrag, Übergabeprotokoll und Schlüsselübergabe — sauber dokumentiert.",
   },
 ];
 
@@ -42,34 +48,64 @@ export default function VermietenPage() {
   return (
     <>
       <PageHero
-        eyebrow="Vermietung"
-        title="Ihre Immobilie in verlässlichen Händen."
-        description="Wir übernehmen die Vermietung Ihrer Immobilie — von der Mietersuche über die Bonitätsprüfung bis zur Schlüsselübergabe. Schnell, sicher und unkompliziert."
+        eyebrow="Vermieten"
+        title={
+          <>
+            Ihre Immobilie vermieten.
+            <br className="hidden sm:block" /> Ohne Aufwand für Sie.
+          </>
+        }
+        description="Von der Mietpreiseinschätzung über die Auswahl der Mietpartei bis zur Schlüsselübergabe — wir übernehmen den gesamten Ablauf."
+        breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Vermieten" }]}
+        actions={
+          <>
+            <Button href="/kontakt?anliegen=vermieten" variant="primary" size="lg" withArrow>
+              Vermietung anfragen
+            </Button>
+            <Button href="/bewertung" variant="secondary" size="lg">
+              Mietpreis einschätzen
+            </Button>
+          </>
+        }
+        withMedia
+        image={resolveImage(images.vermieten)}
+        imageAlt="Mehrfamilienhaus mit Mietwohnungen in Leverkusen"
       />
 
       <section className="py-20 lg:py-28">
         <Container>
-          <SectionHeading eyebrow="So läuft es ab" size="lg" title="Vermietung ohne Aufwand für Sie." />
-          <div className="mt-14 grid gap-8 sm:grid-cols-2">
-            {benefits.map((benefit) => (
-              <div key={benefit.title} className="flex gap-4">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-surface-soft text-accent">
-                  <benefit.icon className="h-5 w-5" aria-hidden="true" />
+          <Reveal>
+            <SectionHeading eyebrow="Ihre Vorteile" size="lg" title="Vermietung ohne Aufwand für Sie." />
+          </Reveal>
+
+          <div className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+            {benefits.map((benefit, index) => (
+              <Reveal key={benefit.title} delay={index * 80} className="flex gap-5">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-accent-soft text-accent-deep">
+                  <benefit.icon className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
                 </span>
                 <div>
-                  <h3 className="font-display text-lg font-semibold text-ink">{benefit.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-text-muted">{benefit.description}</p>
+                  <h3 className="font-display text-[1.0625rem] font-bold text-ink">{benefit.title}</h3>
+                  <p className="pretty mt-2 text-[0.9375rem] leading-relaxed text-text-muted">
+                    {benefit.description}
+                  </p>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </Container>
       </section>
 
+      <Steps
+        eyebrow="So läuft es ab"
+        title="Von der Einschätzung bis zum Mietvertrag."
+        steps={rentingSteps}
+      />
+
       <CtaSection
         title="Sie möchten Ihre Immobilie vermieten?"
-        description="Lassen Sie uns unverbindlich über Ihre Immobilie sprechen."
-        buttonLabel="Kontakt aufnehmen"
+        description="Sprechen wir unverbindlich über Ihre Immobilie und den passenden Mietpreis."
+        buttonLabel="Vermietung anfragen"
         href="/kontakt?anliegen=vermieten"
       />
 

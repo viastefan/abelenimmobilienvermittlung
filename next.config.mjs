@@ -5,12 +5,15 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-      {
-        protocol: "https",
         hostname: "*.supabase.co",
         pathname: "/storage/v1/object/public/**",
+      },
+      // Bildplätze in src/data/imagery.ts dürfen auch auf externe https-URLs
+      // zeigen (bestehender Auftritt, Bildagentur, CDN). Nur https, damit
+      // keine unverschlüsselten Quellen eingebunden werden.
+      {
+        protocol: "https",
+        hostname: "**",
       },
     ],
     formats: ["image/avif", "image/webp"],
