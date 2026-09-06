@@ -32,11 +32,11 @@ export function Hero() {
             Immobilien in Leverkusen und Umgebung.
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-3">
-            <Button href="/bewertung" variant="primary" size="lg" withArrow>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <Button href="/bewertung" variant="primary" size="lg" withArrow className="w-full sm:w-auto">
               Immobilie bewerten
             </Button>
-            <Button href="/kontakt" variant="secondary" size="lg">
+            <Button href="/kontakt" variant="secondary" size="lg" className="w-full sm:w-auto">
               Kontakt aufnehmen
             </Button>
           </div>

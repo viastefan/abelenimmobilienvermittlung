@@ -65,7 +65,11 @@ export function PageHero({
               {description}
             </p>
           )}
-          {actions && <div className="mt-8 flex flex-wrap items-center gap-3">{actions}</div>}
+          {actions && (
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center [&>a]:w-full sm:[&>a]:w-auto">
+              {actions}
+            </div>
+          )}
         </div>
 
         {hasMedia && (
