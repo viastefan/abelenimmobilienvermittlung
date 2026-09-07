@@ -89,7 +89,7 @@ export default async function PropertyDetailPage({
 
       <section className="pt-8">
         <Container>
-          <div className="relative aspect-[16/9] overflow-hidden rounded-[20px] bg-surface-mist shadow-lift">
+          <div className="relative h-[15rem] overflow-hidden rounded-[14px] bg-surface-mist sm:h-[22rem] lg:h-[28rem]">
             <SiteImage
               src={heroImage}
               priority
@@ -120,7 +120,7 @@ export default async function PropertyDetailPage({
         </Container>
       </section>
 
-      <section className="py-16 lg:py-24">
+      <section className="py-14 lg:py-20">
         <Container className="grid gap-12 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-20">
           <div>
             {property.features.length > 0 && (
@@ -181,7 +181,7 @@ export default async function PropertyDetailPage({
             )}
           </div>
 
-          <aside className="h-fit rounded-[20px] border border-border bg-surface-warm p-8 lg:sticky lg:top-32">
+          <aside className="h-fit rounded-[14px] border border-border bg-surface-warm p-7 lg:sticky lg:top-32">
             <p className="font-display text-3xl font-extrabold text-ink">{property.priceLabel}</p>
             {property.heroNote && <p className="mt-2 text-sm text-text-muted">{property.heroNote}</p>}
 

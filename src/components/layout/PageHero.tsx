@@ -7,6 +7,11 @@ import { SiteImage } from "@/components/graphics/SiteImage";
 
 type Crumb = { label: string; href?: string };
 
+/**
+ * Page header. With `withMedia` the image runs to the right viewport edge on
+ * large screens — the same treatment as the homepage hero, so every page
+ * opens with the same silhouette.
+ */
 export function PageHero({
   eyebrow,
   title,
@@ -16,35 +21,38 @@ export function PageHero({
   withMedia = false,
   image,
   imageAlt,
-  caption,
 }: {
   eyebrow?: string;
   title: ReactNode;
   description?: ReactNode;
   actions?: ReactNode;
   breadcrumbs?: Crumb[];
-  /** Renders the two-column variant with an image beside the text. */
   withMedia?: boolean;
   image?: string;
   imageAlt?: string;
-  caption?: { title: string; description: string };
 }) {
   const hasMedia = withMedia || Boolean(image);
 
   return (
-    <section className="hero-wash relative overflow-hidden border-b border-border">
-      <Container
-        className={`relative py-14 lg:py-20 ${
-          hasMedia ? "grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-16" : ""
-        }`}
-      >
-        <div className={hasMedia ? "" : "max-w-3xl"}>
+    <section className="relative overflow-hidden border-b border-border bg-surface-mist">
+      {hasMedia && (
+        <div className="absolute inset-y-0 right-0 hidden w-[44%] overflow-hidden lg:block" aria-hidden="true">
+          <SiteImage src={image} priority sizes="45vw" label={eyebrow} alt="" />
+        </div>
+      )}
+
+      <Container className="relative">
+        <div
+          className={`flex flex-col py-12 lg:py-16 ${
+            hasMedia ? "lg:min-h-[21rem] lg:w-[52%] lg:justify-center" : "max-w-3xl"
+          }`}
+        >
           {breadcrumbs && breadcrumbs.length > 0 && (
-            <nav aria-label="Brotkrümelnavigation" className="mb-6">
-              <ol className="flex flex-wrap items-center gap-1.5 text-[0.8125rem] text-text-subtle">
+            <nav aria-label="Brotkrümelnavigation" className="mb-5">
+              <ol className="flex flex-wrap items-center gap-1.5 text-[0.75rem] text-text-subtle">
                 {breadcrumbs.map((crumb, index) => (
                   <li key={crumb.label} className="flex items-center gap-1.5">
-                    {index > 0 && <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />}
+                    {index > 0 && <ChevronRight className="h-3 w-3" aria-hidden="true" />}
                     {crumb.href ? (
                       <Link href={crumb.href} className="transition-colors hover:text-accent-deep">
                         {crumb.label}
@@ -59,38 +67,24 @@ export function PageHero({
           )}
 
           {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-          <h1 className="balance mt-4 font-display text-display-lg font-extrabold text-ink">{title}</h1>
+          <h1 className="balance mt-3 font-display text-display-xl font-extrabold text-ink">{title}</h1>
           {description && (
-            <p className="pretty mt-6 max-w-xl text-[1.0625rem] leading-relaxed text-text-muted">
+            <p className="pretty mt-5 max-w-xl text-[0.9375rem] leading-relaxed text-text-muted">
               {description}
             </p>
           )}
           {actions && (
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center [&>a]:w-full sm:[&>a]:w-auto">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center [&>a]:w-full sm:[&>a]:w-auto">
               {actions}
             </div>
           )}
-        </div>
 
-        {hasMedia && (
-          <div className="relative">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] bg-surface-mist shadow-lift">
-              <SiteImage
-                src={image}
-                priority
-                sizes="(min-width: 1024px) 45vw, 100vw"
-                label={caption ? undefined : eyebrow}
-                alt={imageAlt ?? ""}
-              />
+          {hasMedia && (
+            <div className="relative -mx-5 mt-8 aspect-[16/10] overflow-hidden sm:-mx-8 sm:rounded-[14px] lg:hidden">
+              <SiteImage src={image} sizes="100vw" label={eyebrow} alt={imageAlt ?? ""} />
             </div>
-            {caption && (
-              <div className="absolute -bottom-5 left-5 right-5 rounded-[14px] border border-border bg-white/95 p-4 shadow-soft backdrop-blur sm:left-auto sm:right-6 sm:w-[17rem]">
-                <p className="font-display text-sm font-bold text-ink">{caption.title}</p>
-                <p className="mt-1 text-[0.8125rem] leading-snug text-text-muted">{caption.description}</p>
-              </div>
-            )}
-          </div>
-        )}
+          )}
+        </div>
       </Container>
     </section>
   );

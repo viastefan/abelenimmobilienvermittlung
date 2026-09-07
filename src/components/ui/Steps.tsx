@@ -21,7 +21,7 @@ export function Steps({
   className?: string;
 }) {
   return (
-    <section className={`bg-surface-warm py-20 lg:py-28 ${className}`}>
+    <section className={`bg-surface-warm py-16 lg:py-20 ${className}`}>
       <Container>
         <Reveal>
           <SectionHeading eyebrow={eyebrow} size="lg" title={title} description={description} />

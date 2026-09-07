@@ -6,7 +6,7 @@ import { regions, site } from "@/data/site";
 
 export function RegionSection() {
   return (
-    <section className="border-t border-border bg-surface-warm py-20 lg:py-28">
+    <section className="border-t border-border bg-surface-warm py-16 lg:py-20">
       <Container className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-20">
         <Reveal>
           <SectionHeading

@@ -7,7 +7,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Steps } from "@/components/ui/Steps";
 import { TrustBadges } from "@/components/home/TrustBadges";
-import { ValuationCta } from "@/components/home/CtaSection";
+import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
@@ -69,7 +69,7 @@ export default function BewertungPage() {
         imageAlt="Einfamilienhaus in Leverkusen — typisches Bewertungsobjekt"
       />
 
-      <section className="py-20 lg:py-28">
+      <section className="py-16 lg:py-20">
         <Container>
           <Reveal>
             <SectionHeading
@@ -108,7 +108,12 @@ export default function BewertungPage() {
         steps={valuationSteps}
       />
 
-      <ValuationCta />
+      <CtaSection
+        title="Bereit für eine belastbare Einschätzung?"
+        description="Wir sehen uns Ihre Immobilie an und melden uns in der Regel innerhalb einer Woche."
+        buttonLabel="Bewertung anfragen"
+        href="/kontakt?anliegen=bewertung"
+      />
 
       <JsonLd
         data={breadcrumbSchema([

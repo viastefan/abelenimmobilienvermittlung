@@ -58,7 +58,7 @@ export default async function ReferenceDetailPage({ params }: Params) {
           </Link>
 
           <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] lg:items-end">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-[20px] bg-surface-mist shadow-lift">
+            <div className="relative h-[15rem] overflow-hidden rounded-[14px] bg-surface-mist sm:h-[20rem] lg:h-[24rem]">
               <SiteImage
                 src={resolveImage(item.image)}
                 priority
@@ -98,7 +98,7 @@ export default async function ReferenceDetailPage({ params }: Params) {
         </Container>
       </section>
 
-      <section className="py-16 lg:py-24">
+      <section className="py-14 lg:py-20">
         <Container className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-20">
           <div>
             <h2 className="font-display text-display-sm font-bold text-ink">Objektbeschreibung</h2>
@@ -118,7 +118,7 @@ export default async function ReferenceDetailPage({ params }: Params) {
           </div>
 
           <aside>
-            <div className="rounded-[16px] border border-border bg-surface-warm p-8">
+            <div className="rounded-[14px] border border-border bg-surface-warm p-7">
               <h2 className="font-display text-display-sm font-bold text-ink">Ausstattung</h2>
               <ul className="mt-5 space-y-3">
                 {item.equipment.map((feature) => (

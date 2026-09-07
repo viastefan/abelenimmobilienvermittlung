@@ -72,7 +72,7 @@ export default function VermietenPage() {
         imageAlt="Mehrfamilienhaus mit Mietwohnungen in Leverkusen"
       />
 
-      <section className="py-20 lg:py-28">
+      <section className="py-16 lg:py-20">
         <Container>
           <Reveal>
             <SectionHeading eyebrow="Ihre Vorteile" size="lg" title="Vermietung ohne Aufwand für Sie." />

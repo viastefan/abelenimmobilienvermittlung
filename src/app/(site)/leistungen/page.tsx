@@ -44,7 +44,7 @@ export default function LeistungenPage() {
         breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Leistungen" }]}
       />
 
-      <section className="py-20 lg:py-28">
+      <section className="py-16 lg:py-20">
         <Container>
           <div className="divide-y divide-border border-t border-border">
             {services.map((service) => (
@@ -71,7 +71,7 @@ export default function LeistungenPage() {
 
       <WhyAbelen />
 
-      <section className="py-20 lg:py-28">
+      <section className="py-16 lg:py-20">
         <Container className="max-w-3xl">
           <h2 className="font-display text-display-md font-bold text-ink">Häufige Fragen</h2>
           <div className="mt-8 divide-y divide-border border-t border-border">

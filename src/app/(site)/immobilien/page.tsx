@@ -36,7 +36,7 @@ export default async function ImmobilienPage() {
         breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Immobilien" }]}
       />
 
-      <section className="py-16 lg:py-24">
+      <section className="py-14 lg:py-20">
         <Container>
           {properties.length > 0 ? (
             <div

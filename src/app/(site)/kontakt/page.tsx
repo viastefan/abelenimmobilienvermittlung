@@ -27,7 +27,7 @@ export default function KontaktPage() {
         breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Kontakt" }]}
       />
 
-      <section className="py-16 lg:py-24">
+      <section className="py-14 lg:py-20">
         <Container className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
           <div>
             <h2 className="font-display text-display-sm font-bold text-ink">{site.owner}</h2>
@@ -103,7 +103,7 @@ export default function KontaktPage() {
               </li>
             </ul>
 
-            <p className="mt-10 flex items-start gap-3 rounded-[16px] border border-border bg-surface-warm p-6 text-[0.9375rem] leading-relaxed text-text-muted">
+            <p className="mt-9 flex items-start gap-3 rounded-[14px] border border-border bg-surface-warm p-5 text-[0.875rem] leading-relaxed text-text-muted">
               <Clock className="mt-0.5 h-5 w-5 shrink-0 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
               Wir melden uns in der Regel innerhalb eines Werktages persönlich bei Ihnen zurück.
             </p>
@@ -111,7 +111,7 @@ export default function KontaktPage() {
             <SocialLinks className="mt-8 text-ink" iconClassName="h-[18px] w-[18px]" />
           </div>
 
-          <div className="rounded-[20px] border border-border bg-surface-warm p-7 sm:p-10">
+          <div className="rounded-[14px] border border-border bg-surface-warm p-6 sm:p-8">
             <Suspense fallback={null}>
               <ContactForm />
             </Suspense>

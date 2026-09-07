@@ -59,10 +59,10 @@ export default function UeberMichPage() {
         breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Über uns" }]}
       />
 
-      <section className="py-20 lg:py-28">
+      <section className="py-16 lg:py-20">
         <Container className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
           <Reveal>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] bg-surface-mist shadow-lift">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[14px] bg-surface-mist">
               <SiteImage
                 src={portrait}
                 sizes="(min-width: 1024px) 40vw, 100vw"
@@ -115,7 +115,7 @@ export default function UeberMichPage() {
 
       <Philosophy />
 
-      <section className="border-t border-border bg-white py-20 lg:py-24">
+      <section className="border-t border-border bg-white py-16 lg:py-20">
         <Container>
           <Reveal>
             <SectionHeading

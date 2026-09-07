@@ -38,13 +38,9 @@ export default function ReferenzenPage() {
         withMedia
         image={resolveImage(images.referenzen)}
         imageAlt="Wohnhäuser in Leverkusen, wie sie regelmäßig vermittelt werden"
-        caption={{
-          title: "Regionale Immobilien.",
-          description: "Objekte aus Leverkusen und den angrenzenden Städten.",
-        }}
       />
 
-      <section className="py-16 lg:py-24">
+      <section className="py-14 lg:py-20">
         <Container>
           <ReferenceGrid references={items} />
 

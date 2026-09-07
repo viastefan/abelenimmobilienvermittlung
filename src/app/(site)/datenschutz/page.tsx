@@ -14,7 +14,7 @@ export default function DatenschutzPage() {
   return (
     <>
       <PageHero eyebrow="Rechtliches" title="Datenschutzerklärung" />
-      <section className="py-16 lg:py-24">
+      <section className="py-14 lg:py-20">
         <Container className="max-w-2xl space-y-10 text-sm leading-relaxed text-text-muted">
           <div>
             <h2 className="font-display text-lg font-semibold text-ink">1. Verantwortlicher</h2>
