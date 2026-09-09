@@ -43,7 +43,9 @@ export const leistungenNav: NavItem[] = [
   { label: "Immobilienbewertung", href: "/bewertung" },
   { label: "Immobilienverkauf", href: "/verkaufen" },
   { label: "Vermietung", href: "/vermieten" },
+  { label: "Immobilie kaufen", href: "/kaufen" },
   { label: "Aktuelle Immobilien", href: "/immobilien" },
+  { label: "Alle Leistungen", href: "/leistungen" },
 ];
 
 export const legalNav: NavItem[] = [

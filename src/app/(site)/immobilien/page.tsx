@@ -38,6 +38,7 @@ export default async function ImmobilienPage() {
 
       <section className="py-14 lg:py-20">
         <Container>
+          <h2 className="sr-only">Aktuelle Angebote</h2>
           {properties.length > 0 ? (
             <div
               className={`grid gap-6 sm:grid-cols-2 ${
