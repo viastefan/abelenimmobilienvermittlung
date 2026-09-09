@@ -6,14 +6,16 @@ import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Steps } from "@/components/ui/Steps";
+import { Faq } from "@/components/ui/Faq";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
 import { resolveImage } from "@/lib/imagery";
 import { images } from "@/data/imagery";
 import { valuationSteps } from "@/data/process";
+import { bewertungFaq, wertermittlungsverfahren } from "@/data/faq";
 
 export const metadata: Metadata = pageSeo({
   title: "Immobilienbewertung in Leverkusen & Umgebung",
@@ -108,6 +110,37 @@ export default function BewertungPage() {
         steps={valuationSteps}
       />
 
+      <section className="bg-surface-cool py-16 lg:py-20">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Wertermittlung"
+              size="lg"
+              title="Drei Verfahren, ein passendes."
+              description="Welches Verfahren trägt, entscheidet die Immobilie — nicht die Gewohnheit. Die Grundlagen regelt die Immobilienwertermittlungsverordnung."
+            />
+          </Reveal>
+
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {wertermittlungsverfahren.map((verfahren, index) => (
+              <Reveal key={verfahren.name} delay={index * 90} className="h-full">
+                <div className="flex h-full flex-col rounded-[12px] border border-border bg-white p-6 lg:p-7">
+                  <h3 className="font-display text-[1rem] font-bold text-ink">{verfahren.name}</h3>
+                  <p className="mt-1.5 text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-accent-deep">
+                    {verfahren.lead}
+                  </p>
+                  <p className="pretty mt-4 text-[0.875rem] leading-relaxed text-text-muted">
+                    {verfahren.description}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <Faq title="Fragen zur Immobilienbewertung" items={bewertungFaq} />
+
       <CtaSection
         title="Bereit für eine belastbare Einschätzung?"
         description="Wir sehen uns Ihre Immobilie an und melden uns in der Regel innerhalb einer Woche."
@@ -121,6 +154,7 @@ export default function BewertungPage() {
           { name: "Bewertung", path: "/bewertung" },
         ])}
       />
+      <JsonLd data={faqSchema(bewertungFaq)} />
     </>
   );
 }

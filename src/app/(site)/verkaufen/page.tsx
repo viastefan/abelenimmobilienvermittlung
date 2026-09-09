@@ -5,13 +5,16 @@ import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Steps } from "@/components/ui/Steps";
+import { Checklist } from "@/components/ui/Checklist";
+import { Faq } from "@/components/ui/Faq";
 import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
 import { resolveImage } from "@/lib/imagery";
 import { images } from "@/data/imagery";
 import { sellingSteps } from "@/data/process";
+import { verkaufenFaq, verkaufsUnterlagen } from "@/data/faq";
 
 export const metadata: Metadata = pageSeo({
   title: "Immobilie verkaufen in Leverkusen & Umgebung",
@@ -97,6 +100,15 @@ export default function VerkaufenPage() {
         steps={sellingSteps}
       />
 
+      <Checklist
+        eyebrow="Unterlagen"
+        title="Was wir für den Verkauf brauchen"
+        description="Vollständige Unterlagen vor dem ersten Besichtigungstermin verkürzen den Verkauf spürbar. Was fehlt, beschaffen wir gemeinsam."
+        groups={verkaufsUnterlagen}
+      />
+
+      <Faq title="Fragen zum Immobilienverkauf" items={verkaufenFaq} />
+
       <CtaSection
         title="Lassen Sie uns über Ihre Immobilie sprechen."
         description="Unverbindlich, persönlich und ohne Verkaufsdruck."
@@ -110,6 +122,7 @@ export default function VerkaufenPage() {
           { name: "Verkaufen", path: "/verkaufen" },
         ])}
       />
+      <JsonLd data={faqSchema(verkaufenFaq)} />
     </>
   );
 }

@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Container } from "@/components/ui/Container";
 import { WhyAbelen } from "@/components/home/WhyAbelen";
+import { Faq } from "@/components/ui/Faq";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
@@ -71,19 +72,7 @@ export default function LeistungenPage() {
 
       <WhyAbelen />
 
-      <section className="py-16 lg:py-20">
-        <Container className="max-w-3xl">
-          <h2 className="font-display text-display-md font-bold text-ink">Häufige Fragen</h2>
-          <div className="mt-8 divide-y divide-border border-t border-border">
-            {faqItems.map((item) => (
-              <div key={item.question} className="py-6">
-                <h3 className="font-display text-[1.0625rem] font-bold text-ink">{item.question}</h3>
-                <p className="pretty mt-2 text-[0.9375rem] leading-relaxed text-text-muted">{item.answer}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <Faq title="Häufige Fragen" items={faqItems} />
 
       <JsonLd
         data={breadcrumbSchema([

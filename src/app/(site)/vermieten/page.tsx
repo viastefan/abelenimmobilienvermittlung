@@ -6,13 +6,15 @@ import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Steps } from "@/components/ui/Steps";
+import { Faq } from "@/components/ui/Faq";
 import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
 import { resolveImage } from "@/lib/imagery";
 import { images } from "@/data/imagery";
 import { rentingSteps } from "@/data/process";
+import { vermietenFaq } from "@/data/faq";
 
 export const metadata: Metadata = pageSeo({
   title: "Immobilie vermieten in Leverkusen & Umgebung",
@@ -102,6 +104,8 @@ export default function VermietenPage() {
         steps={rentingSteps}
       />
 
+      <Faq title="Fragen zur Vermietung" items={vermietenFaq} />
+
       <CtaSection
         title="Sie möchten Ihre Immobilie vermieten?"
         description="Sprechen wir unverbindlich über Ihre Immobilie und den passenden Mietpreis."
@@ -115,6 +119,7 @@ export default function VermietenPage() {
           { name: "Vermieten", path: "/vermieten" },
         ])}
       />
+      <JsonLd data={faqSchema(vermietenFaq)} />
     </>
   );
 }
