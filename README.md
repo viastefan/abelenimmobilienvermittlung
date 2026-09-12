@@ -37,10 +37,36 @@ Platzhalterfläche im Markenlook — nie ein kaputtes Bild.
 | Seite Vermieten      | `public/images/vermieten.jpg`     | Querformat, ≥ 1400 × 1050  |
 | Seite Referenzen     | `public/images/referenzen.jpg`    | Querformat, ≥ 1400 × 1050  |
 
-**Objektfotos** kommen aus der Objektverwaltung unter `/admin` (Supabase
-Storage) und erscheinen automatisch auf den Immobilienkarten und
-Detailseiten. **Referenzfotos** lassen sich in `src/data/references.ts` je
-Objekt über das Feld `image` hinterlegen.
+**Objekt- und Referenzfotos** werden im Admin-Panel unter `/admin` direkt
+hochgeladen (Supabase Storage) und erscheinen automatisch auf den Karten und
+Detailseiten.
+
+## Admin-Panel (`/admin`)
+
+Anmeldung per E-Mail und Passwort (Supabase Auth). Die Route ist über
+Middleware geschützt und wird nicht indexiert.
+
+| Bereich | Was dort gepflegt wird |
+| --- | --- |
+| Übersicht | Was gerade live ist, zuletzt bearbeitete Einträge |
+| Immobilien | Aktuelle Angebote — Eckdaten, Texte, Fotos, Status, Sichtbarkeit |
+| Referenzen | Vermittelte Objekte für die Referenzen-Seite |
+
+**Startseite:** Das große Objekt unter „Aktuell zum Verkauf“ wird automatisch
+gewählt — veröffentlicht, Status nicht „verkauft“, bevorzugt das als
+*hervorgehoben* markierte. Ist keines verfügbar, entfällt der Block und das
+Panel weist darauf hin. Darunter erscheinen weitere Angebote und die drei
+jüngsten Referenzen.
+
+Ohne erreichbare Datenbank zeigt die Website die gepflegten Fallback-Daten aus
+`src/data/fallback-properties.ts` und `src/data/fallback-references.ts`.
+
+### Datenbank
+
+Schema und Sicherheitsregeln liegen in `supabase/migrations/`. Beide Tabellen
+nutzen Row Level Security: anonym sind nur veröffentlichte Datensätze lesbar,
+angemeldete Redakteure haben Vollzugriff. Der Storage-Bucket
+`property-images` ist öffentlich lesbar und nur für Angemeldete beschreibbar.
 
 ## Struktur
 
@@ -50,7 +76,7 @@ src/
 ├── app/admin/         Objektverwaltung (geschützt)
 ├── app/api/kontakt/   Kontaktformular → Resend
 ├── components/        UI-, Layout- und Seitenbausteine
-├── data/              Inhalte: Texte, Navigation, Referenzen, Bildplätze
+├── data/              Inhalte: Texte, Navigation, FAQ, Fallback-Daten
 └── lib/               SEO, Schema.org, Supabase, Bildauflösung
 ```
 

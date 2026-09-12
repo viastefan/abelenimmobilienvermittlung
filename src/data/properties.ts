@@ -46,6 +46,16 @@ export async function getFeaturedProperty(): Promise<Property | undefined> {
   return properties.find((property) => property.featured) ?? properties[0];
 }
 
+/**
+ * Das Objekt, das auf der Startseite groß gezeigt wird: bevorzugt ein als
+ * „hervorgehoben“ markiertes, in jedem Fall aber eines, das noch zu haben
+ * ist. Erst wenn gar nichts verfügbar ist, bleibt der Platz leer.
+ */
+export async function getFeaturedActiveProperty(): Promise<Property | undefined> {
+  const active = await getActiveProperties();
+  return active.find((property) => property.featured) ?? active[0];
+}
+
 export async function getPropertyBySlug(slug: string): Promise<Property | undefined> {
   const fallback = fallbackProperties.find((property) => property.slug === slug);
 

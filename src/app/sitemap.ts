@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/data/site";
 import { getPublishedProperties } from "@/data/properties";
-import { references } from "@/data/references";
+import { getAllReferenceSlugs } from "@/data/references";
 
 export const revalidate = 60;
 
@@ -27,8 +27,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: path === "" ? 1 : 0.7,
   }));
 
-  const referenceRoutes = references.map((item) => ({
-    url: new URL(`/referenzen/${item.slug}`, site.url).toString(),
+  const referenceSlugs = await getAllReferenceSlugs();
+  const referenceRoutes = referenceSlugs.map((slug) => ({
+    url: new URL(`/referenzen/${slug}`, site.url).toString(),
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.6,

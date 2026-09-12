@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { ArrowRight, CalendarRange, DoorOpen, Ruler, Search } from "lucide-react";
 import { SiteImage } from "@/components/graphics/SiteImage";
-import type { ReferenceItem } from "@/data/references";
+import type { ReferenceObject } from "@/types/reference";
 
-export type ReferenceCardItem = ReferenceItem & { resolvedImage?: string };
+export type ReferenceCardItem = ReferenceObject & { resolvedImage?: string };
 
 const filters = [
   { key: "alle", label: "Alle" },
@@ -15,8 +15,6 @@ const filters = [
 ] as const;
 
 type FilterKey = (typeof filters)[number]["key"];
-
-const statusLabels = { verkauf: "Verkauft", vermietet: "Vermietet" } as const;
 
 const PAGE_SIZE = 9;
 
@@ -105,7 +103,7 @@ export function ReferenceGrid({ references }: { references: ReferenceCardItem[] 
                   />
                 </div>
                 <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-ink shadow-card backdrop-blur">
-                  {statusLabels[item.category]}
+                  {item.categoryLabel}
                 </span>
               </div>
 
@@ -127,10 +125,12 @@ export function ReferenceGrid({ references }: { references: ReferenceCardItem[] 
                     <DoorOpen className="h-4 w-4 text-accent-mid" strokeWidth={1.5} aria-hidden="true" />
                     {item.rooms} Zimmer
                   </span>
-                  <span className="inline-flex items-center gap-1.5">
-                    <CalendarRange className="h-4 w-4 text-accent-mid" strokeWidth={1.5} aria-hidden="true" />
-                    {item.year}
-                  </span>
+                  {item.year && (
+                    <span className="inline-flex items-center gap-1.5">
+                      <CalendarRange className="h-4 w-4 text-accent-mid" strokeWidth={1.5} aria-hidden="true" />
+                      {item.year}
+                    </span>
+                  )}
                 </div>
 
                 <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-accent-deep">

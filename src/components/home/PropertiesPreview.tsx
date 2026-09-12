@@ -4,17 +4,19 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { PropertyCard } from "@/components/property/PropertyCard";
 import { PropertyCtaCard } from "@/components/property/PropertyCtaCard";
-import { getActiveProperties } from "@/data/properties";
+import { getActiveProperties, getFeaturedActiveProperty } from "@/data/properties";
 
 export async function PropertiesPreview() {
-  const properties = (await getActiveProperties()).slice(0, 3);
+  const [active, featured] = await Promise.all([getActiveProperties(), getFeaturedActiveProperty()]);
+  // The featured object already has its own block further up the page.
+  const properties = active.filter((property) => property.slug !== featured?.slug).slice(0, 3);
   if (properties.length === 0) return null;
 
   return (
     <section className="bg-white py-16 lg:py-20">
       <Container>
         <Reveal className="relative">
-          <SectionHeading eyebrow="Aktuelle Angebote" align="center" title="Aktuelle Immobilien" />
+          <SectionHeading eyebrow="Weitere Angebote" align="center" title="Weitere Immobilien" />
           <div className="mt-6 flex justify-center lg:absolute lg:right-0 lg:top-1/2 lg:mt-0 lg:-translate-y-1/2">
             <Button href="/immobilien" variant="secondary" className="text-[0.8125rem]">
               Alle Immobilien ansehen

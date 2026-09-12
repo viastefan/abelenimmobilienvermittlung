@@ -9,18 +9,21 @@ import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
-import { getReferenceBySlug, references } from "@/data/references";
-import { resolveImage } from "@/lib/imagery";
+import { getAllReferenceSlugs, getReferenceBySlug } from "@/data/references";
+import { resolveFirstImage } from "@/lib/imagery";
 
 type Params = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
-  return references.map((item) => ({ slug: item.slug }));
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const slugs = await getAllReferenceSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  const item = getReferenceBySlug(slug);
+  const item = await getReferenceBySlug(slug);
   if (!item) return {};
 
   return pageSeo({
@@ -32,15 +35,15 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function ReferenceDetailPage({ params }: Params) {
   const { slug } = await params;
-  const item = getReferenceBySlug(slug);
+  const item = await getReferenceBySlug(slug);
   if (!item) notFound();
 
-  const statusLabel = item.category === "verkauf" ? "Verkauft" : "Vermietet";
+  const statusLabel = item.categoryLabel;
 
   const facts = [
     { icon: Ruler, label: "Wohnfläche", value: `${item.livingSpace} m²` },
     { icon: DoorOpen, label: "Zimmer", value: `${item.rooms}` },
-    { icon: CalendarRange, label: "Baujahr", value: `${item.year}` },
+    ...(item.year ? [{ icon: CalendarRange, label: "Baujahr", value: `${item.year}` }] : []),
     ...(item.plot ? [{ icon: LandPlot, label: "Grundstück", value: `${item.plot} m²` }] : []),
     ...(item.parking ? [{ icon: Car, label: "Stellplätze", value: `${item.parking}` }] : []),
   ];
@@ -60,7 +63,7 @@ export default async function ReferenceDetailPage({ params }: Params) {
           <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] lg:items-end">
             <div className="relative h-[15rem] overflow-hidden rounded-[14px] bg-surface-mist sm:h-[20rem] lg:h-[24rem]">
               <SiteImage
-                src={resolveImage(item.image)}
+                src={resolveFirstImage(item.images)}
                 priority
                 sizes="(min-width: 1024px) 62vw, 100vw"
                 label={item.region}

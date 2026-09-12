@@ -6,8 +6,8 @@ import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
-import { references } from "@/data/references";
-import { resolveImage } from "@/lib/imagery";
+import { getPublishedReferences } from "@/data/references";
+import { resolveFirstImage, resolveImage } from "@/lib/imagery";
 import { images } from "@/data/imagery";
 
 export const metadata: Metadata = pageSeo({
@@ -17,10 +17,13 @@ export const metadata: Metadata = pageSeo({
   path: "/referenzen",
 });
 
-export default function ReferenzenPage() {
+export const revalidate = 60;
+
+export default async function ReferenzenPage() {
+  const references = await getPublishedReferences();
   const items: ReferenceCardItem[] = references.map((item) => ({
     ...item,
-    resolvedImage: resolveImage(item.image),
+    resolvedImage: resolveFirstImage(item.images),
   }));
 
   return (

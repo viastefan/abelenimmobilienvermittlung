@@ -3,6 +3,8 @@ import { Hero } from "@/components/home/Hero";
 import { TrustStrip } from "@/components/home/TrustStrip";
 import { Services } from "@/components/home/Services";
 import { About } from "@/components/home/About";
+import { FeaturedProperty } from "@/components/home/FeaturedProperty";
+import { ReferencesPreview } from "@/components/home/ReferencesPreview";
 import { PropertiesPreview } from "@/components/home/PropertiesPreview";
 import { CtaSection } from "@/components/home/CtaSection";
 import { pageSeo } from "@/lib/seo";
@@ -22,8 +24,10 @@ export default function HomePage() {
       <Hero />
       <TrustStrip />
       <Services />
+      <FeaturedProperty />
       <About />
       <PropertiesPreview />
+      <ReferencesPreview />
       <CtaSection />
     </>
   );
