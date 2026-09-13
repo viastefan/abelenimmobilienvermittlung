@@ -30,7 +30,7 @@ export function SnapCarousel({
   items,
   itemClassName = "basis-[84%] sm:basis-[46%] lg:basis-[31.5%]",
   gapClassName = "gap-4 lg:gap-5",
-  peekClassName = "px-5 sm:px-8 lg:px-12",
+  peekClassName = "px-5 scroll-pl-5 sm:px-8 sm:scroll-pl-8 lg:px-12 lg:scroll-pl-12",
   className = "",
 }: {
   /** Zugänglicher Name der Scroll-Region. */
@@ -39,7 +39,10 @@ export function SnapCarousel({
   /** Breite einer Karte — als Flex-Basis, damit sie mitwächst. */
   itemClassName?: string;
   gapClassName?: string;
-  /** Innenabstand der Spur, damit die erste Karte am Raster beginnt. */
+  /**
+   * Innenabstand der Spur. Das `scroll-pl-*` muss dem `px-*` entsprechen,
+   * sonst rastet die erste Karte am Fensterrand statt am Satzspiegel ein.
+   */
   peekClassName?: string;
   className?: string;
 }) {
@@ -51,11 +54,16 @@ export function SnapCarousel({
 
   const drag = useRef({ active: false, startX: 0, startScroll: 0, moved: false });
 
-  /** Scroll-Position jeder Karte, bezogen auf den Scroll-Ursprung der Spur. */
+  /**
+   * Der Scrollwert, bei dem die jeweilige Karte einrastet. Das `scroll-padding`
+   * gehört abgezogen — sonst zeigt die Rechnung 48 Pixel neben den Rastpunkt
+   * und der Browser springt sofort zurück.
+   */
   const offsets = useCallback(() => {
     const track = trackRef.current;
     if (!track) return [] as number[];
-    const base = track.getBoundingClientRect().left - track.scrollLeft;
+    const padding = Number.parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0;
+    const base = track.getBoundingClientRect().left - track.scrollLeft + padding;
     return Array.from(track.children).map((child) => child.getBoundingClientRect().left - base);
   }, []);
 
@@ -63,11 +71,15 @@ export function SnapCarousel({
     const track = trackRef.current;
     if (!track) return;
 
-    const max = track.scrollWidth - track.clientWidth;
-    setAtStart(track.scrollLeft <= 2);
-    setAtEnd(track.scrollLeft >= max - 2);
-
     const positions = offsets();
+    const max = track.scrollWidth - track.clientWidth;
+    // Die Enden liegen an den Rastpunkten der ersten und letzten Karte, nicht
+    // bei 0 und maximalem Scrollwert — der Innenabstand verschiebt beide.
+    const first = positions[0] ?? 0;
+    const last = Math.min(positions[positions.length - 1] ?? max, max);
+    setAtStart(track.scrollLeft <= first + 2);
+    setAtEnd(track.scrollLeft >= last - 2);
+
     let nearest = 0;
     let best = Number.POSITIVE_INFINITY;
     positions.forEach((position, index) => {
@@ -208,12 +220,17 @@ export function SnapCarousel({
       )}
 
       {items.length > 1 && (
-        <div className="mt-6 flex items-center justify-center gap-2" aria-hidden="true">
+        <div className="mt-6 flex items-center justify-center gap-2">
           {items.map((item, index) => (
             <button
               key={item.key}
               type="button"
+              // Die Spur selbst ist mit den Pfeiltasten bedienbar; die Punkte
+              // bleiben deshalb aus der Tabreihenfolge heraus, behalten aber
+              // Name und Zustand für die Sprachausgabe.
               tabIndex={-1}
+              aria-label={`Zu Eintrag ${index + 1} von ${items.length}`}
+              aria-current={index === active ? "true" : undefined}
               onClick={() => scrollToIndex(index)}
               className={`h-1.5 rounded-full transition-all duration-300 ease-smooth ${
                 index === active ? "w-6 bg-accent-deep" : "w-1.5 bg-border-strong hover:bg-text-subtle"

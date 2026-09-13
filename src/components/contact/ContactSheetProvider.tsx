@@ -55,7 +55,10 @@ export function ContactSheetProvider({ children }: { children: ReactNode }) {
 
   const close = useCallback(() => setOpen(false), []);
 
-  const title = options.title ?? (view === "form" ? "Anfrage senden" : "Kontakt aufnehmen");
+  // Eine mitgegebene Überschrift gilt für die Ansicht, für die sie gedacht war.
+  // Wer vom Menü ins Formular wechselt, bekommt die Überschrift des Formulars.
+  const defaultTitle = view === "form" ? "Anfrage senden" : "Kontakt aufnehmen";
+  const title = view === (options.view ?? "menu") ? options.title ?? defaultTitle : defaultTitle;
 
   return (
     <ContactSheetContext.Provider value={api}>
@@ -67,6 +70,7 @@ export function ContactSheetProvider({ children }: { children: ReactNode }) {
         eyebrow={site.owner}
         title={title}
         size={view === "form" ? "lg" : "md"}
+        focusKey={view}
         footer={
           view === "menu" ? (
             <p className="text-[0.8125rem] leading-relaxed text-text-muted">

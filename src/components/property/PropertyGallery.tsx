@@ -80,7 +80,7 @@ export function PropertyGallery({
 
   return (
     <>
-      <ul className="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-5 pb-1 sm:px-8 lg:gap-4 lg:px-12">
+      <ul className="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-5 pb-1 scroll-pl-5 sm:px-8 sm:scroll-pl-8 lg:gap-4 lg:px-12 lg:scroll-pl-12">
         {images.map((image, position) => (
           <li
             key={image}
@@ -115,7 +115,7 @@ export function PropertyGallery({
           role="dialog"
           aria-modal="true"
           aria-label={`Bildergalerie ${title}`}
-          className="fixed inset-0 z-[95] flex flex-col bg-ink-deep/97 backdrop-blur-sm"
+          className="fixed inset-0 z-[95] flex flex-col bg-ink-deep/95 backdrop-blur-sm"
         >
           <div className="flex shrink-0 items-center justify-between px-5 py-4 text-white sm:px-8">
             <p className="text-[0.8125rem] font-semibold tabular-nums text-white/75">

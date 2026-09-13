@@ -22,6 +22,7 @@ export function Sheet({
   footer,
   size = "md",
   closeLabel = "Schließen",
+  focusKey,
 }: {
   open: boolean;
   onClose: () => void;
@@ -31,6 +32,8 @@ export function Sheet({
   footer?: ReactNode;
   size?: "md" | "lg";
   closeLabel?: string;
+  /** Ändert sich der Wert, wird der Fokus neu gesetzt — etwa bei einem Ansichtswechsel. */
+  focusKey?: string;
 }) {
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -59,7 +62,10 @@ export function Sheet({
   // Fokus hinein und beim Schließen zurück auf das auslösende Element.
   useEffect(() => {
     if (!open) return;
-    restoreFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    if (!restoreFocus.current) {
+      restoreFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    }
+
     const frame = requestAnimationFrame(() => {
       const panel = panelRef.current;
       if (!panel) return;
@@ -67,11 +73,25 @@ export function Sheet({
       target.focus({ preventScroll: true });
     });
 
-    return () => {
-      cancelAnimationFrame(frame);
-      restoreFocus.current?.focus({ preventScroll: true });
-    };
+    return () => cancelAnimationFrame(frame);
+  }, [open, focusKey]);
+
+  useEffect(() => {
+    if (open) return;
+    restoreFocus.current?.focus({ preventScroll: true });
+    restoreFocus.current = null;
   }, [open]);
+
+  // Escape hört am Fenster mit: nach einem Ansichtswechsel kann der Fokus
+  // kurzzeitig außerhalb der Sheet liegen, und dann käme kein Ereignis an.
+  useEffect(() => {
+    if (!open) return;
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onEscape);
+    return () => window.removeEventListener("keydown", onEscape);
+  }, [open, onClose]);
 
   // Hintergrund friert ein, solange die Sheet offen ist.
   useEffect(() => {
@@ -90,11 +110,6 @@ export function Sheet({
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === "Escape") {
-        event.stopPropagation();
-        onClose();
-        return;
-      }
       if (event.key !== "Tab") return;
 
       const panel = panelRef.current;
@@ -120,7 +135,7 @@ export function Sheet({
         first.focus();
       }
     },
-    [onClose]
+    []
   );
 
   const onGrabberDown = (event: ReactPointerEvent<HTMLDivElement>) => {

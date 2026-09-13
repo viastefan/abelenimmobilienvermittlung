@@ -52,12 +52,22 @@ export default async function PropertyDetailPage({
   const alt = `${property.title} in ${property.city}`;
   const objectRef = `${property.title}, ${property.city}`;
 
-  const keyFacts = [
+  // Fläche und Zimmerzahl stehen oft auch in den Objektdaten — in der
+  // Eckdatenzeile soll jede Angabe trotzdem nur einmal auftauchen.
+  const keyFacts: { label: string; value: string }[] = [];
+  const seen = new Set<string>();
+  for (const fact of [
     { label: "Kaufpreis", value: property.priceLabel },
     { label: "Wohnfläche", value: `${property.livingSpace.toString().replace(".", ",")} m²` },
     { label: "Zimmer", value: `${property.rooms}` },
-    ...property.features.slice(0, 3),
-  ];
+    ...property.features,
+  ]) {
+    const key = fact.label.trim().toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    keyFacts.push(fact);
+    if (keyFacts.length === 6) break;
+  }
 
   return (
     <>
@@ -66,21 +76,21 @@ export default async function PropertyDetailPage({
         <div className="relative h-[62vh] min-h-[22rem] w-full overflow-hidden bg-surface-mist lg:max-h-[38rem]">
           <SiteImage src={heroImage} priority sizes="100vw" label={property.city} alt={alt} />
           <div
-            className="absolute inset-0 bg-gradient-to-t from-ink-deep/92 via-ink-deep/50 to-ink-deep/15"
+            className="absolute inset-0 bg-gradient-to-t from-ink-deep/90 via-ink-deep/55 to-ink-deep/20"
             aria-hidden="true"
           />
 
           <Container className="absolute inset-x-0 top-0 pt-6">
             <Link
               href="/immobilien"
-              className="inline-flex items-center gap-2 rounded-full bg-white/12 px-4 py-2 text-[0.8125rem] font-semibold text-white backdrop-blur transition-colors duration-200 hover:bg-white/20"
+              className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-[0.8125rem] font-semibold text-white backdrop-blur transition-colors duration-200 hover:bg-white/20"
             >
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               Alle Immobilien
             </Link>
           </Container>
 
-          <Container className="absolute inset-x-0 bottom-0 pb-16 lg:pb-24">
+          <Container className="absolute inset-x-0 bottom-0 pb-20 lg:pb-28">
             <div className="flex flex-wrap items-center gap-3">
               <span className="rounded-full bg-white px-3.5 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-ink">
                 {property.statusLabel}

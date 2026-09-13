@@ -45,12 +45,23 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de" className={manrope.variable}>
       <body className="flex min-h-screen flex-col bg-background">
+        {/* Ohne JavaScript blendet sich nichts ein — also gar nicht erst ausblenden. */}
+        <noscript>
+          <style>{"[data-reveal]{opacity:1 !important;transform:none !important}"}</style>
+        </noscript>
         {children}
         <JsonLd data={organizationSchema()} />
       </body>
