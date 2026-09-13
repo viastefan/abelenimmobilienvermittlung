@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Home, Handshake, Key } from "lucide-react";
+import { ArrowRight, Handshake, Home, Key } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -9,30 +9,43 @@ const icons = { home: Home, handshake: Handshake, key: Key } as const;
 
 export function Services() {
   return (
-    <section className="bg-surface py-24 lg:py-28">
+    <section className="bg-surface-cool py-16 lg:py-20">
       <Container>
         <Reveal>
-          <SectionHeading eyebrow="Unsere Leistungen" size="lg" align="center" title="Was wir für Sie tun können" />
+          <SectionHeading
+            eyebrow="Unsere Leistungen"
+            align="center"
+            size="lg"
+            title="Was wir für Sie tun können"
+          />
         </Reveal>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-3">
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
           {services.map((service, index) => {
             const Icon = icons[service.icon];
             return (
-              <Reveal key={service.slug} delay={index * 80}>
+              <Reveal key={service.slug} delay={index * 90} className="h-full">
                 <Link
                   href={service.href}
-                  className="group flex h-full flex-col rounded-lg border border-border bg-white p-8 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-soft"
+                  className="group flex h-full flex-col rounded-[12px] border border-border bg-white p-6 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:border-accent-light hover:shadow-soft lg:p-7"
                 >
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-soft text-accent">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  <span className="flex items-center gap-3.5">
+                    <Icon
+                      className="h-7 w-7 shrink-0 text-accent-mid transition-colors duration-300 group-hover:text-accent-deep"
+                      strokeWidth={1.4}
+                      aria-hidden="true"
+                    />
+                    <h3 className="font-display text-[1rem] font-bold text-ink">{service.title}</h3>
                   </span>
-                  <h3 className="mt-6 font-display text-lg font-semibold text-ink">{service.title}</h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-text-muted">{service.description}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent">
+
+                  <p className="pretty mt-4 flex-1 text-[0.875rem] leading-relaxed text-text-muted">
+                    {service.description}
+                  </p>
+
+                  <span className="mt-5 inline-flex items-center gap-2 text-[0.8125rem] font-semibold text-accent-deep">
                     Mehr erfahren
                     <ArrowRight
-                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                      className="h-4 w-4 transition-transform duration-300 ease-smooth group-hover:translate-x-1"
                       aria-hidden="true"
                     />
                   </span>

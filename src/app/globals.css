@@ -9,26 +9,32 @@
 
   html {
     scroll-behavior: smooth;
+    /* Sticky top bar + header height, so #anchors are not hidden behind it. */
+    scroll-padding-top: 120px;
   }
 
   body {
-    @apply bg-background text-text font-sans antialiased;
+    @apply bg-background font-sans text-text antialiased;
     font-feature-settings: "ss01" on, "cv01" on;
+    -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     @apply font-display text-ink;
   }
 
   :focus-visible {
-    outline: 2px solid theme("colors.accent.DEFAULT");
+    outline: 2px solid theme("colors.accent.deep");
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 4px;
   }
 
   ::selection {
-    background: theme("colors.accent.DEFAULT");
-    color: theme("colors.surface");
+    background: theme("colors.accent.soft");
+    color: theme("colors.ink");
   }
 }
 
@@ -37,12 +43,32 @@
     text-wrap: balance;
   }
 
+  .pretty {
+    text-wrap: pretty;
+  }
+
+  /* Small caps label used above every section heading. */
+  .label {
+    @apply font-display text-label font-bold uppercase text-accent-deep;
+  }
+
   .link-underline {
-    @apply relative inline-block after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-smooth hover:after:scale-x-100;
+    @apply relative inline-block after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 after:ease-smooth hover:after:scale-x-100;
   }
 
   .fade-up {
     animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Soft, organic wash that carries the hero text column into the image. */
+  .hero-wash {
+    background:
+      radial-gradient(120% 90% at 0% 20%, #FFFFFF 0%, #FBFCFC 42%, rgba(244, 251, 251, 0.85) 68%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(180deg, #FFFFFF 0%, #FBFCFC 100%);
+  }
+
+  .section-warm {
+    @apply bg-surface-warm;
   }
 }
 

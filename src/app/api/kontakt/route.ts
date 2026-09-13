@@ -1,14 +1,8 @@
 import { NextResponse } from "next/server";
 import { site } from "@/data/site";
+import { contactInterestLabels } from "@/data/contact";
 
 export const runtime = "nodejs";
-
-const interestLabels: Record<string, string> = {
-  verkaufen: "Immobilie verkaufen",
-  kaufen: "Immobilie kaufen",
-  bewertung: "Immobilienbewertung",
-  sonstiges: "Sonstiges",
-};
 
 type ContactPayload = {
   firstName?: string;
@@ -58,7 +52,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const interestLabel = interest ? interestLabels[interest] ?? interest : "Nicht angegeben";
+  const interestLabel = interest ? contactInterestLabels[interest] ?? interest : "Nicht angegeben";
 
   const emailBody = [
     `Neue Anfrage über das Kontaktformular von ${site.name}`,

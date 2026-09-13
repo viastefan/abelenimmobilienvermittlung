@@ -1,37 +1,49 @@
+import { MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { RegionMap } from "@/components/graphics/RegionMap";
 import { Reveal } from "@/components/ui/Reveal";
-import { regionMapPoints } from "@/data/region-map";
+import { regions, site } from "@/data/site";
 
 export function RegionSection() {
   return (
-    <section className="bg-surface-soft py-24 lg:py-32">
-      <Container className="grid gap-16 lg:grid-cols-2 lg:items-center lg:gap-24">
+    <section className="border-t border-border bg-surface-warm py-16 lg:py-20">
+      <Container className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-20">
         <Reveal>
           <SectionHeading
             eyebrow="Vor Ort für Sie da"
-            size="lg"
+            size="md"
             title={
               <>
-                Immobilien in Ihrer Region.
+                Zuhause in Leverkusen.
                 <br />
-                Persönlich betreut.
+                Tätig im ganzen Bergischen Rheinland.
               </>
             }
+            description="Marktkenntnis entsteht durch Nähe. Wir betreuen Eigentümerinnen und Eigentümer in Leverkusen und den angrenzenden Städten — dort, wo wir die Straßen, die Lagen und die Preise kennen."
           />
-          <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3">
-            {regionMapPoints.map((region) => (
-              <li key={region.label} className="flex items-center gap-2 text-sm text-text">
-                <span className={`h-1.5 w-1.5 rounded-full ${region.home ? "bg-accent" : "bg-text-muted/40"}`} />
-                {region.label}
-              </li>
-            ))}
-          </ul>
         </Reveal>
 
-        <Reveal delay={150} className="rounded-lg border border-border bg-surface p-8">
-          <RegionMap className="h-auto w-full text-ink" />
+        <Reveal delay={120}>
+          <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-[16px] border border-border bg-border sm:grid-cols-3">
+            {regions.map((region) => {
+              const isHome = region === site.address.locality;
+              return (
+                <li
+                  key={region}
+                  className={`flex items-center gap-2.5 bg-white px-5 py-5 text-[0.9375rem] ${
+                    isHome ? "font-bold text-ink" : "text-text-muted"
+                  }`}
+                >
+                  <MapPin
+                    className={`h-4 w-4 shrink-0 ${isHome ? "text-accent-deep" : "text-border-strong"}`}
+                    strokeWidth={1.6}
+                    aria-hidden="true"
+                  />
+                  {region}
+                </li>
+              );
+            })}
+          </ul>
         </Reveal>
       </Container>
     </section>

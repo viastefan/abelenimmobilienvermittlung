@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Check } from "lucide-react";
+import { ArrowLeft, Check, DoorOpen, Ruler } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { PropertyPlaceholder } from "@/components/graphics/PropertyPlaceholder";
+import { SiteImage } from "@/components/graphics/SiteImage";
+import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, propertySchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
+import { resolveFirstImage, resolveImage } from "@/lib/imagery";
 import { getAllPropertySlugs, getPropertyBySlug } from "@/data/properties";
 import { site } from "@/data/site";
 
@@ -44,34 +47,65 @@ export default async function PropertyDetailPage({
   const property = await getPropertyBySlug(slug);
   if (!property) notFound();
 
+  const heroImage = resolveFirstImage(property.images);
+  const gallery = property.images.slice(1).map(resolveImage).filter(Boolean) as string[];
+
   return (
     <>
-      <div className="pt-24 lg:pt-28" />
-
-      <section className="border-b border-border bg-surface-soft py-12 lg:py-16">
+      <section className="border-b border-border bg-surface-warm py-10 lg:py-14">
         <Container>
-          <Eyebrow>{property.statusLabel}</Eyebrow>
-          <h1 className="balance mt-5 text-display-lg font-display font-semibold text-ink">
-            {property.title}
-          </h1>
-          <p className="mt-3 text-lg text-text-muted">{property.city}</p>
+          <Link
+            href="/immobilien"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-text-muted transition-colors hover:text-accent-deep"
+          >
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            Alle Immobilien
+          </Link>
+
+          <div className="mt-8 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <Eyebrow>{property.city}</Eyebrow>
+              <h1 className="balance mt-4 font-display text-display-lg font-extrabold text-ink">
+                {property.title}
+              </h1>
+              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.9375rem] text-text-muted">
+                <span className="inline-flex items-center gap-2">
+                  <Ruler className="h-4 w-4 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
+                  {property.livingSpace.toString().replace(".", ",")} m²
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <DoorOpen className="h-4 w-4 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
+                  {property.rooms} Zimmer
+                </span>
+                <span className="rounded-full bg-white px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-ink">
+                  {property.statusLabel}
+                </span>
+              </div>
+            </div>
+            <p className="font-display text-display-md font-extrabold text-ink">{property.priceLabel}</p>
+          </div>
         </Container>
       </section>
 
-      <section className="py-4">
+      <section className="pt-8">
         <Container>
-          <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-border">
-            {property.images[0] ? (
-              <Image src={property.images[0]} alt={property.title} fill className="object-cover" priority />
-            ) : (
-              <PropertyPlaceholder label={property.city} />
-            )}
+          <div className="relative h-[15rem] overflow-hidden rounded-[14px] bg-surface-mist sm:h-[22rem] lg:h-[28rem]">
+            <SiteImage
+              src={heroImage}
+              priority
+              sizes="(min-width: 1024px) 90vw, 100vw"
+              label={property.city}
+              alt={`${property.title} in ${property.city}`}
+            />
           </div>
 
-          {property.images.length > 1 && (
+          {gallery.length > 0 && (
             <div className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6">
-              {property.images.slice(1).map((image, index) => (
-                <div key={image} className="relative aspect-square overflow-hidden rounded-md border border-border">
+              {gallery.map((image, index) => (
+                <div
+                  key={image}
+                  className="relative aspect-square overflow-hidden rounded-[12px] border border-border"
+                >
                   <Image
                     src={image}
                     alt={`${property.title} — Bild ${index + 2}`}
@@ -86,68 +120,86 @@ export default async function PropertyDetailPage({
         </Container>
       </section>
 
-      <section className="py-16 lg:py-24">
-        <Container className="grid gap-16 lg:grid-cols-[1.5fr_1fr] lg:gap-20">
+      <section className="py-14 lg:py-20">
+        <Container className="grid gap-12 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-20">
           <div>
-            <dl className="grid grid-cols-2 gap-6 border-y border-border py-8 sm:grid-cols-3">
-              {property.features.map((feature) => (
-                <div key={feature.label}>
-                  <dt className="text-xs uppercase tracking-[0.1em] text-text-muted">{feature.label}</dt>
-                  <dd className="mt-1 font-display text-lg font-semibold text-ink">{feature.value}</dd>
-                </div>
-              ))}
-            </dl>
+            {property.features.length > 0 && (
+              <dl className="grid grid-cols-2 gap-6 border-y border-border py-8 sm:grid-cols-4">
+                {property.features.map((feature) => (
+                  <div key={feature.label}>
+                    <dt className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-text-subtle">
+                      {feature.label}
+                    </dt>
+                    <dd className="mt-1.5 font-display text-lg font-bold text-ink">{feature.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
 
             <div className="mt-12 space-y-5">
-              <h2 className="font-display text-2xl font-semibold text-ink">Beschreibung</h2>
+              <h2 className="font-display text-display-sm font-bold text-ink">Objektbeschreibung</h2>
               {property.description.map((paragraph, index) => (
-                <p key={index} className="text-base leading-relaxed text-text-muted">
+                <p key={index} className="pretty text-[1.0625rem] leading-relaxed text-text-muted">
                   {paragraph}
                 </p>
               ))}
             </div>
 
-            <div className="mt-12">
-              <h2 className="font-display text-2xl font-semibold text-ink">Ausstattung</h2>
-              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-                {property.equipment.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-text">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {property.equipment.length > 0 && (
+              <div className="mt-12">
+                <h2 className="font-display text-display-sm font-bold text-ink">Ausstattung</h2>
+                <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                  {property.equipment.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-[0.9375rem] text-text-muted">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-deep" strokeWidth={2.2} aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <div className="mt-12">
-              <h2 className="font-display text-2xl font-semibold text-ink">Lage</h2>
-              <p className="mt-4 text-base leading-relaxed text-text-muted">{property.location}</p>
+              <h2 className="font-display text-display-sm font-bold text-ink">Lage</h2>
+              <p className="pretty mt-5 text-[1.0625rem] leading-relaxed text-text-muted">{property.location}</p>
             </div>
 
-            <div className="mt-12">
-              <h2 className="font-display text-2xl font-semibold text-ink">Energieinformationen</h2>
-              <dl className="mt-4 grid gap-4 sm:grid-cols-2">
-                {property.energy.map((item) => (
-                  <div key={item.label} className="rounded-md border border-border p-4">
-                    <dt className="text-xs uppercase tracking-[0.1em] text-text-muted">{item.label}</dt>
-                    <dd className="mt-1 text-sm font-medium text-ink">{item.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
+            {property.energy.length > 0 && (
+              <div className="mt-12">
+                <h2 className="font-display text-display-sm font-bold text-ink">Energieinformationen</h2>
+                <dl className="mt-5 grid gap-4 sm:grid-cols-2">
+                  {property.energy.map((item) => (
+                    <div key={item.label} className="rounded-[12px] border border-border p-5">
+                      <dt className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-text-subtle">
+                        {item.label}
+                      </dt>
+                      <dd className="mt-1.5 text-[0.9375rem] font-semibold text-ink">{item.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            )}
           </div>
 
-          <aside className="h-fit rounded-lg border border-border bg-surface-soft p-8 lg:sticky lg:top-28">
-            <p className="font-display text-3xl font-semibold text-ink">{property.priceLabel}</p>
+          <aside className="h-fit rounded-[14px] border border-border bg-surface-warm p-7 lg:sticky lg:top-32">
+            <p className="font-display text-3xl font-extrabold text-ink">{property.priceLabel}</p>
             {property.heroNote && <p className="mt-2 text-sm text-text-muted">{property.heroNote}</p>}
 
             <div className="mt-8 border-t border-border pt-8">
-              <p className="text-xs uppercase tracking-[0.1em] text-text-muted">Ansprechpartnerin</p>
-              <p className="mt-2 font-display text-lg font-semibold text-ink">{site.owner}</p>
-              <a href={site.phoneHref} className="block text-sm text-text-muted hover:text-accent">
+              <p className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-text-subtle">
+                Ihre Ansprechpartnerin
+              </p>
+              <p className="mt-2 font-display text-[1.0625rem] font-bold text-ink">{site.owner}</p>
+              <a
+                href={site.phoneHref}
+                className="mt-2 block text-[0.9375rem] text-text-muted transition-colors hover:text-accent-deep"
+              >
                 {site.phone}
               </a>
-              <a href={`mailto:${site.email}`} className="block text-sm text-text-muted hover:text-accent">
+              <a
+                href={`mailto:${site.email}`}
+                className="block text-[0.9375rem] text-text-muted transition-colors hover:text-accent-deep"
+              >
                 {site.email}
               </a>
             </div>
@@ -155,6 +207,7 @@ export default async function PropertyDetailPage({
             <Button
               href={`/kontakt?anliegen=kaufen&objekt=${property.slug}`}
               variant="primary"
+              withArrow
               className="mt-8 w-full"
             >
               Besichtigung anfragen
@@ -162,6 +215,8 @@ export default async function PropertyDetailPage({
           </aside>
         </Container>
       </section>
+
+      <CtaSection />
 
       <JsonLd
         data={breadcrumbSchema([

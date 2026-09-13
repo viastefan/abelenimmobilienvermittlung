@@ -4,6 +4,7 @@ import { useActionState, useState } from "react";
 import { KeyValueListEditor } from "./KeyValueListEditor";
 import { ImageUploader } from "./ImageUploader";
 import { SubmitButton } from "./SubmitButton";
+import { Field, Panel, inputClass } from "./ui";
 import type { Property } from "@/types/property";
 import type { PropertyFormResult } from "@/app/admin/actions";
 
@@ -12,27 +13,6 @@ const statusOptions: { value: string; label: string }[] = [
   { value: "reserviert", label: "Reserviert" },
   { value: "verkauft", label: "Verkauft" },
 ];
-
-function Field({
-  label,
-  children,
-  hint,
-}: {
-  label: string;
-  children: React.ReactNode;
-  hint?: string;
-}) {
-  return (
-    <label className="block">
-      <span className="mb-1.5 block text-sm font-medium text-ink">{label}</span>
-      {children}
-      {hint && <span className="mt-1 block text-xs text-text-muted">{hint}</span>}
-    </label>
-  );
-}
-
-const inputClass =
-  "w-full rounded-md border border-border bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-text-muted/60 focus-visible:border-ink focus-visible:outline-none";
 
 export function PropertyForm({
   property,
@@ -47,9 +27,8 @@ export function PropertyForm({
   const [folder] = useState(() => property?.id ?? crypto.randomUUID());
 
   return (
-    <form action={formAction} className="max-w-4xl space-y-10">
-      <section className="space-y-5 rounded-lg border border-border bg-surface p-6">
-        <h2 className="font-display text-lg font-semibold text-ink">Grunddaten</h2>
+    <form action={formAction} className="max-w-4xl space-y-5">
+      <Panel title="Grunddaten">
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Titel">
             <input name="title" defaultValue={property?.title} required className={inputClass} />
@@ -98,10 +77,9 @@ export function PropertyForm({
             <input name="hero_note" defaultValue={property?.heroNote} className={inputClass} />
           </Field>
         </div>
-      </section>
+      </Panel>
 
-      <section className="space-y-5 rounded-lg border border-border bg-surface p-6">
-        <h2 className="font-display text-lg font-semibold text-ink">Texte</h2>
+      <Panel title="Texte">
         <Field label="Zusammenfassung" hint="Kurzer Teaser-Text für Karten und Meta-Beschreibung.">
           <textarea name="summary" defaultValue={property?.summary} required rows={2} className={inputClass} />
         </Field>
@@ -124,9 +102,9 @@ export function PropertyForm({
             className={inputClass}
           />
         </Field>
-      </section>
+      </Panel>
 
-      <section className="space-y-5 rounded-lg border border-border bg-surface p-6">
+      <Panel>
         <KeyValueListEditor
           label="Kennzahlen (Anzeige-Grid auf der Detailseite)"
           labelFieldName="feature_label"
@@ -135,9 +113,9 @@ export function PropertyForm({
           labelPlaceholder="z. B. Balkone"
           valuePlaceholder="z. B. 2 (Süd & Nord)"
         />
-      </section>
+      </Panel>
 
-      <section className="space-y-5 rounded-lg border border-border bg-surface p-6">
+      <Panel>
         <KeyValueListEditor
           label="Energieinformationen"
           labelFieldName="energy_label"
@@ -146,26 +124,50 @@ export function PropertyForm({
           labelPlaceholder="z. B. Energieausweis"
           valuePlaceholder="z. B. Auf Anfrage"
         />
-      </section>
+      </Panel>
 
-      <section className="space-y-5 rounded-lg border border-border bg-surface p-6">
-        <h2 className="font-display text-lg font-semibold text-ink">Bilder</h2>
+      <Panel title="Fotos" description="Das erste Bild erscheint als Vorschaubild.">
         <ImageUploader initialImages={property?.images ?? []} folder={folder} />
-      </section>
+      </Panel>
 
-      <section className="flex flex-wrap gap-6 rounded-lg border border-border bg-surface p-6">
-        <label className="flex items-center gap-2 text-sm text-ink">
-          <input type="checkbox" name="published" defaultChecked={property?.published ?? false} className="h-4 w-4 rounded border-border" />
-          Veröffentlicht (auf der Website sichtbar)
-        </label>
-        <label className="flex items-center gap-2 text-sm text-ink">
-          <input type="checkbox" name="featured" defaultChecked={property?.featured ?? false} className="h-4 w-4 rounded border-border" />
-          Als „Aktuell im Verkauf“ hervorheben
-        </label>
-      </section>
+      <Panel title="Sichtbarkeit">
+        <div className="space-y-4">
+          <label className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              name="published"
+              defaultChecked={property?.published ?? false}
+              className="mt-0.5 h-4 w-4 rounded border-border-strong text-accent-deep focus:ring-accent"
+            />
+            <span>
+              <span className="block text-[0.8125rem] font-semibold text-ink">Auf der Website anzeigen</span>
+              <span className="mt-0.5 block text-[0.75rem] text-text-muted">
+                Entwürfe sind nur hier im Panel sichtbar.
+              </span>
+            </span>
+          </label>
+
+          <label className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              name="featured"
+              defaultChecked={property?.featured ?? false}
+              className="mt-0.5 h-4 w-4 rounded border-border-strong text-accent-deep focus:ring-accent"
+            />
+            <span>
+              <span className="block text-[0.8125rem] font-semibold text-ink">
+                Auf der Startseite hervorheben
+              </span>
+              <span className="mt-0.5 block text-[0.75rem] text-text-muted">
+                Erscheint groß unter „Aktuell zum Verkauf“, solange der Status nicht „verkauft“ ist.
+              </span>
+            </span>
+          </label>
+        </div>
+      </Panel>
 
       {state?.error && (
-        <p role="alert" className="rounded-md bg-red-50 px-4 py-3 text-sm text-red-700">
+        <p role="alert" className="rounded-[10px] bg-warning-soft px-4 py-3 text-[0.8125rem] text-warning">
           {state.error}
         </p>
       )}

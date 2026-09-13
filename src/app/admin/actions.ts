@@ -3,13 +3,22 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
+import { getSupabaseEnv } from "@/lib/supabase/env";
 import { slugExists } from "@/lib/admin/properties-data";
-import type { PropertyFeature } from "@/types/property";
+import { parseKeyValueList, parseLines, slugify } from "@/lib/admin/form";
 
 export async function signIn(formData: FormData) {
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
   const next = String(formData.get("next") ?? "/admin");
+
+  if (!getSupabaseEnv()) {
+    redirect(
+      `/admin/login?error=${encodeURIComponent(
+        "Die Datenbank ist nicht verbunden. Bitte die Supabase-Umgebungsvariablen im Hosting hinterlegen."
+      )}`
+    );
+  }
 
   if (!email || !password) {
     redirect(`/admin/login?error=${encodeURIComponent("Bitte E-Mail und Passwort eingeben.")}`);
@@ -29,38 +38,6 @@ export async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
   redirect("/admin/login");
-}
-
-function parseLines(value: FormDataEntryValue | null): string[] {
-  return String(value ?? "")
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean);
-}
-
-function parseKeyValueList(formData: FormData, labelField: string, valueField: string): PropertyFeature[] {
-  const labels = formData.getAll(labelField) as string[];
-  const values = formData.getAll(valueField) as string[];
-  const items: PropertyFeature[] = [];
-  labels.forEach((label, index) => {
-    const trimmedLabel = label.trim();
-    const trimmedValue = (values[index] ?? "").trim();
-    if (trimmedLabel && trimmedValue) items.push({ label: trimmedLabel, value: trimmedValue });
-  });
-  return items;
-}
-
-function slugify(value: string) {
-  return value
-    .toLowerCase()
-    .replace(/ä/g, "ae")
-    .replace(/ö/g, "oe")
-    .replace(/ü/g, "ue")
-    .replace(/ß/g, "ss")
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-+|-+$)/g, "");
 }
 
 export type PropertyFormResult = { error?: string } | void;

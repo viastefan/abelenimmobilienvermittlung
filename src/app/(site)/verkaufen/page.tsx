@@ -1,35 +1,43 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/PageHero";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
-import { Process } from "@/components/home/Process";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
+import { Steps } from "@/components/ui/Steps";
+import { Checklist } from "@/components/ui/Checklist";
+import { Faq } from "@/components/ui/Faq";
+import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
+import { resolveImage } from "@/lib/imagery";
+import { images } from "@/data/imagery";
+import { sellingSteps } from "@/data/process";
+import { verkaufenFaq, verkaufsUnterlagen } from "@/data/faq";
 
 export const metadata: Metadata = pageSeo({
-  title: "Immobilie verkaufen in Leichlingen, Leverkusen & Solingen",
+  title: "Immobilie verkaufen in Leverkusen & Umgebung",
   description:
-    "Sie möchten Ihre Immobilie verkaufen? Realistische Einschätzung, professionelle Vermarktung und persönliche Begleitung bis zum Notartermin — mit Silke Abelen.",
+    "Ihre Immobilie verkaufen — persönlich begleitet von der ersten Einschätzung über die Vermarktung bis zum Notartermin. Büro für Immobilien Bewertung & Vermittlung, Silke Abelen.",
   path: "/verkaufen",
 });
 
 const benefits = [
   {
     title: "Realistische Einschätzung",
-    description: "Eine fundierte Marktpreisermittlung, die auf echten Vergleichswerten aus der Region basiert.",
+    description: "Eine fundierte Marktpreisermittlung auf Basis echter Vergleichswerte aus der Region — kein Wunschpreis.",
   },
   {
     title: "Hochwertige Präsentation",
-    description: "Professionelle Aufbereitung Ihrer Immobilie für Exposé, Anzeigen und Besichtigungen.",
+    description: "Vollständige Unterlagen, klare Grundrisse und ein Exposé, das die Immobilie erklärt statt sie zu bewerben.",
   },
   {
-    title: "Geprüftes Interessentenmanagement",
-    description: "Ich filtere ernsthafte Kaufinteressenten heraus und spare Ihnen unnötige Termine.",
+    title: "Geprüfte Interessenten",
+    description: "Wir filtern ernsthafte Käufer heraus und ersparen Ihnen Termine, die zu nichts führen.",
   },
   {
-    title: "Feste Ansprechpartnerin",
+    title: "Eine feste Ansprechpartnerin",
     description: "Ein Gesicht, ein direkter Draht — von der ersten Anfrage bis zur Schlüsselübergabe.",
   },
 ];
@@ -38,46 +46,75 @@ export default function VerkaufenPage() {
   return (
     <>
       <PageHero
-        eyebrow="Immobilie verkaufen"
-        title="Ihre Immobilie in guten Händen — von Anfang an."
-        description="Sie haben einen festen Ansprechpartner — von der ersten Einschätzung bis zur Übergabe. Ich begleite den gesamten Verkaufsprozess Ihrer Immobilie persönlich."
+        eyebrow="Verkaufen"
+        title={
+          <>
+            Ihre Immobilie verkaufen.
+            <br className="hidden sm:block" /> Persönlich begleitet.
+          </>
+        }
+        description="Vom ersten Gespräch bis zur Übergabe bleiben Sie bei derselben Ansprechpartnerin — mit einem Ablauf, der ohne Fachchinesisch auskommt."
+        breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Verkaufen" }]}
+        actions={
+          <>
+            <Button href="/bewertung" variant="primary" size="lg" withArrow>
+              Immobilie bewerten
+            </Button>
+            <Button href="/kontakt?anliegen=verkaufen" variant="secondary" size="lg">
+              Verkauf besprechen
+            </Button>
+          </>
+        }
+        withMedia
+        image={resolveImage(images.verkaufen)}
+        imageAlt="Reihenhäuser in Leverkusen — typisches Verkaufsobjekt"
       />
 
-      <section className="py-20 lg:py-28">
+      <section className="py-16 lg:py-20">
         <Container>
-          <SectionHeading
-            eyebrow="Warum mit mir verkaufen"
-            size="lg"
-            title="Ein klarer Ablauf, keine Überraschungen."
-          />
-          <div className="mt-14 grid gap-10 sm:grid-cols-2">
-            {benefits.map((benefit) => (
-              <div key={benefit.title} className="border-l border-border pl-6">
-                <h3 className="font-display text-lg font-semibold text-ink">{benefit.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-text-muted">{benefit.description}</p>
-              </div>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Warum mit uns verkaufen"
+              size="lg"
+              title="Ein klarer Ablauf, keine Überraschungen."
+            />
+          </Reveal>
+
+          <div className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+            {benefits.map((benefit, index) => (
+              <Reveal key={benefit.title} delay={index * 80} className="border-l-2 border-accent-soft pl-6">
+                <h3 className="font-display text-[1.0625rem] font-bold text-ink">{benefit.title}</h3>
+                <p className="pretty mt-2 text-[0.9375rem] leading-relaxed text-text-muted">
+                  {benefit.description}
+                </p>
+              </Reveal>
             ))}
           </div>
         </Container>
       </section>
 
-      <div className="border-t border-border">
-        <Process />
-      </div>
+      <Steps
+        eyebrow="Der Verkaufsprozess"
+        title="In sieben Schritten zum Abschluss."
+        description="So sieht ein Verkauf bei uns aus — verständlich erklärt und jederzeit nachvollziehbar."
+        steps={sellingSteps}
+      />
 
-      <section className="bg-ink py-20 text-center lg:py-28">
-        <Container className="max-w-2xl">
-          <h2 className="balance text-display-md font-display font-semibold text-white">
-            Lassen Sie uns über Ihre Immobilie sprechen.
-          </h2>
-          <p className="mt-5 text-base text-white/70">
-            Unverbindlich, persönlich und ohne Verkaufsdruck.
-          </p>
-          <Button href="/kontakt?anliegen=verkaufen" variant="inverted" className="mt-8">
-            Immobilie verkaufen
-          </Button>
-        </Container>
-      </section>
+      <Checklist
+        eyebrow="Unterlagen"
+        title="Was wir für den Verkauf brauchen"
+        description="Vollständige Unterlagen vor dem ersten Besichtigungstermin verkürzen den Verkauf spürbar. Was fehlt, beschaffen wir gemeinsam."
+        groups={verkaufsUnterlagen}
+      />
+
+      <Faq title="Fragen zum Immobilienverkauf" items={verkaufenFaq} />
+
+      <CtaSection
+        title="Lassen Sie uns über Ihre Immobilie sprechen."
+        description="Unverbindlich, persönlich und ohne Verkaufsdruck."
+        buttonLabel="Immobilie bewerten"
+        href="/bewertung"
+      />
 
       <JsonLd
         data={breadcrumbSchema([
@@ -85,6 +122,7 @@ export default function VerkaufenPage() {
           { name: "Verkaufen", path: "/verkaufen" },
         ])}
       />
+      <JsonLd data={faqSchema(verkaufenFaq)} />
     </>
   );
 }

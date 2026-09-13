@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Container } from "@/components/ui/Container";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { SocialLinks } from "@/components/layout/SocialLinks";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
@@ -12,7 +13,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = pageSeo({
   title: "Kontakt — Silke Abelen",
   description:
-    "Nehmen Sie Kontakt zu Silke Abelen auf — persönlich, telefonisch oder per Kontaktformular. Immobilienvermittlung in Leichlingen, Leverkusen und Solingen.",
+    "Nehmen Sie Kontakt auf — telefonisch, per E-Mail oder über das Kontaktformular. Büro für Immobilien Bewertung & Vermittlung in Leverkusen.",
   path: "/kontakt",
 });
 
@@ -21,47 +22,96 @@ export default function KontaktPage() {
     <>
       <PageHero
         eyebrow="Kontakt"
-        title="Der erste Schritt beginnt mit einem Gespräch."
-        description="Ob Verkauf, Kauf oder eine erste Einschätzung — schreiben Sie mir oder rufen Sie direkt an."
+        title="Sprechen wir über Ihre Immobilie."
+        description="Ob Bewertung, Verkauf, Vermietung oder eine erste Einschätzung — schreiben Sie uns oder rufen Sie einfach an."
+        breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Kontakt" }]}
       />
 
-      <section className="py-20 lg:py-28">
-        <Container className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
+      <section className="py-14 lg:py-20">
+        <Container className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
           <div>
-            <h2 className="font-display text-2xl font-semibold text-ink">{site.owner}</h2>
-            <p className="mt-1 text-text-muted">{site.legalName}</p>
+            <h2 className="font-display text-display-sm font-bold text-ink">{site.owner}</h2>
+            <p className="mt-1.5 text-[0.9375rem] text-text-muted">{site.legalName}</p>
 
-            <ul className="mt-8 space-y-4">
+            <ul className="mt-8 space-y-5">
               <li>
                 <a
                   href={site.phoneHref}
-                  className="flex items-center gap-3 text-base font-medium text-ink hover:text-accent"
+                  className="group flex items-start gap-4 transition-colors hover:text-accent-deep"
                 >
-                  <Phone className="h-5 w-5 text-accent" aria-hidden="true" />
-                  {site.phone}
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-accent-soft text-accent-deep">
+                    <Phone className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
+                  </span>
+                  <span>
+                    <span className="block text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-text-subtle">
+                      Mobil
+                    </span>
+                    <span className="mt-0.5 block font-display text-[1.0625rem] font-bold text-ink group-hover:text-accent-deep">
+                      {site.phone}
+                    </span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={site.landlineHref}
+                  className="group flex items-start gap-4 transition-colors hover:text-accent-deep"
+                >
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-accent-soft text-accent-deep">
+                    <Phone className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
+                  </span>
+                  <span>
+                    <span className="block text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-text-subtle">
+                      Telefon
+                    </span>
+                    <span className="mt-0.5 block font-display text-[1.0625rem] font-bold text-ink group-hover:text-accent-deep">
+                      {site.landline}
+                    </span>
+                  </span>
                 </a>
               </li>
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="flex items-center gap-3 text-base font-medium text-ink hover:text-accent"
+                  className="group flex items-start gap-4 transition-colors hover:text-accent-deep"
                 >
-                  <Mail className="h-5 w-5 text-accent" aria-hidden="true" />
-                  {site.email}
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-accent-soft text-accent-deep">
+                    <Mail className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
+                  </span>
+                  <span>
+                    <span className="block text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-text-subtle">
+                      E-Mail
+                    </span>
+                    <span className="mt-0.5 block font-display text-[1.0625rem] font-bold text-ink group-hover:text-accent-deep">
+                      {site.email}
+                    </span>
+                  </span>
                 </a>
               </li>
-              <li className="flex items-center gap-3 text-base text-text-muted">
-                <MapPin className="h-5 w-5 text-accent" aria-hidden="true" />
-                {site.address.locality}
+              <li className="flex items-start gap-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-accent-soft text-accent-deep">
+                  <MapPin className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
+                </span>
+                <span>
+                  <span className="block text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-text-subtle">
+                    Tätigkeitsgebiet
+                  </span>
+                  <span className="mt-0.5 block font-display text-[1.0625rem] font-bold text-ink">
+                    {site.address.locality} &amp; Umgebung
+                  </span>
+                </span>
               </li>
             </ul>
 
-            <p className="mt-10 max-w-sm text-sm leading-relaxed text-text-muted">
-              Ich melde mich in der Regel innerhalb eines Werktages persönlich bei Ihnen zurück.
+            <p className="mt-9 flex items-start gap-3 rounded-[14px] border border-border bg-surface-warm p-5 text-[0.875rem] leading-relaxed text-text-muted">
+              <Clock className="mt-0.5 h-5 w-5 shrink-0 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
+              Wir melden uns in der Regel innerhalb eines Werktages persönlich bei Ihnen zurück.
             </p>
+
+            <SocialLinks className="mt-8 text-ink" iconClassName="h-[18px] w-[18px]" />
           </div>
 
-          <div className="rounded-lg border border-border bg-surface-soft p-8 sm:p-10">
+          <div className="rounded-[14px] border border-border bg-surface-warm p-6 sm:p-8">
             <Suspense fallback={null}>
               <ContactForm />
             </Suspense>

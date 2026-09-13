@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Inter } from "next/font/google";
+import { Manrope } from "next/font/google";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationSchema } from "@/lib/schema";
 import { site } from "@/data/site";
@@ -9,19 +9,13 @@ const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-manrope",
   display: "swap",
-  weight: ["500", "600", "700", "800"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Silke Abelen — Büro für Immobilien Bewertung & Vermittlung in Leverkusen",
+    default: "Büro für Immobilien Bewertung & Vermittlung — Silke Abelen, Leverkusen",
     template: "%s — Silke Abelen",
   },
   description: site.description,
@@ -38,7 +32,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     siteName: site.name,
-    title: "Silke Abelen — Ihre Immobilie. In guten Händen.",
+    title: "Ihre Immobilie. In guten Händen. — Silke Abelen, Leverkusen",
     description: site.description,
     url: site.url,
   },
@@ -55,7 +49,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${manrope.variable} ${inter.variable}`}>
+    <html lang="de" className={manrope.variable}>
       <body className="flex min-h-screen flex-col bg-background">
         {children}
         <JsonLd data={organizationSchema()} />

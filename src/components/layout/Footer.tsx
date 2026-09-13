@@ -1,91 +1,84 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { LogoMark } from "@/components/layout/Logo";
+import { Logo } from "@/components/layout/Logo";
+import { SocialLinks } from "@/components/layout/SocialLinks";
 import { footerNav, leistungenNav, legalNav, site } from "@/data/site";
+
+function FooterColumn({ title, items }: { title: string; items: { label: string; href: string }[] }) {
+  return (
+    <nav aria-label={title}>
+      <p className="font-display text-label font-bold uppercase text-ink">{title}</p>
+      <ul className="mt-5 space-y-3">
+        {items.map((item) => (
+          <li key={item.href}>
+            <Link
+              href={item.href}
+              className="text-[0.8125rem] text-text-muted transition-colors duration-200 hover:text-accent-deep"
+            >
+              {item.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
 
 export function Footer() {
   return (
-    <footer className="bg-ink text-white">
-      <Container className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr] lg:py-20">
+    <footer className="border-t border-border bg-white">
+      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.1fr] lg:gap-10 lg:py-16">
         <div>
-          <div className="flex items-center gap-3">
-            <LogoMark className="h-8 w-8 shrink-0 text-accent" />
-            <span className="flex flex-col leading-[1.15]">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.08em] text-white/80">
-                Büro für Immobilien
-                <br />
-                Bewertung &amp; Vermittlung
-              </span>
-              <span className="mt-0.5 text-sm font-bold uppercase tracking-[0.06em] text-white">
-                Silke Abelen
-              </span>
-            </span>
-          </div>
-          <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/60">
+          <Logo />
+          <p className="mt-5 max-w-xs text-[0.8125rem] leading-relaxed text-text-muted">
             Ihr Partner für die Bewertung, Vermittlung und Vermietung von Immobilien in Leverkusen
             und Umgebung.
           </p>
+          <SocialLinks className="mt-6 text-ink" iconClassName="h-[18px] w-[18px]" />
         </div>
 
-        <nav aria-label="Footer Navigation">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-white/50">Navigation</p>
-          <ul className="space-y-3">
-            {footerNav.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="text-sm text-white/75 hover:text-white">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <nav aria-label="Leistungen">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-white/50">Leistungen</p>
-          <ul className="space-y-3">
-            {leistungenNav.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="text-sm text-white/75 hover:text-white">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <FooterColumn title="Navigation" items={footerNav} />
+        <FooterColumn title="Leistungen" items={leistungenNav} />
 
         <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-white/50">Kontakt</p>
-          <ul className="space-y-3 text-sm text-white/75">
+          <p className="font-display text-label font-bold uppercase text-ink">Kontakt</p>
+          <ul className="mt-5 space-y-3 text-[0.8125rem] text-text-muted">
             <li>
-              <a href={site.phoneHref} className="inline-flex items-center gap-2 hover:text-white">
-                <Phone className="h-4 w-4 text-accent" aria-hidden="true" />
+              <a href={site.phoneHref} className="inline-flex items-center gap-3 transition-colors hover:text-accent-deep">
+                <Phone className="h-4 w-4 shrink-0 text-accent-mid" aria-hidden="true" />
                 {site.phone}
               </a>
             </li>
             <li>
-              <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 hover:text-white">
-                <Mail className="h-4 w-4 text-accent" aria-hidden="true" />
+              <a href={site.landlineHref} className="inline-flex items-center gap-3 transition-colors hover:text-accent-deep">
+                <Phone className="h-4 w-4 shrink-0 text-accent-mid" aria-hidden="true" />
+                {site.landline}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${site.email}`} className="inline-flex items-center gap-3 transition-colors hover:text-accent-deep">
+                <Mail className="h-4 w-4 shrink-0 text-accent-mid" aria-hidden="true" />
                 {site.email}
               </a>
             </li>
-            <li className="inline-flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-accent" aria-hidden="true" />
+            <li className="inline-flex items-center gap-3">
+              <MapPin className="h-4 w-4 shrink-0 text-accent-mid" aria-hidden="true" />
               {site.address.locality} &amp; Umgebung
             </li>
           </ul>
         </div>
       </Container>
 
-      <div className="border-t border-white/10">
-        <Container className="flex flex-col-reverse items-center justify-between gap-4 py-6 text-xs text-white/50 sm:flex-row">
+      <div className="border-t border-border">
+        <Container className="flex flex-col-reverse items-center justify-between gap-4 py-6 text-[0.8125rem] text-text-subtle sm:flex-row">
           <p>
-            © {new Date().getFullYear()} {site.legalName}. Alle Rechte vorbehalten.
+            © {new Date().getFullYear()} {site.legalName}
           </p>
-          <ul className="flex items-center gap-6">
+          <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             {legalNav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:text-white">
+                <Link href={item.href} className="transition-colors hover:text-accent-deep">
                   {item.label}
                 </Link>
               </li>

@@ -4,12 +4,12 @@ import { site } from "@/data/site";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: site.name,
-    short_name: "Abelen",
+    short_name: "Silke Abelen",
     description: site.description,
     start_url: "/",
     display: "standalone",
-    background_color: "#F8F6F2",
-    theme_color: "#1F211F",
+    background_color: "#FBFCFC",
+    theme_color: "#102B4E",
     icons: [
       {
         src: "/icon.svg",

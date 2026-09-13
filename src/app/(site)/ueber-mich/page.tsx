@@ -1,70 +1,159 @@
 import type { Metadata } from "next";
+import { Check } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
+import { SiteImage } from "@/components/graphics/SiteImage";
 import { Philosophy } from "@/components/home/Philosophy";
-import { DoorMotif } from "@/components/graphics/ArchMotif";
+import { TrustBadges } from "@/components/home/TrustBadges";
+import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
-import { site } from "@/data/site";
+import { resolveImage } from "@/lib/imagery";
+import { images } from "@/data/imagery";
+import { regions, site } from "@/data/site";
 
 export const metadata: Metadata = pageSeo({
-  title: "Über mich — Silke Abelen",
+  title: "Über uns — Silke Abelen",
   description:
-    "Silke Abelen begleitet Immobilienverkäufe und -käufe in Leichlingen, Leverkusen, Solingen und der Region — persönlich, transparent und mit langjähriger Erfahrung.",
+    "Silke Abelen begleitet Eigentümerinnen und Eigentümer in Leverkusen und Umgebung — persönlich, transparent und mit langjähriger Erfahrung in Bewertung, Verkauf und Vermietung.",
   path: "/ueber-mich",
 });
 
+const principles = [
+  {
+    title: "Persönlich",
+    description: "Direkter Kontakt, feste Ansprechpartnerin — kein Callcenter, keine wechselnden Zuständigkeiten.",
+  },
+  {
+    title: "Transparent",
+    description: "Sie erfahren, wie eine Einschätzung zustande kommt und woran ein Verkauf gerade hängt.",
+  },
+  {
+    title: "Integer",
+    description: "Eine ehrliche Einschätzung ist mehr wert als ein Wunschpreis, der Monate kostet.",
+  },
+  {
+    title: "Regional",
+    description: "Fundierte Marktkenntnis in Leverkusen und den angrenzenden Städten des Bergischen Rheinlands.",
+  },
+];
+
 export default function UeberMichPage() {
+  const portrait = resolveImage(images.portrait);
+
   return (
     <>
       <PageHero
-        eyebrow="Über mich"
-        title="Eine feste Ansprechpartnerin für Ihre Immobilie."
-        description={`${site.owner} — Inhaberin von ${site.legalName}.`}
+        eyebrow="Über uns"
+        title={
+          <>
+            Ihre Ansprechpartnerin
+            <br className="hidden sm:block" /> für Immobilien in Leverkusen
+          </>
+        }
+        description={`${site.owner} — ${site.ownerRole} des Büros für Immobilien Bewertung & Vermittlung.`}
+        breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Über uns" }]}
       />
 
-      <section className="py-20 lg:py-28">
-        <Container className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
-          <div className="relative flex aspect-[4/5] items-end overflow-hidden rounded-lg border border-border bg-ink">
-            <DoorMotif className="absolute inset-0 m-auto h-2/3 text-white/25" />
-            <div className="relative z-10 p-8">
-              <p className="font-display text-4xl font-semibold text-white">SA</p>
-              <p className="mt-1 text-sm text-white/60">{site.owner}</p>
+      <section className="py-16 lg:py-20">
+        <Container className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
+          <Reveal>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[14px] bg-surface-mist">
+              <SiteImage
+                src={portrait}
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                label={site.owner}
+                alt={`${site.owner}, ${site.ownerRole}`}
+              />
             </div>
-          </div>
+            <TrustBadges className="mt-6" />
+          </Reveal>
 
-          <div className="space-y-6 text-base leading-relaxed text-text-muted">
-            <p>
-              Immobilienvermittlung ist für mich vor allem Vertrauenssache. Ich möchte nicht nur ein
-              Haus oder eine Wohnung vermitteln, sondern Menschen langfristig begleiten und eine
-              Zusammenarbeit schaffen, die in Erinnerung bleibt.
-            </p>
-            <p>
-              Transparenz, Integrität und persönlicher Einsatz gehören für mich zu jedem Auftrag —
-              unabhängig davon, welchen Wert eine Immobilie hat. Ich glaube daran, dass eine gute
-              Vermittlung nicht mit der Unterschrift endet, sondern mit einer Empfehlung, die man
-              gerne ausspricht.
-            </p>
-            <p>
-              Als selbstständige Immobilienberaterin in der Region kenne ich den lokalen Markt genau
-              — von Leichlingen über Leverkusen und Solingen bis nach Wuppertal. Diese Nähe zur
-              Region ist die Grundlage für eine realistische Einschätzung und eine ehrliche Beratung.
-            </p>
-            <Button href="/kontakt" variant="primary" className="mt-2 w-fit">
+          <Reveal delay={100}>
+            <div className="space-y-6 text-[1.0625rem] leading-relaxed text-text-muted">
+              <p className="pretty">
+                Immobilienvermittlung ist für mich vor allem Vertrauenssache. Ich möchte nicht nur
+                ein Haus oder eine Wohnung vermitteln, sondern Menschen durch eine Entscheidung
+                begleiten, die selten allein finanziell ist.
+              </p>
+              <p className="pretty">
+                Transparenz, Integrität und persönlicher Einsatz gehören für mich zu jedem Auftrag —
+                unabhängig davon, welchen Wert eine Immobilie hat. Eine gute Vermittlung endet nicht
+                mit der Unterschrift, sondern mit einer Empfehlung, die man gerne ausspricht.
+              </p>
+              <p className="pretty">
+                Als selbstständige Immobilienberaterin kenne ich den lokalen Markt genau — von
+                Leverkusen über Leichlingen und Solingen bis nach Wuppertal. Diese Nähe zur Region
+                ist die Grundlage für eine realistische Einschätzung und eine ehrliche Beratung.
+              </p>
+            </div>
+
+            <dl className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+              {principles.map((principle) => (
+                <div key={principle.title}>
+                  <dt className="flex items-center gap-2 font-display text-[1.0625rem] font-bold text-ink">
+                    <Check className="h-4 w-4 text-accent-deep" strokeWidth={2.4} aria-hidden="true" />
+                    {principle.title}
+                  </dt>
+                  <dd className="pretty mt-2 text-[0.9375rem] leading-relaxed text-text-muted">
+                    {principle.description}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <Button href="/kontakt" variant="primary" withArrow className="mt-10">
               Persönliches Gespräch vereinbaren
             </Button>
-          </div>
+          </Reveal>
         </Container>
       </section>
 
       <Philosophy />
 
+      <section className="border-t border-border bg-white py-16 lg:py-20">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Tätigkeitsgebiet"
+              title="Wo wir für Sie unterwegs sind"
+              description="Leverkusen ist unser Zuhause — vermittelt wird im gesamten Bergischen Rheinland und im angrenzenden Umland."
+            />
+          </Reveal>
+          <Reveal delay={100}>
+            <ul className="mt-10 flex flex-wrap gap-3">
+              {regions.map((region) => (
+                <li
+                  key={region}
+                  className={`rounded-[11px] border px-5 py-2.5 text-[0.9375rem] ${
+                    region === site.address.locality
+                      ? "border-accent bg-accent-soft font-bold text-ink"
+                      : "border-border bg-white text-text-muted"
+                  }`}
+                >
+                  {region}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </Container>
+      </section>
+
+      <CtaSection
+        title="Sprechen wir über Ihre Immobilie."
+        description="Persönlich, unverbindlich und zu einem Zeitpunkt, der Ihnen passt."
+        buttonLabel="Kontakt aufnehmen"
+        href="/kontakt"
+      />
+
       <JsonLd
         data={breadcrumbSchema([
           { name: "Start", path: "/" },
-          { name: "Über mich", path: "/ueber-mich" },
+          { name: "Über uns", path: "/ueber-mich" },
         ])}
       />
     </>

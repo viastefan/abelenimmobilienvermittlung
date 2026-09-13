@@ -1,13 +1,20 @@
-import Link from "next/link";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { NotFoundBody } from "@/components/layout/NotFoundBody";
 
+/**
+ * Root 404 — reached for URLs that match no route at all. Route-group
+ * layouts do not apply here, so the site chrome is wired up explicitly;
+ * without it a mistyped URL left visitors on a bare page with no navigation.
+ */
 export default function RootNotFound() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background px-6 text-center">
-      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">404</p>
-      <h1 className="font-display text-2xl font-semibold text-ink">Seite nicht gefunden.</h1>
-      <Link href="/" className="text-sm font-medium text-ink underline">
-        Zur Startseite
-      </Link>
+    <div className="flex min-h-screen flex-1 flex-col">
+      <Header />
+      <main className="flex-1">
+        <NotFoundBody />
+      </main>
+      <Footer />
     </div>
   );
 }
