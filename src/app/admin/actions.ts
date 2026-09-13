@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
+import { getSupabaseEnv } from "@/lib/supabase/env";
 import { slugExists } from "@/lib/admin/properties-data";
 import { parseKeyValueList, parseLines, slugify } from "@/lib/admin/form";
 
@@ -10,6 +11,14 @@ export async function signIn(formData: FormData) {
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
   const next = String(formData.get("next") ?? "/admin");
+
+  if (!getSupabaseEnv()) {
+    redirect(
+      `/admin/login?error=${encodeURIComponent(
+        "Die Datenbank ist nicht verbunden. Bitte die Supabase-Umgebungsvariablen im Hosting hinterlegen."
+      )}`
+    );
+  }
 
   if (!email || !password) {
     redirect(`/admin/login?error=${encodeURIComponent("Bitte E-Mail und Passwort eingeben.")}`);

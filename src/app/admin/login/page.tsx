@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LogoMark } from "@/components/layout/Logo";
+import { getSupabaseEnv } from "@/lib/supabase/env";
 import { signIn } from "../actions";
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export default async function AdminLoginPage({
   searchParams: Promise<{ error?: string; next?: string }>;
 }) {
   const { error, next } = await searchParams;
+  const configured = Boolean(getSupabaseEnv());
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-ink-deep px-6">
@@ -40,14 +42,34 @@ export default async function AdminLoginPage({
           Immobilien und Referenzen der Website pflegen.
         </p>
 
-        <form action={signIn} className="mt-7 space-y-4">
+        {!configured && (
+          <div className="mt-7 rounded-[12px] border border-white/15 bg-white/[0.06] p-5">
+            <p className="text-[0.875rem] font-bold text-white">Datenbank nicht verbunden</p>
+            <p className="mt-2 text-[0.8125rem] leading-relaxed text-white/60">
+              Für die Anmeldung fehlen die Umgebungsvariablen{" "}
+              <code className="text-white/80">NEXT_PUBLIC_SUPABASE_URL</code> und{" "}
+              <code className="text-white/80">NEXT_PUBLIC_SUPABASE_ANON_KEY</code>. Sie werden im
+              Hosting hinterlegt; danach ist ein neuer Deploy nötig.
+            </p>
+          </div>
+        )}
+
+        <form action={signIn} className={`mt-7 space-y-4 ${configured ? "" : "pointer-events-none opacity-40"}`}>
           <input type="hidden" name="next" value={next ?? "/admin"} />
 
           <div>
             <label htmlFor="email" className="mb-1.5 block text-[0.75rem] font-semibold text-white/70">
               E-Mail
             </label>
-            <input id="email" name="email" type="email" required autoComplete="username" className={inputClass} />
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              autoComplete="username"
+              disabled={!configured}
+              className={inputClass}
+            />
           </div>
 
           <div>
@@ -60,6 +82,7 @@ export default async function AdminLoginPage({
               type="password"
               required
               autoComplete="current-password"
+              disabled={!configured}
               className={inputClass}
             />
           </div>
@@ -72,6 +95,7 @@ export default async function AdminLoginPage({
 
           <button
             type="submit"
+            disabled={!configured}
             className="w-full rounded-[10px] bg-accent-deep py-3 text-[0.875rem] font-semibold text-white transition-colors duration-200 hover:bg-accent-dark"
           >
             Anmelden
