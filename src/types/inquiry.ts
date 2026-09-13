@@ -1,5 +1,5 @@
 import type { Database } from "@/lib/supabase/database.types";
-import { contactInterestLabels } from "@/data/contact";
+import { contactInterestLabels } from "../data/contact.ts";
 
 export type InquiryStatus = "neu" | "in-bearbeitung" | "erledigt";
 

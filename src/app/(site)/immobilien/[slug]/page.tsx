@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Check, DoorOpen, Ruler } from "lucide-react";
+import { ArrowLeft, Check, DoorOpen, Images, Mail, Phone, Ruler } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SiteImage } from "@/components/graphics/SiteImage";
+import { PropertyGallery } from "@/components/property/PropertyGallery";
+import { MobileActionBar } from "@/components/property/MobileActionBar";
+import { ContactButton } from "@/components/contact/ContactButton";
 import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, propertySchema } from "@/lib/schema";
@@ -48,96 +48,118 @@ export default async function PropertyDetailPage({
   if (!property) notFound();
 
   const heroImage = resolveFirstImage(property.images);
-  const gallery = property.images.slice(1).map(resolveImage).filter(Boolean) as string[];
+  const gallery = property.images.map(resolveImage).filter(Boolean) as string[];
+  const alt = `${property.title} in ${property.city}`;
+  const objectRef = `${property.title}, ${property.city}`;
+
+  const keyFacts = [
+    { label: "Kaufpreis", value: property.priceLabel },
+    { label: "Wohnfläche", value: `${property.livingSpace.toString().replace(".", ",")} m²` },
+    { label: "Zimmer", value: `${property.rooms}` },
+    ...property.features.slice(0, 3),
+  ];
 
   return (
     <>
-      <section className="border-b border-border bg-surface-warm py-10 lg:py-14">
-        <Container>
-          <Link
-            href="/immobilien"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-text-muted transition-colors hover:text-accent-deep"
-          >
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            Alle Immobilien
-          </Link>
+      {/* Kopfbereich über die ganze Breite — das Objekt zuerst, alles andere danach. */}
+      <section className="relative">
+        <div className="relative h-[62vh] min-h-[22rem] w-full overflow-hidden bg-surface-mist lg:max-h-[38rem]">
+          <SiteImage src={heroImage} priority sizes="100vw" label={property.city} alt={alt} />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-ink-deep/92 via-ink-deep/50 to-ink-deep/15"
+            aria-hidden="true"
+          />
 
-          <div className="mt-8 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <div>
-              <Eyebrow>{property.city}</Eyebrow>
-              <h1 className="balance mt-4 font-display text-display-lg font-extrabold text-ink">
-                {property.title}
-              </h1>
-              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.9375rem] text-text-muted">
-                <span className="inline-flex items-center gap-2">
-                  <Ruler className="h-4 w-4 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
-                  {property.livingSpace.toString().replace(".", ",")} m²
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <DoorOpen className="h-4 w-4 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
-                  {property.rooms} Zimmer
-                </span>
-                <span className="rounded-full bg-white px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-ink">
-                  {property.statusLabel}
-                </span>
-              </div>
+          <Container className="absolute inset-x-0 top-0 pt-6">
+            <Link
+              href="/immobilien"
+              className="inline-flex items-center gap-2 rounded-full bg-white/12 px-4 py-2 text-[0.8125rem] font-semibold text-white backdrop-blur transition-colors duration-200 hover:bg-white/20"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              Alle Immobilien
+            </Link>
+          </Container>
+
+          <Container className="absolute inset-x-0 bottom-0 pb-16 lg:pb-24">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="rounded-full bg-white px-3.5 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-ink">
+                {property.statusLabel}
+              </span>
+              <span className="text-[0.75rem] font-bold uppercase tracking-[0.16em] text-accent-light">
+                {property.city}
+              </span>
             </div>
-            <p className="font-display text-display-md font-extrabold text-ink">{property.priceLabel}</p>
-          </div>
-        </Container>
-      </section>
 
-      <section className="pt-8">
-        <Container>
-          <div className="relative h-[15rem] overflow-hidden rounded-[14px] bg-surface-mist sm:h-[22rem] lg:h-[28rem]">
-            <SiteImage
-              src={heroImage}
-              priority
-              sizes="(min-width: 1024px) 90vw, 100vw"
-              label={property.city}
-              alt={`${property.title} in ${property.city}`}
-            />
-          </div>
+            <h1 className="balance mt-4 max-w-3xl font-display text-display-xl font-extrabold text-white">
+              {property.title}
+            </h1>
 
-          {gallery.length > 0 && (
-            <div className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6">
-              {gallery.map((image, index) => (
-                <div
-                  key={image}
-                  className="relative aspect-square overflow-hidden rounded-[12px] border border-border"
+            <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3 text-[0.9375rem] text-white/85">
+              <span className="inline-flex items-center gap-2">
+                <Ruler className="h-4 w-4 text-accent-light" strokeWidth={1.6} aria-hidden="true" />
+                {property.livingSpace.toString().replace(".", ",")} m² Wohnfläche
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <DoorOpen className="h-4 w-4 text-accent-light" strokeWidth={1.6} aria-hidden="true" />
+                {property.rooms} Zimmer
+              </span>
+              {gallery.length > 1 && (
+                <a
+                  href="#galerie"
+                  className="inline-flex items-center gap-2 font-semibold text-white transition-colors hover:text-accent-light"
                 >
-                  <Image
-                    src={image}
-                    alt={`${property.title} — Bild ${index + 2}`}
-                    fill
-                    sizes="200px"
-                    className="object-cover"
-                  />
+                  <Images className="h-4 w-4" strokeWidth={1.6} aria-hidden="true" />
+                  Alle {gallery.length} Bilder
+                </a>
+              )}
+            </div>
+          </Container>
+        </div>
+
+        {/* Eckdaten überlappen den Kopfbereich — wie eine Karte auf dem Foto. */}
+        <Container>
+          <div className="relative -mt-10 rounded-[18px] border border-border bg-white p-6 shadow-lift lg:-mt-14 lg:p-8">
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-6">
+              {keyFacts.map((fact) => (
+                <div key={fact.label}>
+                  <dt className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-text-subtle">
+                    {fact.label}
+                  </dt>
+                  <dd className="mt-1.5 font-display text-[1.0625rem] font-extrabold leading-tight text-ink">
+                    {fact.value}
+                  </dd>
                 </div>
               ))}
+            </dl>
+
+            <div className="mt-7 flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:items-center">
+              <ContactButton
+                options={{ interest: "kaufen", objectRef, view: "form", title: "Besichtigung anfragen" }}
+                className="inline-flex items-center justify-center gap-2 rounded-[11px] bg-accent-deep px-6 py-3.5 text-[0.9375rem] font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-dark"
+              >
+                <Mail className="h-4 w-4" aria-hidden="true" />
+                Besichtigung anfragen
+              </ContactButton>
+              <a
+                href={site.phoneHref}
+                className="inline-flex items-center justify-center gap-2 rounded-[11px] border border-border-strong bg-white px-6 py-3.5 text-[0.9375rem] font-semibold text-ink transition-all duration-300 ease-smooth hover:border-accent hover:text-accent-deep"
+              >
+                <Phone className="h-4 w-4" aria-hidden="true" />
+                {site.phone}
+              </a>
+              {property.heroNote && (
+                <p className="text-[0.8125rem] leading-relaxed text-text-muted sm:ml-2">{property.heroNote}</p>
+              )}
             </div>
-          )}
+          </div>
         </Container>
       </section>
 
       <section className="py-14 lg:py-20">
         <Container className="grid gap-12 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-20">
           <div>
-            {property.features.length > 0 && (
-              <dl className="grid grid-cols-2 gap-6 border-y border-border py-8 sm:grid-cols-4">
-                {property.features.map((feature) => (
-                  <div key={feature.label}>
-                    <dt className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-text-subtle">
-                      {feature.label}
-                    </dt>
-                    <dd className="mt-1.5 font-display text-lg font-bold text-ink">{feature.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            )}
-
-            <div className="mt-12 space-y-5">
-              <h2 className="font-display text-display-sm font-bold text-ink">Objektbeschreibung</h2>
+            <h2 className="font-display text-display-sm font-bold text-ink">Objektbeschreibung</h2>
+            <div className="mt-5 space-y-5">
               {property.description.map((paragraph, index) => (
                 <p key={index} className="pretty text-[1.0625rem] leading-relaxed text-text-muted">
                   {paragraph}
@@ -164,6 +186,20 @@ export default async function PropertyDetailPage({
               <p className="pretty mt-5 text-[1.0625rem] leading-relaxed text-text-muted">{property.location}</p>
             </div>
 
+            {property.features.length > 0 && (
+              <div className="mt-12">
+                <h2 className="font-display text-display-sm font-bold text-ink">Alle Objektdaten</h2>
+                <dl className="mt-5 divide-y divide-border border-y border-border">
+                  {property.features.map((feature) => (
+                    <div key={feature.label} className="flex items-baseline justify-between gap-6 py-3.5">
+                      <dt className="text-[0.9375rem] text-text-muted">{feature.label}</dt>
+                      <dd className="text-right text-[0.9375rem] font-semibold text-ink">{feature.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            )}
+
             {property.energy.length > 0 && (
               <div className="mt-12">
                 <h2 className="font-display text-display-sm font-bold text-ink">Energieinformationen</h2>
@@ -181,12 +217,16 @@ export default async function PropertyDetailPage({
             )}
           </div>
 
-          <aside className="h-fit rounded-[14px] border border-border bg-surface-warm p-7 lg:sticky lg:top-32">
-            <p className="font-display text-3xl font-extrabold text-ink">{property.priceLabel}</p>
-            {property.heroNote && <p className="mt-2 text-sm text-text-muted">{property.heroNote}</p>}
+          <aside className="h-fit rounded-[16px] border border-border bg-surface-warm p-7 lg:sticky lg:top-32">
+            <p className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-text-subtle">Kaufpreis</p>
+            <p className="mt-1.5 font-display text-[1.875rem] font-extrabold leading-none text-ink">
+              {property.priceLabel}
+            </p>
 
-            <div className="mt-8 border-t border-border pt-8">
-              <p className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-text-subtle">
+            <p className="pretty mt-5 text-[0.9375rem] leading-relaxed text-text-muted">{property.summary}</p>
+
+            <div className="mt-7 border-t border-border pt-7">
+              <p className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-text-subtle">
                 Ihre Ansprechpartnerin
               </p>
               <p className="mt-2 font-display text-[1.0625rem] font-bold text-ink">{site.owner}</p>
@@ -204,19 +244,35 @@ export default async function PropertyDetailPage({
               </a>
             </div>
 
-            <Button
-              href={`/kontakt?anliegen=kaufen&objekt=${property.slug}`}
-              variant="primary"
-              withArrow
-              className="mt-8 w-full"
+            <ContactButton
+              options={{ interest: "kaufen", objectRef, view: "form", title: "Besichtigung anfragen" }}
+              className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-[11px] bg-accent-deep px-6 py-3.5 text-[0.9375rem] font-semibold text-white transition-all duration-300 ease-smooth hover:bg-accent-dark"
             >
               Besichtigung anfragen
-            </Button>
+            </ContactButton>
           </aside>
         </Container>
       </section>
 
+      {gallery.length > 0 && (
+        <section id="galerie" className="overflow-hidden border-t border-border bg-surface-warm py-14 lg:py-20">
+          <Container>
+            <h2 className="font-display text-display-sm font-bold text-ink">Bildergalerie</h2>
+            <p className="mt-2 text-[0.9375rem] text-text-muted">
+              {gallery.length === 1
+                ? "Ein Bild — tippen für die Vollbildansicht."
+                : `${gallery.length} Bilder — tippen oder wischen für die Vollbildansicht.`}
+            </p>
+          </Container>
+          <div className="mx-auto mt-8 w-full max-w-content">
+            <PropertyGallery images={gallery} title={property.title} city={property.city} />
+          </div>
+        </section>
+      )}
+
       <CtaSection />
+
+      <MobileActionBar priceLabel={property.priceLabel} objectRef={objectRef} />
 
       <JsonLd
         data={breadcrumbSchema([
