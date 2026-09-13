@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import { LogoMark } from "@/components/layout/Logo";
 import { signIn } from "../actions";
 
 export const metadata: Metadata = {
-  title: "Admin-Login",
+  title: "Anmelden",
   robots: { index: false, follow: false },
 };
+
+const inputClass =
+  "w-full rounded-[10px] border border-white/15 bg-white/[0.06] px-3.5 py-2.5 text-[0.875rem] text-white transition-colors placeholder:text-white/30 focus:border-accent focus:outline-none";
 
 export default async function AdminLoginPage({
   searchParams,
@@ -14,30 +18,40 @@ export default async function AdminLoginPage({
   const { error, next } = await searchParams;
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-ink px-6">
-      <div className="w-full max-w-sm rounded-lg border border-white/10 bg-white/[0.04] p-8 shadow-2xl">
-        <p className="font-display text-lg font-semibold text-white">
-          Abelen <span className="text-accent">Immobilien</span>
-        </p>
-        <p className="mt-1 text-sm text-white/50">Admin-Bereich</p>
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-ink-deep px-6">
+      <div
+        className="pointer-events-none absolute left-1/2 top-0 h-[28rem] w-[46rem] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"
+        aria-hidden="true"
+      />
 
-        <form action={signIn} className="mt-8 space-y-5">
+      <div className="relative w-full max-w-[22rem]">
+        <div className="flex items-center gap-3">
+          <LogoMark className="h-9 w-9 text-accent" />
+          <span className="flex flex-col leading-tight">
+            <span className="text-[0.875rem] font-bold text-white">Silke Abelen</span>
+            <span className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-white/40">Redaktion</span>
+          </span>
+        </div>
+
+        <h1 className="mt-8 font-display text-[1.375rem] font-extrabold tracking-[-0.015em] text-white">
+          Anmelden
+        </h1>
+        <p className="mt-1.5 text-[0.8125rem] text-white/50">
+          Immobilien und Referenzen der Website pflegen.
+        </p>
+
+        <form action={signIn} className="mt-7 space-y-4">
           <input type="hidden" name="next" value={next ?? "/admin"} />
+
           <div>
-            <label htmlFor="email" className="mb-1.5 block text-xs font-medium text-white/70">
+            <label htmlFor="email" className="mb-1.5 block text-[0.75rem] font-semibold text-white/70">
               E-Mail
             </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autoComplete="username"
-              className="w-full rounded-md border border-white/15 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder:text-white/30 focus-visible:border-accent focus-visible:outline-none"
-            />
+            <input id="email" name="email" type="email" required autoComplete="username" className={inputClass} />
           </div>
+
           <div>
-            <label htmlFor="password" className="mb-1.5 block text-xs font-medium text-white/70">
+            <label htmlFor="password" className="mb-1.5 block text-[0.75rem] font-semibold text-white/70">
               Passwort
             </label>
             <input
@@ -46,23 +60,27 @@ export default async function AdminLoginPage({
               type="password"
               required
               autoComplete="current-password"
-              className="w-full rounded-md border border-white/15 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder:text-white/30 focus-visible:border-accent focus-visible:outline-none"
+              className={inputClass}
             />
           </div>
 
           {error && (
-            <p role="alert" className="rounded-md bg-red-500/10 px-3 py-2 text-sm text-red-300">
+            <p role="alert" className="rounded-[10px] bg-white/10 px-3.5 py-2.5 text-[0.8125rem] text-accent-light">
               {error}
             </p>
           )}
 
           <button
             type="submit"
-            className="w-full rounded-md bg-white py-2.5 text-sm font-semibold text-ink transition-colors duration-200 hover:bg-accent hover:text-white"
+            className="w-full rounded-[10px] bg-accent-deep py-3 text-[0.875rem] font-semibold text-white transition-colors duration-200 hover:bg-accent-dark"
           >
             Anmelden
           </button>
         </form>
+
+        <p className="mt-8 text-[0.75rem] text-white/35">
+          Passwort vergessen? Im Supabase-Dashboard unter Authentication zurücksetzen.
+        </p>
       </div>
     </div>
   );

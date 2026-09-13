@@ -24,11 +24,11 @@ export function KeyValueListEditor({
   return (
     <div>
       <div className="mb-2 flex items-center justify-between">
-        <span className="text-sm font-medium text-ink">{label}</span>
+        <span className="text-[0.8125rem] font-semibold text-ink">{label}</span>
         <button
           type="button"
           onClick={() => setItems((current) => [...current, { label: "", value: "" }])}
-          className="inline-flex items-center gap-1 text-xs font-medium text-accent hover:underline"
+          className="inline-flex items-center gap-1.5 text-[0.75rem] font-semibold text-accent-deep hover:text-accent-dark"
         >
           <Plus className="h-3.5 w-3.5" aria-hidden="true" />
           Zeile hinzufügen
@@ -41,19 +41,19 @@ export function KeyValueListEditor({
               name={labelFieldName}
               defaultValue={item.label}
               placeholder={labelPlaceholder}
-              className="w-1/2 rounded-md border border-border bg-surface px-3 py-2 text-sm text-ink focus-visible:border-ink"
+              className="w-1/2 rounded-[10px] border border-border bg-white px-3 py-2 text-[0.8125rem] text-ink transition-colors focus:border-accent focus:outline-none"
             />
             <input
               name={valueFieldName}
               defaultValue={item.value}
               placeholder={valuePlaceholder}
-              className="w-1/2 rounded-md border border-border bg-surface px-3 py-2 text-sm text-ink focus-visible:border-ink"
+              className="w-1/2 rounded-[10px] border border-border bg-white px-3 py-2 text-[0.8125rem] text-ink transition-colors focus:border-accent focus:outline-none"
             />
             <button
               type="button"
               onClick={() => setItems((current) => current.filter((_, i) => i !== index))}
               aria-label="Zeile entfernen"
-              className="shrink-0 rounded-md p-2 text-text-muted hover:bg-surface-soft hover:text-red-600"
+              className="shrink-0 rounded-[10px] p-2 text-text-muted transition-colors hover:bg-warning-soft hover:text-warning"
             >
               <X className="h-4 w-4" aria-hidden="true" />
             </button>

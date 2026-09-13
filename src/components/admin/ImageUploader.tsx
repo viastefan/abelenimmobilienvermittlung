@@ -85,7 +85,7 @@ export function ImageUploader({
       <input type="hidden" name="images" value={images.join("\n")} />
 
       <div
-        className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-md border-2 border-dashed border-border bg-surface-soft/50 px-6 py-8 text-center transition-colors hover:border-accent"
+        className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-[12px] border border-dashed border-border-strong bg-surface-cool px-6 py-9 text-center transition-colors hover:border-accent hover:bg-accent-tint"
         onClick={() => inputRef.current?.click()}
         onDragOver={(event) => event.preventDefault()}
         onDrop={(event) => {
@@ -94,14 +94,14 @@ export function ImageUploader({
         }}
       >
         {uploading ? (
-          <Loader2 className="h-6 w-6 animate-spin text-accent" aria-hidden="true" />
+          <Loader2 className="h-5 w-5 animate-spin text-accent-deep" aria-hidden="true" />
         ) : (
-          <UploadCloud className="h-6 w-6 text-text-muted" aria-hidden="true" />
+          <UploadCloud className="h-5 w-5 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
         )}
-        <p className="text-sm text-text-muted">
-          Bilder hierher ziehen oder <span className="font-medium text-ink">durchsuchen</span>
+        <p className="text-[0.8125rem] text-text-muted">
+          Bilder hierher ziehen oder <span className="font-semibold text-accent-deep">durchsuchen</span>
         </p>
-        <p className="text-xs text-text-muted/70">JPG, PNG, WebP oder AVIF · max. 8 MB</p>
+        <p className="text-[0.75rem] text-text-subtle">JPG, PNG, WebP oder AVIF · max. 8 MB</p>
         <input
           ref={inputRef}
           type="file"
@@ -112,16 +112,20 @@ export function ImageUploader({
         />
       </div>
 
-      {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+      {error && (
+        <p role="alert" className="mt-3 rounded-[10px] bg-warning-soft px-3.5 py-2.5 text-[0.8125rem] text-warning">
+          {error}
+        </p>
+      )}
 
       {images.length > 0 && (
         <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {images.map((image, index) => (
-            <div key={image} className="group relative aspect-square overflow-hidden rounded-md border border-border">
+            <div key={image} className="group relative aspect-square overflow-hidden rounded-[10px] border border-border">
               {/* eslint-disable-next-line @next/next/no-img-element -- admin-only preview grid, not a public LCP image */}
               <img src={image} alt="" className="h-full w-full object-cover" />
               {index === 0 && (
-                <span className="absolute left-1.5 top-1.5 rounded-sm bg-ink/80 px-1.5 py-0.5 text-[10px] font-medium text-white">
+                <span className="absolute left-2 top-2 rounded-full bg-ink/85 px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-[0.08em] text-white backdrop-blur">
                   Titelbild
                 </span>
               )}
@@ -139,7 +143,7 @@ export function ImageUploader({
                   type="button"
                   onClick={() => removeImage(index)}
                   aria-label="Bild entfernen"
-                  className="rounded p-1 text-white hover:text-red-300"
+                  className="rounded p-1 text-white hover:text-accent-light"
                   disabled={isPending}
                 >
                   <X className="h-3.5 w-3.5" aria-hidden="true" />

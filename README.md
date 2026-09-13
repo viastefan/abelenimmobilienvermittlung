@@ -103,4 +103,9 @@ npm run build      # Produktionsbuild
 npm run start      # Produktionsserver
 npm run lint       # ESLint
 npm run typecheck  # TypeScript
+npm test           # Tests (node:test)
 ```
+
+Getestet ist die Logik, die Eingaben aus dem Panel verarbeitet: Slug-Bildung,
+Zahlen- und Listenfelder, die Umwandlung von Datenbankzeilen in die Typen der
+Website und die Auflösung von Bildpfaden.

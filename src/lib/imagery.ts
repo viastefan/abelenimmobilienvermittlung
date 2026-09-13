@@ -10,6 +10,7 @@ import path from "node:path";
  * shows a broken image and adding real photography is a pure file copy.
  */
 
+const publicDir = path.join(process.cwd(), "public");
 const cache = new Map<string, boolean>();
 
 export function publicImageExists(src?: string | null): boolean {
@@ -20,10 +21,13 @@ export function publicImageExists(src?: string | null): boolean {
   const cached = cache.get(src);
   if (cached !== undefined) return cached;
 
-  const absolute = path.join(process.cwd(), "public", src.replace(/^\//, ""));
+  const absolute = path.resolve(publicDir, src.replace(/^\//, ""));
   let exists = false;
   try {
-    exists = fs.existsSync(absolute) && fs.statSync(absolute).isFile();
+    // `..` darf nicht aus public/ herausführen: die Datei wäre über die
+    // Website ohnehin nicht erreichbar und das Bild bliebe leer.
+    const insidePublic = absolute === publicDir || absolute.startsWith(publicDir + path.sep);
+    exists = insidePublic && fs.existsSync(absolute) && fs.statSync(absolute).isFile();
   } catch {
     exists = false;
   }
