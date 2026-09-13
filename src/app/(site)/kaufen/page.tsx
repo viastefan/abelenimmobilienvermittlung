@@ -7,6 +7,7 @@ import { PropertyCard } from "@/components/property/PropertyCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
+import { resolveFirstImage } from "@/lib/imagery";
 import { getActiveProperties } from "@/data/properties";
 
 export const metadata: Metadata = pageSeo({
@@ -76,7 +77,11 @@ export default async function KaufenPage() {
             </div>
             <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {activeProperties.map((property) => (
-                <PropertyCard key={property.slug} property={property} />
+                <PropertyCard
+                  key={property.slug}
+                  property={property}
+                  image={resolveFirstImage(property.images)}
+                />
               ))}
             </div>
           </Container>

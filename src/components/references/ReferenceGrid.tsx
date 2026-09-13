@@ -1,9 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowRight, CalendarRange, DoorOpen, Ruler, Search } from "lucide-react";
-import { SiteImage } from "@/components/graphics/SiteImage";
+import { ArrowRight, Search } from "lucide-react";
+import { ReferenceCard } from "@/components/references/ReferenceCard";
 import type { ReferenceObject } from "@/types/reference";
 
 export type ReferenceCardItem = ReferenceObject & { resolvedImage?: string };
@@ -88,60 +87,7 @@ export function ReferenceGrid({ references }: { references: ReferenceCardItem[] 
       {shown.length > 0 ? (
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {shown.map((item) => (
-            <Link
-              key={item.slug}
-              href={`/referenzen/${item.slug}`}
-              className="group flex h-full flex-col overflow-hidden rounded-[16px] border border-border bg-white transition-all duration-300 ease-smooth hover:-translate-y-1 hover:border-accent-light hover:shadow-soft"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden bg-surface-mist">
-                <div className="h-full w-full transition-transform duration-700 ease-smooth group-hover:scale-[1.04]">
-                  <SiteImage
-                    src={item.resolvedImage}
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    label={item.region}
-                    alt={`${item.typeLabel} in ${item.region}`}
-                  />
-                </div>
-                <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-ink shadow-card backdrop-blur">
-                  {item.categoryLabel}
-                </span>
-              </div>
-
-              <div className="flex flex-1 flex-col p-6">
-                <p className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-accent-deep">
-                  {item.region}
-                </p>
-                <h3 className="mt-2 font-display text-[1.125rem] font-bold leading-snug text-ink">
-                  {item.title}
-                </h3>
-                <p className="mt-1 text-sm text-text-muted">{item.typeLabel}</p>
-
-                <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[0.8125rem] text-text-muted">
-                  <span className="inline-flex items-center gap-1.5">
-                    <Ruler className="h-4 w-4 text-accent-mid" strokeWidth={1.5} aria-hidden="true" />
-                    {item.livingSpace} m²
-                  </span>
-                  <span className="inline-flex items-center gap-1.5">
-                    <DoorOpen className="h-4 w-4 text-accent-mid" strokeWidth={1.5} aria-hidden="true" />
-                    {item.rooms} Zimmer
-                  </span>
-                  {item.year && (
-                    <span className="inline-flex items-center gap-1.5">
-                      <CalendarRange className="h-4 w-4 text-accent-mid" strokeWidth={1.5} aria-hidden="true" />
-                      {item.year}
-                    </span>
-                  )}
-                </div>
-
-                <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-accent-deep">
-                  Objekt ansehen
-                  <ArrowRight
-                    className="h-4 w-4 transition-transform duration-300 ease-smooth group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </span>
-              </div>
-            </Link>
+            <ReferenceCard key={item.slug} reference={item} image={item.resolvedImage} />
           ))}
         </div>
       ) : (
