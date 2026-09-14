@@ -21,6 +21,8 @@ export const images = {
   heroWohnstrasse: siteMedia.heroKey,
   /** Startseite „Über uns“ und Seite „Über uns“: Portrait Silke Abelen. */
   portrait: siteMedia.portrait,
+  /** Startseite „Persönlich, Verlässlich“: dasselbe Schlüsselmotiv wie im Hero, als Foto statt Vollflächenbild. */
+  personalService: siteMedia.heroKeyPhoto,
   /** Seite Bewertung. */
   bewertung: siteMedia.bewertung,
   /** Seite Verkaufen. */

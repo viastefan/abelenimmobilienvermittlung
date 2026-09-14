@@ -4,7 +4,7 @@ export const site = {
   legalName: "Büro für Immobilien Bewertung & Vermittlung – Silke Abelen",
   owner: "Silke Abelen",
   ownerRole: "Inhaberin",
-  tagline: "Ihre Immobilie. In guten Händen.",
+  tagline: "Immobilienvermittlung, die Werte schafft",
   description:
     "Wir sind Ihr zuverlässiger Partner für die Bewertung, Vermittlung und Vermietung von Immobilien in Leverkusen und Umgebung.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.abelen-immobilien.de",

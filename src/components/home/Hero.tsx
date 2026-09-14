@@ -4,6 +4,7 @@ import { TrustBadges } from "@/components/home/TrustBadges";
 import { SiteImage } from "@/components/graphics/SiteImage";
 import { resolveImage } from "@/lib/imagery";
 import { images } from "@/data/imagery";
+import { site } from "@/data/site";
 
 const ALT = "Hand mit einem Wohnungsschlüssel vor hellem Himmel";
 
@@ -29,18 +30,16 @@ export function Hero() {
         <div className="flex min-h-[32rem] flex-col justify-center py-16 lg:min-h-[40rem] lg:max-w-[46rem] lg:py-24">
           <span className="inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-[0.8125rem] font-medium text-accent-light ring-1 ring-inset ring-white/15 backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-            Ihr Partner für Leverkusen &amp; Umgebung
+            Ihr Partner für Immobilienkauf und -verkauf
           </span>
 
           <h1 className="balance mt-6 font-display text-display-xl font-extrabold text-white">
-            Ihre Immobilie.
-            <br />
-            In guten Händen.
+            {site.tagline}
           </h1>
 
           <p className="pretty mt-5 max-w-[34rem] text-[1.0625rem] leading-relaxed text-white/75">
-            Bewertung, Vermittlung und Vermietung von Immobilien in Leverkusen und Umgebung —
-            persönlich begleitet, von der ersten Einschätzung bis zur Schlüsselübergabe.
+            Die Mehrheit der Immobilienbesitzer verkauft eine Immobilie häufig nur ein einziges Mal
+            im Leben. Dabei geht es fast immer um hohe Werte.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">

@@ -14,7 +14,7 @@ export function CtaSection({
   href = "/bewertung",
 }: {
   title?: string;
-  description?: string;
+  description?: string | null;
   buttonLabel?: string;
   href?: string;
 }) {
@@ -25,7 +25,7 @@ export function CtaSection({
           <div className="flex items-center gap-5">
                   <div>
               <p className="font-display text-[0.9375rem] font-bold text-white">{title}</p>
-              <p className="mt-1 text-[0.8125rem] text-white/65">{description}</p>
+              {description && <p className="mt-1 text-[0.8125rem] text-white/65">{description}</p>}
             </div>
           </div>
           <Button href={href} variant="primary" className="w-full shrink-0 sm:w-auto">

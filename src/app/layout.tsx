@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     siteName: site.name,
-    title: "Ihre Immobilie. In guten Händen. — Silke Abelen, Leverkusen",
+    title: `${site.tagline} — Silke Abelen, Leverkusen`,
     description: site.description,
     url: site.url,
   },
