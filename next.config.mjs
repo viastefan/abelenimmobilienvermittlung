@@ -31,6 +31,25 @@ const nextConfig = {
         destination: "/leistungen",
         permanent: true,
       },
+      // Objektseiten hießen dort /objektansicht/<titel>.
+      {
+        source: "/objektansicht/3-zimmer-wohnung-in-leverkusen",
+        destination: "/immobilien/3-zimmer-wohnung-in-leverkusen",
+        permanent: true,
+      },
+      {
+        source: "/objektansicht/4-zimmer-wohnung-in-leverkusen-opladen",
+        destination: "/immobilien/4-zimmer-wohnung-in-leverkusen-opladen",
+        permanent: true,
+      },
+      {
+        source: "/objektansicht/2-zimmer-wohnung-in-haan",
+        destination: "/referenzen/2-zimmer-wohnung-in-haan",
+        permanent: true,
+      },
+      // Alles Übrige unter /objektansicht landet auf der Angebotsübersicht,
+      // statt ins Leere zu laufen.
+      { source: "/objektansicht/:slug*", destination: "/immobilien", permanent: true },
     ];
   },
 

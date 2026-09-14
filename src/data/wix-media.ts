@@ -33,14 +33,14 @@ export const siteMedia = {
 } as const;
 
 /**
- * Objektfotos, nach Aufnahmeserie gruppiert.
+ * Objektfotos, je Objekt gruppiert.
  *
- * Die Zuordnung stammt aus den Dateinamen und dem Datum des Uploads —
- * „LEV Gebhardstr.“ nennt die Adresse, „Titelfoto“ das Aufmacherbild einer
- * Serie. Sehen konnte ich die Bilder nicht; bitte im Panel gegenprüfen.
+ * Die Zuordnung stammt aus der Sammlung „Objekte“ des bisherigen Auftritts,
+ * Feld `objektbilder` — also aus derselben Quelle, aus der die alte Website
+ * ihre Galerien speiste. Sie ist damit nicht geschätzt, sondern übernommen.
  */
 export const objectMedia = {
-  /** Juli-Serie: Haus über mehrere Ebenen, mit Garten, OG und Dachgeschoss. */
+  /** Helle individuelle Doppelhaushälfte, Leverkusen-Rheindorf. */
   doppelhaushaelfte: [
     "59289a_c2ff04b047014257a1c3940b34fdce92~mv2.jpg", // Titelfoto
     "59289a_60303008f17f415e8f7beac56aa69cba~mv2.jpg", // Hauseingang
@@ -50,7 +50,7 @@ export const objectMedia = {
     "59289a_39bbb185b11840a58b7ca7a5d3409f10~mv2.jpg", // Garten
   ].map(wixImage),
 
-  /** Juni-Serie, Leverkusen Gebhardstraße: Wohnung mit Balkon. */
+  /** 4-Zimmer-Wohnung, Leverkusen-Opladen (Aufnahmen Gebhardstraße). */
   wohnungGebhardstrasse: [
     "59289a_1038f7cc0b4241329184df4abbbd2f1e~mv2.jpg", // Haus Schrägansicht
     "59289a_ae6b630f59af4583ac92372098e859b5~mv2.jpg", // Wohnzimmer
@@ -60,7 +60,7 @@ export const objectMedia = {
     "59289a_13e6c5ffc5284964adb78deb577c7817~mv2.jpg", // Balkon
   ].map(wixImage),
 
-  /** April-Serie: älteres Objekt, Haus mit Loggia und Südbalkon. */
+  /** 3-Zimmer-Wohnung, Leverkusen — mit Süd- und Nordbalkon, reserviert. */
   hausMitLoggia: [
     "59289a_737b33e1a7454e87af0af49ff98f2398~mv2.jpg", // Haus von außen
     "59289a_8370d5833d80443dba34099911da815b~mv2.jpg", // Wohnzimmer
@@ -71,7 +71,7 @@ export const objectMedia = {
     "59289a_4bc8f6f6b3ff43ce8cbffff6924bbebf~mv2.jpg", // Loggia
   ].map(wixImage),
 
-  /** Einfamilienhaus, Serie „FEH“. */
+  /** Einfamilienhaus, Serie „FEH“ — derzeit keinem Objekt zugeordnet. */
   einfamilienhaus: [
     "59289a_b0669c4357f146678ce9fa90c134b569~mv2.jpg", // Haus
     "59289a_a240901cbc03489b9942c85a83914bba~mv2.jpg", // Hauskante
@@ -81,7 +81,14 @@ export const objectMedia = {
     "59289a_1718df13b5d0408f8382a98c9adfa9e1~mv2.jpg", // Flur
   ].map(wixImage),
 
-  /** Einzelaufnahmen ohne eigene Serie. */
+  /** 2-Zimmer-Wohnung in Haan, vermittelt (Kreis Mettmann). */
+  wohnungHaan: [
+    "59289a_7899b90d25e0499a91955a2c18bff34c~mv2.jpg", // Titelfoto
+    "59289a_78252eaf77d647b4b3a7804b2614eacb~mv2.jpg", // Wohnzimmer
+    "59289a_c8472eac5bdd46e2961d94af1709ec94~mv2.jpg", // Küche
+  ].map(wixImage),
+
+  /** Einzelaufnahmen ohne Objektbezug. */
   einzelbilder: [
     "59289a_038e01f2f0014af8995142b9aa356fbb~mv2.jpg", // Einfamilienhaus vom Garten
     "59289a_dfaca59134b34ae4af88a990ef2f7dce~mv2.jpg", // Dachgeschosswohnung

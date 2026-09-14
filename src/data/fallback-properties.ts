@@ -3,18 +3,18 @@ import type { Property } from "@/types/property";
 import { formatPrice } from "@/types/property";
 
 /**
- * Listings shown when Supabase is not configured (local preview, first
- * deployment) or returns nothing. Content mirrors the object currently
- * advertised on abelen-immobilien.de so the site never renders an empty
- * "Aktuelle Immobilien" section. As soon as the admin area holds published
- * listings, these are ignored entirely.
+ * Angebote, die gezeigt werden, solange die Datenbank nicht erreichbar ist.
+ *
+ * Inhalt und Bilder stammen eins zu eins aus der Sammlung „Objekte“ des
+ * bisherigen Wix-Auftritts — nichts davon ist ausgedacht. Sobald die
+ * Datenbank Einträge liefert, wird diese Liste ignoriert.
  */
 export const fallbackProperties: Property[] = [
   {
-    id: "fallback-rheindorf",
-    slug: "doppelhaushaelfte-leverkusen-rheindorf",
-    title: "Doppelhaushälfte mit Charme",
-    city: "Leverkusen – Rheindorf",
+    id: "fallback-doppelhaushaelfte",
+    slug: "helle-individuelle-doppelhaushaelfte",
+    title: "Helle individuelle Doppelhaushälfte mit viel Potenzial",
+    city: "Leverkusen-Rheindorf",
     status: "zu-verkaufen",
     statusLabel: "Zu verkaufen",
     price: 420000,
@@ -24,22 +24,94 @@ export const fallbackProperties: Property[] = [
     images: [...objectMedia.doppelhaushaelfte],
     heroNote: "Aktuelles Angebot",
     summary:
-      "Großzügige Doppelhaushälfte mit rund 171 m² Wohnfläche, sechs Zimmern und drei Stellplätzen in ruhiger Lage von Leverkusen-Rheindorf.",
+      "Doppelhaushälfte mit rund 171 m² Wohnfläche auf einem Grundstück von etwa 373 m², sechs Zimmern über mehrere Ebenen und drei Stellplätzen.",
     description: [
-      "Die Doppelhaushälfte bietet auf rund 171 m² Wohnfläche Platz für die ganze Familie: sechs Zimmer verteilen sich über mehrere Ebenen und lassen sich flexibel als Wohn-, Arbeits- und Schlafräume nutzen.",
-      "Drei Stellplätze auf dem Grundstück sind in dieser Lage eine Seltenheit — ebenso wie der ruhige Zuschnitt der Straße. Alle weiteren Unterlagen erhalten Sie im persönlichen Gespräch.",
+      "Die Doppelhaushälfte verteilt rund 171 m² Wohnfläche über mehrere Ebenen: sechs Zimmer, Balkon am Obergeschoss, eine Kochnische im Dachgeschoss und ein eigener Hauseingang.",
+      "Zum Objekt gehören ein Grundstück von etwa 373 m² mit Garten und drei Stellplätze. Alle weiteren Unterlagen erhalten Sie im persönlichen Gespräch.",
     ],
     features: [
-      { label: "Wohnfläche", value: "171,31 m²" },
+      { label: "Wohnfläche", value: "ca. 171,31 m²" },
+      { label: "Grundstück", value: "ca. 373 m²" },
       { label: "Zimmer", value: "6" },
       { label: "Stellplätze", value: "3" },
-      { label: "Kaufpreis", value: formatPrice(420000) },
     ],
-    equipment: ["Sechs Zimmer", "Drei Stellplätze", "Ruhige Wohnlage", "Garten"],
+    equipment: [
+      "Sechs Zimmer über mehrere Ebenen",
+      "Balkon am Obergeschoss",
+      "Kochnische im Dachgeschoss",
+      "Garten",
+      "Drei Stellplätze",
+    ],
     location:
-      "Rheindorf liegt im Norden Leverkusens, nah am Rhein und an den Rheinauen. Nahversorgung, Schulen und die Anbindung Richtung Köln und Düsseldorf sind schnell erreichbar.",
+      "Leverkusen-Rheindorf liegt im Norden Leverkusens, nah am Rhein und an den Rheinauen. Nahversorgung, Schulen und die Anbindung Richtung Köln und Düsseldorf sind schnell erreichbar.",
     energy: [],
     featured: true,
+    published: true,
+  },
+  {
+    id: "fallback-opladen",
+    slug: "4-zimmer-wohnung-in-leverkusen-opladen",
+    title: "4-Zimmer-Wohnung in Leverkusen-Opladen",
+    city: "Leverkusen-Opladen",
+    status: "zu-verkaufen",
+    statusLabel: "Zu verkaufen",
+    price: 255000,
+    priceLabel: formatPrice(255000),
+    livingSpace: 91,
+    rooms: 4,
+    images: [...objectMedia.wohnungGebhardstrasse],
+    summary:
+      "Großzügige 4-Zimmer-Wohnung mit ca. 91 m², Balkon und Stellplatz in gefragter Lage von Leverkusen-Opladen.",
+    description: [
+      "Diese großzügige 4-Zimmer-Wohnung in gefragter Lage von Leverkusen-Opladen bietet Familien oder Paaren viel Platz zur freien Entfaltung. Mit einer geräumigen Wohnfläche von ca. 91 m², einem Balkon, einem Stellplatz und dem großen Grundstück eignet sich diese gepflegte Immobilie für alle, die zusätzlich Platz im Alltag genießen möchten.",
+      "Leverkusen ist eine beliebte Stadt, bekannt für ihre hervorragende Infrastruktur und die optimale Anbindung an die Metropolen Köln und Düsseldorf. Die Vielfalt an Einkaufsmöglichkeiten, Kulturangeboten und Freizeiteinrichtungen macht sie zu einem äußerst begehrten Wohnort. Ein eigener Stellplatz komplettiert dieses attraktive Angebot.",
+    ],
+    features: [
+      { label: "Wohnfläche", value: "ca. 91 m²" },
+      { label: "Zimmer", value: "4" },
+      { label: "Balkon", value: "Ja" },
+      { label: "Stellplatz", value: "10.000 € zusätzlich" },
+    ],
+    equipment: ["Vier Zimmer", "Balkon", "Stellplatz gegen Aufpreis", "Großes Grundstück"],
+    location:
+      "Leverkusen-Opladen ist bekannt für seine Infrastruktur und die Anbindung an Köln und Düsseldorf. Einkaufsmöglichkeiten, Kultur- und Freizeitangebote liegen in der Nähe.",
+    energy: [],
+    featured: true,
+    published: true,
+  },
+  {
+    id: "fallback-drei-zimmer",
+    slug: "3-zimmer-wohnung-in-leverkusen",
+    title: "3-Zimmer-Wohnung in Leverkusen",
+    city: "Leverkusen",
+    status: "reserviert",
+    statusLabel: "Reserviert",
+    price: 270000,
+    priceLabel: formatPrice(270000),
+    livingSpace: 99.77,
+    rooms: 3,
+    images: [...objectMedia.hausMitLoggia],
+    summary:
+      "Helle 3-Zimmer-Wohnung mit ca. 99,77 m², Süd- und Nordbalkon in gefragter Lage von Leverkusen. Das Objekt ist fest reserviert.",
+    description: [
+      "Für diese helle und geräumige 3-Zimmer-Wohnung in gefragter Lage von Leverkusen konnte bereits ein passender Käufer gefunden werden – das Objekt ist fest reserviert. Die Immobilie besticht durch ca. 99,77 m² Wohnfläche und die seltene Kombination aus einem großen, sonnigen Südbalkon und einem Nordbalkon.",
+      "Neben dem attraktiven Kaufpreis von 270.000 € für die Wohnung bietet der zugehörige Stellplatz für 15.000 € optimalen Komfort. Die ausgezeichnete Anbindung und das lebenswerte Umfeld in Leverkusen machen diese Immobilie zu einer zukunftssicheren Investition.",
+    ],
+    features: [
+      { label: "Wohnfläche", value: "ca. 99,77 m²" },
+      { label: "Zimmer", value: "3" },
+      { label: "Balkone", value: "Süd und Nord" },
+      { label: "Stellplatz", value: "15.000 € zusätzlich" },
+    ],
+    equipment: [
+      "Drei Zimmer",
+      "Großer Südbalkon",
+      "Zusätzlicher Nordbalkon",
+      "Stellplatz gegen Aufpreis",
+    ],
+    location: "Die Wohnung liegt in einer gefragten Lage von Leverkusen mit ausgezeichneter Anbindung.",
+    energy: [],
+    featured: false,
     published: true,
   },
 ];
