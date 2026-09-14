@@ -1,31 +1,15 @@
-import { Mail, Phone } from "lucide-react";
+import { Clock, Mail, Phone } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
-import { SiteImage } from "@/components/graphics/SiteImage";
-import { resolveImage } from "@/lib/imagery";
-import { images } from "@/data/imagery";
 import { site } from "@/data/site";
 
 /** Text wörtlich von der Startseite des bisherigen Auftritts übernommen. */
 export function ContactIntro() {
-  const image = resolveImage(images.contactIntro);
-
   return (
     <section className="bg-surface-warm py-16 lg:py-20">
-      <Container className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
+      <Container className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16">
         <Reveal>
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[14px] bg-surface-mist">
-            <SiteImage
-              src={image}
-              sizes="(min-width: 1024px) 34vw, 100vw"
-              label="Kontakt"
-              alt="Arbeitsplatz mit Laptop — der erste Schritt zur Kontaktaufnahme"
-            />
-          </div>
-        </Reveal>
-
-        <Reveal delay={120}>
           <h2 className="balance font-display text-display-lg font-bold text-ink">
             Der Erste Schritt zur Kontaktaufnahme
           </h2>
@@ -52,29 +36,50 @@ export function ContactIntro() {
               haben. So stellen wir sicher, dass wir gemeinsam das passende Objekt für Sie finden.
             </p>
           </div>
+        </Reveal>
 
-          <ul className="mt-7 flex flex-wrap gap-x-8 gap-y-3">
+        <Reveal delay={120} className="rounded-[14px] border border-border bg-white p-6 sm:p-8">
+          <ul className="space-y-5">
             <li>
               <a
                 href={site.landlineHref}
-                className="group flex items-center gap-2.5 text-[0.9375rem] font-semibold text-ink transition-colors hover:text-accent-deep"
+                className="group flex items-start gap-4 transition-colors hover:text-accent-deep"
               >
-                <Phone className="h-4 w-4 text-accent-mid" strokeWidth={1.8} aria-hidden="true" />
-                {site.landline}
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-accent-soft text-accent-deep">
+                  <Phone className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
+                </span>
+                <span>
+                  <span className="block text-[0.8125rem] font-medium text-text-subtle">Tel.</span>
+                  <span className="mt-0.5 block font-display text-[1.0625rem] font-bold text-ink group-hover:text-accent-deep">
+                    {site.landline}
+                  </span>
+                </span>
               </a>
             </li>
             <li>
               <a
                 href={`mailto:${site.email}`}
-                className="group flex items-center gap-2.5 text-[0.9375rem] font-semibold text-ink transition-colors hover:text-accent-deep"
+                className="group flex items-start gap-4 transition-colors hover:text-accent-deep"
               >
-                <Mail className="h-4 w-4 text-accent-mid" strokeWidth={1.8} aria-hidden="true" />
-                {site.email}
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-accent-soft text-accent-deep">
+                  <Mail className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
+                </span>
+                <span>
+                  <span className="block text-[0.8125rem] font-medium text-text-subtle">E-Mail</span>
+                  <span className="mt-0.5 block font-display text-[1.0625rem] font-bold text-ink group-hover:text-accent-deep">
+                    {site.email}
+                  </span>
+                </span>
               </a>
             </li>
           </ul>
 
-          <Button href="/kontakt" variant="primary" withArrow className="mt-7">
+          <p className="mt-6 flex items-start gap-3 rounded-[12px] border border-border bg-surface-warm p-4 text-[0.8125rem] leading-relaxed text-text-muted">
+            <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
+            Wir melden uns in der Regel innerhalb eines Werktages persönlich bei Ihnen zurück.
+          </p>
+
+          <Button href="/kontakt" variant="primary" withArrow className="mt-6 w-full sm:w-auto">
             Kontaktformular
           </Button>
         </Reveal>

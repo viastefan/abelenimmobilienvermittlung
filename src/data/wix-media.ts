@@ -63,7 +63,7 @@ export const siteMedia = {
   vermieten: wixImage(vermietenFoto),
   /** Kopfbereich „Referenzen“: Gartenansicht in Leichlingen. */
   referenzen: wixImage(referenzenFoto),
-  /** Startseite „Der Erste Schritt zur Kontaktaufnahme“: Laptop-Arbeitsplatz. */
+  /** Seite „Über Mich“: Laptop-Arbeitsplatz. */
   contactIntro: wixImage("59289a_0ae6093fc716436c9fdf0a8e7d17fc83~mv2.jpg"),
 } as const;
 

@@ -23,8 +23,8 @@ export const images = {
   portrait: siteMedia.portrait,
   /** Startseite „Persönlich, Verlässlich“: dasselbe Schlüsselmotiv wie im Hero, als Foto statt Vollflächenbild. */
   personalService: siteMedia.heroKeyPhoto,
-  /** Startseite „Der Erste Schritt zur Kontaktaufnahme“. */
-  contactIntro: siteMedia.contactIntro,
+  /** Seite „Über Mich“, Tätigkeitsgebiet: Laptop-Arbeitsplatz. */
+  ueberMichArbeitsplatz: siteMedia.contactIntro,
   /** Seite Bewertung. */
   bewertung: siteMedia.bewertung,
   /** Seite Verkaufen. */

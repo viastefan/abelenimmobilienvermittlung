@@ -43,6 +43,7 @@ const principles = [
 
 export default function UeberMichPage() {
   const portrait = resolveImage(images.portrait);
+  const arbeitsplatz = resolveImage(images.ueberMichArbeitsplatz);
 
   return (
     <>
@@ -114,15 +115,13 @@ export default function UeberMichPage() {
 
 
       <section className="border-t border-border bg-white py-16 lg:py-20">
-        <Container>
+        <Container className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
           <Reveal>
             <SectionHeading
               eyebrow="Tätigkeitsgebiet"
               title="Wo wir für Sie unterwegs sind"
               description="Leverkusen ist unser Zuhause — vermittelt wird im gesamten Bergischen Rheinland und im angrenzenden Umland."
             />
-          </Reveal>
-          <Reveal delay={100}>
             <ul className="mt-10 flex flex-wrap gap-3">
               {regions.map((region) => (
                 <li
@@ -137,6 +136,17 @@ export default function UeberMichPage() {
                 </li>
               ))}
             </ul>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[14px] bg-surface-mist">
+              <SiteImage
+                src={arbeitsplatz}
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                label={site.owner}
+                alt="Schreibtischarbeit für die Vorbereitung von Bewertungen und Exposés"
+              />
+            </div>
           </Reveal>
         </Container>
       </section>
