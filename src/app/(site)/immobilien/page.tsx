@@ -8,7 +8,7 @@ import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
-import { resolveFirstImage } from "@/lib/imagery";
+import { resolveImages } from "@/lib/imagery";
 import { getPublishedProperties } from "@/data/properties";
 
 export const metadata: Metadata = pageSeo({
@@ -50,7 +50,7 @@ export default async function ImmobilienPage() {
                 <PropertyCard
                   key={property.slug}
                   property={property}
-                  image={resolveFirstImage(property.images)}
+                  images={resolveImages(property.images)}
                 />
               ))}
               {properties.length < 3 && <PropertyCtaCard />}

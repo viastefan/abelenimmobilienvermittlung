@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/PageHero";
 import { Container } from "@/components/ui/Container";
 import { ReferenceGrid, type ReferenceCardItem } from "@/components/references/ReferenceGrid";
+import { TestimonialCard } from "@/components/references/TestimonialCard";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
 import { getPublishedReferences } from "@/data/references";
-import { resolveFirstImage, resolveImage } from "@/lib/imagery";
+import { resolveImages, resolveImage } from "@/lib/imagery";
 import { images } from "@/data/imagery";
 
 export const metadata: Metadata = pageSeo({
@@ -23,8 +25,14 @@ export default async function ReferenzenPage() {
   const references = await getPublishedReferences();
   const items: ReferenceCardItem[] = references.map((item) => ({
     ...item,
-    resolvedImage: resolveFirstImage(item.images),
+    resolvedImages: resolveImages(item.images),
   }));
+
+  // Kundenmeinungen hängen am jeweiligen Objekt — hier gesammelt, damit sie
+  // nicht erst auf der Detailseite auftauchen.
+  const testimonials = references.flatMap((item) =>
+    item.testimonial ? [{ slug: item.slug, title: item.title, testimonial: item.testimonial }] : []
+  );
 
   return (
     <>
@@ -54,6 +62,27 @@ export default async function ReferenzenPage() {
           </p>
         </Container>
       </section>
+
+      {testimonials.length > 0 && (
+        <section className="border-t border-border bg-surface-warm py-14 lg:py-20">
+          <Container>
+            <SectionHeading
+              eyebrow="Kundenmeinungen"
+              title="Was Auftraggeberinnen und Auftraggeber sagen"
+              description="Rückmeldungen aus abgeschlossenen Vermittlungen — unverändert übernommen."
+            />
+            <div className="mt-10 grid gap-6 lg:grid-cols-2">
+              {testimonials.map((item) => (
+                <TestimonialCard
+                  key={item.slug}
+                  testimonial={item.testimonial}
+                  author={`Zur Vermittlung: ${item.title}`}
+                />
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       <CtaSection
         title="Sie möchten Ihre Immobilie verkaufen oder vermieten?"

@@ -171,7 +171,7 @@ export function CookieConsent() {
                   </button>
                 </div>
                 {category.required && (
-                  <p className="mt-3 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-accent-deep">
+                  <p className="mt-3 text-[0.75rem] font-semibold text-accent-deep">
                     Immer aktiv
                   </p>
                 )}

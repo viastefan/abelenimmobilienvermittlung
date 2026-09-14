@@ -40,7 +40,7 @@ export async function FeaturedProperty() {
               label={property.city}
               alt={`${property.title} in ${property.city}`}
             />
-            <span className="absolute left-5 top-5 rounded-full bg-white/95 px-3.5 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-ink shadow-card backdrop-blur">
+            <span className="absolute left-5 top-5 rounded-full bg-white/95 px-3.5 py-1.5 text-[0.8125rem] font-semibold text-ink shadow-card backdrop-blur">
               {property.statusLabel}
             </span>
           </div>
@@ -49,7 +49,7 @@ export async function FeaturedProperty() {
         <Reveal delay={120}>
           <Eyebrow>Aktuell zum Verkauf</Eyebrow>
           <h2 className="balance mt-3 font-display text-display-lg font-bold text-ink">{property.title}</h2>
-          <p className="mt-2 text-[0.875rem] font-semibold uppercase tracking-[0.1em] text-text-subtle">
+          <p className="mt-2 text-[0.9375rem] font-medium text-text-subtle">
             {property.city}
           </p>
 
@@ -66,7 +66,7 @@ export async function FeaturedProperty() {
               const Icon = factIcons[index % factIcons.length]!;
               return (
                 <div key={fact.label} className="bg-white px-4 py-4">
-                  <dt className="flex items-center gap-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-text-subtle">
+                  <dt className="flex items-center gap-1.5 text-[0.75rem] font-medium text-text-subtle">
                     <Icon className="h-3.5 w-3.5 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
                     {fact.label}
                   </dt>

@@ -24,11 +24,22 @@ export const fallbackReferences: ReferenceObject[] = [
       "https://static.wixstatic.com/media/59289a_78252eaf77d647b4b3a7804b2614eacb~mv2.jpg",
       "https://static.wixstatic.com/media/59289a_c8472eac5bdd46e2961d94af1709ec94~mv2.jpg",
     ],
-    summary: "Zwei Zimmer auf rund 55 m² mit Balkon im Kreis Mettmann — erfolgreich vermittelt.",
-    description: ["Zwei Zimmer auf rund 55 m² mit Balkon, vermittelt im Kreis Mettmann."],
-    equipment: ["Zwei Zimmer", "Balkon"],
-    location: "Haan im Kreis Mettmann, zwischen Düsseldorf, Solingen und Wuppertal gelegen.",
+    summary:
+      "Charmante 2-Zimmer-Wohnung mit 55 m² Wohnfläche und Außenstellplatz in Haan, Kreis Mettmann — erfolgreich verkauft.",
+    description: [
+      "Diese charmante 2-Zimmer-Wohnung in Haan, im Kreis Mettmann, wurde erfolgreich verkauft. Mit einer Wohnfläche von 55 m² inklusive eines Außenstellplatzes hat sie schnell ein neues Zuhause gefunden.",
+      "Haan ist eine beliebte Stadt, bekannt für ihre grüne Umgebung und die hervorragende Anbindung an Düsseldorf und Wuppertal. Die gute Infrastruktur mit vielfältigen Einkaufsmöglichkeiten, Restaurants und Freizeiteinrichtungen macht sie zu einem begehrten Wohnort.",
+    ],
+    equipment: ["Zwei Zimmer", "Außenstellplatz"],
+    location: "Haan im Kreis Mettmann — grüne Umgebung, gute Anbindung an Düsseldorf und Wuppertal.",
     published: true,
     sortOrder: 0,
+    testimonial: {
+      quote:
+        "Mit der Immobilienvermittlung Fr. S. Abelen erfährt man eine äußerst kompetente, erfahrene, zuverlässige, freundliche Unterstützung. Ich kann die Immobilienvermittlung von Fr. S. Abelen sehr weiter empfehlen.",
+      rating: 4.8,
+      label: "Exzellent",
+      recommend: true,
+    },
   },
 ];

@@ -194,7 +194,7 @@ export function Sheet({
         <div className="flex shrink-0 items-start justify-between gap-4 px-6 pb-4 pt-4 sm:pt-6">
           <div>
             {eyebrow && (
-              <p className="text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-accent-deep">{eyebrow}</p>
+              <p className="text-[0.8125rem] font-semibold text-accent-deep">{eyebrow}</p>
             )}
             <h2 className="mt-1.5 font-display text-[1.25rem] font-extrabold leading-tight text-ink">{title}</h2>
           </div>

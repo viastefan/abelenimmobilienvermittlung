@@ -49,3 +49,9 @@ export function resolveFirstImage(sources?: (string | null | undefined)[]): stri
   }
   return undefined;
 }
+
+/** Alle darstellbaren Bilder einer Liste — für Galerien. */
+export function resolveImages(sources?: (string | null | undefined)[]): string[] {
+  if (!sources) return [];
+  return sources.map(resolveImage).filter((value): value is string => Boolean(value));
+}

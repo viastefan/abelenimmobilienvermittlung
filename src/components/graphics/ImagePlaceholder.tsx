@@ -20,7 +20,7 @@ export function ImagePlaceholder({ label, className = "" }: { label?: string; cl
       <LogoMark className="relative h-1/3 w-1/3 max-h-40 max-w-40 text-accent/25" />
       <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-ink/5" aria-hidden="true" />
       {label && (
-        <span className="absolute bottom-4 left-4 rounded-full bg-white/85 px-3 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-text-muted backdrop-blur">
+        <span className="absolute bottom-4 left-4 rounded-full bg-white/85 px-3 py-1.5 text-[0.75rem] font-medium text-text-muted backdrop-blur">
           {label}
         </span>
       )}

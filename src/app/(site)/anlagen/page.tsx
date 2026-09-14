@@ -71,13 +71,13 @@ export default function AnlagenPage() {
             <table className="w-full min-w-[38rem] border-collapse text-left">
               <thead>
                 <tr className="border-b border-border-strong">
-                  <th className="pb-3 pr-6 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-text-subtle">
+                  <th className="pb-3 pr-6 text-[0.8125rem] font-semibold text-text-subtle">
                     Dokument
                   </th>
-                  <th className="pb-3 pr-6 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-text-subtle">
+                  <th className="pb-3 pr-6 text-[0.8125rem] font-semibold text-text-subtle">
                     Zuständige Stelle
                   </th>
-                  <th className="pb-3 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-text-subtle">
+                  <th className="pb-3 text-[0.8125rem] font-semibold text-text-subtle">
                     Hinweis
                   </th>
                 </tr>

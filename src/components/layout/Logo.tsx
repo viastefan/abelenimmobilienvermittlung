@@ -49,7 +49,7 @@ type LogoProps = {
 
 export function Logo({ className = "", inverted = false, compact = false }: LogoProps) {
   return (
-    <span className={`inline-flex items-center gap-3 sm:gap-3.5 ${className}`}>
+    <span className={`inline-flex items-center gap-2.5 ${className}`}>
       {/* Originalgrafik statt der nachgezeichneten Marke. Die Schrift daneben
           bleibt gesetzt: als Text ist sie in jeder Größe scharf, lässt sich
           vorlesen und passt ihre Farbe dem Untergrund an. */}
@@ -59,7 +59,7 @@ export function Logo({ className = "", inverted = false, compact = false }: Logo
         width={1000}
         height={1000}
         priority
-        className={`${compact ? "h-9 w-9" : "h-10 w-10 sm:h-11 sm:w-11"} shrink-0 object-contain`}
+        className={`${compact ? "h-10 w-10" : "h-11 w-11 sm:h-[3.25rem] sm:w-[3.25rem]"} shrink-0 object-contain`}
       />
       <span
         className={`flex flex-col font-display leading-[1.32] ${

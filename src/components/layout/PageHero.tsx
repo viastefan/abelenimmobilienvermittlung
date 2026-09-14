@@ -32,6 +32,9 @@ export function PageHero({
   imageAlt?: string;
 }) {
   const hasMedia = withMedia || Boolean(image);
+  // Stehen Brotkrümel darüber, wiederholt die Plakette nur deren letzten
+  // Eintrag. Zwei Zeilen Kleinkram vor der Überschrift sind eine zu viel.
+  const showEyebrow = Boolean(eyebrow) && !(breadcrumbs && breadcrumbs.length > 0);
 
   return (
     <section className="relative overflow-hidden border-b border-border bg-surface-mist">
@@ -66,8 +69,10 @@ export function PageHero({
             </nav>
           )}
 
-          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-          <h1 className="balance mt-3 font-display text-display-xl font-extrabold text-ink">{title}</h1>
+          {showEyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+          <h1 className={`balance font-display text-display-xl font-extrabold text-ink ${showEyebrow ? "mt-4" : ""}`}>
+            {title}
+          </h1>
           {description && (
             <p className="pretty mt-5 max-w-xl text-[0.9375rem] leading-relaxed text-text-muted">
               {description}

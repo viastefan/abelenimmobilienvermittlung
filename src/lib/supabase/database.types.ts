@@ -141,6 +141,7 @@ export type Database = {
           slug: string;
           sort_order: number;
           summary: string;
+          testimonial: Json | null;
           title: string;
           type_label: string;
           updated_at: string;
@@ -163,6 +164,7 @@ export type Database = {
           slug: string;
           sort_order?: number;
           summary?: string;
+          testimonial?: Json | null;
           title: string;
           type_label?: string;
           updated_at?: string;
@@ -185,6 +187,7 @@ export type Database = {
           slug?: string;
           sort_order?: number;
           summary?: string;
+          testimonial?: Json | null;
           title?: string;
           type_label?: string;
           updated_at?: string;

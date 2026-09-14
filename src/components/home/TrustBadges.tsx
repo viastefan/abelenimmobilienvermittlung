@@ -18,14 +18,14 @@ export function TrustBadges({ className = "" }: { className?: string }) {
           return (
             <li
               key={badge.key}
-              className="flex items-center rounded-full bg-white/95 px-5 py-3 shadow-card ring-1 ring-border/70 backdrop-blur"
+              className="flex items-center rounded-full bg-white/95 px-6 py-3.5 shadow-lift ring-1 ring-white/40 backdrop-blur"
             >
               <Image
                 src={src}
                 alt={badge.alt}
                 width={badge.width}
                 height={badge.height}
-                className="h-11 w-auto sm:h-12"
+                className="h-14 w-auto sm:h-[4.25rem]"
               />
             </li>
           );
@@ -38,7 +38,7 @@ export function TrustBadges({ className = "" }: { className?: string }) {
               alt={badge.alt}
               width={badge.width}
               height={badge.height}
-              className="h-[4.25rem] w-auto sm:h-[4.75rem]"
+              className="h-[4.75rem] w-auto sm:h-[5.5rem]"
             />
           </li>
         );

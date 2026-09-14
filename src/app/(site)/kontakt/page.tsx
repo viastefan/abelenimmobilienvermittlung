@@ -43,7 +43,7 @@ export default function KontaktPage() {
                     <Phone className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
                   </span>
                   <span>
-                    <span className="block text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-text-subtle">
+                    <span className="block text-[0.8125rem] font-medium text-text-subtle">
                       Mobil
                     </span>
                     <span className="mt-0.5 block font-display text-[1.0625rem] font-bold text-ink group-hover:text-accent-deep">
@@ -61,7 +61,7 @@ export default function KontaktPage() {
                     <Phone className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
                   </span>
                   <span>
-                    <span className="block text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-text-subtle">
+                    <span className="block text-[0.8125rem] font-medium text-text-subtle">
                       Telefon
                     </span>
                     <span className="mt-0.5 block font-display text-[1.0625rem] font-bold text-ink group-hover:text-accent-deep">
@@ -79,7 +79,7 @@ export default function KontaktPage() {
                     <Mail className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
                   </span>
                   <span>
-                    <span className="block text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-text-subtle">
+                    <span className="block text-[0.8125rem] font-medium text-text-subtle">
                       E-Mail
                     </span>
                     <span className="mt-0.5 block font-display text-[1.0625rem] font-bold text-ink group-hover:text-accent-deep">
@@ -93,7 +93,7 @@ export default function KontaktPage() {
                   <MapPin className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
                 </span>
                 <span>
-                  <span className="block text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-text-subtle">
+                  <span className="block text-[0.8125rem] font-medium text-text-subtle">
                     Tätigkeitsgebiet
                   </span>
                   <span className="mt-0.5 block font-display text-[1.0625rem] font-bold text-ink">

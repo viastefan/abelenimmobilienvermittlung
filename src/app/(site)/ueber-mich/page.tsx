@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { SiteImage } from "@/components/graphics/SiteImage";
-import { Philosophy } from "@/components/home/Philosophy";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -113,7 +112,6 @@ export default function UeberMichPage() {
         </Container>
       </section>
 
-      <Philosophy />
 
       <section className="border-t border-border bg-white py-16 lg:py-20">
         <Container>

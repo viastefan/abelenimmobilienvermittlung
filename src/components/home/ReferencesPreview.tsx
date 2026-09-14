@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SnapCarousel } from "@/components/ui/SnapCarousel";
 import { ReferenceCard } from "@/components/references/ReferenceCard";
-import { resolveFirstImage } from "@/lib/imagery";
+import { resolveImages } from "@/lib/imagery";
 import { getPublishedReferences } from "@/data/references";
 
 export async function ReferencesPreview() {
@@ -37,7 +37,7 @@ export async function ReferencesPreview() {
             node: (
               <ReferenceCard
                 reference={reference}
-                image={resolveFirstImage(reference.images)}
+                images={resolveImages(reference.images)}
                 sizes="(min-width: 1024px) 32vw, (min-width: 640px) 46vw, 84vw"
                 compact
               />

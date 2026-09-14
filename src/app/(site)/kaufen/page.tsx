@@ -7,7 +7,7 @@ import { PropertyCard } from "@/components/property/PropertyCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
-import { resolveFirstImage } from "@/lib/imagery";
+import { resolveImages } from "@/lib/imagery";
 import { getActiveProperties } from "@/data/properties";
 
 export const metadata: Metadata = pageSeo({
@@ -80,7 +80,7 @@ export default async function KaufenPage() {
                 <PropertyCard
                   key={property.slug}
                   property={property}
-                  image={resolveFirstImage(property.images)}
+                  images={resolveImages(property.images)}
                 />
               ))}
             </div>

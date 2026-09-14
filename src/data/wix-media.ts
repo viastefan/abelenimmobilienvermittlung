@@ -26,10 +26,33 @@ export const brandMedia = {
   immoscout24: wixImage("59289a_d3a8962bc91449f8b04239961651f757~mv2.png"),
 } as const;
 
+/**
+ * Einzelaufnahmen mit fester Rolle im Kopfbereich einer Seite.
+ *
+ * Eigene Konstanten statt Indexzugriffe auf `objectMedia.einzelbilder`:
+ * ein benannter Platz ist beim Austauschen eindeutig.
+ */
+const bewertungFoto = "59289a_038e01f2f0014af8995142b9aa356fbb~mv2.jpg";
+const verkaufenFoto = "59289a_b27d73883c5940a5aa102dcfe6a59939~mv2.jpg";
+const vermietenFoto = "59289a_dfaca59134b34ae4af88a990ef2f7dce~mv2.jpg";
+const referenzenFoto = "59289a_b3773dae8e3b4149b54f01ccb026e8ca~mv2.jpg";
+
 /** Redaktionelle Bilder der Website. */
 export const siteMedia = {
-  /** Hand mit Schlüssel — das Aufmacherbild des bisherigen Auftritts. */
-  heroKey: wixImage("59289a_5587cde630e1459b99f3ec60af89cd29~mv2.jpg"),
+  /** Hand mit Schlüssel — liegt als ganzflächiger Hintergrund hinter dem Aufmacher. */
+  heroKey: wixImage("59289a_40b2bead49274820b3fcd161e05fd734~mv2.png"),
+  /** Dasselbe Motiv als Foto, für schmalere Bildplätze. */
+  heroKeyPhoto: wixImage("59289a_5587cde630e1459b99f3ec60af89cd29~mv2.jpg"),
+  /** Silke Abelen, freigestellt — sitzt deshalb auf einer Farbfläche, nicht im Rahmen. */
+  portrait: wixImage("59289a_9c532558d8924ff3b27aecd2a039793b~mv2.png"),
+  /** Kopfbereich „Immobilienbewertung“: Einfamilienhaus vom Garten aus. */
+  bewertung: wixImage(bewertungFoto),
+  /** Kopfbereich „Verkaufen“: Haus von außen. */
+  verkaufen: wixImage(verkaufenFoto),
+  /** Kopfbereich „Vermieten“: Dachgeschosswohnung. */
+  vermieten: wixImage(vermietenFoto),
+  /** Kopfbereich „Referenzen“: Gartenansicht in Leichlingen. */
+  referenzen: wixImage(referenzenFoto),
 } as const;
 
 /**
@@ -88,11 +111,6 @@ export const objectMedia = {
     "59289a_c8472eac5bdd46e2961d94af1709ec94~mv2.jpg", // Küche
   ].map(wixImage),
 
-  /** Einzelaufnahmen ohne Objektbezug. */
-  einzelbilder: [
-    "59289a_038e01f2f0014af8995142b9aa356fbb~mv2.jpg", // Einfamilienhaus vom Garten
-    "59289a_dfaca59134b34ae4af88a990ef2f7dce~mv2.jpg", // Dachgeschosswohnung
-    "59289a_b3773dae8e3b4149b54f01ccb026e8ca~mv2.jpg", // Leichlingen, Gartenansicht
-    "59289a_b27d73883c5940a5aa102dcfe6a59939~mv2.jpg", // Haus von außen
-  ].map(wixImage),
+  /** Einzelaufnahmen ohne Objektbezug — tragen die Kopfbereiche der Seiten. */
+  einzelbilder: [bewertungFoto, vermietenFoto, referenzenFoto, verkaufenFoto].map(wixImage),
 } as const;

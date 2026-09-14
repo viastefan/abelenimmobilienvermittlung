@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Car, CalendarRange, Check, DoorOpen, LandPlot, MapPin, Ruler } from "lucide-react";
+import { ArrowLeft, Car, CalendarRange, Check, DoorOpen, Images, LandPlot, MapPin, Ruler } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SiteImage } from "@/components/graphics/SiteImage";
+import { PropertyGallery } from "@/components/property/PropertyGallery";
+import { TestimonialCard } from "@/components/references/TestimonialCard";
 import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
 import { getAllReferenceSlugs, getReferenceBySlug } from "@/data/references";
-import { resolveFirstImage } from "@/lib/imagery";
+import { resolveFirstImage, resolveImages } from "@/lib/imagery";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -39,6 +40,9 @@ export default async function ReferenceDetailPage({ params }: Params) {
   if (!item) notFound();
 
   const statusLabel = item.categoryLabel;
+  const gallery = resolveImages(item.images);
+  const heroImage = resolveFirstImage(item.images);
+  const alt = `${item.typeLabel} in ${item.region}`;
 
   const facts = [
     { icon: Ruler, label: "Wohnfläche", value: `${item.livingSpace} m²` },
@@ -50,54 +54,73 @@ export default async function ReferenceDetailPage({ params }: Params) {
 
   return (
     <>
-      <section className="border-b border-border bg-surface-warm py-10 lg:py-14">
-        <Container>
-          <Link
-            href="/referenzen"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-text-muted transition-colors hover:text-accent-deep"
-          >
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            Alle Referenzen
-          </Link>
+      {/* Gleicher Auftakt wie bei den Objekten: erst das Haus, dann die Zahlen. */}
+      <section className="relative">
+        <div className="relative h-[54vh] min-h-[20rem] w-full overflow-hidden bg-surface-mist lg:max-h-[34rem]">
+          <SiteImage src={heroImage} priority sizes="100vw" label={item.region} alt={alt} />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-ink-deep/90 via-ink-deep/55 to-ink-deep/20"
+            aria-hidden="true"
+          />
 
-          <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] lg:items-end">
-            <div className="relative h-[15rem] overflow-hidden rounded-[14px] bg-surface-mist sm:h-[20rem] lg:h-[24rem]">
-              <SiteImage
-                src={resolveFirstImage(item.images)}
-                priority
-                sizes="(min-width: 1024px) 62vw, 100vw"
-                label={item.region}
-                alt={`${item.typeLabel} in ${item.region}`}
-              />
-              <span className="absolute left-5 top-5 rounded-full bg-white/95 px-4 py-2 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-ink shadow-card backdrop-blur">
+          <Container className="absolute inset-x-0 top-0 pt-6">
+            <Link
+              href="/referenzen"
+              className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-[0.8125rem] font-semibold text-white backdrop-blur transition-colors duration-200 hover:bg-white/20"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              Alle Referenzen
+            </Link>
+          </Container>
+
+          <Container className="absolute inset-x-0 bottom-0 pb-20 lg:pb-28">
+            <div className="flex flex-wrap items-center gap-2.5">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-[0.8125rem] font-semibold text-ink">
+                <Check className="h-3.5 w-3.5 text-accent-deep" strokeWidth={2.4} aria-hidden="true" />
                 {statusLabel}
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-1.5 text-[0.8125rem] font-medium text-white backdrop-blur">
+                <MapPin className="h-3.5 w-3.5 text-accent-light" strokeWidth={1.8} aria-hidden="true" />
+                {item.region}
               </span>
             </div>
 
-            <div>
-              <Eyebrow>{item.region}</Eyebrow>
-              <h1 className="balance mt-4 font-display text-display-md font-extrabold text-ink">
-                {item.title}
-              </h1>
-              <p className="pretty mt-5 text-[1.0625rem] leading-relaxed text-text-muted">{item.summary}</p>
-            </div>
-          </div>
-        </Container>
-      </section>
+            <h1 className="balance mt-4 max-w-3xl font-display text-display-xl font-extrabold text-white">
+              {item.title}
+            </h1>
 
-      <section className="border-b border-border bg-white">
+            {gallery.length > 1 && (
+              <a
+                href="#galerie"
+                className="mt-5 inline-flex items-center gap-2 text-[0.9375rem] font-semibold text-white transition-colors hover:text-accent-light"
+              >
+                <Images className="h-4 w-4" strokeWidth={1.6} aria-hidden="true" />
+                Alle {gallery.length} Bilder
+              </a>
+            )}
+          </Container>
+        </div>
+
         <Container>
-          <dl className="grid grid-cols-2 gap-px bg-border sm:grid-cols-3 lg:grid-cols-5">
-            {facts.map((fact) => (
-              <div key={fact.label} className="bg-white px-5 py-7">
-                <dt className="flex items-center gap-2 text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-text-subtle">
-                  <fact.icon className="h-4 w-4 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
-                  {fact.label}
-                </dt>
-                <dd className="mt-2 font-display text-xl font-bold text-ink">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
+          <div className="relative -mt-10 rounded-[18px] border border-border bg-white p-6 shadow-lift lg:-mt-14 lg:p-8">
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-5">
+              {facts.map((fact) => (
+                <div key={fact.label}>
+                  <dt className="flex items-center gap-2 text-[0.8125rem] font-medium text-text-subtle">
+                    <fact.icon className="h-4 w-4 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
+                    {fact.label}
+                  </dt>
+                  <dd className="mt-1.5 font-display text-[1.0625rem] font-extrabold leading-tight text-ink">
+                    {fact.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <p className="pretty mt-7 border-t border-border pt-6 text-[0.9375rem] leading-relaxed text-text-muted">
+              {item.summary}
+            </p>
+          </div>
         </Container>
       </section>
 
@@ -118,10 +141,18 @@ export default async function ReferenceDetailPage({ params }: Params) {
               <MapPin className="mt-1 h-5 w-5 shrink-0 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
               {item.location}
             </p>
+
+            {item.testimonial && (
+              <TestimonialCard
+                testimonial={item.testimonial}
+                author={`Verkäuferin bzw. Verkäufer — ${item.title}`}
+                className="mt-12"
+              />
+            )}
           </div>
 
           <aside>
-            <div className="rounded-[14px] border border-border bg-surface-warm p-7">
+            <div className="rounded-[16px] border border-border bg-surface-warm p-7">
               <h2 className="font-display text-display-sm font-bold text-ink">Ausstattung</h2>
               <ul className="mt-5 space-y-3">
                 {item.equipment.map((feature) => (
@@ -132,16 +163,34 @@ export default async function ReferenceDetailPage({ params }: Params) {
                 ))}
               </ul>
 
-              <p className="mt-8 border-t border-border pt-6 text-sm text-text-muted">
-                Status:{" "}
-                <span className="font-semibold text-ink">
-                  {statusLabel} — {item.typeLabel}
+              <div className="mt-8 flex flex-wrap gap-2 border-t border-border pt-6">
+                <span className="inline-flex items-center gap-1.5 rounded-[10px] bg-white px-2.5 py-1.5 text-[0.75rem] font-medium text-text-muted">
+                  {statusLabel}
                 </span>
-              </p>
+                <span className="inline-flex items-center gap-1.5 rounded-[10px] bg-white px-2.5 py-1.5 text-[0.75rem] font-medium text-text-muted">
+                  {item.typeLabel}
+                </span>
+              </div>
             </div>
           </aside>
         </Container>
       </section>
+
+      {gallery.length > 0 && (
+        <section id="galerie" className="overflow-hidden border-t border-border bg-surface-warm py-14 lg:py-20">
+          <Container>
+            <h2 className="font-display text-display-sm font-bold text-ink">Bildergalerie</h2>
+            <p className="mt-2 text-[0.9375rem] text-text-muted">
+              {gallery.length === 1
+                ? "Ein Bild — tippen für die Vollbildansicht."
+                : `${gallery.length} Bilder — tippen oder wischen für die Vollbildansicht.`}
+            </p>
+          </Container>
+          <div className="mx-auto mt-8 w-full max-w-content">
+            <PropertyGallery images={gallery} title={item.title} city={item.region} />
+          </div>
+        </section>
+      )}
 
       <CtaSection
         title="Sie möchten Ihre Immobilie ebenfalls verkaufen?"

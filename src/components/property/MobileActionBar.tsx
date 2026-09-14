@@ -38,7 +38,7 @@ export function MobileActionBar({
       >
         <div className="flex items-center gap-3">
           <span className="min-w-0 flex-1">
-            <span className="block text-[0.625rem] font-bold uppercase tracking-[0.12em] text-text-subtle">
+            <span className="block text-[0.6875rem] font-medium text-text-subtle">
               Kaufpreis
             </span>
             <span className="block truncate font-display text-[1.0625rem] font-extrabold leading-tight text-ink">

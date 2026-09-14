@@ -9,7 +9,7 @@ import { footerNav, leistungenNav, legalNav, site } from "@/data/site";
 function FooterColumn({ title, items }: { title: string; items: { label: string; href: string }[] }) {
   return (
     <nav aria-label={title}>
-      <p className="font-display text-label font-bold uppercase text-ink">{title}</p>
+      <p className="font-display text-[0.9375rem] font-bold text-ink">{title}</p>
       <ul className="mt-5 space-y-3">
         {items.map((item) => (
           <li key={item.href}>
@@ -43,7 +43,7 @@ export function Footer() {
         <FooterColumn title="Leistungen" items={leistungenNav} />
 
         <div>
-          <p className="font-display text-label font-bold uppercase text-ink">Kontakt</p>
+          <p className="font-display text-[0.9375rem] font-bold text-ink">Kontakt</p>
           <ul className="mt-5 space-y-3 text-[0.8125rem] text-text-muted">
             <li>
               <a href={site.phoneHref} className="inline-flex items-center gap-3 transition-colors hover:text-accent-deep">

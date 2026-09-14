@@ -6,7 +6,7 @@ import { SnapCarousel } from "@/components/ui/SnapCarousel";
 import { PropertyCard } from "@/components/property/PropertyCard";
 import { PropertyCtaCard } from "@/components/property/PropertyCtaCard";
 import { getActiveProperties, getFeaturedActiveProperty } from "@/data/properties";
-import { resolveFirstImage } from "@/lib/imagery";
+import { resolveImages } from "@/lib/imagery";
 
 export async function PropertiesPreview() {
   const [active, featured] = await Promise.all([getActiveProperties(), getFeaturedActiveProperty()]);
@@ -17,7 +17,7 @@ export async function PropertiesPreview() {
   const items = [
     ...properties.map((property) => ({
       key: property.slug,
-      node: <PropertyCard property={property} image={resolveFirstImage(property.images)} />,
+      node: <PropertyCard property={property} images={resolveImages(property.images)} />,
     })),
     { key: "__suchprofil", node: <PropertyCtaCard /> },
   ];

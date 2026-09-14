@@ -92,10 +92,10 @@ export default async function PropertyDetailPage({
 
           <Container className="absolute inset-x-0 bottom-0 pb-20 lg:pb-28">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="rounded-full bg-white px-3.5 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-ink">
+              <span className="rounded-full bg-white px-3.5 py-1.5 text-[0.8125rem] font-semibold text-ink">
                 {property.statusLabel}
               </span>
-              <span className="text-[0.75rem] font-bold uppercase tracking-[0.16em] text-accent-light">
+              <span className="text-[0.8125rem] font-semibold text-accent-light">
                 {property.city}
               </span>
             </div>
@@ -132,7 +132,7 @@ export default async function PropertyDetailPage({
             <dl className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-6">
               {keyFacts.map((fact) => (
                 <div key={fact.label}>
-                  <dt className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-text-subtle">
+                  <dt className="text-[0.8125rem] font-medium text-text-subtle">
                     {fact.label}
                   </dt>
                   <dd className="mt-1.5 font-display text-[1.0625rem] font-extrabold leading-tight text-ink">
@@ -216,7 +216,7 @@ export default async function PropertyDetailPage({
                 <dl className="mt-5 grid gap-4 sm:grid-cols-2">
                   {property.energy.map((item) => (
                     <div key={item.label} className="rounded-[12px] border border-border p-5">
-                      <dt className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-text-subtle">
+                      <dt className="text-[0.8125rem] font-medium text-text-subtle">
                         {item.label}
                       </dt>
                       <dd className="mt-1.5 text-[0.9375rem] font-semibold text-ink">{item.value}</dd>
@@ -228,7 +228,7 @@ export default async function PropertyDetailPage({
           </div>
 
           <aside className="h-fit rounded-[16px] border border-border bg-surface-warm p-7 lg:sticky lg:top-32">
-            <p className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-text-subtle">Kaufpreis</p>
+            <p className="text-[0.8125rem] font-medium text-text-subtle">Kaufpreis</p>
             <p className="mt-1.5 font-display text-[1.875rem] font-extrabold leading-none text-ink">
               {property.priceLabel}
             </p>
@@ -236,7 +236,7 @@ export default async function PropertyDetailPage({
             <p className="pretty mt-5 text-[0.9375rem] leading-relaxed text-text-muted">{property.summary}</p>
 
             <div className="mt-7 border-t border-border pt-7">
-              <p className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-text-subtle">
+              <p className="text-[0.8125rem] font-medium text-text-subtle">
                 Ihre Ansprechpartnerin
               </p>
               <p className="mt-2 font-display text-[1.0625rem] font-bold text-ink">{site.owner}</p>

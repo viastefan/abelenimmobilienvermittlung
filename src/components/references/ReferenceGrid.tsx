@@ -5,7 +5,7 @@ import { ArrowRight, Search } from "lucide-react";
 import { ReferenceCard } from "@/components/references/ReferenceCard";
 import type { ReferenceObject } from "@/types/reference";
 
-export type ReferenceCardItem = ReferenceObject & { resolvedImage?: string };
+export type ReferenceCardItem = ReferenceObject & { resolvedImages: string[] };
 
 const filters = [
   { key: "alle", label: "Alle" },
@@ -87,7 +87,7 @@ export function ReferenceGrid({ references }: { references: ReferenceCardItem[] 
       {shown.length > 0 ? (
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {shown.map((item) => (
-            <ReferenceCard key={item.slug} reference={item} image={item.resolvedImage} />
+            <ReferenceCard key={item.slug} reference={item} images={item.resolvedImages} />
           ))}
         </div>
       ) : (

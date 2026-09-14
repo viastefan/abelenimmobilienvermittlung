@@ -126,7 +126,7 @@ export default function BewertungPage() {
               <Reveal key={verfahren.name} delay={index * 90} className="h-full">
                 <div className="flex h-full flex-col rounded-[12px] border border-border bg-white p-6 lg:p-7">
                   <h3 className="font-display text-[1rem] font-bold text-ink">{verfahren.name}</h3>
-                  <p className="mt-1.5 text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-accent-deep">
+                  <p className="mt-1.5 text-[0.8125rem] font-semibold text-accent-deep">
                     {verfahren.lead}
                   </p>
                   <p className="pretty mt-4 text-[0.875rem] leading-relaxed text-text-muted">

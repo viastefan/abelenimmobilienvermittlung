@@ -19,16 +19,16 @@ export const images = {
    * dann hängt die Startseite nicht mehr an einem fremden Dienst.
    */
   heroWohnstrasse: siteMedia.heroKey,
-  /** Startseite „Über uns“ und Seite „Über uns“: Portrait Silke Abelen. Hochformat. */
-  portrait: "/images/silke-abelen.jpg",
+  /** Startseite „Über uns“ und Seite „Über uns“: Portrait Silke Abelen. */
+  portrait: siteMedia.portrait,
   /** Seite Bewertung. */
-  bewertung: "/images/bewertung.jpg",
+  bewertung: siteMedia.bewertung,
   /** Seite Verkaufen. */
-  verkaufen: "/images/verkaufen.jpg",
+  verkaufen: siteMedia.verkaufen,
   /** Seite Vermieten. */
-  vermieten: "/images/vermieten.jpg",
+  vermieten: siteMedia.vermieten,
   /** Seite Referenzen, Kopfbereich. */
-  referenzen: "/images/referenzen.jpg",
+  referenzen: siteMedia.referenzen,
 } as const;
 
 export type ImageKey = keyof typeof images;
