@@ -25,26 +25,68 @@ export const site = {
 export type NavItem = {
   label: string;
   href: string;
+  /** Unterpunkte — erscheinen als Klappmenü. */
+  children?: NavItem[];
 };
 
+/**
+ * Hauptnavigation.
+ *
+ * Beschriftung und Reihenfolge folgen dem bisherigen Auftritt, damit
+ * wiederkehrende Besucherinnen und Besucher sich nicht neu orientieren
+ * müssen. Wo ein Punkt mehrere Seiten zusammenfasst, klappt er auf.
+ */
 export const primaryNav: NavItem[] = [
-  { label: "Startseite", href: "/" },
-  { label: "Bewertung", href: "/bewertung" },
-  { label: "Verkaufen", href: "/verkaufen" },
-  { label: "Vermieten", href: "/vermieten" },
-  { label: "Über uns", href: "/ueber-mich" },
-  { label: "Referenzen", href: "/referenzen" },
+  { label: "Start", href: "/" },
+  {
+    label: "Dienstleistungen",
+    href: "/leistungen",
+    children: [
+      { label: "Immobilienbewertung", href: "/bewertung" },
+      { label: "Immobilienverkauf", href: "/verkaufen" },
+      { label: "Vermietung", href: "/vermieten" },
+      { label: "Alle Leistungen", href: "/leistungen" },
+    ],
+  },
+  {
+    label: "Objekte & Referenzen",
+    href: "/immobilien",
+    children: [
+      { label: "Aktuelle Immobilien", href: "/immobilien" },
+      { label: "Referenzen", href: "/referenzen" },
+    ],
+  },
+  { label: "Über Mich", href: "/ueber-mich" },
+  {
+    label: "Für Käufer & Verkäufer",
+    href: "/verkaufen",
+    children: [
+      { label: "Für Verkäufer", href: "/verkaufen" },
+      { label: "Für Käufer", href: "/kaufen" },
+      { label: "Immobilienbewertung", href: "/bewertung" },
+    ],
+  },
+  { label: "Anlagen", href: "/anlagen" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 
-export const footerNav: NavItem[] = primaryNav;
+/** In der Fußzeile steht jede Seite einzeln — dort hilft kein Klappmenü. */
+export const footerNav: NavItem[] = [
+  { label: "Start", href: "/" },
+  { label: "Dienstleistungen", href: "/leistungen" },
+  { label: "Aktuelle Immobilien", href: "/immobilien" },
+  { label: "Referenzen", href: "/referenzen" },
+  { label: "Über Mich", href: "/ueber-mich" },
+  { label: "Anlagen", href: "/anlagen" },
+  { label: "Kontakt", href: "/kontakt" },
+];
 
 export const leistungenNav: NavItem[] = [
   { label: "Immobilienbewertung", href: "/bewertung" },
   { label: "Immobilienverkauf", href: "/verkaufen" },
   { label: "Vermietung", href: "/vermieten" },
   { label: "Immobilie kaufen", href: "/kaufen" },
-  { label: "Aktuelle Immobilien", href: "/immobilien" },
+  { label: "Unterlagen für den Verkauf", href: "/anlagen" },
   { label: "Alle Leistungen", href: "/leistungen" },
 ];
 
@@ -78,19 +120,26 @@ export const regions = [
   "Wuppertal",
 ] as const;
 
+/**
+ * Siegel der Aussteller. Beide Grafiken tragen Text bereits in sich, deshalb
+ * steht daneben keine zweite Beschriftung — `alt` sagt, was zu sehen ist.
+ */
 export const trustBadges = [
   {
-    title: "Geprüfte Fachkompetenz",
-    subtitle: "Geprüfter Immobilienbewerter (Sprengnetter Akademie)",
-    issuer: "Sprengnetter",
-    /** Schlüssel in `badgeImages` — wird genutzt, sobald die Grafik vorliegt. */
-    badge: "sprengnetter",
+    key: "sprengnetter",
+    alt: "Sprengnetter Akademie: Geprüfte Fachkompetenz, Geprüfter Immobilienbewerter",
+    /** Quergestrecktes Siegel mit Schrift — sitzt auf einer weißen Karte. */
+    shape: "lockup",
+    width: 700,
+    height: 236,
   },
   {
-    title: "Bronze Partner",
-    subtitle: "Ausgezeichneter Partner von ImmoScout24",
-    issuer: "ImmoScout24",
-    badge: "immoscout24",
+    key: "immoscout24",
+    alt: "ImmoScout24: Ausgezeichneter Bronze Partner",
+    /** Quadratische Plakette — steht frei. */
+    shape: "seal",
+    width: 1644,
+    height: 1644,
   },
 ] as const;
 

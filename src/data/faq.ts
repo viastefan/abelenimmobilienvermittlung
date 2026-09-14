@@ -147,3 +147,41 @@ export const wertermittlungsverfahren = [
       "Bodenwert plus Herstellungswert der baulichen Anlagen, gemindert um Alterswertminderung. Angewandt vor allem bei besonderen Objekten, für die sich kein tragfähiger Markt- oder Ertragsvergleich bilden lässt.",
   },
 ];
+
+/**
+ * Wo die einzelnen Unterlagen herkommen. Bewusst nur Stellen, die für jede
+ * Immobilie dieselben sind — konkrete Gebühren und Bearbeitungszeiten
+ * unterscheiden sich je Kommune und stehen deshalb hier nicht.
+ */
+export const unterlagenQuellen = [
+  {
+    dokument: "Grundbuchauszug",
+    quelle: "Grundbuchamt beim zuständigen Amtsgericht",
+    hinweis: "Nur Eigentümer und Berechtigte mit berechtigtem Interesse erhalten Einsicht.",
+  },
+  {
+    dokument: "Flurkarte / Lageplan",
+    quelle: "Katasteramt beziehungsweise Amt für Geoinformation",
+    hinweis: "Zeigt Zuschnitt und Lage des Grundstücks.",
+  },
+  {
+    dokument: "Grundrisse und Baupläne",
+    quelle: "Bauakte beim Bauordnungsamt der Stadt",
+    hinweis: "Liegt die Bauakte nicht mehr vor, lassen sich Grundrisse neu aufmessen.",
+  },
+  {
+    dokument: "Wohn- und Nutzflächenberechnung",
+    quelle: "Bauunterlagen — oder neu erstellen lassen",
+    hinweis: "Die Fläche ist ein wertbildender Faktor; eine veraltete Angabe führt später zu Streit.",
+  },
+  {
+    dokument: "Energieausweis",
+    quelle: "Ausstellungsberechtigte nach § 88 GEG",
+    hinweis: "Muss spätestens bei der Besichtigung vorgelegt werden (§ 80 Abs. 3 GEG).",
+  },
+  {
+    dokument: "Teilungserklärung, Protokolle, Hausgeldabrechnung",
+    quelle: "Hausverwaltung der Eigentümergemeinschaft",
+    hinweis: "Bei Eigentumswohnungen der wichtigste Unterlagenblock für Kaufinteressenten.",
+  },
+] as const;

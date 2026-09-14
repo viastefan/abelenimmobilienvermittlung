@@ -23,16 +23,14 @@ Bitte Wohnhäuser aus der Region zeigen — Ein- und Mehrfamilienhäuser,
 Doppelhaushälften, gepflegte Wohnstraßen. Keine Luxusvillen, keine
 Hochglanz-Architektur.
 
-## Siegel der Aussteller
+## Siegel, Logo und Objektfotos
 
-| Datei | Wo es erscheint |
-| --- | --- |
-| `badges/sprengnetter.png` | Siegel „Geprüfter Immobilienbewerter“ |
-| `badges/immoscout24-bronze.png` | Zeichen „Bronze Partner“ |
+Diese Bilder kommen zurzeit aus der Mediathek des bisherigen Wix-Auftritts
+(`static.wixstatic.com`) — siehe `src/data/wix-media.ts`. Sie müssen also
+nicht hier abgelegt werden, **solange der Wix-Auftritt besteht**.
 
-Am besten als PNG mit transparentem Hintergrund, mindestens 200 × 200 px.
-Solange die Dateien fehlen, steht die Qualifikation in der Schrift der
-Website — inhaltlich korrekt und ohne ein fremdes Logo nachzuzeichnen.
+Wird Wix abgeschaltet, verschwinden sie. Dann bitte herunterladen, hier
+ablegen und die Pfade in `src/data/wix-media.ts` umstellen.
 
 ## Objektbilder
 

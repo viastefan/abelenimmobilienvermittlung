@@ -1,3 +1,5 @@
+import { siteMedia } from "@/data/wix-media";
+
 /**
  * Bildquellen der Website — eine Datei, ein Ort.
  *
@@ -11,8 +13,12 @@
  */
 
 export const images = {
-  /** Startseite, Hero: Wohnstraße in Leverkusen. Querformat, mind. 1600×1200. */
-  heroWohnstrasse: "/images/hero-wohnstrasse.jpg",
+  /**
+   * Startseite, Hero: das Schlüsselfoto des bisherigen Auftritts. Liegt eine
+   * Datei unter `public/images/hero-wohnstrasse.jpg`, hier darauf umstellen —
+   * dann hängt die Startseite nicht mehr an einem fremden Dienst.
+   */
+  heroWohnstrasse: siteMedia.heroKey,
   /** Startseite „Über uns“ und Seite „Über uns“: Portrait Silke Abelen. Hochformat. */
   portrait: "/images/silke-abelen.jpg",
   /** Seite Bewertung. */
@@ -27,15 +33,3 @@ export const images = {
 
 export type ImageKey = keyof typeof images;
 
-/**
- * Siegel und Partnerzeichen der Aussteller.
- *
- * Sobald die Originalgrafiken (z. B. aus dem bestehenden Auftritt oder aus
- * dem Partnerbereich des Ausstellers) unter diesen Pfaden liegen, zeigt die
- * Website sie an. Solange sie fehlen, steht dort die eigene Typografie —
- * korrekt in der Aussage und ohne fremdes Logo nachzuahmen.
- */
-export const badgeImages = {
-  sprengnetter: "/images/badges/sprengnetter.png",
-  immoscout24: "/images/badges/immoscout24-bronze.png",
-} as const;
