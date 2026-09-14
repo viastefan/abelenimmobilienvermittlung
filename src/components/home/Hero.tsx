@@ -28,12 +28,12 @@ export function Hero() {
 
       <Container className="relative">
         <div className="flex min-h-[32rem] flex-col justify-center py-16 lg:min-h-[40rem] lg:max-w-[46rem] lg:py-24">
-          <span className="inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-[0.8125rem] font-medium text-accent-light ring-1 ring-inset ring-white/15 backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+          <span className="inline-flex w-fit items-center gap-3 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-accent-light">
+            <span className="h-px w-8 bg-accent" aria-hidden="true" />
             Ihr Partner für Immobilienkauf und -verkauf
           </span>
 
-          <h1 className="balance mt-6 font-display text-display-xl font-extrabold text-white">
+          <h1 className="balance mt-6 break-words font-display text-display-xl font-extrabold text-white">
             {site.tagline}
           </h1>
 
