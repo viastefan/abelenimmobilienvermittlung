@@ -25,6 +25,7 @@ const nextConfig = {
   async redirects() {
     return [
       { source: "/ueber-silke-abelen", destination: "/ueber-mich", permanent: true },
+      { source: "/dienstleistungen", destination: "/leistungen", permanent: true },
       { source: "/anlagen-immobilienverkauf", destination: "/anlagen", permanent: true },
       {
         source: "/dienstleistungen-kaufberatung-verkaufsberatung",

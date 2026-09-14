@@ -1,68 +1,152 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Home, Network, Search } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Container } from "@/components/ui/Container";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
 import { WhyAbelen } from "@/components/home/WhyAbelen";
-import { Faq } from "@/components/ui/Faq";
+import { CtaSection } from "@/components/home/CtaSection";
+import { ContactButton } from "@/components/contact/ContactButton";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema, faqSchema } from "@/lib/schema";
+import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
-import { services } from "@/data/services";
+import { dienstleistungen, services } from "@/data/services";
 
 export const metadata: Metadata = pageSeo({
-  title: "Leistungen — Verkauf, Kauf & Immobilienbewertung",
+  title: "Dienstleistungen — Immobilienverkauf und Kauf",
   description:
-    "Alle Leistungen im Überblick: Immobilienbewertung, Immobilienverkauf und Vermietung in Leverkusen und Umgebung.",
+    "Immobiliensuche, Beratung und Bewertung, Netzwerk: Wir begleiten Sie sicher und kompetent durch Kauf und Verkauf Ihrer Immobilie.",
   path: "/leistungen",
 });
 
-const faqItems = [
-  {
-    question: "Was kostet eine Immobilienbewertung?",
-    answer:
-      "Eine erste Einschätzung im Rahmen eines persönlichen Gesprächs ist unverbindlich. Sprechen Sie uns gerne direkt an.",
-  },
-  {
-    question: "In welchen Regionen sind Sie tätig?",
-    answer:
-      "Schwerpunkt ist Leverkusen. Dazu kommen Leichlingen, Solingen, Wuppertal, Burscheid, Remscheid, Wermelskirchen, Düsseldorf und der Kreis Mettmann.",
-  },
-  {
-    question: "Wie läuft der Verkauf meiner Immobilie ab?",
-    answer:
-      "Vom Erstgespräch über Besichtigung, Marktpreisermittlung und Vermarktung bis zum Notartermin begleiten wir Sie persönlich durch jeden Schritt.",
-  },
-];
+const icons = { search: Search, home: Home, network: Network } as const;
 
+/**
+ * Dienstleistungen.
+ *
+ * Wortlaut des bisherigen Auftritts unter `/dienstleistungen`. Die Seite
+ * heißt hier `/leistungen`; die alte Adresse leitet dorthin weiter.
+ */
 export default function LeistungenPage() {
   return (
     <>
       <PageHero
-        eyebrow="Leistungen"
-        title="Vom ersten Gespräch bis zum erfolgreichen Abschluss."
-        description="Ob Bewertung, Verkauf oder Vermietung — jede Leistung beginnt mit einem persönlichen Gespräch."
-        breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Leistungen" }]}
+        title={
+          <>
+            Immobilienverkauf? Kauf?
+            <br className="hidden sm:block" /> Wir begleiten Sie sicher und kompetent.
+          </>
+        }
+        breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Dienstleistungen" }]}
       />
 
-      <section className="py-16 lg:py-20">
+      <section className="py-14 lg:py-20">
         <Container>
-          <div className="divide-y divide-border border-t border-border">
+          <div className="max-w-3xl space-y-6 text-[1.0625rem] leading-relaxed text-text-muted">
+            <p className="pretty">
+              Die Statistik zeigt: Die Mehrheit der Menschen kauft oder verkauft nur wenige Male, oft
+              sogar nur ein einziges Mal im Leben, eine Immobilie. Fast immer geht es dabei um sehr
+              hohe Werte. Es ist daher absolut verständlich, dass viele Immobilienkäufer und
+              -verkäufer unsicher sind.
+            </p>
+            <p className="pretty">
+              Der Verkauf von Immobilien ist ein Vollzeitjob, der professionelles Marketing, die
+              Erstellung von Exposés und die Durchführung von Besichtigungsterminen erfordert. Bei
+              der Preisgestaltung, den Verkaufsverhandlungen und Notarterminen sind zudem
+              Praxiserfahrung sowie spezielles Fachwissen in regionalen und formalen Abläufen
+              unerlässlich. Wir unterstützen Sie beim Verkauf Ihrer Immobilie, sei es ein
+              Zweifamilienhaus, Einfamilienhaus, eine Doppelhaushälfte, ein Reihenhaus, ein
+              Reiheneckhaus oder eine Wohnung, und begleiten Sie persönlich durch den gesamten
+              Prozess.
+            </p>
+            <p className="pretty">
+              Doch auch der Kauf einer Immobilie ist eine große Herausforderung. Wir stehen Ihnen bei
+              der Suche nach Ihrer Traumimmobilie zur Seite, helfen Ihnen bei der Auswahl, stellen
+              alle notwendigen Unterlagen für Finanzierungen zusammen und beraten Sie bei jedem
+              Schritt.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-t border-border bg-surface-cool py-14 lg:py-20">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Meine Dienstleistungen"
+              size="lg"
+              title="Eine Übersicht — von der ersten Beratung bis zur Vermittlung"
+              description="Der Kauf oder Verkauf einer Immobilie ist eine der wichtigsten Entscheidungen in Ihrem Leben. Hier finden Sie eine Übersicht unserer professionellen Dienstleistungen, die Sie bei jedem Schritt unterstützen – von der ersten Beratung über die Preisgestaltung bis zur erfolgreichen Vermittlung."
+            />
+          </Reveal>
+
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {dienstleistungen.map((item, index) => {
+              const Icon = icons[item.icon];
+              return (
+                <Reveal key={item.title} delay={index * 90} className="h-full">
+                  <article className="flex h-full flex-col rounded-[16px] border border-border bg-white p-7">
+                    <span className="flex items-center gap-3.5">
+                      <Icon className="h-7 w-7 shrink-0 text-accent-mid" strokeWidth={1.4} aria-hidden="true" />
+                      <h2 className="font-display text-[1.125rem] font-bold text-ink">{item.title}</h2>
+                    </span>
+
+                    <p className="pretty mt-5 flex-1 text-[0.9375rem] leading-relaxed text-text-muted">
+                      {item.body}
+                    </p>
+
+                    {item.href && (
+                      <Link
+                        href={item.href}
+                        className="group mt-6 inline-flex w-fit items-center gap-2 rounded-[11px] border border-border-strong bg-white px-4 py-3 text-sm font-semibold text-accent-deep transition-colors duration-200 hover:border-accent"
+                      >
+                        {item.cta}
+                        <ArrowRight
+                          className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                          aria-hidden="true"
+                        />
+                      </Link>
+                    )}
+                  </article>
+                </Reveal>
+              );
+            })}
+          </div>
+
+          <div className="mt-10">
+            <ContactButton
+              options={{ title: "Kontakt aufnehmen" }}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-[11px] bg-accent-deep px-6 py-3.5 text-[0.9375rem] font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-dark sm:w-auto"
+            >
+              Jetzt Kontakt aufnehmen
+            </ContactButton>
+          </div>
+        </Container>
+      </section>
+
+      {/* Die drei eigenen Seiten — sie führen den obigen Überblick aus. */}
+      <section className="py-14 lg:py-20">
+        <Container>
+          <h2 className="font-display text-display-sm font-bold text-ink">Im Einzelnen</h2>
+          <div className="mt-8 divide-y divide-border border-t border-border">
             {services.map((service) => (
-              <div key={service.slug} className="grid gap-6 py-12 md:grid-cols-[80px_1fr_auto] md:gap-10">
-                <span className="font-display text-sm font-bold tabular-nums text-accent-light">{service.number}</span>
+              <div key={service.slug} className="grid gap-5 py-8 md:grid-cols-[1fr_auto] md:items-center md:gap-10">
                 <div>
-                  <h2 className="font-display text-display-md font-bold text-ink">{service.title}</h2>
-                  <p className="pretty mt-4 max-w-2xl text-[1.0625rem] leading-relaxed text-text-muted">
+                  <h3 className="font-display text-[1.125rem] font-bold text-ink">{service.title}</h3>
+                  <p className="pretty mt-2 max-w-2xl text-[0.9375rem] leading-relaxed text-text-muted">
                     {service.description}
                   </p>
                 </div>
                 <Link
                   href={service.href}
-                  className="group mt-2 inline-flex h-fit w-fit items-center gap-2 rounded-[11px] border border-border-strong bg-white px-4 py-3 text-sm font-semibold text-accent-deep transition-colors duration-200 hover:border-accent md:mt-0"
+                  className="group inline-flex h-fit w-fit items-center gap-2 rounded-[11px] border border-border-strong bg-white px-4 py-3 text-sm font-semibold text-accent-deep transition-colors duration-200 hover:border-accent"
                 >
                   {service.cta}
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                  <ArrowRight
+                    className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
                 </Link>
               </div>
             ))}
@@ -72,15 +156,19 @@ export default function LeistungenPage() {
 
       <WhyAbelen />
 
-      <Faq title="Häufige Fragen" items={faqItems} />
+      <CtaSection
+        title="Planen Sie, eine Immobilie zu kaufen oder zu verkaufen?"
+        description="Schreiben Sie uns — wir melden uns in der Regel innerhalb eines Werktages persönlich zurück."
+        buttonLabel="Kontakt aufnehmen"
+        href="/kontakt"
+      />
 
       <JsonLd
         data={breadcrumbSchema([
           { name: "Start", path: "/" },
-          { name: "Leistungen", path: "/leistungen" },
+          { name: "Dienstleistungen", path: "/leistungen" },
         ])}
       />
-      <JsonLd data={faqSchema(faqItems)} />
     </>
   );
 }
