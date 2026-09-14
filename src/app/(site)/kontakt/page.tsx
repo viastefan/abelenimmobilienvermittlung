@@ -94,10 +94,13 @@ export default function KontaktPage() {
                 </span>
                 <span>
                   <span className="block text-[0.8125rem] font-medium text-text-subtle">
-                    Tätigkeitsgebiet
+                    Büro
                   </span>
                   <span className="mt-0.5 block font-display text-[1.0625rem] font-bold text-ink">
-                    {site.address.locality} &amp; Umgebung
+                    {site.address.street}, {site.address.postalCode} {site.address.locality}
+                  </span>
+                  <span className="mt-1 block text-[0.875rem] text-text-muted">
+                    Tätig in {site.serviceArea} &amp; Umgebung
                   </span>
                 </span>
               </li>

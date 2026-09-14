@@ -23,6 +23,8 @@ export function organizationSchema() {
     image: `${site.url}/og-image.png`,
     address: {
       "@type": "PostalAddress",
+      streetAddress: site.address.street,
+      postalCode: site.address.postalCode,
       addressLocality: site.address.locality,
       addressRegion: site.address.region,
       addressCountry: site.address.country,

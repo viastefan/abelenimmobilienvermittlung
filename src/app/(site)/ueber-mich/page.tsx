@@ -128,7 +128,7 @@ export default function UeberMichPage() {
                 <li
                   key={region}
                   className={`rounded-[11px] border px-5 py-2.5 text-[0.9375rem] ${
-                    region === site.address.locality
+                    region === site.serviceArea
                       ? "border-accent bg-accent-soft font-bold text-ink"
                       : "border-border bg-white text-text-muted"
                   }`}

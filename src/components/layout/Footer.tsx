@@ -63,9 +63,15 @@ export function Footer() {
                 {site.email}
               </a>
             </li>
-            <li className="inline-flex items-center gap-3">
-              <MapPin className="h-4 w-4 shrink-0 text-accent-mid" aria-hidden="true" />
-              {site.address.locality} &amp; Umgebung
+            <li className="flex items-start gap-3">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent-mid" aria-hidden="true" />
+              <span>
+                {site.address.street}
+                <br />
+                {site.address.postalCode} {site.address.locality}
+                <br />
+                <span className="text-text-subtle">Tätig in {site.serviceArea} &amp; Umgebung</span>
+              </span>
             </li>
           </ul>
         </div>

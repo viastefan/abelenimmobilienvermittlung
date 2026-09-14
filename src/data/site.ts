@@ -14,11 +14,36 @@ export const site = {
   /** Office landline — shown in the info bar and footer. */
   landline: "02175 / 99 04 98",
   landlineHref: "tel:+492175990498",
+  /** Telefax — steht im Impressum des bisherigen Auftritts. */
+  fax: "02175 / 99 00 92",
   email: "info@abelen-immobilien.de",
+  /**
+   * Geschäftssitz. Leichlingen, nicht Leverkusen: Leverkusen ist das
+   * Tätigkeitsgebiet (siehe `regions`), die Anschrift gehört ins Impressum
+   * und in die strukturierten Daten.
+   */
   address: {
-    locality: "Leverkusen",
+    street: "Am Adler 1a",
+    postalCode: "42799",
+    locality: "Leichlingen",
     region: "Nordrhein-Westfalen",
     country: "DE",
+  },
+  /**
+   * Tätigkeitsgebiet — nicht zu verwechseln mit der Anschrift. Das Büro
+   * sitzt in Leichlingen, gearbeitet wird in Leverkusen und Umgebung.
+   */
+  serviceArea: "Leverkusen",
+  /** Angaben nach § 5 DDG und § 34c GewO. */
+  legal: {
+    profession: "Immobilienmaklerin",
+    taxNumber: "230/5000/0932",
+    supervisoryAuthority: "Ordnungsamt der Stadt Leichlingen",
+    supervisoryAuthorityAddress: "Am Büscherhof 1, 42799 Leichlingen",
+    liabilityInsurer: "Allianz",
+    liabilityScope: "Deutschland",
+    /** Gerichtsstand nach den Allgemeinen Geschäftsbedingungen. */
+    jurisdiction: "Leverkusen",
   },
 } as const;
 

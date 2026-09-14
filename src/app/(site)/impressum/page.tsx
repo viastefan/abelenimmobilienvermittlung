@@ -6,49 +6,83 @@ import { site } from "@/data/site";
 
 export const metadata: Metadata = pageSeo({
   title: "Impressum",
-  description: "Impressum von Abelen Immobilien gemäß § 5 TMG.",
+  description: "Impressum von Silke Abelen, Büro für Immobilien Bewertung & Vermittlung, gemäß § 5 DDG.",
   path: "/impressum",
 });
 
+/**
+ * Impressum.
+ *
+ * Inhaltlich der bisherige Auftritt, Angabe für Angabe. Was dort steht, ist
+ * rechtsverbindlich erklärt worden — hier wird nichts ergänzt und nichts
+ * weggelassen.
+ */
 export default function ImpressumPage() {
   return (
     <>
-      <PageHero eyebrow="Rechtliches" title="Impressum" />
+      <PageHero
+        title="Impressum"
+        breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Impressum" }]}
+      />
       <section className="py-14 lg:py-20">
-        <Container className="max-w-2xl space-y-10 text-sm leading-relaxed text-text-muted">
+        <Container className="max-w-2xl space-y-10 text-[0.9375rem] leading-relaxed text-text-muted">
           <div>
-            <h2 className="font-display text-lg font-semibold text-ink">Angaben gemäß § 5 TMG</h2>
-            <p className="mt-3">
-              {site.legalName}
-              <br />
-              {site.owner}
-              <br />
-              [Straße und Hausnummer einfügen]
-              <br />
-              [Postleitzahl und Ort einfügen]
-            </p>
-          </div>
-
-          <div>
-            <h2 className="font-display text-lg font-semibold text-ink">Kontakt</h2>
-            <p className="mt-3">
-              Telefon: {site.phone}
-              <br />
-              E-Mail: {site.email}
-            </p>
-          </div>
-
-          <div>
-            <h2 className="font-display text-lg font-semibold text-ink">
-              Berufsbezeichnung und berufsrechtliche Regelungen
+            <h2 className="font-display text-lg font-bold text-ink">
+              Verantwortlich im Sinne des § 5 DDG
             </h2>
             <p className="mt-3">
-              Berufsbezeichnung: Immobilienmaklerin
+              {site.owner}
               <br />
-              Zuständige Erlaubnisbehörde: [zuständige Behörde gemäß § 34c GewO einfügen]
+              {site.legal.profession}
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-display text-lg font-bold text-ink">Kontakt</h2>
+            <p className="mt-3">
+              {site.address.street}
               <br />
-              Es gelten die gesetzlichen Regelungen der Gewerbeordnung (§ 34c GewO), einsehbar unter{" "}
-              <a href="https://www.gesetze-im-internet.de/gewo/" className="link-underline">
+              {site.address.postalCode} {site.address.locality}
+              <br />
+              <br />
+              Telefon: <a href={site.landlineHref} className="link-underline">{site.landline}</a>
+              <br />
+              Telefax: {site.fax}
+              <br />
+              E-Mail:{" "}
+              <a href={`mailto:${site.email}`} className="link-underline">
+                {site.email}
+              </a>
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-display text-lg font-bold text-ink">Steuer-Nr.</h2>
+            <p className="mt-3">{site.legal.taxNumber}</p>
+          </div>
+
+          <div>
+            <h2 className="font-display text-lg font-bold text-ink">Berufsaufsichtsbehörde</h2>
+            <p className="mt-3">
+              Nach § 34c Gewerbeordnung (GewO)
+              <br />
+              {site.legal.supervisoryAuthority}
+              <br />
+              {site.legal.supervisoryAuthorityAddress}
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-display text-lg font-bold text-ink">Berufsrechtliche Regelungen</h2>
+            <p className="mt-3">
+              Die berufsrechtlichen Regelungen, insbesondere § 34c Gewerbeordnung (GewO), sind über
+              die Internetseite des Bundesamtes für Justiz einsehbar unter{" "}
+              <a
+                href="https://www.gesetze-im-internet.de/gewo/__34c.html"
+                className="link-underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 gesetze-im-internet.de
               </a>
               .
@@ -56,42 +90,44 @@ export default function ImpressumPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-lg font-semibold text-ink">Umsatzsteuer-ID</h2>
-            <p className="mt-3">[Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG einfügen, sofern vorhanden]</p>
-          </div>
-
-          <div>
-            <h2 className="font-display text-lg font-semibold text-ink">
-              Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
-            </h2>
+            <h2 className="font-display text-lg font-bold text-ink">Bildnachweise</h2>
             <p className="mt-3">
-              {site.owner}
-              <br />
-              [Anschrift wie oben]
+              Alle auf dieser Webseite verwendeten Bilder sind urheberrechtlich geschützt. Die
+              Bildrechte liegen bei der Inhaberin {site.owner} der Webseite, soweit die Bilder privat
+              aufgenommen wurden. Alle anderen Bilder stammen von der Bilddatenbank Wix.com oder von
+              Freepik. Sie werden hier unter der jeweiligen Lizenz der Anbieter genutzt.
             </p>
           </div>
 
           <div>
-            <h2 className="font-display text-lg font-semibold text-ink">EU-Streitschlichtung</h2>
+            <h2 className="font-display text-lg font-bold text-ink">Berufshaftpflichtversicherung</h2>
             <p className="mt-3">
-              Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:{" "}
+              Berufshaftpflichtversicherung: {site.legal.liabilityInsurer}
+              <br />
+              Räumlicher Geltungsbereich: {site.legal.liabilityScope}
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-display text-lg font-bold text-ink">
+              Verbraucherstreitbeilegung (Online-Streitbeilegung &amp; VSBG)
+            </h2>
+            <p className="mt-3">
+              Verbraucherstreitbeilegung / Universalschlichtungsstelle: Die Europäische Kommission
+              stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:{" "}
               <a
-                href="https://ec.europa.eu/consumers/odr/"
+                href="https://ec.europa.eu/consumers/odr"
                 className="link-underline"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 ec.europa.eu/consumers/odr
               </a>
-              . Wir sind nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor
-              einer Verbraucherschlichtungsstelle teilzunehmen.
+              . Unsere E-Mail-Adresse finden Sie oben im Impressum. Wir sind nicht bereit oder
+              verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
+              teilzunehmen.
             </p>
           </div>
-
-          <p className="rounded-md border border-border bg-surface-soft p-4 text-xs text-text-muted">
-            Hinweis: Die in eckigen Klammern gekennzeichneten Angaben müssen vor Veröffentlichung der
-            Website mit den vollständigen, rechtsverbindlichen Daten ergänzt werden.
-          </p>
         </Container>
       </section>
     </>
