@@ -41,12 +41,25 @@ export function Reveal({
     );
 
     observer.observe(node);
-    return () => observer.disconnect();
+
+    // Rückfallebene: ein Abschnitt darf nie unsichtbar bleiben, nur weil der
+    // Beobachter nicht anschlägt — etwa bei sehr flachen Blöcken am Seitenende
+    // oder wenn eine Seite ohne Scrollen als Ganzes aufgenommen wird.
+    const fallback = setTimeout(() => {
+      setVisible(true);
+      observer.disconnect();
+    }, 2000);
+
+    return () => {
+      clearTimeout(fallback);
+      observer.disconnect();
+    };
   }, []);
 
   return (
     <Tag
       ref={ref}
+      data-reveal=""
       className={`transition-all duration-700 ease-smooth motion-reduce:transition-none ${
         visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
       } ${className}`}

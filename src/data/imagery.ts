@@ -26,3 +26,16 @@ export const images = {
 } as const;
 
 export type ImageKey = keyof typeof images;
+
+/**
+ * Siegel und Partnerzeichen der Aussteller.
+ *
+ * Sobald die Originalgrafiken (z. B. aus dem bestehenden Auftritt oder aus
+ * dem Partnerbereich des Ausstellers) unter diesen Pfaden liegen, zeigt die
+ * Website sie an. Solange sie fehlen, steht dort die eigene Typografie —
+ * korrekt in der Aussage und ohne fremdes Logo nachzuahmen.
+ */
+export const badgeImages = {
+  sprengnetter: "/images/badges/sprengnetter.png",
+  immoscout24: "/images/badges/immoscout24-bronze.png",
+} as const;

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Building2, ExternalLink, LayoutDashboard, LogOut, Star } from "lucide-react";
+import { Building2, ExternalLink, Inbox, LayoutDashboard, LogOut, Star } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
+import { countNewInquiries } from "@/lib/admin/inquiries-data";
 import { LogoMark } from "@/components/layout/Logo";
 import { signOut } from "../actions";
 
@@ -14,6 +15,7 @@ const navItems = [
   { href: "/admin", label: "Übersicht", icon: LayoutDashboard },
   { href: "/admin/immobilien", label: "Immobilien", icon: Building2 },
   { href: "/admin/referenzen", label: "Referenzen", icon: Star },
+  { href: "/admin/anfragen", label: "Anfragen", icon: Inbox, badge: true },
 ];
 
 export default async function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
@@ -25,6 +27,8 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
   if (!user) {
     redirect("/admin/login");
   }
+
+  const openInquiries = await countNewInquiries();
 
   return (
     <div className="flex min-h-screen bg-surface-cool text-ink">
@@ -47,7 +51,12 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
               className="flex items-center gap-3 rounded-[10px] px-3 py-2.5 text-[0.8125rem] font-medium text-white/65 transition-colors duration-200 hover:bg-white/10 hover:text-white"
             >
               <item.icon className="h-4 w-4" strokeWidth={1.6} aria-hidden="true" />
-              {item.label}
+              <span className="flex-1">{item.label}</span>
+              {item.badge && openInquiries > 0 && (
+                <span className="rounded-full bg-accent px-2 py-0.5 text-[0.6875rem] font-bold tabular-nums text-ink-deep">
+                  {openInquiries}
+                </span>
+              )}
             </Link>
           ))}
         </nav>
@@ -85,6 +94,11 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} className="text-white/65 hover:text-white">
                 {item.label}
+                {item.badge && openInquiries > 0 && (
+                  <span className="ml-1 rounded-full bg-accent px-1.5 py-0.5 text-[0.625rem] font-bold tabular-nums text-ink-deep">
+                    {openInquiries}
+                  </span>
+                )}
               </Link>
             ))}
             <form action={signOut}>

@@ -3,19 +3,21 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ArrowRight, Mail, Menu, Phone, X } from "lucide-react";
+import { Mail, Menu, MessageSquare, Phone, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/layout/Logo";
 import { CurrentDate } from "@/components/layout/CurrentDate";
 import { SocialLinks } from "@/components/layout/SocialLinks";
+import { ContactButton } from "@/components/contact/ContactButton";
 import { primaryNav, site } from "@/data/site";
 
 /**
- * Info bar + main header.
+ * Infoleiste + Hauptnavigation.
  *
- * The whole block is sticky with a negative offset, so the thin info bar
- * scrolls away on its own and the main header alone stays pinned — no JS
- * height juggling required.
+ * Der ganze Block klebt mit negativem Offset oben, sodass die schmale
+ * Infoleiste wegscrollt und allein der Header stehen bleibt — ohne
+ * Höhenrechnerei in JavaScript. Beim Scrollen zieht sich der Header
+ * zusammen, der Weichzeichner nimmt zu und die Kante erscheint.
  */
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,10 +41,11 @@ export function Header() {
   }, [open]);
 
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
+  const compact = scrolled && !open;
 
   return (
     <div className="sticky top-0 z-50 lg:top-[-40px]">
-      {/* Info bar */}
+      {/* Infoleiste */}
       <div className="hidden border-b border-border bg-white lg:block">
         <Container className="flex h-10 items-center justify-between text-[0.8125rem] text-text-muted">
           <div className="flex items-center gap-5">
@@ -65,14 +68,26 @@ export function Header() {
         </Container>
       </div>
 
-      {/* Main header */}
+      {/* Hauptnavigation */}
       <header
-        className={`border-b bg-white/95 backdrop-blur transition-[box-shadow,border-color] duration-300 ${
-          scrolled || open ? "border-border shadow-header" : "border-transparent"
-        }`}
+        className={`border-b transition-all duration-500 ease-smooth ${
+          compact
+            ? "border-border bg-white/80 shadow-header backdrop-blur-xl backdrop-saturate-150"
+            : "border-transparent bg-white/95 backdrop-blur"
+        } ${open ? "border-border" : ""}`}
       >
-        <Container className="flex h-[72px] items-center justify-between gap-6 lg:h-[84px]">
-          <Link href="/" aria-label={`${site.legalName} — Startseite`} className="shrink-0 transition-opacity hover:opacity-80">
+        <Container
+          className={`flex items-center justify-between gap-6 transition-all duration-500 ease-smooth ${
+            compact ? "h-[64px] lg:h-[68px]" : "h-[72px] lg:h-[84px]"
+          }`}
+        >
+          <Link
+            href="/"
+            aria-label={`${site.legalName} — Startseite`}
+            className={`shrink-0 origin-left transition-all duration-500 ease-smooth hover:opacity-80 ${
+              compact ? "lg:scale-[0.9]" : ""
+            }`}
+          >
             <Logo />
           </Link>
 
@@ -100,13 +115,13 @@ export function Header() {
             })}
           </nav>
 
-          <a
-            href={site.phoneHref}
+          <ContactButton
+            options={{ title: "Kontakt aufnehmen" }}
             className="hidden shrink-0 items-center gap-2.5 rounded-[10px] bg-accent-deep px-5 py-3 text-sm font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-dark lg:inline-flex"
           >
             <Phone className="h-4 w-4" aria-hidden="true" />
             {site.phone}
-          </a>
+          </ContactButton>
 
           <button
             type="button"
@@ -121,7 +136,7 @@ export function Header() {
         </Container>
       </header>
 
-      {/* Mobile / tablet navigation */}
+      {/* Navigation auf Telefon und Tablet */}
       <div
         id="mobile-nav"
         className={`fixed inset-x-0 bottom-0 top-[72px] z-40 overflow-y-auto border-t border-border bg-white transition-all duration-300 ease-smooth lg:hidden ${
@@ -142,13 +157,14 @@ export function Header() {
             </Link>
           ))}
 
-          <Link
-            href="/bewertung"
+          <ContactButton
+            options={{ title: "Kontakt aufnehmen" }}
+            onActivate={() => setOpen(false)}
             className="mt-8 inline-flex items-center justify-center gap-2 rounded-[11px] bg-accent-deep px-6 py-4 text-base font-semibold text-white"
           >
-            Immobilie bewerten
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
+            <MessageSquare className="h-4 w-4" aria-hidden="true" />
+            Kontakt aufnehmen
+          </ContactButton>
 
           <div className="mt-8 space-y-3 text-sm text-text-muted">
             <a href={site.phoneHref} className="flex items-center gap-3 font-semibold text-ink">

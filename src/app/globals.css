@@ -17,6 +17,10 @@
     @apply bg-background font-sans text-text antialiased;
     font-feature-settings: "ss01" on, "cv01" on;
     -webkit-font-smoothing: antialiased;
+    /* Kein grauer Aufblitzer beim Antippen — wie in einer native App. */
+    -webkit-tap-highlight-color: transparent;
+    /* Verhindert das Gummiband am Seitenende auf iOS. */
+    overscroll-behavior-y: none;
   }
 
   h1,
@@ -39,6 +43,21 @@
 }
 
 @layer utilities {
+  /* Scroll-Spuren führen ihre eigene Navigation — die Systemleiste stört dort. */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Home-Indikator und Notch freihalten. */
+  .pb-safe {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
   .balance {
     text-wrap: balance;
   }

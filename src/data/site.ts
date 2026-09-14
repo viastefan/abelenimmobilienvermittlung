@@ -83,11 +83,14 @@ export const trustBadges = [
     title: "Geprüfte Fachkompetenz",
     subtitle: "Geprüfter Immobilienbewerter (Sprengnetter Akademie)",
     issuer: "Sprengnetter",
+    /** Schlüssel in `badgeImages` — wird genutzt, sobald die Grafik vorliegt. */
+    badge: "sprengnetter",
   },
   {
     title: "Bronze Partner",
     subtitle: "Ausgezeichneter Partner von ImmoScout24",
     issuer: "ImmoScout24",
+    badge: "immoscout24",
   },
 ] as const;
 

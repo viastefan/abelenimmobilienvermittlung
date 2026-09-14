@@ -3,6 +3,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/layout/Logo";
 import { SocialLinks } from "@/components/layout/SocialLinks";
+import { ConsentSettingsLink } from "@/components/consent/ConsentSettingsLink";
 import { footerNav, leistungenNav, legalNav, site } from "@/data/site";
 
 function FooterColumn({ title, items }: { title: string; items: { label: string; href: string }[] }) {
@@ -83,6 +84,9 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <ConsentSettingsLink className="transition-colors hover:text-accent-deep" />
+            </li>
           </ul>
         </Container>
       </div>

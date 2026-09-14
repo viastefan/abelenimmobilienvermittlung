@@ -1,11 +1,19 @@
 import Link from "next/link";
-import { Building2, Eye, Plus, Star } from "lucide-react";
+import { Building2, Eye, Inbox, Plus, Star } from "lucide-react";
 import { getAllPropertiesAdmin } from "@/lib/admin/properties-data";
 import { getAllReferencesAdmin } from "@/lib/admin/references-data";
+import { getInquiriesAdmin } from "@/lib/admin/inquiries-data";
+import { formatInquiryDate } from "@/types/inquiry";
 import { AdminLink, AdminPageHeader, EmptyState, Panel, StatusPill } from "@/components/admin/ui";
 
 export default async function AdminDashboardPage() {
-  const [properties, references] = await Promise.all([getAllPropertiesAdmin(), getAllReferencesAdmin()]);
+  const [properties, references, inquiries] = await Promise.all([
+    getAllPropertiesAdmin(),
+    getAllReferencesAdmin(),
+    getInquiriesAdmin(),
+  ]);
+
+  const openInquiries = inquiries.filter((inquiry) => inquiry.status === "neu");
 
   const live = properties.filter((property) => property.published);
   const forSale = live.filter((property) => property.status !== "verkauft");
@@ -13,8 +21,8 @@ export default async function AdminDashboardPage() {
   const stats = [
     { label: "Immobilien live", value: live.length, icon: Eye },
     { label: "Davon verfügbar", value: forSale.length, icon: Building2 },
-    { label: "Entwürfe", value: properties.length - live.length, icon: Plus },
     { label: "Referenzen live", value: references.filter((item) => item.published).length, icon: Star },
+    { label: "Neue Anfragen", value: openInquiries.length, icon: Inbox },
   ];
 
   return (
@@ -46,6 +54,35 @@ export default async function AdminDashboardPage() {
         <div className="mt-6 rounded-[14px] border border-warning/30 bg-warning-soft px-5 py-4 text-[0.8125rem] leading-relaxed text-warning">
           Aktuell steht kein verfügbares Objekt auf der Startseite. Sobald Sie eine Immobilie
           veröffentlichen, die nicht als „verkauft“ markiert ist, erscheint sie dort automatisch.
+        </div>
+      )}
+
+      {openInquiries.length > 0 && (
+        <div className="mt-8">
+          <Panel title="Warten auf Antwort" description="Neue Anfragen aus dem Kontaktformular">
+            <ul className="-mx-2 divide-y divide-border">
+              {openInquiries.slice(0, 5).map((inquiry) => (
+                <li key={inquiry.id}>
+                  <Link
+                    href="/admin/anfragen?status=neu"
+                    className="flex items-center justify-between gap-4 rounded-[10px] px-2 py-3 transition-colors hover:bg-surface-cool"
+                  >
+                    <span className="min-w-0">
+                      <span className="block truncate text-[0.8125rem] font-semibold text-ink">
+                        {inquiry.name} · {inquiry.interestLabel}
+                      </span>
+                      <span className="mt-0.5 block truncate text-[0.75rem] text-text-muted">
+                        {inquiry.message}
+                      </span>
+                    </span>
+                    <span className="shrink-0 text-[0.75rem] tabular-nums text-text-subtle">
+                      {formatInquiryDate(inquiry.createdAt)}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Panel>
         </div>
       )}
 

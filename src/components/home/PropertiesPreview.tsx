@@ -2,18 +2,28 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
+import { SnapCarousel } from "@/components/ui/SnapCarousel";
 import { PropertyCard } from "@/components/property/PropertyCard";
 import { PropertyCtaCard } from "@/components/property/PropertyCtaCard";
 import { getActiveProperties, getFeaturedActiveProperty } from "@/data/properties";
+import { resolveFirstImage } from "@/lib/imagery";
 
 export async function PropertiesPreview() {
   const [active, featured] = await Promise.all([getActiveProperties(), getFeaturedActiveProperty()]);
-  // The featured object already has its own block further up the page.
-  const properties = active.filter((property) => property.slug !== featured?.slug).slice(0, 3);
+  // Das hervorgehobene Objekt hat weiter oben seinen eigenen Block.
+  const properties = active.filter((property) => property.slug !== featured?.slug);
   if (properties.length === 0) return null;
 
+  const items = [
+    ...properties.map((property) => ({
+      key: property.slug,
+      node: <PropertyCard property={property} image={resolveFirstImage(property.images)} />,
+    })),
+    { key: "__suchprofil", node: <PropertyCtaCard /> },
+  ];
+
   return (
-    <section className="bg-white py-16 lg:py-20">
+    <section className="overflow-hidden bg-white py-16 lg:py-24">
       <Container>
         <Reveal className="relative">
           <SectionHeading eyebrow="Weitere Angebote" align="center" title="Weitere Immobilien" />
@@ -23,25 +33,15 @@ export async function PropertiesPreview() {
             </Button>
           </div>
         </Reveal>
-
-        <div
-          className={`mt-10 grid gap-5 sm:grid-cols-2 ${
-            properties.length >= 3 ? "lg:grid-cols-3" : ""
-          }`}
-        >
-          {properties.map((property, index) => (
-            <Reveal key={property.slug} delay={index * 90} className="h-full">
-              <PropertyCard property={property} />
-            </Reveal>
-          ))}
-
-          {properties.length < 3 && (
-            <Reveal delay={properties.length * 90} className="h-full">
-              <PropertyCtaCard />
-            </Reveal>
-          )}
-        </div>
       </Container>
+
+      <Reveal className="mx-auto mt-10 w-full max-w-content">
+        <SnapCarousel
+          label="Weitere Immobilien"
+          items={items}
+          itemClassName="basis-[84%] sm:basis-[46%] lg:basis-[31.5%]"
+        />
+      </Reveal>
     </section>
   );
 }
