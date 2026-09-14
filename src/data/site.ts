@@ -57,52 +57,43 @@ export type NavItem = {
 /**
  * Hauptnavigation.
  *
- * Beschriftung und Reihenfolge folgen dem bisherigen Auftritt, damit
- * wiederkehrende Besucherinnen und Besucher sich nicht neu orientieren
- * müssen. Wo ein Punkt mehrere Seiten zusammenfasst, klappt er auf.
+ * Vier Punkte, mehr nicht. Der bisherige Auftritt führte sieben, darunter
+ * „Für Käufer & Verkäufer“, das dieselben Seiten zeigte wie
+ * „Dienstleistungen“ — doppelte Wege kosten nur Entscheidung. „Start“ trägt
+ * das Logo, „Anlagen“ gehört sachlich zu den Leistungen. Jede Seite bleibt
+ * erreichbar: was hier wegfällt, steht im Klappmenü oder in der Fußzeile.
  */
 export const primaryNav: NavItem[] = [
-  { label: "Start", href: "/" },
   {
-    label: "Dienstleistungen",
+    label: "Leistungen",
     href: "/leistungen",
     children: [
       { label: "Immobilienbewertung", href: "/bewertung" },
       { label: "Immobilienverkauf", href: "/verkaufen" },
       { label: "Vermietung", href: "/vermieten" },
-      { label: "Alle Leistungen", href: "/leistungen" },
+      { label: "Immobilie kaufen", href: "/kaufen" },
+      { label: "Unterlagen für den Verkauf", href: "/anlagen" },
     ],
   },
   {
-    label: "Objekte & Referenzen",
+    label: "Immobilien",
     href: "/immobilien",
     children: [
-      { label: "Aktuelle Immobilien", href: "/immobilien" },
+      { label: "Aktuelle Angebote", href: "/immobilien" },
       { label: "Referenzen", href: "/referenzen" },
     ],
   },
-  { label: "Über Mich", href: "/ueber-mich" },
-  {
-    label: "Für Käufer & Verkäufer",
-    href: "/verkaufen",
-    children: [
-      { label: "Für Verkäufer", href: "/verkaufen" },
-      { label: "Für Käufer", href: "/kaufen" },
-      { label: "Immobilienbewertung", href: "/bewertung" },
-    ],
-  },
-  { label: "Anlagen", href: "/anlagen" },
+  { label: "Über mich", href: "/ueber-mich" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 
 /** In der Fußzeile steht jede Seite einzeln — dort hilft kein Klappmenü. */
 export const footerNav: NavItem[] = [
   { label: "Start", href: "/" },
-  { label: "Dienstleistungen", href: "/leistungen" },
+  { label: "Leistungen", href: "/leistungen" },
   { label: "Aktuelle Immobilien", href: "/immobilien" },
   { label: "Referenzen", href: "/referenzen" },
-  { label: "Über Mich", href: "/ueber-mich" },
-  { label: "Anlagen", href: "/anlagen" },
+  { label: "Über mich", href: "/ueber-mich" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 

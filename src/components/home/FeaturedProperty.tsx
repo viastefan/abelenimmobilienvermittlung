@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { SiteImage } from "@/components/graphics/SiteImage";
-import { resolveFirstImage } from "@/lib/imagery";
+import { CardGallery } from "@/components/property/CardGallery";
+import { resolveImages } from "@/lib/imagery";
 import { getFeaturedActiveProperty } from "@/data/properties";
 
 const factIcons = [Ruler, DoorOpen, LandPlot, CalendarRange];
@@ -18,7 +19,7 @@ export async function FeaturedProperty() {
   const property = await getFeaturedActiveProperty();
   if (!property) return null;
 
-  const image = resolveFirstImage(property.images);
+  const gallery = resolveImages(property.images);
 
   const facts = [
     { label: "Wohnfläche", value: `${property.livingSpace.toString().replace(".", ",")} m²` },
@@ -33,14 +34,28 @@ export async function FeaturedProperty() {
     <section className="border-y border-border bg-surface-warm py-16 lg:py-20">
       <Container className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14">
         <Reveal>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[14px] bg-surface-mist">
-            <SiteImage
-              src={image}
-              sizes="(min-width: 1024px) 52vw, 100vw"
-              label={property.city}
-              alt={`${property.title} in ${property.city}`}
-            />
-            <span className="absolute left-5 top-5 rounded-full bg-white/95 px-3.5 py-1.5 text-[0.8125rem] font-semibold text-ink shadow-card backdrop-blur">
+          {/* Ein Objekt zeigt sich nicht in einem Bild. Sind mehrere Aufnahmen
+              hinterlegt, steht hier dieselbe wischbare Diashow wie auf den
+              Objektkarten — sonst bliebe die Galerie eine Seite weiter
+              verborgen. */}
+          <div className="group relative overflow-hidden rounded-[14px] border border-border bg-surface-mist">
+            {gallery.length > 0 ? (
+              <CardGallery
+                images={gallery}
+                alt={`${property.title} in ${property.city}`}
+                sizes="(min-width: 1024px) 52vw, 100vw"
+              />
+            ) : (
+              <div className="relative aspect-[4/3]">
+                <SiteImage
+                  src={undefined}
+                  sizes="(min-width: 1024px) 52vw, 100vw"
+                  label={property.city}
+                  alt={`${property.title} in ${property.city}`}
+                />
+              </div>
+            )}
+            <span className="pointer-events-none absolute left-5 top-5 z-10 rounded-full bg-white/95 px-3.5 py-1.5 text-[0.8125rem] font-semibold text-ink shadow-card backdrop-blur">
               {property.statusLabel}
             </span>
           </div>

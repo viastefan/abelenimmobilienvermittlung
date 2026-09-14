@@ -6,6 +6,7 @@ import { About } from "@/components/home/About";
 import { FeaturedProperty } from "@/components/home/FeaturedProperty";
 import { ReferencesPreview } from "@/components/home/ReferencesPreview";
 import { PropertiesPreview } from "@/components/home/PropertiesPreview";
+import { Testimonials } from "@/components/home/Testimonials";
 import { CtaSection } from "@/components/home/CtaSection";
 import { pageSeo } from "@/lib/seo";
 import { site } from "@/data/site";
@@ -25,8 +26,9 @@ export default function HomePage() {
       <TrustStrip />
       <Services />
       <FeaturedProperty />
-      <About />
       <PropertiesPreview />
+      <Testimonials />
+      <About />
       <ReferencesPreview />
       <CtaSection />
     </>

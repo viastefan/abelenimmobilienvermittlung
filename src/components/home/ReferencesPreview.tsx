@@ -29,22 +29,45 @@ export async function ReferencesPreview() {
         </Reveal>
       </Container>
 
-      <Reveal className="mx-auto mt-10 w-full max-w-content">
-        <SnapCarousel
-          label="Referenzobjekte"
-          items={references.map((reference) => ({
-            key: reference.slug,
-            node: (
+      {/* Eine Spur, die nicht scrollt, ist keine Galerie, sondern eine Karte
+          mit Punkten darunter. Bis zu zwei Referenzen stehen deshalb als
+          zentriertes Raster — die Diashow beginnt bei dreien. */}
+      {references.length < 3 ? (
+        <Container>
+          <Reveal
+            className={`mx-auto mt-10 grid gap-5 ${
+              references.length === 1 ? "max-w-md" : "max-w-4xl sm:grid-cols-2"
+            }`}
+          >
+            {references.map((reference) => (
               <ReferenceCard
+                key={reference.slug}
                 reference={reference}
                 images={resolveImages(reference.images)}
-                sizes="(min-width: 1024px) 32vw, (min-width: 640px) 46vw, 84vw"
+                sizes="(min-width: 640px) 46vw, 90vw"
                 compact
               />
-            ),
-          }))}
-        />
-      </Reveal>
+            ))}
+          </Reveal>
+        </Container>
+      ) : (
+        <Reveal className="mx-auto mt-10 w-full max-w-content">
+          <SnapCarousel
+            label="Referenzobjekte"
+            items={references.map((reference) => ({
+              key: reference.slug,
+              node: (
+                <ReferenceCard
+                  reference={reference}
+                  images={resolveImages(reference.images)}
+                  sizes="(min-width: 1024px) 32vw, (min-width: 640px) 46vw, 84vw"
+                  compact
+                />
+              ),
+            }))}
+          />
+        </Reveal>
+      )}
     </section>
   );
 }

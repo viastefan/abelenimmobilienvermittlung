@@ -1,4 +1,4 @@
-import { siteMedia } from "@/data/wix-media";
+import { objectMedia, siteMedia } from "@/data/wix-media";
 
 /**
  * Bildquellen der Website — eine Datei, ein Ort.
@@ -32,4 +32,25 @@ export const images = {
 } as const;
 
 export type ImageKey = keyof typeof images;
+
+/**
+ * Diashow im Aufmacher der Startseite.
+ *
+ * Ein einzelnes Standbild lässt den Aufmacher stumm wirken; die Wechsel
+ * zeigen in zwanzig Sekunden, womit das Büro arbeitet. Alle Aufnahmen
+ * stammen aus dem bestehenden Auftritt — es ist keine Stockfotografie
+ * dazugekauft worden.
+ *
+ * Reihenfolge ist Absicht: das Schlüsselmotiv der Marke zuerst, danach
+ * Haus, Wohnraum, Garten. Jede Beschreibung benennt, was zu sehen ist —
+ * die Diashow liegt hinter der Schrift, die Sprachausgabe liest sie nicht
+ * mit, die Beschreibung trägt trotzdem den Bildinhalt.
+ */
+export const heroSlides: { src: string; alt: string }[] = [
+  { src: siteMedia.heroKey, alt: "Hand mit einem Wohnungsschlüssel vor hellem Himmel" },
+  { src: siteMedia.bewertung, alt: "Einfamilienhaus vom Garten aus gesehen" },
+  { src: objectMedia.hausMitLoggia[1]!, alt: "Helles Wohnzimmer mit großer Fensterfront" },
+  { src: siteMedia.vermieten, alt: "Wohnung im Dachgeschoss mit Dachschrägen" },
+  { src: siteMedia.referenzen, alt: "Gartenansicht eines vermittelten Hauses in Leichlingen" },
+];
 
