@@ -1,11 +1,14 @@
+import Image from "next/image";
+import { brandMedia } from "@/data/wix-media";
 type MarkProps = {
   className?: string;
 };
 
 /**
- * The Abelen house-and-waves mark, redrawn from the original logo: an open
- * house outline above three water lines. Colour is inherited so the mark can
- * sit on white, warm white and navy alike.
+ * Die Marke als Vektor nachgezeichnet. Sie erbt ihre Farbe und wird deshalb
+ * dort eingesetzt, wo die Originalgrafik nicht mitkommt: als Wasserzeichen
+ * auf Platzhalterflächen und auf dem dunklen Rand des Panels. Im Kopf der
+ * Website steht die Originaldatei — siehe `Logo`.
  */
 export function LogoMark({ className = "h-10 w-10" }: MarkProps) {
   const waves = [
@@ -47,10 +50,16 @@ type LogoProps = {
 export function Logo({ className = "", inverted = false, compact = false }: LogoProps) {
   return (
     <span className={`inline-flex items-center gap-3 sm:gap-3.5 ${className}`}>
-      <LogoMark
-        className={`${compact ? "h-9 w-9" : "h-10 w-10 sm:h-11 sm:w-11"} shrink-0 ${
-          inverted ? "text-accent" : "text-accent"
-        }`}
+      {/* Originalgrafik statt der nachgezeichneten Marke. Die Schrift daneben
+          bleibt gesetzt: als Text ist sie in jeder Größe scharf, lässt sich
+          vorlesen und passt ihre Farbe dem Untergrund an. */}
+      <Image
+        src={brandMedia.mark}
+        alt=""
+        width={1000}
+        height={1000}
+        priority
+        className={`${compact ? "h-9 w-9" : "h-10 w-10 sm:h-11 sm:w-11"} shrink-0 object-contain`}
       />
       <span
         className={`flex flex-col font-display leading-[1.32] ${

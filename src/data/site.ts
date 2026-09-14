@@ -120,19 +120,26 @@ export const regions = [
   "Wuppertal",
 ] as const;
 
+/**
+ * Siegel der Aussteller. Beide Grafiken tragen Text bereits in sich, deshalb
+ * steht daneben keine zweite Beschriftung — `alt` sagt, was zu sehen ist.
+ */
 export const trustBadges = [
   {
-    title: "Geprüfte Fachkompetenz",
-    subtitle: "Geprüfter Immobilienbewerter (Sprengnetter Akademie)",
-    issuer: "Sprengnetter",
-    /** Schlüssel in `badgeImages` — wird genutzt, sobald die Grafik vorliegt. */
-    badge: "sprengnetter",
+    key: "sprengnetter",
+    alt: "Sprengnetter Akademie: Geprüfte Fachkompetenz, Geprüfter Immobilienbewerter",
+    /** Quergestrecktes Siegel mit Schrift — sitzt auf einer weißen Karte. */
+    shape: "lockup",
+    width: 700,
+    height: 236,
   },
   {
-    title: "Bronze Partner",
-    subtitle: "Ausgezeichneter Partner von ImmoScout24",
-    issuer: "ImmoScout24",
-    badge: "immoscout24",
+    key: "immoscout24",
+    alt: "ImmoScout24: Ausgezeichneter Bronze Partner",
+    /** Quadratische Plakette — steht frei. */
+    shape: "seal",
+    width: 1644,
+    height: 1644,
   },
 ] as const;
 

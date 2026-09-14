@@ -1,3 +1,4 @@
+import { objectMedia } from "@/data/wix-media";
 import type { Property } from "@/types/property";
 import { formatPrice } from "@/types/property";
 
@@ -20,7 +21,7 @@ export const fallbackProperties: Property[] = [
     priceLabel: formatPrice(420000),
     livingSpace: 171.31,
     rooms: 6,
-    images: [],
+    images: [...objectMedia.doppelhaushaelfte],
     heroNote: "Aktuelles Angebot",
     summary:
       "Großzügige Doppelhaushälfte mit rund 171 m² Wohnfläche, sechs Zimmern und drei Stellplätzen in ruhiger Lage von Leverkusen-Rheindorf.",
