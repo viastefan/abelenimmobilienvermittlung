@@ -8,16 +8,32 @@ const nextConfig = {
         hostname: "*.supabase.co",
         pathname: "/storage/v1/object/public/**",
       },
-      // Bildplätze in src/data/imagery.ts dürfen auch auf externe https-URLs
-      // zeigen (bestehender Auftritt, Bildagentur, CDN). Nur https, damit
-      // keine unverschlüsselten Quellen eingebunden werden.
+      // Mediathek des bisherigen Wix-Auftritts. Bewusst nur dieser eine Host
+      // statt "**": ein offener Platzhalter macht die Bild-Route zum
+      // Weiterleitungsdienst für beliebige fremde Server.
       {
         protocol: "https",
-        hostname: "**",
+        hostname: "static.wixstatic.com",
       },
     ],
     formats: ["image/avif", "image/webp"],
   },
+  /**
+   * Adressen des bisherigen Auftritts. Sie sind verlinkt und indexiert —
+   * ohne Weiterleitung liefe jeder Treffer bei Google ins Leere.
+   */
+  async redirects() {
+    return [
+      { source: "/ueber-silke-abelen", destination: "/ueber-mich", permanent: true },
+      { source: "/anlagen-immobilienverkauf", destination: "/anlagen", permanent: true },
+      {
+        source: "/dienstleistungen-kaufberatung-verkaufsberatung",
+        destination: "/leistungen",
+        permanent: true,
+      },
+    ];
+  },
+
   async headers() {
     return [
       {

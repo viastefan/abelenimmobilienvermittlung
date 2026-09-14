@@ -14,6 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/immobilien",
     "/kaufen",
     "/leistungen",
+    "/anlagen",
     "/ueber-mich",
     "/referenzen",
     "/kontakt",

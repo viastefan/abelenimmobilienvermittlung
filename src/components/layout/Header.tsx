@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Mail, Menu, MessageSquare, Phone, X } from "lucide-react";
+import { ChevronDown, Mail, Menu, MessageSquare, Phone, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/layout/Logo";
 import { CurrentDate } from "@/components/layout/CurrentDate";
@@ -91,26 +91,57 @@ export function Header() {
             <Logo />
           </Link>
 
-          <nav className="mx-auto hidden items-center gap-7 xl:flex" aria-label="Hauptnavigation">
+          {/* Klappmenüs öffnen über :hover und :focus-within — ohne JavaScript,
+              damit sie auch mit der Tastatur erreichbar bleiben. */}
+          <nav className="mx-auto hidden items-center gap-5 xl:flex 2xl:gap-7" aria-label="Hauptnavigation">
             {primaryNav.map((item) => {
-              const active = isActive(item.href);
+              const active = isActive(item.href) || (item.children?.some((child) => isActive(child.href)) ?? false);
               return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  aria-current={active ? "page" : undefined}
-                  className={`relative py-1.5 text-[0.9375rem] font-medium transition-colors duration-200 ${
-                    active ? "text-accent-deep" : "text-text-muted hover:text-ink"
-                  }`}
-                >
-                  {item.label}
-                  <span
-                    className={`absolute -bottom-0.5 left-0 h-[2px] w-full origin-left bg-accent transition-transform duration-300 ease-smooth ${
-                      active ? "scale-x-100" : "scale-x-0"
+                <div key={item.label} className="group relative">
+                  <Link
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`relative inline-flex items-center gap-1 py-1.5 text-[0.875rem] font-medium transition-colors duration-200 2xl:text-[0.9375rem] ${
+                      active ? "text-accent-deep" : "text-text-muted hover:text-ink"
                     }`}
-                    aria-hidden="true"
-                  />
-                </Link>
+                  >
+                    {item.label}
+                    {item.children && (
+                      <ChevronDown
+                        className="h-3.5 w-3.5 transition-transform duration-300 ease-smooth group-hover:rotate-180"
+                        aria-hidden="true"
+                      />
+                    )}
+                    <span
+                      className={`absolute -bottom-0.5 left-0 h-[2px] w-full origin-left bg-accent transition-transform duration-300 ease-smooth ${
+                        active ? "scale-x-100" : "scale-x-0"
+                      }`}
+                      aria-hidden="true"
+                    />
+                  </Link>
+
+                  {item.children && (
+                    <div className="pointer-events-none absolute left-1/2 top-full z-10 w-60 -translate-x-1/2 translate-y-1 pt-3 opacity-0 transition-all duration-200 ease-smooth group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                      <ul className="rounded-[14px] border border-border bg-white/95 p-1.5 shadow-lift backdrop-blur-xl">
+                        {item.children.map((child) => (
+                          <li key={child.href}>
+                            <Link
+                              href={child.href}
+                              aria-current={isActive(child.href) ? "page" : undefined}
+                              className={`block rounded-[10px] px-3 py-2.5 text-[0.875rem] font-medium transition-colors duration-200 ${
+                                isActive(child.href)
+                                  ? "bg-accent-soft text-accent-deep"
+                                  : "text-text-muted hover:bg-surface-cool hover:text-ink"
+                              }`}
+                            >
+                              {child.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
               );
             })}
           </nav>
@@ -145,16 +176,34 @@ export function Header() {
       >
         <Container as="nav" aria-label="Mobile Navigation" className="flex flex-col pb-16 pt-4">
           {primaryNav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              aria-current={isActive(item.href) ? "page" : undefined}
-              className={`border-b border-border py-4 font-display text-xl font-semibold ${
-                isActive(item.href) ? "text-accent-deep" : "text-ink"
-              }`}
-            >
-              {item.label}
-            </Link>
+            <div key={item.label} className="border-b border-border py-4">
+              <Link
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                className={`block font-display text-xl font-semibold ${
+                  isActive(item.href) ? "text-accent-deep" : "text-ink"
+                }`}
+              >
+                {item.label}
+              </Link>
+              {item.children && (
+                <ul className="mt-3 space-y-1 border-l-2 border-border pl-4">
+                  {item.children.map((child) => (
+                    <li key={child.href}>
+                      <Link
+                        href={child.href}
+                        aria-current={isActive(child.href) ? "page" : undefined}
+                        className={`block py-1.5 text-[0.9375rem] ${
+                          isActive(child.href) ? "font-semibold text-accent-deep" : "text-text-muted"
+                        }`}
+                      >
+                        {child.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           ))}
 
           <ContactButton

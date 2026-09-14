@@ -11,8 +11,14 @@
  */
 
 export const images = {
-  /** Startseite, Hero: Wohnstraße in Leverkusen. Querformat, mind. 1600×1200. */
-  heroWohnstrasse: "/images/hero-wohnstrasse.jpg",
+  /**
+   * Startseite, Hero. Zeigt auf das Schlüsselfoto des bisherigen Auftritts,
+   * das weiterhin in der Wix-Mediathek liegt. Sobald die Datei unter
+   * `public/images/hero-wohnstrasse.jpg` liegt, hier wieder darauf umstellen —
+   * dann hängt die Startseite nicht mehr an einem fremden Dienst.
+   */
+  heroWohnstrasse:
+    "https://static.wixstatic.com/media/59289a_5587cde630e1459b99f3ec60af89cd29~mv2.jpg",
   /** Startseite „Über uns“ und Seite „Über uns“: Portrait Silke Abelen. Hochformat. */
   portrait: "/images/silke-abelen.jpg",
   /** Seite Bewertung. */

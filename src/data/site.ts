@@ -25,26 +25,68 @@ export const site = {
 export type NavItem = {
   label: string;
   href: string;
+  /** Unterpunkte — erscheinen als Klappmenü. */
+  children?: NavItem[];
 };
 
+/**
+ * Hauptnavigation.
+ *
+ * Beschriftung und Reihenfolge folgen dem bisherigen Auftritt, damit
+ * wiederkehrende Besucherinnen und Besucher sich nicht neu orientieren
+ * müssen. Wo ein Punkt mehrere Seiten zusammenfasst, klappt er auf.
+ */
 export const primaryNav: NavItem[] = [
-  { label: "Startseite", href: "/" },
-  { label: "Bewertung", href: "/bewertung" },
-  { label: "Verkaufen", href: "/verkaufen" },
-  { label: "Vermieten", href: "/vermieten" },
-  { label: "Über uns", href: "/ueber-mich" },
-  { label: "Referenzen", href: "/referenzen" },
+  { label: "Start", href: "/" },
+  {
+    label: "Dienstleistungen",
+    href: "/leistungen",
+    children: [
+      { label: "Immobilienbewertung", href: "/bewertung" },
+      { label: "Immobilienverkauf", href: "/verkaufen" },
+      { label: "Vermietung", href: "/vermieten" },
+      { label: "Alle Leistungen", href: "/leistungen" },
+    ],
+  },
+  {
+    label: "Objekte & Referenzen",
+    href: "/immobilien",
+    children: [
+      { label: "Aktuelle Immobilien", href: "/immobilien" },
+      { label: "Referenzen", href: "/referenzen" },
+    ],
+  },
+  { label: "Über Mich", href: "/ueber-mich" },
+  {
+    label: "Für Käufer & Verkäufer",
+    href: "/verkaufen",
+    children: [
+      { label: "Für Verkäufer", href: "/verkaufen" },
+      { label: "Für Käufer", href: "/kaufen" },
+      { label: "Immobilienbewertung", href: "/bewertung" },
+    ],
+  },
+  { label: "Anlagen", href: "/anlagen" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 
-export const footerNav: NavItem[] = primaryNav;
+/** In der Fußzeile steht jede Seite einzeln — dort hilft kein Klappmenü. */
+export const footerNav: NavItem[] = [
+  { label: "Start", href: "/" },
+  { label: "Dienstleistungen", href: "/leistungen" },
+  { label: "Aktuelle Immobilien", href: "/immobilien" },
+  { label: "Referenzen", href: "/referenzen" },
+  { label: "Über Mich", href: "/ueber-mich" },
+  { label: "Anlagen", href: "/anlagen" },
+  { label: "Kontakt", href: "/kontakt" },
+];
 
 export const leistungenNav: NavItem[] = [
   { label: "Immobilienbewertung", href: "/bewertung" },
   { label: "Immobilienverkauf", href: "/verkaufen" },
   { label: "Vermietung", href: "/vermieten" },
   { label: "Immobilie kaufen", href: "/kaufen" },
-  { label: "Aktuelle Immobilien", href: "/immobilien" },
+  { label: "Unterlagen für den Verkauf", href: "/anlagen" },
   { label: "Alle Leistungen", href: "/leistungen" },
 ];
 
