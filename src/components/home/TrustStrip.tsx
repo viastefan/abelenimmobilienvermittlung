@@ -7,23 +7,18 @@ const icons = { users: Users, award: Award, home: Home } as const;
 
 export function TrustStrip() {
   return (
-    <section className="border-y border-border bg-white">
+    <section className="bg-white py-14 lg:py-16">
       <Container>
-        <ul className="grid divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        <ul className="grid gap-8 sm:grid-cols-3 sm:gap-10">
           {featureStrip.map((item, index) => {
             const Icon = icons[item.icon];
             return (
-              <Reveal
-                as="li"
-                key={item.title}
-                delay={index * 90}
-                className={`flex items-center gap-4 py-7 sm:py-8 ${
-                  index === 0 ? "sm:pr-8" : index === featureStrip.length - 1 ? "sm:pl-8" : "sm:px-8"
-                }`}
-              >
-                <Icon className="h-8 w-8 shrink-0 text-accent-mid" strokeWidth={1.25} aria-hidden="true" />
-                <div>
-                  <p className="font-display text-[0.875rem] font-bold text-ink">{item.title}</p>
+              <Reveal as="li" key={item.title} delay={index * 90} className="flex items-start gap-4">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent-deep">
+                  <Icon className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
+                </span>
+                <div className="pt-1.5">
+                  <p className="font-display text-[0.9375rem] font-bold text-ink">{item.title}</p>
                   <p className="mt-1 text-[0.8125rem] leading-snug text-text-muted">{item.description}</p>
                 </div>
               </Reveal>

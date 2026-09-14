@@ -9,7 +9,7 @@ const icons = { home: Home, handshake: Handshake, key: Key } as const;
 
 export function Services() {
   return (
-    <section className="bg-surface-cool py-16 lg:py-20">
+    <section className="bg-surface-cool py-20 lg:py-28">
       <Container>
         <Reveal>
           <SectionHeading

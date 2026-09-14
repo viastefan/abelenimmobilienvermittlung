@@ -12,7 +12,7 @@ export async function ReferencesPreview() {
   if (references.length === 0) return null;
 
   return (
-    <section className="overflow-hidden bg-surface-warm py-16 lg:py-24">
+    <section className="overflow-hidden bg-surface-warm py-20 lg:py-28">
       <Container>
         <Reveal className="relative">
           <SectionHeading

@@ -10,7 +10,7 @@ export function PersonalService() {
   const image = resolveImage(images.personalService);
 
   return (
-    <section className="bg-ink-deep py-16 lg:py-20">
+    <section className="bg-ink-deep py-20 lg:py-28">
       <Container className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
         <Reveal>
           <h2 className="balance font-display text-display-lg font-bold text-white">

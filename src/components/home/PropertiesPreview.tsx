@@ -23,7 +23,7 @@ export async function PropertiesPreview() {
   ];
 
   return (
-    <section className="overflow-hidden bg-white py-16 lg:py-24">
+    <section className="overflow-hidden bg-white py-20 lg:py-28">
       <Container>
         <Reveal className="relative">
           <SectionHeading eyebrow="Weitere Angebote" align="center" title="Weitere Immobilien" />

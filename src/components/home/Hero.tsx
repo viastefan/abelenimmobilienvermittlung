@@ -27,22 +27,22 @@ export function Hero() {
       </div>
 
       <Container className="relative">
-        <div className="flex min-h-[32rem] flex-col justify-center py-16 lg:min-h-[40rem] lg:max-w-[46rem] lg:py-24">
-          <span className="inline-flex w-fit items-center gap-3 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-accent-light">
+        <div className="flex min-h-[36rem] flex-col justify-center py-20 lg:min-h-[46rem] lg:max-w-[54rem] lg:py-28">
+          <span className="inline-flex w-fit items-center gap-3 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-accent-light">
             <span className="h-px w-8 bg-accent" aria-hidden="true" />
             Ihr Partner für Immobilienkauf und -verkauf
           </span>
 
-          <h1 className="balance mt-6 break-words font-display text-display-xl font-extrabold text-white">
+          <h1 className="mt-7 break-words font-display text-[clamp(2.25rem,5.2vw,3.75rem)] font-extrabold leading-[1.12] tracking-[-0.02em] text-white [hyphens:auto]">
             {site.tagline}
           </h1>
 
-          <p className="pretty mt-5 max-w-[34rem] text-[1.0625rem] leading-relaxed text-white/75">
+          <p className="pretty mt-6 max-w-[32rem] text-[1.125rem] leading-relaxed text-white/70">
             Die Mehrheit der Immobilienbesitzer verkauft eine Immobilie häufig nur ein einziges Mal
             im Leben. Dabei geht es fast immer um hohe Werte.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <Button href="/bewertung" variant="primary" size="lg" withArrow className="w-full sm:w-auto">
               Immobilie bewerten
             </Button>
@@ -51,7 +51,7 @@ export function Hero() {
             </Button>
           </div>
 
-          <TrustBadges className="mt-10" />
+          <TrustBadges className="mt-12" />
 
           {/* Auf dem Telefon liegt das Motiv hinter der Schrift — der Verlauf
               oben sorgt dort für den Kontrast, ein zweites Bild braucht es nicht. */}
