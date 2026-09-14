@@ -59,7 +59,7 @@ export default function LeistungenPage() {
                 </div>
                 <Link
                   href={service.href}
-                  className="group mt-2 inline-flex h-fit items-center gap-2 text-sm font-semibold text-accent-deep md:mt-0"
+                  className="group mt-2 inline-flex h-fit w-fit items-center gap-2 rounded-[11px] border border-border-strong bg-white px-4 py-3 text-sm font-semibold text-accent-deep transition-colors duration-200 hover:border-accent md:mt-0"
                 >
                   {service.cta}
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />

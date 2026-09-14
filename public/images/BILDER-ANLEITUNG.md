@@ -1,42 +1,71 @@
-# Bilder einfügen
+# Bilder — wo sie liegen und wie sie hierher kommen
 
-Die Website sucht die Fotos unter festen Pfaden. Sobald eine Datei hier liegt,
-erscheint sie automatisch — es ist keine Änderung am Code nötig. Fehlt eine
-Datei, zeigt die Website an dieser Stelle eine ruhige Markenfläche statt eines
-kaputten Bildes.
+Alle Bilder des Auftritts kommen zurzeit aus der Mediathek des bisherigen
+Wix-Auftritts (`static.wixstatic.com`). Die Zuordnung steht in
+`src/data/wix-media.ts` — eine Datei, eine Liste, ein Ort.
 
-Nach dem Hinzufügen: Dateien committen und pushen. Vercel baut die Seite neu,
-danach sind die Bilder online.
+Das funktioniert, solange der Wix-Auftritt besteht. Wird er abgeschaltet,
+verschwinden die Bilder. Dafür gibt es den Umschalter unten.
 
-## Fotos
+## Alle Bilder ins Projekt holen
 
-| Datei | Wo es erscheint | Format | Empfohlene Größe |
-| --- | --- | --- | --- |
-| `hero-wohnstrasse.jpg` | Startseite, großes Bild oben | quer (4:3) | ab 1600 × 1200 px |
-| `silke-abelen.jpg` | Startseite „Über uns“ und Seite „Über uns“ | quer oder Portrait | ab 1200 × 900 px |
-| `bewertung.jpg` | Seite „Bewertung“, Kopfbereich | quer | ab 1400 × 1000 px |
-| `verkaufen.jpg` | Seite „Verkaufen“, Kopfbereich | quer | ab 1400 × 1000 px |
-| `vermieten.jpg` | Seite „Vermieten“, Kopfbereich | quer | ab 1400 × 1000 px |
-| `referenzen.jpg` | Seite „Referenzen“, Kopfbereich | quer | ab 1400 × 1000 px |
+```bash
+npm run bilder
+```
 
-Bitte Wohnhäuser aus der Region zeigen — Ein- und Mehrfamilienhäuser,
-Doppelhaushälften, gepflegte Wohnstraßen. Keine Luxusvillen, keine
-Hochglanz-Architektur.
+Das Skript lädt jedes in `src/data/wix-media.ts` eingetragene Bild — derzeit
+39 Dateien — nach `public/images/wix/`. Vorhandene Dateien überspringt es;
+mit `npm run bilder -- --neu` lädt es sie neu.
 
-## Siegel, Logo und Objektfotos
+Danach umschalten:
 
-Diese Bilder kommen zurzeit aus der Mediathek des bisherigen Wix-Auftritts
-(`static.wixstatic.com`) — siehe `src/data/wix-media.ts`. Sie müssen also
-nicht hier abgelegt werden, **solange der Wix-Auftritt besteht**.
+```bash
+# .env.local
+NEXT_PUBLIC_BILDER_LOKAL=1
+```
 
-Wird Wix abgeschaltet, verschwinden sie. Dann bitte herunterladen, hier
-ablegen und die Pfade in `src/data/wix-media.ts` umstellen.
+Dieselbe Variable auch bei Vercel setzen (Project → Settings → Environment
+Variables), damit die veröffentlichte Website ebenfalls die lokalen Kopien
+verwendet. Am Code muss dafür nichts geändert werden.
 
-## Objektbilder
+Danach die Dateien committen und pushen. `public/` gehört mit ins
+Repository — Vercel baut daraus.
 
-Bilder einzelner Immobilien und Referenzen gehören **nicht** hierher. Sie
-werden im Admin-Panel zum jeweiligen Objekt hochgeladen und landen im
-Supabase-Speicher (`property-images`).
+## Ein einzelnes Bild austauschen
+
+In `src/data/wix-media.ts` steht zu jedem Platz eine Datei-ID. Statt der ID
+kann dort auch ein Pfad stehen, zum Beispiel:
+
+```ts
+portrait: "/images/silke-abelen.jpg",
+```
+
+Die Datei dann unter `public/images/silke-abelen.jpg` ablegen. Fehlt eine
+Datei, zeigt die Website an dieser Stelle eine ruhige Markenfläche statt
+eines kaputten Bildes.
+
+## Welches Bild wo erscheint
+
+| Eintrag in `wix-media.ts` | Wo es erscheint |
+| --- | --- |
+| `brandMedia.mark` | Bildmarke im Kopf und im Fuß |
+| `brandMedia.wordmark` | Wortmarke neben der Bildmarke |
+| `brandMedia.sprengnetter` | Siegel „Geprüfte Kompetenz“, Startseite |
+| `brandMedia.immoscout24` | Siegel „Bronze Partner“, Startseite |
+| `siteMedia.heroKey` | Startseite, Hintergrund des Aufmachers |
+| `siteMedia.portrait` | Startseite „Über uns“ und Seite „Über Mich“ |
+| `siteMedia.bewertung` | Seite „Immobilienbewertung“, Kopfbereich |
+| `siteMedia.verkaufen` | Seite „Immobilienverkauf“, Kopfbereich |
+| `siteMedia.vermieten` | Seite „Vermietung“, Kopfbereich |
+| `siteMedia.referenzen` | Seite „Referenzen“, Kopfbereich |
+| `objectMedia.*` | Galerien der einzelnen Objekte |
+
+## Bilder neuer Objekte
+
+Fotos zu neuen Immobilien und Referenzen gehören **nicht** hierher. Sie
+werden im Admin-Panel beim jeweiligen Objekt hochgeladen und landen im
+Supabase-Speicher (`property-images`). Nur die Bestände des alten Auftritts
+stehen in `wix-media.ts`.
 
 ## Rechte
 

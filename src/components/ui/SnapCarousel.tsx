@@ -219,8 +219,11 @@ export function SnapCarousel({
         </>
       )}
 
+      {/* Der Punkt ist sechs Pixel hoch — zu wenig für einen Daumen. Die
+          Schaltfläche darum herum ist 36 Pixel hoch, der Punkt bleibt klein.
+          Der seitliche Innenabstand ersetzt den Zwischenraum. */}
       {items.length > 1 && (
-        <div className="mt-6 flex items-center justify-center gap-2">
+        <div className="mt-6 flex items-center justify-center">
           {items.map((item, index) => (
             <button
               key={item.key}
@@ -232,10 +235,16 @@ export function SnapCarousel({
               aria-label={`Zu Eintrag ${index + 1} von ${items.length}`}
               aria-current={index === active ? "true" : undefined}
               onClick={() => scrollToIndex(index)}
-              className={`h-1.5 rounded-full transition-all duration-300 ease-smooth ${
-                index === active ? "w-6 bg-accent-deep" : "w-1.5 bg-border-strong hover:bg-text-subtle"
-              }`}
-            />
+              className="group/dot flex h-9 items-center px-1"
+            >
+              <span
+                className={`block h-1.5 rounded-full transition-all duration-300 ease-smooth ${
+                  index === active
+                    ? "w-6 bg-accent-deep"
+                    : "w-1.5 bg-border-strong group-hover/dot:bg-text-subtle"
+                }`}
+              />
+            </button>
           ))}
         </div>
       )}

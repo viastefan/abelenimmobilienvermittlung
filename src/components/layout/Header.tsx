@@ -33,6 +33,17 @@ export function Header() {
 
   useEffect(() => setOpen(false), [pathname]);
 
+  // Esc schließt das Menü — der Zuhörer hängt am Fenster, nicht am Feld,
+  // damit er auch greift, wenn der Fokus noch auf der Schaltfläche liegt.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -168,32 +179,36 @@ export function Header() {
       </header>
 
       {/* Navigation auf Telefon und Tablet */}
+      {/* Geschlossen ist das Feld unsichtbar, bleibt aber im Baum. `inert`
+          nimmt es aus Tabreihenfolge und Vorlesereihenfolge — sonst wandert
+          der Fokus in ein Menü, das niemand sieht. */}
       <div
         id="mobile-nav"
-        className={`fixed inset-x-0 bottom-0 top-[72px] z-40 overflow-y-auto border-t border-border bg-white transition-all duration-300 ease-smooth lg:hidden ${
+        inert={!open}
+        className={`fixed inset-x-0 bottom-0 top-[72px] z-40 overflow-y-auto overscroll-contain border-t border-border bg-white pb-safe transition-all duration-300 ease-smooth lg:hidden ${
           open ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
         }`}
       >
         <Container as="nav" aria-label="Mobile Navigation" className="flex flex-col pb-16 pt-4">
           {primaryNav.map((item) => (
-            <div key={item.label} className="border-b border-border py-4">
+            <div key={item.label} className="border-b border-border pb-3">
               <Link
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
-                className={`block font-display text-xl font-semibold ${
+                className={`block py-3.5 font-display text-xl font-semibold ${
                   isActive(item.href) ? "text-accent-deep" : "text-ink"
                 }`}
               >
                 {item.label}
               </Link>
               {item.children && (
-                <ul className="mt-3 space-y-1 border-l-2 border-border pl-4">
+                <ul className="mb-1 border-l-2 border-border pl-4">
                   {item.children.map((child) => (
                     <li key={child.href}>
                       <Link
                         href={child.href}
                         aria-current={isActive(child.href) ? "page" : undefined}
-                        className={`block py-1.5 text-[0.9375rem] ${
+                        className={`block py-2.5 text-[0.9375rem] ${
                           isActive(child.href) ? "font-semibold text-accent-deep" : "text-text-muted"
                         }`}
                       >
@@ -215,16 +230,16 @@ export function Header() {
             Kontakt aufnehmen
           </ContactButton>
 
-          <div className="mt-8 space-y-3 text-sm text-text-muted">
-            <a href={site.phoneHref} className="flex items-center gap-3 font-semibold text-ink">
+          <div className="mt-8 text-sm text-text-muted">
+            <a href={site.phoneHref} className="flex items-center gap-3 py-2.5 font-semibold text-ink">
               <Phone className="h-4 w-4 text-accent-mid" aria-hidden="true" />
               {site.phone}
             </a>
-            <a href={site.landlineHref} className="flex items-center gap-3">
+            <a href={site.landlineHref} className="flex items-center gap-3 py-2.5">
               <Phone className="h-4 w-4 text-accent-mid" aria-hidden="true" />
               Tel.: {site.landline}
             </a>
-            <a href={`mailto:${site.email}`} className="flex items-center gap-3">
+            <a href={`mailto:${site.email}`} className="flex items-center gap-3 py-2.5">
               <Mail className="h-4 w-4 text-accent-mid" aria-hidden="true" />
               {site.email}
             </a>

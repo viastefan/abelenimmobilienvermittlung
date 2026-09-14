@@ -9,9 +9,19 @@
 
 const HOST = "https://static.wixstatic.com/media";
 
+/**
+ * Umschalter auf die lokalen Kopien.
+ *
+ * Steht `NEXT_PUBLIC_BILDER_LOKAL=1`, liest die Website die Bilder aus
+ * `public/images/wix/` statt von Wix. Die Dateien holt `npm run bilder`.
+ * Damit hängt der Auftritt an keinem fremden Server mehr — ohne dass an
+ * einer einzigen Stelle im Code etwas geändert werden müsste.
+ */
+const LOKAL = process.env.NEXT_PUBLIC_BILDER_LOKAL === "1";
+
 /** Baut die Adresse aus der Wix-Datei-ID. */
 export function wixImage(fileId: string): string {
-  return `${HOST}/${fileId}`;
+  return LOKAL ? `/images/wix/${fileId}` : `${HOST}/${fileId}`;
 }
 
 /** Marke: Bildmarke, Wortmarke und die beiden Siegel der Aussteller. */

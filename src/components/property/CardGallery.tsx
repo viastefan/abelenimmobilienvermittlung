@@ -121,7 +121,7 @@ function GalleryArrow({
         event.stopPropagation();
         onClick();
       }}
-      className={`absolute top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-ink shadow-card backdrop-blur transition-all duration-300 ease-smooth hover:bg-white focus-visible:opacity-100 ${
+      className={`absolute top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 lg:h-9 lg:w-9 items-center justify-center rounded-full bg-white/85 text-ink shadow-card backdrop-blur transition-all duration-300 ease-smooth hover:bg-white focus-visible:opacity-100 ${
         side === "left" ? "left-3" : "right-3"
       } ${hidden ? "pointer-events-none scale-90 opacity-0" : "opacity-0 group-hover:opacity-100 max-lg:opacity-100"}`}
     >

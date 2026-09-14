@@ -146,7 +146,7 @@ export function InquiryForm({
           type="checkbox"
           name="consent"
           required
-          className="mt-0.5 h-4 w-4 shrink-0 rounded border-border-strong text-accent-deep focus:ring-accent"
+          className="mt-0.5 h-5 w-5 shrink-0 rounded-[6px] border-border-strong text-accent-deep focus:ring-accent"
         />
         <span>
           Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verarbeitet

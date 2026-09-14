@@ -66,7 +66,7 @@ export default async function ReferenceDetailPage({ params }: Params) {
           <Container className="absolute inset-x-0 top-0 pt-6">
             <Link
               href="/referenzen"
-              className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-[0.8125rem] font-semibold text-white backdrop-blur transition-colors duration-200 hover:bg-white/20"
+              className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2.5 text-[0.8125rem] font-semibold text-white backdrop-blur transition-colors duration-200 hover:bg-white/20"
             >
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               Alle Referenzen
@@ -92,7 +92,7 @@ export default async function ReferenceDetailPage({ params }: Params) {
             {gallery.length > 1 && (
               <a
                 href="#galerie"
-                className="mt-5 inline-flex items-center gap-2 text-[0.9375rem] font-semibold text-white transition-colors hover:text-accent-light"
+                className="mt-5 inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-2.5 text-[0.9375rem] font-semibold text-white backdrop-blur transition-colors duration-200 hover:bg-white/25"
               >
                 <Images className="h-4 w-4" strokeWidth={1.6} aria-hidden="true" />
                 Alle {gallery.length} Bilder
