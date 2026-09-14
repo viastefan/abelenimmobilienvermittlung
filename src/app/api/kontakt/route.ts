@@ -13,6 +13,7 @@ type ContactPayload = {
   interest?: string;
   message?: string;
   objectRef?: string;
+  address?: string;
   /** Honigtopf — nur Bots füllen das Feld aus. */
   company?: string;
 };
@@ -51,7 +52,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Ungültige Anfrage." }, { status: 400 });
   }
 
-  const { firstName, lastName, email, phone, interest, message, objectRef, company } = payload;
+  const { firstName, lastName, email, phone, interest, message, objectRef, address, company } = payload;
 
   // Bots bekommen dieselbe freundliche Antwort, ohne dass etwas passiert.
   if (company?.trim()) {
@@ -92,6 +93,7 @@ export async function POST(request: Request) {
     phone: phone?.trim() ?? "",
     interest: interest?.trim() || "sonstiges",
     objectRef: objectRef?.trim() ?? "",
+    address: address?.trim() ?? "",
     message: message.trim(),
   });
 
@@ -110,6 +112,7 @@ export async function POST(request: Request) {
       `Telefon: ${phone || "Nicht angegeben"}`,
       `Interessiert an: ${interestLabel}`,
       ...(objectRef ? [`Objektbezug: ${objectRef}`] : []),
+      ...(address ? [`Adresse der Immobilie: ${address}`] : []),
       "",
       "Nachricht:",
       message,

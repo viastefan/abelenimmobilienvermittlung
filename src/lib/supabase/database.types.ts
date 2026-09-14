@@ -8,6 +8,7 @@ export type Database = {
     Tables: {
       inquiries: {
         Row: {
+          address: string;
           created_at: string;
           email: string;
           first_name: string;
@@ -22,6 +23,7 @@ export type Database = {
           updated_at: string;
         };
         Insert: {
+          address?: string;
           created_at?: string;
           email: string;
           first_name: string;
@@ -36,6 +38,7 @@ export type Database = {
           updated_at?: string;
         };
         Update: {
+          address?: string;
           created_at?: string;
           email?: string;
           first_name?: string;

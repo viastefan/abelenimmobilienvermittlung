@@ -10,6 +10,7 @@ const row = {
   phone: "0221 123456",
   interest: "bewertung",
   object_ref: "Doppelhaushälfte, Leverkusen",
+  address: "Musterweg 1, 51371 Leverkusen",
   message: "Bitte um Rückruf.",
   status: "neu",
   note: "",
@@ -23,6 +24,7 @@ describe("mapRowToInquiry", () => {
     assert.equal(inquiry.name, "Silke Beispiel");
     assert.equal(inquiry.interestLabel, "Immobilienbewertung");
     assert.equal(inquiry.objectRef, "Doppelhaushälfte, Leverkusen");
+    assert.equal(inquiry.address, "Musterweg 1, 51371 Leverkusen");
   });
 
   it("fällt bei unbekanntem Status auf „neu“ zurück", () => {

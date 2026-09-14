@@ -49,6 +49,7 @@ export function InquiryForm({
       interest,
       message: String(formData.get("message") ?? ""),
       objectRef: objectRef ?? "",
+      address: String(formData.get("address") ?? ""),
       // Honigtopf: echte Menschen füllen dieses Feld nie aus.
       company: String(formData.get("company") ?? ""),
     };
@@ -99,6 +100,16 @@ export function InquiryForm({
         <Field label="E-Mail" name="email" type="email" autoComplete="email" required />
         <Field label="Telefon" name="phone" type="tel" autoComplete="tel" />
       </div>
+
+      {/* Die Adresse fragte schon das Formular des alten Auftritts ab: Ohne
+          Lage lässt sich zu einer Immobilie wenig sagen. Freiwillig bleibt
+          sie trotzdem — wer nur eine Frage hat, soll sie stellen können. */}
+      <Field
+        label="Adresse der Immobilie"
+        name="address"
+        autoComplete="street-address"
+        hint="Optional — hilft uns bei einer Einschätzung."
+      />
 
       <fieldset>
         <legend className="mb-3 text-sm font-semibold text-ink">Ich interessiere mich für</legend>
@@ -183,6 +194,7 @@ function Field({
   autoComplete,
   required,
   autoFocus,
+  hint,
 }: {
   label: string;
   name: string;
@@ -190,22 +202,30 @@ function Field({
   autoComplete?: string;
   required?: boolean;
   autoFocus?: boolean;
+  hint?: string;
 }) {
+  const id = `inquiry-${name}`;
   return (
     <div>
-      <label htmlFor={`inquiry-${name}`} className="mb-2 block text-sm font-semibold text-ink">
+      <label htmlFor={id} className="mb-2 block text-sm font-semibold text-ink">
         {label}
         {required && <span aria-hidden="true"> *</span>}
       </label>
       <input
-        id={`inquiry-${name}`}
+        id={id}
         name={name}
         type={type}
         autoComplete={autoComplete}
         required={required}
+        aria-describedby={hint ? `${id}-hinweis` : undefined}
         {...(autoFocus ? { "data-autofocus": true } : {})}
         className={fieldClass}
       />
+      {hint && (
+        <p id={`${id}-hinweis`} className="mt-2 text-[0.8125rem] text-text-subtle">
+          {hint}
+        </p>
+      )}
     </div>
   );
 }

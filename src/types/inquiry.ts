@@ -25,6 +25,8 @@ export type Inquiry = {
   interest: string;
   interestLabel: string;
   objectRef: string;
+  /** Adresse der Immobilie, wie im Formular des alten Auftritts. */
+  address: string;
   message: string;
   status: InquiryStatus;
   note: string;
@@ -50,6 +52,7 @@ export function mapRowToInquiry(row: InquiryRow): Inquiry {
     interest: row.interest,
     interestLabel: contactInterestLabels[row.interest] ?? row.interest,
     objectRef: row.object_ref,
+    address: row.address,
     message: row.message,
     status,
     note: row.note,

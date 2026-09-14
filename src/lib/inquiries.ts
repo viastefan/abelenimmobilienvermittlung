@@ -9,6 +9,7 @@ export type NewInquiry = {
   phone: string;
   interest: string;
   objectRef: string;
+  address: string;
   message: string;
 };
 
@@ -30,6 +31,7 @@ export async function saveInquiry(inquiry: NewInquiry): Promise<boolean> {
       phone: inquiry.phone.slice(0, 60),
       interest: inquiry.interest.slice(0, 40),
       object_ref: inquiry.objectRef.slice(0, 200),
+      address: inquiry.address.slice(0, 200),
       message: inquiry.message.slice(0, 4000),
     });
 

@@ -87,7 +87,7 @@ export default async function AdminInquiriesPage({
                   <div className="flex flex-wrap items-center gap-2.5">
                     <p className="font-display text-[0.9375rem] font-bold text-ink">{inquiry.name}</p>
                     <span
-                      className={`rounded-full px-2.5 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.08em] ${
+                      className={`rounded-full px-2.5 py-1 text-[0.75rem] font-semibold ${
                         statusTone[inquiry.status]
                       }`}
                     >
@@ -97,6 +97,7 @@ export default async function AdminInquiriesPage({
                   <p className="mt-1 text-[0.75rem] tabular-nums text-text-subtle">
                     {formatInquiryDate(inquiry.createdAt)}
                     {inquiry.objectRef ? ` · Objekt: ${inquiry.objectRef}` : ""}
+                    {inquiry.address ? ` · Adresse: ${inquiry.address}` : ""}
                   </p>
                 </div>
 
