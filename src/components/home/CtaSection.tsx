@@ -7,7 +7,9 @@ import { Reveal } from "@/components/ui/Reveal";
  */
 export function CtaSection({
   title = "Sie möchten wissen, was Ihre Immobilie wert ist?",
-  description = "Wir bewerten Ihre Immobilie kostenlos und unverbindlich.",
+  // Kein Preisversprechen: Was eine Bewertung kostet, sagt Silke Abelen im
+  // Gespräch — nicht die Website.
+  description = "Sprechen Sie uns an — wir schätzen ein, was in Ihrer Immobilie steckt.",
   buttonLabel = "Jetzt bewerten",
   href = "/bewertung",
 }: {

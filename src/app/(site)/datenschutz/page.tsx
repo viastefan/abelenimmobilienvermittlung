@@ -123,8 +123,10 @@ export default function DatenschutzPage() {
               </p>
               <p className="mt-3">
                 Diese Webseite wird bei der Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723,
-                USA, betrieben. Mit Vercel besteht ein Vertrag über die Auftragsverarbeitung; die
-                Auslieferung erfolgt über Standorte innerhalb der Europäischen Union.
+                USA, betrieben. Mit Vercel besteht ein Vertrag über die Auftragsverarbeitung. Die
+                Serverfunktionen laufen im Rechenzentrum Frankfurt am Main (Region „fra1“); die
+                statischen Dateien liefert das weltweite Netz von Vercel vom jeweils nächsten
+                Standort aus.
               </p>
             </div>
 
