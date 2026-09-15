@@ -85,7 +85,7 @@ export function ImageUploader({
       <input type="hidden" name="images" value={images.join("\n")} />
 
       <div
-        className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-[12px] border border-dashed border-border-strong bg-surface-cool px-6 py-9 text-center transition-colors hover:border-accent hover:bg-accent-tint"
+        className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-[14px] border border-dashed border-border-strong bg-surface-cool px-6 py-9 text-center transition-colors hover:border-accent hover:bg-accent-tint"
         onClick={() => inputRef.current?.click()}
         onDragOver={(event) => event.preventDefault()}
         onDrop={(event) => {
@@ -113,7 +113,7 @@ export function ImageUploader({
       </div>
 
       {error && (
-        <p role="alert" className="mt-3 rounded-[10px] bg-warning-soft px-3.5 py-2.5 text-[0.8125rem] text-warning">
+        <p role="alert" className="mt-3 rounded-[14px] bg-warning-soft px-3.5 py-2.5 text-[0.8125rem] text-warning">
           {error}
         </p>
       )}
@@ -121,7 +121,7 @@ export function ImageUploader({
       {images.length > 0 && (
         <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {images.map((image, index) => (
-            <div key={image} className="group relative aspect-square overflow-hidden rounded-[10px] border border-border">
+            <div key={image} className="group relative aspect-square overflow-hidden rounded-[14px] border border-border">
               {/* eslint-disable-next-line @next/next/no-img-element -- admin-only preview grid, not a public LCP image */}
               <img src={image} alt="" className="h-full w-full object-cover" />
               {index === 0 && (

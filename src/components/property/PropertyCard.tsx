@@ -33,7 +33,7 @@ export function PropertyCard({
   ];
 
   return (
-    <article className="group relative flex h-full w-full flex-col overflow-hidden rounded-[16px] border border-border bg-white transition-all duration-500 ease-smooth hover:-translate-y-1 hover:border-accent-light hover:shadow-lift">
+    <article className="group relative flex h-full w-full flex-col overflow-hidden rounded-[24px] bg-white shadow-soft transition-all duration-500 ease-smooth hover:-translate-y-1 hover:border-accent-light hover:shadow-lift">
       {images.length > 1 ? (
         <CardGallery
           images={images}
@@ -80,7 +80,7 @@ export function PropertyCard({
           {meta.map((item) => (
             <span
               key={item.value}
-              className="inline-flex items-center gap-1.5 rounded-[10px] bg-surface-cool px-2.5 py-1.5 text-[0.75rem] font-medium text-text-muted"
+              className="inline-flex items-center gap-1.5 rounded-[14px] bg-surface-cool px-2.5 py-1.5 text-[0.75rem] font-medium text-text-muted"
             >
               <item.icon className="h-3.5 w-3.5 text-accent-mid" strokeWidth={1.8} aria-hidden="true" />
               {item.value}

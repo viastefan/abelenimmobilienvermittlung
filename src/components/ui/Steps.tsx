@@ -27,7 +27,7 @@ export function Steps({
           <SectionHeading eyebrow={eyebrow} size="lg" title={title} description={description} />
         </Reveal>
 
-        <ol className="mt-14 grid gap-x-10 gap-y-10 border-t border-border pt-12 sm:grid-cols-2 lg:grid-cols-3">
+        <ol className="mt-14 grid gap-x-10 gap-y-10 pt-12 sm:grid-cols-2 lg:grid-cols-3">
           {steps.map((step, index) => (
             <Reveal as="li" key={step.number} delay={index * 60} className="flex gap-5">
               <span className="font-display text-[1.375rem] font-extrabold tabular-nums text-accent-light">

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const inputClass =
-  "w-full rounded-[10px] border border-white/15 bg-white/[0.06] px-3.5 py-2.5 text-[0.875rem] text-white transition-colors placeholder:text-white/30 focus:border-accent focus:outline-none";
+  "w-full rounded-[14px] border border-white/15 bg-white/[0.06] px-3.5 py-2.5 text-[0.875rem] text-white transition-colors placeholder:text-white/30 focus:border-accent focus:outline-none";
 
 export default async function AdminLoginPage({
   searchParams,
@@ -43,7 +43,7 @@ export default async function AdminLoginPage({
         </p>
 
         {!configured && (
-          <div className="mt-7 rounded-[12px] border border-white/15 bg-white/[0.06] p-5">
+          <div className="mt-7 rounded-[14px] border border-white/15 bg-white/[0.06] p-5">
             <p className="text-[0.875rem] font-bold text-white">Datenbank nicht verbunden</p>
             <p className="mt-2 text-[0.8125rem] leading-relaxed text-white/60">
               Für die Anmeldung fehlen die Umgebungsvariablen{" "}
@@ -88,7 +88,7 @@ export default async function AdminLoginPage({
           </div>
 
           {error && (
-            <p role="alert" className="rounded-[10px] bg-white/10 px-3.5 py-2.5 text-[0.8125rem] text-accent-light">
+            <p role="alert" className="rounded-[14px] bg-white/10 px-3.5 py-2.5 text-[0.8125rem] text-accent-light">
               {error}
             </p>
           )}
@@ -96,7 +96,7 @@ export default async function AdminLoginPage({
           <button
             type="submit"
             disabled={!configured}
-            className="w-full rounded-[10px] bg-accent-deep py-3 text-[0.875rem] font-semibold text-white transition-colors duration-200 hover:bg-accent-dark"
+            className="w-full rounded-[14px] bg-accent-deep py-3 text-[0.875rem] font-semibold text-white transition-colors duration-200 hover:bg-accent-dark"
           >
             Anmelden
           </button>

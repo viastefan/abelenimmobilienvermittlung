@@ -8,7 +8,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { ArrowRight, ChevronRight, Mail, MessageSquare, Phone, Smartphone } from "lucide-react";
+import { ArrowRight, ChevronRight, Mail, MessageSquare, Phone } from "lucide-react";
 import { Sheet } from "@/components/ui/Sheet";
 import { InquiryForm } from "@/components/contact/InquiryForm";
 import { site } from "@/data/site";
@@ -90,27 +90,25 @@ export function ContactSheetProvider({ children }: { children: ReactNode }) {
         {view === "menu" ? (
           <div className="space-y-2.5">
             {options.objectRef && (
-              <p className="rounded-[12px] border border-border bg-surface-warm px-4 py-3 text-[0.8125rem] text-text-muted">
+              <p className="rounded-[14px] bg-surface-warm px-4 py-3 text-[0.8125rem] text-text-muted">
                 Zum Objekt: <span className="font-semibold text-ink">{options.objectRef}</span>
               </p>
             )}
 
             <ContactRow
-              href={site.phoneHref}
-              icon={Smartphone}
-              label="Mobil anrufen"
-              value={site.phone}
+              href={`mailto:${site.email}`}
+              icon={Mail}
+              label="E-Mail schreiben"
+              value={site.email}
               autofocus
             />
-            <ContactRow href={site.landlineHref} icon={Phone} label="Büro anrufen" value={site.landline} />
-            <ContactRow href={`mailto:${site.email}`} icon={Mail} label="E-Mail schreiben" value={site.email} />
 
             <button
               type="button"
               onClick={() => setView("form")}
-              className="group flex w-full items-center gap-4 rounded-[14px] bg-accent-deep px-4 py-4 text-left text-white transition-colors duration-200 hover:bg-accent-dark"
+              className="group flex w-full items-center gap-4 rounded-[24px] bg-accent-deep px-4 py-4 text-left text-white transition-colors duration-200 hover:bg-accent-dark"
             >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[11px] bg-white/15">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] bg-white/15">
                 <MessageSquare className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" />
               </span>
               <span className="min-w-0 flex-1">
@@ -155,9 +153,9 @@ function ContactRow({
     <a
       href={href}
       {...(autofocus ? { "data-autofocus": true } : {})}
-      className="group flex items-center gap-4 rounded-[14px] border border-border bg-white px-4 py-4 transition-all duration-200 hover:border-accent-light hover:bg-accent-tint"
+      className="group flex items-center gap-4 rounded-[24px] bg-white shadow-soft px-4 py-4 transition-all duration-200 hover:border-accent-light hover:bg-accent-tint"
     >
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[11px] bg-accent-soft text-accent-deep">
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] bg-accent-soft text-accent-deep">
         <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" />
       </span>
       <span className="min-w-0 flex-1">

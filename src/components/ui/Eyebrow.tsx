@@ -1,9 +1,9 @@
 /**
  * Kennzeichnung über einer Überschrift.
  *
- * Als Plakette statt als Versalzeile: Großbuchstaben lesen sich langsamer,
- * und eine Fläche ordnet den Abschnitt sichtbar ein, statt ihn nur zu
- * beschriften.
+ * Eine schmale Versalzeile, keine Plakette und kein Punkt davor: das Auge
+ * soll bei der Überschrift landen, nicht bei ihrer Beschriftung. Wo eine
+ * Überschrift für sich steht, gehört hier gar nichts hin.
  */
 export function Eyebrow({
   children,
@@ -16,16 +16,10 @@ export function Eyebrow({
 }) {
   return (
     <span
-      className={`inline-flex w-fit items-center gap-2 rounded-full px-3.5 py-1.5 text-[0.8125rem] font-semibold ${
-        light
-          ? "bg-white/10 text-accent-light ring-1 ring-inset ring-white/15"
-          : "bg-accent-soft text-accent-deep"
+      className={`block text-[0.75rem] font-semibold uppercase tracking-[0.14em] ${
+        light ? "text-accent-light" : "text-accent-deep"
       } ${className}`}
     >
-      <span
-        className={`h-1.5 w-1.5 rounded-full ${light ? "bg-accent" : "bg-accent-mid"}`}
-        aria-hidden="true"
-      />
       {children}
     </span>
   );

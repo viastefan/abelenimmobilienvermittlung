@@ -56,7 +56,7 @@ export default async function ImmobilienPage() {
               {properties.length < 3 && <PropertyCtaCard />}
             </div>
           ) : (
-            <div className="rounded-[20px] border border-dashed border-border bg-surface-warm p-12 text-center">
+            <div className="rounded-[24px] border border-dashed border-border bg-surface-warm p-12 text-center">
               <p className="mx-auto max-w-lg text-[1.0625rem] leading-relaxed text-text-muted">
                 Aktuell ist kein Objekt online. Sprechen Sie uns gerne direkt an — wir beraten Sie
                 auch zu Immobilien, die noch nicht veröffentlicht sind.

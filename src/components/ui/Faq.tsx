@@ -26,10 +26,10 @@ export function Faq({
           <SectionHeading eyebrow={eyebrow} title={title} />
         </Reveal>
 
-        <div className="mt-9 divide-y divide-border border-y border-border">
+        <div className="mt-9 space-y-2.5">
           {items.map((item, index) => (
             <Reveal key={item.question} delay={index * 50}>
-              <details className="group py-1">
+              <details className="group rounded-[24px] bg-surface-warm px-5 transition-colors duration-300 ease-smooth open:bg-accent-tint sm:px-6">
                 <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-4 text-left font-display text-[0.9375rem] font-bold text-ink transition-colors duration-200 hover:text-accent-deep [&::-webkit-details-marker]:hidden">
                   {item.question}
                   <Plus

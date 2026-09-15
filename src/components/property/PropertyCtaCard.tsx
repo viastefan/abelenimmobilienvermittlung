@@ -19,9 +19,9 @@ export function PropertyCtaCard({
   return (
     <Link
       href={href}
-      className="group flex h-full min-h-[20rem] flex-col justify-center rounded-[16px] border border-dashed border-border-strong bg-surface-warm p-8 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:border-accent hover:bg-accent-tint"
+      className="group flex h-full min-h-[20rem] flex-col justify-center rounded-[24px] border border-dashed border-border-strong bg-surface-warm p-8 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:border-accent hover:bg-accent-tint"
     >
-      <span className="flex h-12 w-12 items-center justify-center rounded-[12px] bg-white text-accent-deep">
+      <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-white text-accent-deep">
         <Search className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
       </span>
       <h3 className="mt-6 font-display text-[1.125rem] font-bold text-ink">{title}</h3>

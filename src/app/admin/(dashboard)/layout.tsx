@@ -48,7 +48,7 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center gap-3 rounded-[10px] px-3 py-2.5 text-[0.8125rem] font-medium text-white/65 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+              className="flex items-center gap-3 rounded-[14px] px-3 py-2.5 text-[0.8125rem] font-medium text-white/65 transition-colors duration-200 hover:bg-white/10 hover:text-white"
             >
               <item.icon className="h-4 w-4" strokeWidth={1.6} aria-hidden="true" />
               <span className="flex-1">{item.label}</span>
@@ -66,7 +66,7 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
             href="/"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-3 rounded-[10px] px-3 py-2.5 text-[0.8125rem] text-white/55 transition-colors hover:bg-white/10 hover:text-white"
+            className="flex items-center gap-3 rounded-[14px] px-3 py-2.5 text-[0.8125rem] text-white/55 transition-colors hover:bg-white/10 hover:text-white"
           >
             <ExternalLink className="h-4 w-4" strokeWidth={1.6} aria-hidden="true" />
             Website ansehen
@@ -75,7 +75,7 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
           <form action={signOut}>
             <button
               type="submit"
-              className="flex w-full items-center gap-3 rounded-[10px] px-3 py-2.5 text-[0.8125rem] text-white/55 transition-colors hover:bg-white/10 hover:text-white"
+              className="flex w-full items-center gap-3 rounded-[14px] px-3 py-2.5 text-[0.8125rem] text-white/55 transition-colors hover:bg-white/10 hover:text-white"
             >
               <LogOut className="h-4 w-4" strokeWidth={1.6} aria-hidden="true" />
               Abmelden

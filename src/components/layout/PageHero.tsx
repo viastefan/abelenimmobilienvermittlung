@@ -37,7 +37,7 @@ export function PageHero({
   const showEyebrow = Boolean(eyebrow) && !(breadcrumbs && breadcrumbs.length > 0);
 
   return (
-    <section className="relative overflow-hidden border-b border-border bg-surface-mist">
+    <section className="relative overflow-hidden bg-surface-mist">
       {hasMedia && (
         <div className="absolute inset-y-0 right-0 hidden w-[44%] overflow-hidden lg:block" aria-hidden="true">
           <SiteImage src={image} priority sizes="45vw" label={eyebrow} alt="" />
@@ -85,7 +85,7 @@ export function PageHero({
           )}
 
           {hasMedia && (
-            <div className="relative -mx-5 mt-8 aspect-[16/10] overflow-hidden sm:-mx-8 sm:rounded-[14px] lg:hidden">
+            <div className="relative -mx-4 mt-8 aspect-[16/10] overflow-hidden sm:-mx-6 sm:rounded-[24px] lg:hidden">
               <SiteImage src={image} sizes="100vw" label={eyebrow} alt={imageAlt ?? ""} />
             </div>
           )}

@@ -80,7 +80,7 @@ export function PropertyGallery({
 
   return (
     <>
-      <ul className="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-5 pb-1 scroll-pl-5 sm:px-8 sm:scroll-pl-8 lg:gap-4 lg:px-12 lg:scroll-pl-12">
+      <ul className="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 pb-1 scroll-pl-4 sm:px-6 sm:scroll-pl-6 lg:gap-4 lg:px-10 lg:scroll-pl-10">
         {images.map((image, position) => (
           <li
             key={image}
@@ -90,7 +90,7 @@ export function PropertyGallery({
               type="button"
               onClick={() => openAt(position)}
               aria-label={`Bild ${position + 1} von ${images.length} groß ansehen`}
-              className="group relative block aspect-[4/3] w-full overflow-hidden rounded-[14px] border border-border bg-surface-mist"
+              className="group relative block aspect-[4/3] w-full overflow-hidden rounded-[24px] bg-surface-mist"
             >
               <Image
                 src={image}

@@ -35,7 +35,7 @@ export default async function AdminPropertiesPage() {
           />
         </div>
       ) : (
-        <div className="mt-7 overflow-hidden rounded-[14px] border border-border bg-white">
+        <div className="mt-7 overflow-hidden rounded-[24px] bg-white shadow-soft">
           <table className="w-full text-left text-sm">
             <thead className="border-b border-border bg-surface-cool text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-text-subtle">
               <tr>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/layout/Logo";
 import { SocialLinks } from "@/components/layout/SocialLinks";
@@ -28,7 +28,7 @@ function FooterColumn({ title, items }: { title: string; items: { label: string;
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-white">
+    <footer className="bg-surface-warm">
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.1fr] lg:gap-10 lg:py-16">
         <div>
           <Logo />
@@ -45,18 +45,6 @@ export function Footer() {
         <div>
           <p className="font-display text-[0.9375rem] font-bold text-ink">Kontakt</p>
           <ul className="mt-5 space-y-3 text-[0.8125rem] text-text-muted">
-            <li>
-              <a href={site.phoneHref} className="inline-flex items-center gap-3 transition-colors hover:text-accent-deep">
-                <Phone className="h-4 w-4 shrink-0 text-accent-mid" aria-hidden="true" />
-                {site.phone}
-              </a>
-            </li>
-            <li>
-              <a href={site.landlineHref} className="inline-flex items-center gap-3 transition-colors hover:text-accent-deep">
-                <Phone className="h-4 w-4 shrink-0 text-accent-mid" aria-hidden="true" />
-                {site.landline}
-              </a>
-            </li>
             <li>
               <a href={`mailto:${site.email}`} className="inline-flex items-center gap-3 transition-colors hover:text-accent-deep">
                 <Mail className="h-4 w-4 shrink-0 text-accent-mid" aria-hidden="true" />
@@ -77,7 +65,7 @@ export function Footer() {
         </div>
       </Container>
 
-      <div className="border-t border-border">
+      <div>
         <Container className="flex flex-col-reverse items-center justify-between gap-4 py-6 text-[0.8125rem] text-text-subtle sm:flex-row">
           <p>
             © {new Date().getFullYear()} {site.legalName}

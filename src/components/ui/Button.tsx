@@ -3,7 +3,7 @@ import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 import { ArrowRight } from "lucide-react";
 
 const base =
-  "group/btn inline-flex items-center justify-center gap-2 rounded-[10px] px-5 py-3 text-[0.875rem] font-semibold leading-none tracking-[-0.005em] transition-all duration-300 ease-smooth focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50";
+  "group/btn inline-flex items-center justify-center gap-2 rounded-[14px] px-5 py-3 text-[0.875rem] font-semibold leading-none tracking-[-0.005em] transition-all duration-300 ease-smooth focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50";
 
 const variants = {
   /** Turquoise — the one primary action per section. */
@@ -11,8 +11,8 @@ const variants = {
   dark: "bg-ink text-white hover:bg-ink-soft hover:-translate-y-0.5",
   /** For navy surfaces. */
   inverted: "bg-white text-ink hover:bg-accent-soft hover:-translate-y-0.5",
-  secondary: "border border-border-strong bg-white text-ink hover:border-accent hover:text-accent-deep hover:-translate-y-0.5",
-  secondaryInverted: "border border-white/30 bg-transparent text-white hover:border-white hover:bg-white/10",
+  secondary: "bg-surface-mist text-ink hover:bg-accent-soft hover:text-accent-deep hover:-translate-y-0.5",
+  secondaryInverted: "bg-white/15 text-white backdrop-blur hover:bg-white/25 hover:-translate-y-0.5",
   ghost: "px-0 py-0 text-accent-deep hover:text-accent-dark",
 } as const;
 

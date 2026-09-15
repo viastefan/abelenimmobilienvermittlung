@@ -28,7 +28,7 @@ export function SectionHeading({
         </Eyebrow>
       )}
       <h2
-        className={`balance mt-4 font-display font-bold ${
+        className={`balance mt-3 font-display font-bold ${
           size === "lg" ? "text-display-lg" : "text-display-md"
         } ${light ? "text-white" : "text-ink"}`}
       >

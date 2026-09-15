@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
 import { TrustStrip } from "@/components/home/TrustStrip";
 import { Services } from "@/components/home/Services";
-import { About } from "@/components/home/About";
-import { FeaturedProperty } from "@/components/home/FeaturedProperty";
-import { ReferencesPreview } from "@/components/home/ReferencesPreview";
-import { PropertiesPreview } from "@/components/home/PropertiesPreview";
+import { ExpertIntro } from "@/components/home/ExpertIntro";
+import { PropertyShowcase } from "@/components/home/PropertyShowcase";
 import { PersonalService } from "@/components/home/PersonalService";
 import { ContactIntro } from "@/components/home/ContactIntro";
 import { CtaSection } from "@/components/home/CtaSection";
@@ -26,10 +24,8 @@ export default function HomePage() {
       <Hero />
       <TrustStrip />
       <Services />
-      <FeaturedProperty />
-      <About />
-      <PropertiesPreview />
-      <ReferencesPreview />
+      <ExpertIntro />
+      <PropertyShowcase />
       <PersonalService />
       <ContactIntro />
       <CtaSection

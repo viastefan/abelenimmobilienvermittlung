@@ -64,7 +64,7 @@ export default async function ReferenzenPage() {
       </section>
 
       {testimonials.length > 0 && (
-        <section className="border-t border-border bg-surface-warm py-14 lg:py-20">
+        <section className="bg-surface-warm py-14 lg:py-20">
           <Container>
             <SectionHeading
               eyebrow="Kundenmeinungen"

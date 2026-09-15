@@ -40,7 +40,7 @@ export default async function AdminDashboardPage() {
 
       <div className="mt-7 grid grid-cols-2 gap-4 lg:grid-cols-4">
         {stats.map((stat) => (
-          <div key={stat.label} className="rounded-[14px] border border-border bg-white p-5">
+          <div key={stat.label} className="rounded-[24px] bg-white shadow-soft p-5">
             <stat.icon className="h-4 w-4 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
             <p className="mt-4 font-display text-[1.75rem] font-extrabold leading-none tabular-nums text-ink">
               {stat.value}
@@ -51,7 +51,7 @@ export default async function AdminDashboardPage() {
       </div>
 
       {forSale.length === 0 && (
-        <div className="mt-6 rounded-[14px] border border-warning/30 bg-warning-soft px-5 py-4 text-[0.8125rem] leading-relaxed text-warning">
+        <div className="mt-6 rounded-[24px] border border-warning/30 bg-warning-soft px-5 py-4 text-[0.8125rem] leading-relaxed text-warning">
           Aktuell steht kein verfügbares Objekt auf der Startseite. Sobald Sie eine Immobilie
           veröffentlichen, die nicht als „verkauft“ markiert ist, erscheint sie dort automatisch.
         </div>
@@ -65,7 +65,7 @@ export default async function AdminDashboardPage() {
                 <li key={inquiry.id}>
                   <Link
                     href="/admin/anfragen?status=neu"
-                    className="flex items-center justify-between gap-4 rounded-[10px] px-2 py-3 transition-colors hover:bg-surface-cool"
+                    className="flex items-center justify-between gap-4 rounded-[14px] px-2 py-3 transition-colors hover:bg-surface-cool"
                   >
                     <span className="min-w-0">
                       <span className="block truncate text-[0.8125rem] font-semibold text-ink">
@@ -100,7 +100,7 @@ export default async function AdminDashboardPage() {
                 <li key={property.id}>
                   <Link
                     href={`/admin/immobilien/${property.id}`}
-                    className="flex items-center justify-between gap-4 rounded-[10px] px-2 py-3 transition-colors hover:bg-surface-cool"
+                    className="flex items-center justify-between gap-4 rounded-[14px] px-2 py-3 transition-colors hover:bg-surface-cool"
                   >
                     <span className="min-w-0">
                       <span className="block truncate text-[0.8125rem] font-semibold text-ink">
@@ -131,7 +131,7 @@ export default async function AdminDashboardPage() {
                 <li key={reference.id}>
                   <Link
                     href={`/admin/referenzen/${reference.id}`}
-                    className="flex items-center justify-between gap-4 rounded-[10px] px-2 py-3 transition-colors hover:bg-surface-cool"
+                    className="flex items-center justify-between gap-4 rounded-[14px] px-2 py-3 transition-colors hover:bg-surface-cool"
                   >
                     <span className="min-w-0">
                       <span className="block truncate text-[0.8125rem] font-semibold text-ink">

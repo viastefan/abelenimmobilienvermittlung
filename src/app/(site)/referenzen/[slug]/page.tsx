@@ -102,7 +102,7 @@ export default async function ReferenceDetailPage({ params }: Params) {
         </div>
 
         <Container>
-          <div className="relative -mt-10 rounded-[18px] border border-border bg-white p-6 shadow-lift lg:-mt-14 lg:p-8">
+          <div className="relative -mt-10 rounded-[24px] bg-white shadow-soft p-6 shadow-lift lg:-mt-14 lg:p-8">
             <dl className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-5">
               {facts.map((fact) => (
                 <div key={fact.label}>
@@ -117,7 +117,7 @@ export default async function ReferenceDetailPage({ params }: Params) {
               ))}
             </dl>
 
-            <p className="pretty mt-7 border-t border-border pt-6 text-[0.9375rem] leading-relaxed text-text-muted">
+            <p className="pretty mt-7 pt-6 text-[0.9375rem] leading-relaxed text-text-muted">
               {item.summary}
             </p>
           </div>
@@ -152,7 +152,7 @@ export default async function ReferenceDetailPage({ params }: Params) {
           </div>
 
           <aside>
-            <div className="rounded-[16px] border border-border bg-surface-warm p-7">
+            <div className="rounded-[24px] bg-surface-warm p-7">
               <h2 className="font-display text-display-sm font-bold text-ink">Ausstattung</h2>
               <ul className="mt-5 space-y-3">
                 {item.equipment.map((feature) => (
@@ -163,11 +163,11 @@ export default async function ReferenceDetailPage({ params }: Params) {
                 ))}
               </ul>
 
-              <div className="mt-8 flex flex-wrap gap-2 border-t border-border pt-6">
-                <span className="inline-flex items-center gap-1.5 rounded-[10px] bg-white px-2.5 py-1.5 text-[0.75rem] font-medium text-text-muted">
+              <div className="mt-8 flex flex-wrap gap-2 pt-6">
+                <span className="inline-flex items-center gap-1.5 rounded-[14px] bg-white px-2.5 py-1.5 text-[0.75rem] font-medium text-text-muted">
                   {statusLabel}
                 </span>
-                <span className="inline-flex items-center gap-1.5 rounded-[10px] bg-white px-2.5 py-1.5 text-[0.75rem] font-medium text-text-muted">
+                <span className="inline-flex items-center gap-1.5 rounded-[14px] bg-white px-2.5 py-1.5 text-[0.75rem] font-medium text-text-muted">
                   {item.typeLabel}
                 </span>
               </div>
@@ -177,7 +177,7 @@ export default async function ReferenceDetailPage({ params }: Params) {
       </section>
 
       {gallery.length > 0 && (
-        <section id="galerie" className="overflow-hidden border-t border-border bg-surface-warm py-14 lg:py-20">
+        <section id="galerie" className="overflow-hidden bg-surface-warm py-14 lg:py-20">
           <Container>
             <h2 className="font-display text-display-sm font-bold text-ink">Bildergalerie</h2>
             <p className="mt-2 text-[0.9375rem] text-text-muted">

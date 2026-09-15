@@ -48,14 +48,14 @@ export default async function AdminInquiriesPage({
       {/* Segmentierte Auswahl wie in den Systemeinstellungen. */}
       <nav
         aria-label="Anfragen filtern"
-        className="mt-7 inline-flex rounded-[12px] border border-border bg-white p-1"
+        className="mt-7 inline-flex rounded-[14px] bg-white shadow-soft p-1"
       >
         {segments.map((segment) => (
           <Link
             key={segment.href}
             href={segment.href}
             aria-current={segment.active ? "page" : undefined}
-            className={`rounded-[9px] px-3.5 py-2 text-[0.8125rem] font-semibold transition-colors duration-200 ${
+            className={`rounded-[14px] px-3.5 py-2 text-[0.8125rem] font-semibold transition-colors duration-200 ${
               segment.active ? "bg-ink text-white" : "text-text-muted hover:text-ink"
             }`}
           >
@@ -81,7 +81,7 @@ export default async function AdminInquiriesPage({
       ) : (
         <ul className="mt-7 space-y-4">
           {visible.map((inquiry) => (
-            <li key={inquiry.id} className="overflow-hidden rounded-[14px] border border-border bg-white">
+            <li key={inquiry.id} className="overflow-hidden rounded-[24px] bg-white shadow-soft">
               <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border px-5 py-4">
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2.5">
@@ -168,7 +168,7 @@ export default async function AdminInquiriesPage({
                       <button
                         type="submit"
                         aria-pressed={inquiry.status === option.value}
-                        className={`rounded-[9px] px-3 py-2 text-[0.8125rem] font-semibold transition-colors duration-200 ${
+                        className={`rounded-[14px] px-3 py-2 text-[0.8125rem] font-semibold transition-colors duration-200 ${
                           inquiry.status === option.value
                             ? "bg-ink text-white"
                             : "bg-white text-text-muted hover:text-ink"
