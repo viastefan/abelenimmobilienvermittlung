@@ -1,4 +1,4 @@
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
@@ -45,22 +45,6 @@ export function ContactIntro() {
             <div className="flex flex-col gap-5">
               <div className="rounded-[16px] bg-white p-5 shadow-soft sm:rounded-[18px] sm:p-7">
                 <ul className="space-y-5">
-                  <li>
-                    <a
-                      href={site.landlineHref}
-                      className="group flex items-start gap-4 transition-colors hover:text-accent-deep"
-                    >
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-accent-soft text-accent-deep">
-                        <Phone className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
-                      </span>
-                      <span>
-                        <span className="block text-[0.8125rem] font-medium text-text-subtle">Tel.</span>
-                        <span className="mt-0.5 block font-display text-[1.0625rem] font-bold text-ink group-hover:text-accent-deep">
-                          {site.landline}
-                        </span>
-                      </span>
-                    </a>
-                  </li>
                   <li>
                     <a
                       href={`mailto:${site.email}`}

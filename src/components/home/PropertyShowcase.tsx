@@ -1,13 +1,15 @@
 import { getActiveProperties, getFeaturedActiveProperty } from "@/data/properties";
 import { resolveFirstImage } from "@/lib/imagery";
+import { propertyFacts } from "@/lib/property-facts";
 import {
   PropertyShowcaseSlider,
   type ShowcaseSlide,
 } from "@/components/home/PropertyShowcaseSlider";
 
 /**
- * Die weiteren Angebote der Startseite. Das große Objekt weiter oben hat
- * seinen eigenen Block und taucht hier nicht noch einmal auf.
+ * Die weiteren Angebote der Startseite. Das Objekt aus dem Abschnitt „Ihr
+ * Experte für Immobilien“ hat dort seinen Platz und taucht hier nicht noch
+ * einmal auf — auf der Startseite steht kein Objekt zweimal.
  *
  * Die Bildpfade werden hier serverseitig aufgelöst, weil die Diashow selbst
  * im Browser läuft und dort nicht ins Dateisystem sehen kann.
@@ -23,8 +25,7 @@ export async function PropertyShowcase() {
     city: property.city,
     statusLabel: property.statusLabel,
     priceLabel: property.priceLabel,
-    livingSpace: `${property.livingSpace.toString().replace(".", ",")} m²`,
-    rooms: `${property.rooms} Zimmer`,
+    facts: propertyFacts(property),
     description: property.description.length > 0 ? property.description : [property.summary],
     image: resolveFirstImage(property.images),
   }));

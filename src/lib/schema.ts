@@ -8,12 +8,10 @@ export function organizationSchema() {
     name: site.name,
     legalName: site.legalName,
     url: site.url,
-    telephone: site.phoneHref.replace("tel:", ""),
     contactPoint: [
       {
         "@type": "ContactPoint",
         contactType: "customer service",
-        telephone: site.landlineHref.replace("tel:", ""),
         email: site.email,
         areaServed: "DE",
         availableLanguage: "German",

@@ -8,7 +8,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { ArrowRight, ChevronRight, Mail, MessageSquare, Phone, Smartphone } from "lucide-react";
+import { ArrowRight, ChevronRight, Mail, MessageSquare, Phone } from "lucide-react";
 import { Sheet } from "@/components/ui/Sheet";
 import { InquiryForm } from "@/components/contact/InquiryForm";
 import { site } from "@/data/site";
@@ -96,14 +96,12 @@ export function ContactSheetProvider({ children }: { children: ReactNode }) {
             )}
 
             <ContactRow
-              href={site.phoneHref}
-              icon={Smartphone}
-              label="Mobil anrufen"
-              value={site.phone}
+              href={`mailto:${site.email}`}
+              icon={Mail}
+              label="E-Mail schreiben"
+              value={site.email}
               autofocus
             />
-            <ContactRow href={site.landlineHref} icon={Phone} label="Büro anrufen" value={site.landline} />
-            <ContactRow href={`mailto:${site.email}`} icon={Mail} label="E-Mail schreiben" value={site.email} />
 
             <button
               type="button"

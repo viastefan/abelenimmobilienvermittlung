@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Check } from "lucide-react";
+import { Check, Mail, Phone, Smartphone } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -71,6 +71,33 @@ export default function UeberMichPage() {
               />
             </div>
             <TrustBadges className="mt-6" />
+
+            {/* Der direkte Draht steht nur hier. Silke Abelen arbeitet als
+                Einzelne, nicht als Firma — ihre Nummer gehört deshalb nicht
+                in Kopfzeile, Fußzeile und jede Objektseite. */}
+            <div className="mt-6 rounded-[14px] border border-border bg-surface-warm p-6">
+              <p className="font-display text-[0.9375rem] font-bold text-ink">Direkter Draht</p>
+              <ul className="mt-4 space-y-3.5">
+                <ContactLine
+                  href={site.phoneHref}
+                  icon={Smartphone}
+                  label="Mobil"
+                  value={site.phone}
+                />
+                <ContactLine
+                  href={site.landlineHref}
+                  icon={Phone}
+                  label="Telefon"
+                  value={site.landline}
+                />
+                <ContactLine
+                  href={`mailto:${site.email}`}
+                  icon={Mail}
+                  label="E-Mail"
+                  value={site.email}
+                />
+              </ul>
+            </div>
           </Reveal>
 
           <Reveal delay={100}>
@@ -165,5 +192,33 @@ export default function UeberMichPage() {
         ])}
       />
     </>
+  );
+}
+
+function ContactLine({
+  href,
+  icon: Icon,
+  label,
+  value,
+}: {
+  href: string;
+  icon: typeof Phone;
+  label: string;
+  value: string;
+}) {
+  return (
+    <li>
+      <a href={href} className="group flex items-start gap-3.5 transition-colors hover:text-accent-deep">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[11px] bg-white text-accent-deep ring-1 ring-border">
+          <Icon className="h-[18px] w-[18px]" strokeWidth={1.6} aria-hidden="true" />
+        </span>
+        <span className="min-w-0">
+          <span className="block text-[0.75rem] font-medium text-text-subtle">{label}</span>
+          <span className="mt-0.5 block truncate font-display text-[0.9375rem] font-bold text-ink group-hover:text-accent-deep">
+            {value}
+          </span>
+        </span>
+      </a>
+    </li>
   );
 }

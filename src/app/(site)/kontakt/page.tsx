@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, MapPin } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Container } from "@/components/ui/Container";
 import { ContactForm } from "@/components/contact/ContactForm";
@@ -23,7 +23,7 @@ export default function KontaktPage() {
       <PageHero
         eyebrow="Kontakt"
         title="Sprechen wir über Ihre Immobilie."
-        description="Ob Bewertung, Verkauf, Vermietung oder eine erste Einschätzung — schreiben Sie uns oder rufen Sie einfach an."
+        description="Ob Bewertung, Verkauf, Vermietung oder eine erste Einschätzung — schreiben Sie uns über das Formular oder per E-Mail."
         breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Kontakt" }]}
       />
 
@@ -34,42 +34,6 @@ export default function KontaktPage() {
             <p className="mt-1.5 text-[0.9375rem] text-text-muted">{site.legalName}</p>
 
             <ul className="mt-8 space-y-5">
-              <li>
-                <a
-                  href={site.phoneHref}
-                  className="group flex items-start gap-4 transition-colors hover:text-accent-deep"
-                >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-accent-soft text-accent-deep">
-                    <Phone className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
-                  </span>
-                  <span>
-                    <span className="block text-[0.8125rem] font-medium text-text-subtle">
-                      Mobil
-                    </span>
-                    <span className="mt-0.5 block font-display text-[1.0625rem] font-bold text-ink group-hover:text-accent-deep">
-                      {site.phone}
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={site.landlineHref}
-                  className="group flex items-start gap-4 transition-colors hover:text-accent-deep"
-                >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-accent-soft text-accent-deep">
-                    <Phone className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
-                  </span>
-                  <span>
-                    <span className="block text-[0.8125rem] font-medium text-text-subtle">
-                      Telefon
-                    </span>
-                    <span className="mt-0.5 block font-display text-[1.0625rem] font-bold text-ink group-hover:text-accent-deep">
-                      {site.landline}
-                    </span>
-                  </span>
-                </a>
-              </li>
               <li>
                 <a
                   href={`mailto:${site.email}`}

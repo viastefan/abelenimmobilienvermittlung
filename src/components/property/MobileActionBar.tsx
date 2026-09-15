@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MessageSquare, Phone } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 import { useContactSheet } from "@/components/contact/ContactSheetProvider";
-import { site } from "@/data/site";
 
 /**
  * Aktionsleiste am unteren Rand — erscheint auf dem Telefon, sobald der
@@ -45,14 +44,6 @@ export function MobileActionBar({
               {priceLabel}
             </span>
           </span>
-
-          <a
-            href={site.phoneHref}
-            aria-label={`${site.owner} anrufen`}
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[12px] border border-border-strong text-ink"
-          >
-            <Phone className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" />
-          </a>
 
           <button
             type="button"

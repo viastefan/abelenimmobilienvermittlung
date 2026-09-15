@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Check, DoorOpen, Images, Mail, Phone, Ruler } from "lucide-react";
+import { ArrowLeft, Check, DoorOpen, Images, Mail, Ruler } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SiteImage } from "@/components/graphics/SiteImage";
 import { PropertyGallery } from "@/components/property/PropertyGallery";
@@ -150,13 +150,6 @@ export default async function PropertyDetailPage({
                 <Mail className="h-4 w-4" aria-hidden="true" />
                 Besichtigung anfragen
               </ContactButton>
-              <a
-                href={site.phoneHref}
-                className="inline-flex items-center justify-center gap-2 rounded-[11px] border border-border-strong bg-white px-6 py-3.5 text-[0.9375rem] font-semibold text-ink transition-all duration-300 ease-smooth hover:border-accent hover:text-accent-deep"
-              >
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                {site.phone}
-              </a>
               {property.heroNote && (
                 <p className="text-[0.8125rem] leading-relaxed text-text-muted sm:ml-2">{property.heroNote}</p>
               )}
@@ -241,14 +234,8 @@ export default async function PropertyDetailPage({
               </p>
               <p className="mt-2 font-display text-[1.0625rem] font-bold text-ink">{site.owner}</p>
               <a
-                href={site.phoneHref}
-                className="mt-2 block text-[0.9375rem] text-text-muted transition-colors hover:text-accent-deep"
-              >
-                {site.phone}
-              </a>
-              <a
                 href={`mailto:${site.email}`}
-                className="block text-[0.9375rem] text-text-muted transition-colors hover:text-accent-deep"
+                className="mt-2 block text-[0.9375rem] text-text-muted transition-colors hover:text-accent-deep"
               >
                 {site.email}
               </a>

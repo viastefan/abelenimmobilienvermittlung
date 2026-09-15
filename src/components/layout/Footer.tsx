@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/layout/Logo";
 import { SocialLinks } from "@/components/layout/SocialLinks";
@@ -45,18 +45,6 @@ export function Footer() {
         <div>
           <p className="font-display text-[0.9375rem] font-bold text-ink">Kontakt</p>
           <ul className="mt-5 space-y-3 text-[0.8125rem] text-text-muted">
-            <li>
-              <a href={site.phoneHref} className="inline-flex items-center gap-3 transition-colors hover:text-accent-deep">
-                <Phone className="h-4 w-4 shrink-0 text-accent-mid" aria-hidden="true" />
-                {site.phone}
-              </a>
-            </li>
-            <li>
-              <a href={site.landlineHref} className="inline-flex items-center gap-3 transition-colors hover:text-accent-deep">
-                <Phone className="h-4 w-4 shrink-0 text-accent-mid" aria-hidden="true" />
-                {site.landline}
-              </a>
-            </li>
             <li>
               <a href={`mailto:${site.email}`} className="inline-flex items-center gap-3 transition-colors hover:text-accent-deep">
                 <Mail className="h-4 w-4 shrink-0 text-accent-mid" aria-hidden="true" />

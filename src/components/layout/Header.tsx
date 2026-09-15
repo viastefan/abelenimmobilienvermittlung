@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ChevronDown, Mail, Menu, MessageSquare, Phone, X } from "lucide-react";
+import { ChevronDown, Mail, Menu, MessageSquare, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/layout/Logo";
 import { CurrentDate } from "@/components/layout/CurrentDate";
@@ -69,10 +69,6 @@ export function Header() {
             <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 transition-colors hover:text-accent-deep">
               <Mail className="h-3.5 w-3.5 text-accent-mid" aria-hidden="true" />
               {site.email}
-            </a>
-            <a href={site.landlineHref} className="inline-flex items-center gap-2 transition-colors hover:text-accent-deep">
-              <Phone className="h-3.5 w-3.5 text-accent-mid" aria-hidden="true" />
-              Tel.: {site.landline}
             </a>
             <CurrentDate className="tabular-nums text-text-subtle" />
           </div>
@@ -161,8 +157,8 @@ export function Header() {
             options={{ title: "Kontakt aufnehmen" }}
             className="hidden shrink-0 items-center gap-2.5 rounded-[10px] bg-accent-deep px-5 py-3 text-sm font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-dark lg:inline-flex"
           >
-            <Phone className="h-4 w-4" aria-hidden="true" />
-            {site.phone}
+            <MessageSquare className="h-4 w-4" aria-hidden="true" />
+            Kontakt aufnehmen
           </ContactButton>
 
           <button
@@ -231,15 +227,7 @@ export function Header() {
           </ContactButton>
 
           <div className="mt-8 text-sm text-text-muted">
-            <a href={site.phoneHref} className="flex items-center gap-3 py-2.5 font-semibold text-ink">
-              <Phone className="h-4 w-4 text-accent-mid" aria-hidden="true" />
-              {site.phone}
-            </a>
-            <a href={site.landlineHref} className="flex items-center gap-3 py-2.5">
-              <Phone className="h-4 w-4 text-accent-mid" aria-hidden="true" />
-              Tel.: {site.landline}
-            </a>
-            <a href={`mailto:${site.email}`} className="flex items-center gap-3 py-2.5">
+            <a href={`mailto:${site.email}`} className="flex items-center gap-3 py-2.5 font-semibold text-ink">
               <Mail className="h-4 w-4 text-accent-mid" aria-hidden="true" />
               {site.email}
             </a>
