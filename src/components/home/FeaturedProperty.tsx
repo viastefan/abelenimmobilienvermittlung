@@ -25,7 +25,7 @@ export async function FeaturedProperty() {
     { label: "Wohnfläche", value: `${property.livingSpace.toString().replace(".", ",")} m²` },
     { label: "Zimmer", value: String(property.rooms) },
     ...property.features
-      .filter((feature) => !/wohnfläche|zimmer|kaufpreis|preis/i.test(feature.label))
+      .filter((feature) => !/wohnfläche|zimmer|kaufpreis|preis|grundstück/i.test(feature.label))
       .slice(0, 2)
       .map((feature) => ({ label: feature.label, value: feature.value })),
   ];

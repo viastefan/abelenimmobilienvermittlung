@@ -31,8 +31,9 @@ export const fallbackProperties: Property[] = [
     ],
     features: [
       { label: "Wohnfläche", value: "ca. 171,31 m²" },
-      { label: "Grundstück", value: "ca. 373 m²" },
       { label: "Zimmer", value: "6" },
+      { label: "Balkon", value: "Ja" },
+      { label: "Grundstück", value: "ca. 373 m²" },
       { label: "Stellplätze", value: "3" },
     ],
     equipment: [
