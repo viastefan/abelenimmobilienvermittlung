@@ -9,8 +9,8 @@ export function ContactIntro() {
   return (
     <section className="bg-white py-20 lg:py-28">
       <Container>
-        <Reveal className="overflow-hidden rounded-[28px] bg-surface-warm p-6 sm:p-10 lg:p-14">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16">
+        <Reveal className="overflow-hidden rounded-[20px] bg-surface-warm p-5 sm:rounded-[28px] sm:p-10 lg:p-14">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16">
             <div>
               <h2 className="balance font-display text-display-lg font-bold text-ink">
                 Der Erste Schritt zur Kontaktaufnahme
@@ -42,8 +42,8 @@ export function ContactIntro() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-6">
-              <div className="rounded-[18px] bg-white p-6 shadow-soft sm:p-7">
+            <div className="flex flex-col gap-5">
+              <div className="rounded-[16px] bg-white p-5 shadow-soft sm:rounded-[18px] sm:p-7">
                 <ul className="space-y-5">
                   <li>
                     <a
@@ -89,7 +89,7 @@ export function ContactIntro() {
                 </Button>
               </div>
 
-              <div className="rounded-[18px] bg-white p-6 shadow-soft sm:p-7">
+              <div className="rounded-[16px] bg-white p-5 shadow-soft sm:rounded-[18px] sm:p-7">
                 <span className="inline-flex items-center gap-2 text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-accent-deep">
                   <MapPin className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
                   Tätigkeitsgebiet

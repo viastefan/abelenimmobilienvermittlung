@@ -25,7 +25,7 @@ export function TrustBadges({ className = "" }: { className?: string }) {
                 alt={badge.alt}
                 width={badge.width}
                 height={badge.height}
-                className="h-14 w-auto sm:h-[4.25rem]"
+                className="h-16 w-auto sm:h-[5rem]"
               />
             </li>
           );
