@@ -34,7 +34,9 @@ export async function FeaturedProperty() {
     <section className="border-y border-border bg-surface-warm py-14 lg:py-20">
       <Container className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[14px] bg-surface-mist">
+          {/* `group` ist Bedingung, nicht Zierde: die Pfeile der Galerie
+              blenden sich über `group-hover` ein. */}
+          <div className="group relative overflow-hidden rounded-[14px] bg-surface-mist">
             {gallery.length > 1 ? (
               <CardGallery
                 images={gallery}
