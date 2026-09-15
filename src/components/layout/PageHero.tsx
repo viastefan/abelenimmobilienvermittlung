@@ -85,7 +85,7 @@ export function PageHero({
           )}
 
           {hasMedia && (
-            <div className="relative -mx-4 mt-8 aspect-[16/10] overflow-hidden sm:-mx-6 sm:rounded-[24px] lg:hidden">
+            <div className="relative -mx-6 mt-8 aspect-[16/10] overflow-hidden sm:rounded-[24px] lg:hidden">
               <SiteImage src={image} sizes="100vw" label={eyebrow} alt={imageAlt ?? ""} />
             </div>
           )}

@@ -25,7 +25,7 @@ export function TestimonialCard({
 
   return (
     <figure
-      className={`relative overflow-hidden rounded-[24px] bg-white shadow-soft p-7 shadow-card sm:p-9 ${className}`}
+      className={`relative overflow-hidden rounded-[24px] bg-white shadow-soft ring-1 ring-border p-7 shadow-card sm:p-9 ${className}`}
     >
       <Quote
         className="absolute -right-3 -top-3 h-24 w-24 text-accent-soft"

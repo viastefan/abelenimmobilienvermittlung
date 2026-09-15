@@ -124,7 +124,7 @@ export default function BewertungPage() {
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {wertermittlungsverfahren.map((verfahren, index) => (
               <Reveal key={verfahren.name} delay={index * 90} className="h-full">
-                <div className="flex h-full flex-col rounded-[14px] bg-white shadow-soft p-6 lg:p-7">
+                <div className="flex h-full flex-col rounded-[14px] bg-white shadow-soft ring-1 ring-border p-6 lg:p-7">
                   <h3 className="font-display text-[1rem] font-bold text-ink">{verfahren.name}</h3>
                   <p className="mt-1.5 text-[0.8125rem] font-semibold text-accent-deep">
                     {verfahren.lead}

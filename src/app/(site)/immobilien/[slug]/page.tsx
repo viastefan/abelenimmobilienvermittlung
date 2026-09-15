@@ -128,7 +128,7 @@ export default async function PropertyDetailPage({
 
         {/* Eckdaten überlappen den Kopfbereich — wie eine Karte auf dem Foto. */}
         <Container>
-          <div className="relative -mt-10 rounded-[24px] bg-white shadow-soft p-6 shadow-lift lg:-mt-14 lg:p-8">
+          <div className="relative -mt-10 rounded-[24px] bg-white shadow-soft ring-1 ring-border p-6 shadow-lift lg:-mt-14 lg:p-8">
             <dl className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-6">
               {keyFacts.map((fact) => (
                 <div key={fact.label}>

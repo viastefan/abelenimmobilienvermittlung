@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SlideArrow } from "@/components/ui/SlideArrow";
 import { SiteImage } from "@/components/graphics/SiteImage";
-import { BrandWave } from "@/components/graphics/BrandWave";
+import { HeadingRule } from "@/components/ui/HeadingRule";
 import { useSnapTrack } from "@/components/ui/useSnapTrack";
 import { PropertyFacts, type PropertyFact } from "@/components/property/PropertyFacts";
 
@@ -45,7 +45,7 @@ export function PropertyShowcaseSlider({ slides }: { slides: ShowcaseSlide[] }) 
             <h2 className="balance font-display text-display-lg font-bold text-ink">
               Weiter Objekte zu verkaufen
             </h2>
-            <BrandWave className="mt-3 text-accent" />
+            <HeadingRule className="mt-5" />
           </div>
 
           {many && (

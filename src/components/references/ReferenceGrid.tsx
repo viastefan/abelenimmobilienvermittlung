@@ -77,7 +77,7 @@ export function ReferenceGrid({ references }: { references: ReferenceCardItem[] 
               setLimit(PAGE_SIZE);
             }}
             placeholder="Ort, Objektart oder Stichwort …"
-            className="w-full rounded-[14px] bg-white shadow-soft py-2.5 pl-11 pr-4 text-sm text-ink placeholder:text-text-subtle focus:border-accent focus:outline-none"
+            className="w-full rounded-[14px] bg-white shadow-soft ring-1 ring-border py-2.5 pl-11 pr-4 text-sm text-ink placeholder:text-text-subtle focus:outline-none"
           />
         </div>
       </div>

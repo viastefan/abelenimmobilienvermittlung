@@ -35,7 +35,7 @@ export default async function AdminReferencesPage() {
           />
         </div>
       ) : (
-        <div className="mt-7 overflow-hidden rounded-[24px] bg-white shadow-soft">
+        <div className="mt-7 overflow-hidden rounded-[24px] bg-white shadow-soft ring-1 ring-border">
           <div className="hidden grid-cols-[minmax(0,1fr)_9rem_7rem_9rem] gap-4 border-b border-border bg-surface-cool px-5 py-3 text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-text-subtle lg:grid">
             <span>Objekt</span>
             <span>Status</span>
