@@ -9,8 +9,11 @@ import { WhyAbelen } from "@/components/home/WhyAbelen";
 import { CtaSection } from "@/components/home/CtaSection";
 import { ContactButton } from "@/components/contact/ContactButton";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SiteImage } from "@/components/graphics/SiteImage";
 import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
+import { resolveImage } from "@/lib/imagery";
+import { images } from "@/data/imagery";
 import { dienstleistungen, services } from "@/data/services";
 
 export const metadata: Metadata = pageSeo({
@@ -39,6 +42,8 @@ export default function LeistungenPage() {
           </>
         }
         breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Dienstleistungen" }]}
+        withMedia
+        image={resolveImage(images.leistungen)}
       />
 
       <section className="py-14 lg:py-20">
@@ -72,14 +77,26 @@ export default function LeistungenPage() {
 
       <section className="border-t border-border bg-surface-cool py-14 lg:py-20">
         <Container>
-          <Reveal>
-            <SectionHeading
-              eyebrow="Meine Dienstleistungen"
-              size="lg"
-              title="Eine Übersicht — von der ersten Beratung bis zur Vermittlung"
-              description="Der Kauf oder Verkauf einer Immobilie ist eine der wichtigsten Entscheidungen in Ihrem Leben. Hier finden Sie eine Übersicht unserer professionellen Dienstleistungen, die Sie bei jedem Schritt unterstützen – von der ersten Beratung über die Preisgestaltung bis zur erfolgreichen Vermittlung."
-            />
-          </Reveal>
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
+            <Reveal>
+              <SectionHeading
+                eyebrow="Meine Dienstleistungen"
+                size="lg"
+                title="Eine Übersicht — von der ersten Beratung bis zur Vermittlung"
+                description="Der Kauf oder Verkauf einer Immobilie ist eine der wichtigsten Entscheidungen in Ihrem Leben. Hier finden Sie eine Übersicht unserer professionellen Dienstleistungen, die Sie bei jedem Schritt unterstützen – von der ersten Beratung über die Preisgestaltung bis zur erfolgreichen Vermittlung."
+              />
+            </Reveal>
+            <Reveal delay={100}>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[18px] bg-surface-mist">
+                <SiteImage
+                  src={resolveImage(images.leistungenNetzwerk)}
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  label="Netzwerk"
+                  alt="Handschlag zwischen Geschäftspartnern vor einem modernen Gebäude"
+                />
+              </div>
+            </Reveal>
+          </div>
 
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {dienstleistungen.map((item, index) => {

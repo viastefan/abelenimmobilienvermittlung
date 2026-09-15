@@ -33,6 +33,10 @@ export const images = {
   vermieten: siteMedia.vermieten,
   /** Seite Referenzen, Kopfbereich. */
   referenzen: siteMedia.referenzen,
+  /** Seite Dienstleistungen, Kopfbereich. */
+  leistungen: "/images/leistungen.avif",
+  /** Seite Dienstleistungen, Abschnitt „Meine Dienstleistungen“. */
+  leistungenNetzwerk: "/images/leistungen-netzwerk.avif",
 } as const;
 
 export type ImageKey = keyof typeof images;
