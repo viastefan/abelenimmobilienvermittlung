@@ -30,7 +30,7 @@ export function SnapCarousel({
   items,
   itemClassName = "basis-[84%] sm:basis-[46%] lg:basis-[31.5%]",
   gapClassName = "gap-4 lg:gap-5",
-  peekClassName = "px-5 scroll-pl-5 sm:px-8 sm:scroll-pl-8 lg:px-12 lg:scroll-pl-12",
+  peekClassName = "px-4 scroll-pl-4 sm:px-6 sm:scroll-pl-6 lg:px-10 lg:scroll-pl-10",
   className = "",
 }: {
   /** Zugänglicher Name der Scroll-Region. */
@@ -269,7 +269,7 @@ function CarouselButton({
       aria-label={side === "left" ? "Vorheriges Objekt" : "Nächstes Objekt"}
       aria-hidden={hidden}
       tabIndex={hidden ? -1 : 0}
-      className={`absolute top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-white/80 text-ink shadow-lift backdrop-blur transition-all duration-300 ease-smooth hover:bg-white lg:flex ${
+      className={`absolute top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-soft/80 text-ink shadow-lift backdrop-blur transition-all duration-300 ease-smooth hover:bg-white lg:flex ${
         side === "left" ? "left-2" : "right-2"
       } ${hidden ? "pointer-events-none scale-90 opacity-0" : "opacity-100"}`}
     >

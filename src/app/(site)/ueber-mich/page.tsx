@@ -62,7 +62,7 @@ export default function UeberMichPage() {
       <section className="py-16 lg:py-20">
         <Container className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
           <Reveal>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[14px] bg-surface-mist">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-surface-mist">
               <SiteImage
                 src={portrait}
                 sizes="(min-width: 1024px) 40vw, 100vw"
@@ -75,7 +75,7 @@ export default function UeberMichPage() {
             {/* Der direkte Draht steht nur hier. Silke Abelen arbeitet als
                 Einzelne, nicht als Firma — ihre Nummer gehört deshalb nicht
                 in Kopfzeile, Fußzeile und jede Objektseite. */}
-            <div className="mt-6 rounded-[14px] border border-border bg-surface-warm p-6">
+            <div className="mt-6 rounded-[24px] bg-surface-warm p-6">
               <p className="font-display text-[0.9375rem] font-bold text-ink">Direkter Draht</p>
               <ul className="mt-4 space-y-3.5">
                 <ContactLine
@@ -141,7 +141,7 @@ export default function UeberMichPage() {
       </section>
 
 
-      <section className="border-t border-border bg-white py-16 lg:py-20">
+      <section className="bg-white py-16 lg:py-20">
         <Container className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
           <Reveal>
             <SectionHeading
@@ -153,7 +153,7 @@ export default function UeberMichPage() {
               {regions.map((region) => (
                 <li
                   key={region}
-                  className={`rounded-[11px] border px-5 py-2.5 text-[0.9375rem] ${
+                  className={`rounded-[14px] border px-5 py-2.5 text-[0.9375rem] ${
                     region === site.serviceArea
                       ? "border-accent bg-accent-soft font-bold text-ink"
                       : "border-border bg-white text-text-muted"
@@ -166,7 +166,7 @@ export default function UeberMichPage() {
           </Reveal>
 
           <Reveal delay={100}>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[14px] bg-surface-mist">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-surface-mist">
               <SiteImage
                 src={arbeitsplatz}
                 sizes="(min-width: 1024px) 40vw, 100vw"
@@ -209,7 +209,7 @@ function ContactLine({
   return (
     <li>
       <a href={href} className="group flex items-start gap-3.5 transition-colors hover:text-accent-deep">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[11px] bg-white text-accent-deep ring-1 ring-border">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] bg-white text-accent-deep ring-1 ring-border">
           <Icon className="h-[18px] w-[18px]" strokeWidth={1.6} aria-hidden="true" />
         </span>
         <span className="min-w-0">

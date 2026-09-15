@@ -63,9 +63,9 @@ export function CookieConsent() {
         }`}
         {...(banner ? {} : { "aria-hidden": true })}
       >
-        <div className="rounded-[18px] border border-border bg-white/95 p-5 shadow-lift backdrop-blur-xl pb-safe sm:pb-5">
+        <div className="rounded-[24px] bg-white shadow-soft/95 p-5 shadow-lift backdrop-blur-xl pb-safe sm:pb-5">
           <div className="flex items-start gap-3">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[11px] bg-accent-soft text-accent-deep">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[14px] bg-accent-soft text-accent-deep">
               <Cookie className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" />
             </span>
             <div>
@@ -85,7 +85,7 @@ export function CookieConsent() {
             <button
               type="button"
               onClick={() => decide(allAccepted)}
-              className="w-full rounded-[11px] bg-accent-deep px-5 py-3 text-[0.875rem] font-semibold text-white transition-colors duration-200 hover:bg-accent-dark"
+              className="w-full rounded-[14px] bg-accent-deep px-5 py-3 text-[0.875rem] font-semibold text-white transition-colors duration-200 hover:bg-accent-dark"
             >
               Alle akzeptieren
             </button>
@@ -93,7 +93,7 @@ export function CookieConsent() {
               <button
                 type="button"
                 onClick={() => decide(necessaryOnly)}
-                className="flex-1 rounded-[11px] border border-border-strong bg-white px-4 py-3 text-[0.875rem] font-semibold text-ink transition-colors duration-200 hover:border-accent hover:text-accent-deep"
+                className="flex-1 rounded-[14px] bg-surface-mist px-4 py-3 text-[0.875rem] font-semibold text-ink transition-colors duration-200 hover:bg-accent-soft hover:text-accent-deep"
               >
                 Nur notwendige
               </button>
@@ -103,7 +103,7 @@ export function CookieConsent() {
                   setBanner(false);
                   setSettings(true);
                 }}
-                className="flex-1 rounded-[11px] px-4 py-3 text-[0.875rem] font-semibold text-text-muted transition-colors duration-200 hover:text-ink"
+                className="flex-1 rounded-[14px] px-4 py-3 text-[0.875rem] font-semibold text-text-muted transition-colors duration-200 hover:text-ink"
               >
                 Einstellungen
               </button>
@@ -122,14 +122,14 @@ export function CookieConsent() {
             <button
               type="button"
               onClick={() => decide(choice)}
-              className="flex-1 rounded-[11px] bg-accent-deep px-5 py-3 text-[0.875rem] font-semibold text-white transition-colors duration-200 hover:bg-accent-dark"
+              className="flex-1 rounded-[14px] bg-accent-deep px-5 py-3 text-[0.875rem] font-semibold text-white transition-colors duration-200 hover:bg-accent-dark"
             >
               Auswahl speichern
             </button>
             <button
               type="button"
               onClick={() => decide(allAccepted)}
-              className="flex-1 rounded-[11px] border border-border-strong bg-white px-5 py-3 text-[0.875rem] font-semibold text-ink transition-colors duration-200 hover:border-accent hover:text-accent-deep"
+              className="flex-1 rounded-[14px] bg-surface-mist px-5 py-3 text-[0.875rem] font-semibold text-ink transition-colors duration-200 hover:bg-accent-soft hover:text-accent-deep"
             >
               Alle akzeptieren
             </button>
@@ -140,7 +140,7 @@ export function CookieConsent() {
           {consentCategories.map((category) => {
             const active = category.required || choice[category.key];
             return (
-              <li key={category.key} className="rounded-[14px] border border-border bg-surface-warm p-4">
+              <li key={category.key} className="rounded-[24px] bg-surface-warm p-4">
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <p className="font-display text-[0.9375rem] font-bold text-ink">{category.title}</p>

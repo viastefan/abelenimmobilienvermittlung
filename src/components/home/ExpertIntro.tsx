@@ -1,5 +1,4 @@
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { resolveImages } from "@/lib/imagery";
@@ -24,8 +23,7 @@ export async function ExpertIntro() {
     <section className="bg-white py-14 lg:py-20">
       <Container className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:gap-16">
         <Reveal>
-          <Eyebrow>Über uns</Eyebrow>
-          <h2 className="balance mt-4 font-display text-display-lg font-bold text-ink">
+          <h2 className="balance font-display text-display-lg font-bold text-ink">
             Ihr Experte für Immobilien
           </h2>
 
@@ -52,7 +50,7 @@ export async function ExpertIntro() {
 
           {/* Die Philosophie ist der Satz, an dem der Abschnitt hängt — er
               bekommt deshalb eine eigene Fläche statt einer Zeile im Fließtext. */}
-          <blockquote className="mt-6 max-w-xl rounded-[16px] border-l-2 border-accent bg-accent-tint py-5 pl-6 pr-5">
+          <blockquote className="mt-6 max-w-xl rounded-[24px] border-l-2 border-accent bg-accent-tint py-5 pl-6 pr-5">
             <p className="text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-accent-deep">
               Unsere Philosophie
             </p>
@@ -105,13 +103,22 @@ type FeaturedProperty = NonNullable<Awaited<ReturnType<typeof getFeaturedActiveP
  * Browser läuft und dort nicht ins Dateisystem sehen kann.
  */
 function toCardData(property: FeaturedProperty): ExpertPropertyData {
+  // Drei Angaben stehen offen, alles Weitere liegt hinter dem Aufklapper.
+  const facts = propertyFacts(property, 3);
+  const schonSichtbar = new Set(facts.map((fact) => fact.label.toLowerCase()));
+
   return {
     slug: property.slug,
     title: property.title,
     city: property.city,
     statusLabel: property.statusLabel,
     priceLabel: property.priceLabel,
-    facts: propertyFacts(property),
+    facts,
+    // Was oben schon steht, wird unten nicht wiederholt.
+    details: [...property.features, ...property.energy]
+      .filter((entry) => !schonSichtbar.has(entry.label.toLowerCase()))
+      .map((entry) => ({ label: entry.label, value: entry.value })),
+    equipment: property.equipment,
     images: resolveImages(property.images),
   };
 }

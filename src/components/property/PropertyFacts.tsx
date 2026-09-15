@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Car, DoorOpen, LandPlot, MapPin, Ruler } from "lucide-react";
 
 /**
@@ -24,9 +25,12 @@ export type PropertyFact = {
  */
 export function PropertyFacts({
   facts,
+  trailing,
   className = "",
 }: {
   facts: PropertyFact[];
+  /** Belegt das letzte Feld des Rasters, etwa mit dem Aufklapper. */
+  trailing?: ReactNode;
   className?: string;
 }) {
   return (
@@ -49,6 +53,7 @@ export function PropertyFacts({
           </div>
         );
       })}
+      {trailing}
     </dl>
   );
 }

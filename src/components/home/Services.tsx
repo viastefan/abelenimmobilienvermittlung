@@ -13,7 +13,6 @@ export function Services() {
       <Container>
         <Reveal>
           <SectionHeading
-            eyebrow="Unsere Leistungen"
             align="center"
             size="lg"
             title="Was wir für Sie tun können"
@@ -27,7 +26,7 @@ export function Services() {
               <Reveal key={service.slug} delay={index * 90} className="h-full">
                 <Link
                   href={service.href}
-                  className="group flex h-full flex-col rounded-[20px] border border-border bg-white p-7 transition-all duration-300 ease-smooth hover:-translate-y-1.5 hover:border-transparent hover:shadow-lift lg:p-8"
+                  className="group flex h-full flex-col rounded-[24px] bg-white shadow-soft p-7 transition-all duration-300 ease-smooth hover:-translate-y-1.5 hover:border-transparent hover:shadow-lift lg:p-8"
                 >
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent-deep transition-colors duration-300 ease-smooth group-hover:bg-accent-deep group-hover:text-white">
                     <Icon className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />

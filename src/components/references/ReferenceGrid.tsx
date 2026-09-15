@@ -48,7 +48,7 @@ export function ReferenceGrid({ references }: { references: ReferenceCardItem[] 
                   setLimit(PAGE_SIZE);
                 }}
                 aria-pressed={isActive}
-                className={`rounded-[11px] border px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
+                className={`rounded-[14px] border px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
                   isActive
                     ? "border-accent-deep bg-accent-deep text-white"
                     : "border-border bg-white text-text-muted hover:border-accent hover:text-accent-deep"
@@ -77,7 +77,7 @@ export function ReferenceGrid({ references }: { references: ReferenceCardItem[] 
               setLimit(PAGE_SIZE);
             }}
             placeholder="Ort, Objektart oder Stichwort …"
-            className="w-full rounded-[11px] border border-border bg-white py-2.5 pl-11 pr-4 text-sm text-ink placeholder:text-text-subtle focus:border-accent focus:outline-none"
+            className="w-full rounded-[14px] bg-white shadow-soft py-2.5 pl-11 pr-4 text-sm text-ink placeholder:text-text-subtle focus:border-accent focus:outline-none"
           />
         </div>
       </div>
@@ -91,7 +91,7 @@ export function ReferenceGrid({ references }: { references: ReferenceCardItem[] 
           ))}
         </div>
       ) : (
-        <p className="mt-12 rounded-[16px] border border-dashed border-border bg-surface-warm p-10 text-center text-sm text-text-muted">
+        <p className="mt-12 rounded-[24px] border border-dashed border-border bg-surface-warm p-10 text-center text-sm text-text-muted">
           Für diese Auswahl liegen aktuell keine Referenzen vor. Sprechen Sie uns gerne direkt an.
         </p>
       )}
@@ -101,7 +101,7 @@ export function ReferenceGrid({ references }: { references: ReferenceCardItem[] 
           <button
             type="button"
             onClick={() => setLimit((value) => value + PAGE_SIZE)}
-            className="group/btn inline-flex items-center gap-2 rounded-[11px] border border-border-strong bg-white px-7 py-4 text-base font-semibold text-ink transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:border-accent hover:text-accent-deep"
+            className="group/btn inline-flex items-center gap-2 rounded-[14px] bg-surface-mist px-7 py-4 text-base font-semibold text-ink transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-soft hover:text-accent-deep"
           >
             Weitere Referenzen anzeigen
             <ArrowRight

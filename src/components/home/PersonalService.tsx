@@ -1,7 +1,6 @@
 import { HeartHandshake, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { SiteImage } from "@/components/graphics/SiteImage";
 import { resolveImage } from "@/lib/imagery";
@@ -46,8 +45,7 @@ export function PersonalService() {
       <Container className="relative">
         <div className="grid items-center gap-9 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-16">
           <Reveal>
-            <Eyebrow light>Unsere Arbeitsweise</Eyebrow>
-            <h2 className="balance mt-4 font-display text-display-lg font-bold text-white">
+            <h2 className="balance font-display text-display-lg font-bold text-white">
               Persönlich, Verlässlich…
             </h2>
             <p className="pretty mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-white/80">
@@ -75,8 +73,8 @@ export function PersonalService() {
         <ul className="mt-9 grid gap-4 sm:grid-cols-2 lg:mt-14 lg:gap-5">
           {principles.map((principle, index) => (
             <Reveal key={principle.title} as="li" delay={160 + index * 80}>
-              <div className="h-full rounded-[20px] border border-white/10 bg-white/[0.06] p-6 backdrop-blur-sm transition-colors duration-300 ease-smooth hover:border-white/25 sm:p-7">
-                <span className="flex h-11 w-11 items-center justify-center rounded-[13px] bg-accent/20 text-accent-light ring-1 ring-inset ring-white/10">
+              <div className="h-full rounded-[24px] border border-white/10 bg-white/[0.06] p-6 backdrop-blur-sm transition-colors duration-300 ease-smooth hover:border-white/25 sm:p-7">
+                <span className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-accent/20 text-accent-light ring-1 ring-inset ring-white/10">
                   <principle.icon className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
                 </span>
                 <h3 className="mt-5 font-display text-display-sm font-bold text-white">

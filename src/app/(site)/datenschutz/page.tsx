@@ -230,7 +230,7 @@ export default function DatenschutzPage() {
             </p>
           </div>
 
-          <div className="rounded-[14px] border border-border bg-surface-warm p-6 text-[0.875rem]">
+          <div className="rounded-[24px] bg-surface-warm p-6 text-[0.875rem]">
             <p>
               Fragen zum Umgang mit Ihren Daten beantworten wir gern —{" "}
               <a href={`mailto:${site.email}`} className="link-underline">

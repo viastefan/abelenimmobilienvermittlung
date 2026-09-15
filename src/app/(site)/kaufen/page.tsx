@@ -50,7 +50,7 @@ export default async function KaufenPage() {
       <section className="py-16 lg:py-20">
         <Container>
           <SectionHeading eyebrow="So gehen wir vor" size="lg" title="Klar, ehrlich, persönlich." />
-          <div className="mt-14 grid gap-x-10 gap-y-12 border-t border-border pt-12 sm:grid-cols-2">
+          <div className="mt-14 grid gap-x-10 gap-y-12 pt-12 sm:grid-cols-2">
             {steps.map((step, index) => (
               <div key={step.title} className="flex gap-5">
                 <span className="font-display text-2xl font-semibold text-border">
@@ -67,7 +67,7 @@ export default async function KaufenPage() {
       </section>
 
       {activeProperties.length > 0 && (
-        <section className="border-t border-border bg-surface py-16 lg:py-20">
+        <section className="bg-surface py-16 lg:py-20">
           <Container>
             <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
               <SectionHeading eyebrow="Aktuelle Objekte" size="lg" title="Verfügbare Immobilien" />

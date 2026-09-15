@@ -5,6 +5,13 @@ export const site = {
   owner: "Silke Abelen",
   ownerRole: "Inhaberin",
   tagline: "Immobilienvermittlung, die Werte schafft",
+  /**
+   * Dieselbe Zeile für den Aufmacher, mit weichem Trennzeichen im langen
+   * Kompositum. Es ist unsichtbar und greift nur, wenn die Zeile sonst
+   * nicht auf den Bildschirm passt — auf schmalen Geräten bricht sie dann
+   * als „Immobilien-/vermittlung“ statt mitten im Wort.
+   */
+  taglineAufmacher: "Immobilien\u00ADvermittlung, die Werte schafft",
   description:
     "Wir sind Ihr zuverlässiger Partner für die Bewertung, Vermittlung und Vermietung von Immobilien in Leverkusen und Umgebung.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.abelen-immobilien.de",

@@ -39,7 +39,7 @@ export default function KontaktPage() {
                   href={`mailto:${site.email}`}
                   className="group flex items-start gap-4 transition-colors hover:text-accent-deep"
                 >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-accent-soft text-accent-deep">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] bg-accent-soft text-accent-deep">
                     <Mail className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
                   </span>
                   <span>
@@ -53,7 +53,7 @@ export default function KontaktPage() {
                 </a>
               </li>
               <li className="flex items-start gap-4">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-accent-soft text-accent-deep">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] bg-accent-soft text-accent-deep">
                   <MapPin className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
                 </span>
                 <span>
@@ -70,7 +70,7 @@ export default function KontaktPage() {
               </li>
             </ul>
 
-            <p className="mt-9 flex items-start gap-3 rounded-[14px] border border-border bg-surface-warm p-5 text-[0.875rem] leading-relaxed text-text-muted">
+            <p className="mt-9 flex items-start gap-3 rounded-[24px] bg-surface-warm p-5 text-[0.875rem] leading-relaxed text-text-muted">
               <Clock className="mt-0.5 h-5 w-5 shrink-0 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
               Wir melden uns in der Regel innerhalb eines Werktages persönlich bei Ihnen zurück.
             </p>
@@ -78,7 +78,7 @@ export default function KontaktPage() {
             <SocialLinks className="mt-8 text-ink" iconClassName="h-[18px] w-[18px]" />
           </div>
 
-          <div className="rounded-[14px] border border-border bg-surface-warm p-6 sm:p-8">
+          <div className="rounded-[24px] bg-surface-warm p-6 sm:p-8">
             <Suspense fallback={null}>
               <ContactForm />
             </Suspense>

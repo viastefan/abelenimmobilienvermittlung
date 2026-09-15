@@ -29,7 +29,9 @@ export type ShowcaseSlide = {
  * sie keine Aufnahme und stehen bei Zähler und Angaben, zu denen sie gehören.
  */
 export function PropertyShowcaseSlider({ slides }: { slides: ShowcaseSlide[] }) {
-  const { trackRef, index, goTo } = useSnapTrack<HTMLUListElement>(slides.length);
+  const { trackRef, index, goTo, dragging, dragProps } = useSnapTrack<HTMLUListElement>(
+    slides.length
+  );
   const many = slides.length > 1;
 
   return (
@@ -38,7 +40,10 @@ export function PropertyShowcaseSlider({ slides }: { slides: ShowcaseSlide[] }) 
         <Reveal>
           <ul
             ref={trackRef}
-            className="no-scrollbar flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth"
+            {...dragProps}
+            className={`no-scrollbar flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain ${
+              dragging ? "cursor-grabbing select-none" : many ? "lg:cursor-grab" : ""
+            }`}
             aria-label="Angebotene Objekte"
           >
             {slides.map((slide, position) => {
@@ -94,12 +99,9 @@ export function PropertyShowcaseSlider({ slides }: { slides: ShowcaseSlide[] }) 
                         ))}
                       </div>
 
-                      <PropertyFacts
-                        facts={slide.facts}
-                        className="mt-6 border-t border-border pt-6"
-                      />
+                      <PropertyFacts facts={slide.facts} className="mt-7" />
 
-                      <div className="mt-6 flex flex-wrap items-end justify-between gap-x-4 gap-y-2 border-t border-border pt-5">
+                      <div className="mt-7 flex flex-wrap items-end justify-between gap-x-4 gap-y-2">
                         <div>
                           <p className="text-[0.75rem] font-medium text-text-subtle">Kaufpreis</p>
                           <p className="mt-0.5 font-display text-display-md font-extrabold text-ink">

@@ -8,7 +8,7 @@ import { contactInterests, defaultContactInterest } from "@/data/contact";
 type Status = "idle" | "loading" | "success" | "error";
 
 const fieldClass =
-  "w-full rounded-[11px] border border-border bg-white px-4 py-3 text-[0.9375rem] text-ink transition-colors duration-200 placeholder:text-text-subtle focus:border-accent focus:outline-none";
+  "w-full rounded-[14px] bg-white px-4 py-3 text-[0.9375rem] text-ink shadow-soft outline-none transition-shadow duration-200 placeholder:text-text-subtle focus:ring-2 focus:ring-accent-deep";
 
 /**
  * Anfrageformular — identisch auf der Kontaktseite und in der Kontakt-Sheet.
@@ -76,7 +76,7 @@ export function InquiryForm({
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-start gap-4 rounded-[16px] border border-accent-light bg-accent-soft p-8">
+      <div className="flex flex-col items-start gap-4 rounded-[24px] bg-accent-soft p-7">
         <CheckCircle2 className="h-8 w-8 text-accent-deep" aria-hidden="true" />
         <h3 className="font-display text-[1.125rem] font-bold text-ink">Vielen Dank für Ihre Anfrage.</h3>
         <p className="text-[0.9375rem] leading-relaxed text-text-muted">
@@ -89,7 +89,7 @@ export function InquiryForm({
   return (
     <form onSubmit={handleSubmit} className={compact ? "space-y-5" : "space-y-8"} noValidate>
       {objectRef && (
-        <p className="rounded-[11px] border border-border bg-surface-warm px-4 py-3 text-[0.8125rem] text-text-muted">
+        <p className="rounded-[14px] bg-surface-warm px-4 py-3 text-[0.8125rem] text-text-muted">
           Ihre Anfrage bezieht sich auf: <span className="font-semibold text-ink">{objectRef}</span>
         </p>
       )}
@@ -120,10 +120,10 @@ export function InquiryForm({
               type="button"
               onClick={() => setInterest(item.value)}
               aria-pressed={interest === item.value}
-              className={`rounded-[11px] border px-4 py-2.5 text-[0.8125rem] font-semibold transition-all duration-200 ${
+              className={`rounded-[14px] px-4 py-2.5 text-[0.8125rem] font-semibold transition-all duration-200 ${
                 interest === item.value
-                  ? "border-accent-deep bg-accent-deep text-white"
-                  : "border-border bg-white text-text-muted hover:border-accent hover:text-accent-deep"
+                  ? "bg-accent-deep text-white shadow-soft"
+                  : "bg-white text-text-muted shadow-soft hover:text-accent-deep"
               }`}
             >
               {item.label}
@@ -170,7 +170,7 @@ export function InquiryForm({
       </label>
 
       {status === "error" && errorMessage && (
-        <p role="alert" className="rounded-[11px] bg-warning-soft px-4 py-3 text-sm text-warning">
+        <p role="alert" className="rounded-[14px] bg-warning-soft px-4 py-3 text-sm text-warning">
           {errorMessage}
         </p>
       )}
@@ -178,7 +178,7 @@ export function InquiryForm({
       <button
         type="submit"
         disabled={status === "loading"}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-[11px] bg-accent-deep px-8 py-4 text-[0.9375rem] font-semibold text-white transition-all duration-300 ease-smooth hover:bg-accent-dark disabled:pointer-events-none disabled:opacity-60 sm:w-auto"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-[14px] bg-accent-deep px-8 py-4 text-[0.9375rem] font-semibold text-white transition-all duration-300 ease-smooth hover:bg-accent-dark disabled:pointer-events-none disabled:opacity-60 sm:w-auto"
       >
         {status === "loading" && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
         Anfrage senden

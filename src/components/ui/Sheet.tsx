@@ -176,7 +176,7 @@ export function Sheet({
         aria-label={title}
         tabIndex={-1}
         style={dragY ? { transform: `translateY(${dragY}px)`, transition: "none" } : undefined}
-        className={`relative flex max-h-[92dvh] w-full flex-col overflow-hidden rounded-t-[24px] bg-white shadow-[0_-10px_60px_-20px_rgba(16,43,78,0.45)] outline-none transition-all duration-[280ms] ease-smooth sm:max-h-[86dvh] sm:rounded-[22px] sm:shadow-[0_30px_90px_-30px_rgba(16,43,78,0.45)] ${
+        className={`relative flex max-h-[92dvh] w-full flex-col overflow-hidden rounded-t-[24px] bg-white shadow-[0_-10px_60px_-20px_rgba(16,43,78,0.45)] outline-none transition-all duration-[280ms] ease-smooth sm:max-h-[86dvh] sm:rounded-[24px] sm:shadow-[0_30px_90px_-30px_rgba(16,43,78,0.45)] ${
           size === "lg" ? "sm:max-w-[38rem]" : "sm:max-w-[30rem]"
         } ${shown ? "translate-y-0 opacity-100 sm:scale-100" : "translate-y-8 opacity-0 sm:translate-y-2 sm:scale-[0.97]"}`}
       >
@@ -210,7 +210,7 @@ export function Sheet({
 
         <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 pb-6">{children}</div>
 
-        {footer && <div className="shrink-0 border-t border-border bg-surface-warm px-6 py-4 pb-safe sm:pb-4">{footer}</div>}
+        {footer && <div className="shrink-0 bg-surface-warm px-6 py-4 pb-safe sm:pb-4">{footer}</div>}
       </div>
     </div>,
     document.body

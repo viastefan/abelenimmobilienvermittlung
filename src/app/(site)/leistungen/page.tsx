@@ -4,6 +4,7 @@ import { ArrowRight, Home, Network, Search } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { WhyAbelen } from "@/components/home/WhyAbelen";
 import { CtaSection } from "@/components/home/CtaSection";
@@ -46,9 +47,14 @@ export default function LeistungenPage() {
         image={resolveImage(images.leistungen)}
       />
 
-      <section className="py-14 lg:py-20">
+      <section className="py-12 lg:py-16">
         <Container>
-          <div className="max-w-3xl space-y-6 text-[1.0625rem] leading-relaxed text-text-muted">
+          <Eyebrow>Warum Begleitung</Eyebrow>
+          <h2 className="balance mt-3 max-w-3xl font-display text-display-lg font-bold text-ink">
+            Kauf und Verkauf sind Entscheidungen, die man selten trifft
+          </h2>
+
+          <div className="mt-6 max-w-3xl space-y-6 text-[1.0625rem] leading-relaxed text-text-muted">
             <p className="pretty">
               Die Statistik zeigt: Die Mehrheit der Menschen kauft oder verkauft nur wenige Male, oft
               sogar nur ein einziges Mal im Leben, eine Immobilie. Fast immer geht es dabei um sehr
@@ -75,7 +81,7 @@ export default function LeistungenPage() {
         </Container>
       </section>
 
-      <section className="border-t border-border bg-surface-cool py-14 lg:py-20">
+      <section className="bg-surface-cool py-12 lg:py-16">
         <Container>
           <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
             <Reveal>
@@ -87,7 +93,7 @@ export default function LeistungenPage() {
               />
             </Reveal>
             <Reveal delay={100}>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[18px] bg-surface-mist">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-surface-mist">
                 <SiteImage
                   src={resolveImage(images.leistungenNetzwerk)}
                   sizes="(min-width: 1024px) 40vw, 100vw"
@@ -103,7 +109,7 @@ export default function LeistungenPage() {
               const Icon = icons[item.icon];
               return (
                 <Reveal key={item.title} delay={index * 90} className="h-full">
-                  <article className="flex h-full flex-col rounded-[16px] border border-border bg-white p-7">
+                  <article className="flex h-full flex-col rounded-[24px] bg-white shadow-soft p-7">
                     <span className="flex items-center gap-3.5">
                       <Icon className="h-7 w-7 shrink-0 text-accent-mid" strokeWidth={1.4} aria-hidden="true" />
                       <h2 className="font-display text-[1.125rem] font-bold text-ink">{item.title}</h2>
@@ -116,7 +122,7 @@ export default function LeistungenPage() {
                     {item.href && (
                       <Link
                         href={item.href}
-                        className="group mt-6 inline-flex w-fit items-center gap-2 rounded-[11px] border border-border-strong bg-white px-4 py-3 text-sm font-semibold text-accent-deep transition-colors duration-200 hover:border-accent"
+                        className="group mt-6 inline-flex w-fit items-center gap-2 rounded-[14px] bg-surface-mist px-4 py-3 text-sm font-semibold text-accent-deep transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-soft"
                       >
                         {item.cta}
                         <ArrowRight
@@ -134,7 +140,7 @@ export default function LeistungenPage() {
           <div className="mt-10">
             <ContactButton
               options={{ title: "Kontakt aufnehmen" }}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-[11px] bg-accent-deep px-6 py-3.5 text-[0.9375rem] font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-dark sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-[14px] bg-accent-deep px-6 py-3.5 text-[0.9375rem] font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-dark sm:w-auto"
             >
               Jetzt Kontakt aufnehmen
             </ContactButton>
@@ -146,9 +152,9 @@ export default function LeistungenPage() {
       <section className="py-14 lg:py-20">
         <Container>
           <h2 className="font-display text-display-sm font-bold text-ink">Im Einzelnen</h2>
-          <div className="mt-8 divide-y divide-border border-t border-border">
+          <div className="mt-8 space-y-3">
             {services.map((service) => (
-              <div key={service.slug} className="grid gap-5 py-8 md:grid-cols-[1fr_auto] md:items-center md:gap-10">
+              <div key={service.slug} className="grid gap-5 rounded-[24px] bg-surface-warm p-6 md:grid-cols-[1fr_auto] md:items-center md:gap-10 md:p-8">
                 <div>
                   <h3 className="font-display text-[1.125rem] font-bold text-ink">{service.title}</h3>
                   <p className="pretty mt-2 max-w-2xl text-[0.9375rem] leading-relaxed text-text-muted">
@@ -157,7 +163,7 @@ export default function LeistungenPage() {
                 </div>
                 <Link
                   href={service.href}
-                  className="group inline-flex h-fit w-fit items-center gap-2 rounded-[11px] border border-border-strong bg-white px-4 py-3 text-sm font-semibold text-accent-deep transition-colors duration-200 hover:border-accent"
+                  className="group inline-flex h-fit w-fit items-center gap-2 rounded-[14px] bg-white px-4 py-3 text-sm font-semibold text-accent-deep shadow-soft transition-all duration-300 ease-smooth hover:-translate-y-0.5"
                 >
                   {service.cta}
                   <ArrowRight

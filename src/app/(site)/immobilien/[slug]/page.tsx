@@ -128,7 +128,7 @@ export default async function PropertyDetailPage({
 
         {/* Eckdaten überlappen den Kopfbereich — wie eine Karte auf dem Foto. */}
         <Container>
-          <div className="relative -mt-10 rounded-[18px] border border-border bg-white p-6 shadow-lift lg:-mt-14 lg:p-8">
+          <div className="relative -mt-10 rounded-[24px] bg-white shadow-soft p-6 shadow-lift lg:-mt-14 lg:p-8">
             <dl className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-6">
               {keyFacts.map((fact) => (
                 <div key={fact.label}>
@@ -142,10 +142,10 @@ export default async function PropertyDetailPage({
               ))}
             </dl>
 
-            <div className="mt-7 flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:items-center">
+            <div className="mt-7 flex flex-col gap-3 pt-6 sm:flex-row sm:items-center">
               <ContactButton
                 options={{ interest: "kaufen", objectRef, view: "form", title: "Besichtigung anfragen" }}
-                className="inline-flex items-center justify-center gap-2 rounded-[11px] bg-accent-deep px-6 py-3.5 text-[0.9375rem] font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-dark"
+                className="inline-flex items-center justify-center gap-2 rounded-[14px] bg-accent-deep px-6 py-3.5 text-[0.9375rem] font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-dark"
               >
                 <Mail className="h-4 w-4" aria-hidden="true" />
                 Besichtigung anfragen
@@ -192,9 +192,12 @@ export default async function PropertyDetailPage({
             {property.features.length > 0 && (
               <div className="mt-12">
                 <h2 className="font-display text-display-sm font-bold text-ink">Alle Objektdaten</h2>
-                <dl className="mt-5 divide-y divide-border border-y border-border">
+                <dl className="mt-5 grid gap-x-8 gap-y-1 sm:grid-cols-2">
                   {property.features.map((feature) => (
-                    <div key={feature.label} className="flex items-baseline justify-between gap-6 py-3.5">
+                    <div
+                      key={feature.label}
+                      className="flex items-baseline justify-between gap-6 rounded-[14px] px-4 py-3.5 odd:bg-surface-warm"
+                    >
                       <dt className="text-[0.9375rem] text-text-muted">{feature.label}</dt>
                       <dd className="text-right text-[0.9375rem] font-semibold text-ink">{feature.value}</dd>
                     </div>
@@ -208,7 +211,7 @@ export default async function PropertyDetailPage({
                 <h2 className="font-display text-display-sm font-bold text-ink">Energieinformationen</h2>
                 <dl className="mt-5 grid gap-4 sm:grid-cols-2">
                   {property.energy.map((item) => (
-                    <div key={item.label} className="rounded-[12px] border border-border p-5">
+                    <div key={item.label} className="rounded-[24px] bg-surface-warm p-5">
                       <dt className="text-[0.8125rem] font-medium text-text-subtle">
                         {item.label}
                       </dt>
@@ -220,7 +223,7 @@ export default async function PropertyDetailPage({
             )}
           </div>
 
-          <aside className="h-fit rounded-[16px] border border-border bg-surface-warm p-7 lg:sticky lg:top-32">
+          <aside className="h-fit rounded-[24px] bg-surface-warm p-7 lg:sticky lg:top-32">
             <p className="text-[0.8125rem] font-medium text-text-subtle">Kaufpreis</p>
             <p className="mt-1.5 font-display text-[1.875rem] font-extrabold leading-none text-ink">
               {property.priceLabel}
@@ -228,7 +231,7 @@ export default async function PropertyDetailPage({
 
             <p className="pretty mt-5 text-[0.9375rem] leading-relaxed text-text-muted">{property.summary}</p>
 
-            <div className="mt-7 border-t border-border pt-7">
+            <div className="mt-7 pt-7">
               <p className="text-[0.8125rem] font-medium text-text-subtle">
                 Ihre Ansprechpartnerin
               </p>
@@ -243,7 +246,7 @@ export default async function PropertyDetailPage({
 
             <ContactButton
               options={{ interest: "kaufen", objectRef, view: "form", title: "Besichtigung anfragen" }}
-              className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-[11px] bg-accent-deep px-6 py-3.5 text-[0.9375rem] font-semibold text-white transition-all duration-300 ease-smooth hover:bg-accent-dark"
+              className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-[14px] bg-accent-deep px-6 py-3.5 text-[0.9375rem] font-semibold text-white transition-all duration-300 ease-smooth hover:bg-accent-dark"
             >
               Besichtigung anfragen
             </ContactButton>
@@ -252,7 +255,7 @@ export default async function PropertyDetailPage({
       </section>
 
       {gallery.length > 0 && (
-        <section id="galerie" className="overflow-hidden border-t border-border bg-surface-warm py-14 lg:py-20">
+        <section id="galerie" className="overflow-hidden bg-surface-warm py-14 lg:py-20">
           <Container>
             <h2 className="font-display text-display-sm font-bold text-ink">Bildergalerie</h2>
             <p className="mt-2 text-[0.9375rem] text-text-muted">

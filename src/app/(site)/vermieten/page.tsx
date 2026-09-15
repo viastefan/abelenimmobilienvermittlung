@@ -83,7 +83,7 @@ export default function VermietenPage() {
           <div className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2">
             {benefits.map((benefit, index) => (
               <Reveal key={benefit.title} delay={index * 80} className="flex gap-5">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-accent-soft text-accent-deep">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] bg-accent-soft text-accent-deep">
                   <benefit.icon className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
                 </span>
                 <div>

@@ -84,7 +84,7 @@ export default function BewertungPage() {
           <div className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2">
             {benefits.map((benefit, index) => (
               <Reveal key={benefit.title} delay={index * 80} className="flex gap-5">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-accent-soft text-accent-deep">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] bg-accent-soft text-accent-deep">
                   <benefit.icon className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
                 </span>
                 <div>
@@ -124,7 +124,7 @@ export default function BewertungPage() {
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {wertermittlungsverfahren.map((verfahren, index) => (
               <Reveal key={verfahren.name} delay={index * 90} className="h-full">
-                <div className="flex h-full flex-col rounded-[12px] border border-border bg-white p-6 lg:p-7">
+                <div className="flex h-full flex-col rounded-[14px] bg-white shadow-soft p-6 lg:p-7">
                   <h3 className="font-display text-[1rem] font-bold text-ink">{verfahren.name}</h3>
                   <p className="mt-1.5 text-[0.8125rem] font-semibold text-accent-deep">
                     {verfahren.lead}

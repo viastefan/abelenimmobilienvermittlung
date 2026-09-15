@@ -1,8 +1,8 @@
 import type { ElementType, ReactNode } from "react";
 
 /**
- * The single content container of the site: 1440px max width with generous
- * gutters. Sections may bleed full width — their content never does.
+ * Der eine Satzspiegel der Website: 1440 Pixel breit, mit schmalen Rändern.
+ * Abschnitte dürfen über die volle Breite laufen, ihr Inhalt nie.
  */
 export function Container({
   as: Tag = "div",
@@ -14,6 +14,6 @@ export function Container({
   children: ReactNode;
 }) {
   return (
-    <Tag className={`mx-auto w-full max-w-content px-5 sm:px-8 lg:px-12 ${className}`}>{children}</Tag>
+    <Tag className={`mx-auto w-full max-w-content px-4 sm:px-6 lg:px-10 ${className}`}>{children}</Tag>
   );
 }

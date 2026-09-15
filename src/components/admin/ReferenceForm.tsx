@@ -129,7 +129,7 @@ export function ReferenceForm({
       </Panel>
 
       {state?.error && (
-        <p role="alert" className="rounded-[10px] bg-warning-soft px-4 py-3 text-[0.8125rem] text-warning">
+        <p role="alert" className="rounded-[14px] bg-warning-soft px-4 py-3 text-[0.8125rem] text-warning">
           {state.error}
         </p>
       )}

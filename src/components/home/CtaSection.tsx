@@ -3,7 +3,10 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 
 /**
- * Compact navy strip used at the foot of sub-pages — one message, one action.
+ * Der Abschluss einer Seite — eine Aussage, eine Handlung.
+ *
+ * Die Zeile trägt den Schluss der Seite und ist deshalb eine Überschrift,
+ * keine Bildunterschrift.
  */
 export function CtaSection({
   title = "Sie möchten wissen, was Ihre Immobilie wert ist?",
@@ -19,16 +22,24 @@ export function CtaSection({
   href?: string;
 }) {
   return (
-    <section className="bg-ink-deep py-7">
+    <section className="bg-ink-deep py-10 lg:py-14">
       <Container>
-        <Reveal className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-          <div className="flex items-center gap-5">
-                  <div>
-              <p className="font-display text-[0.9375rem] font-bold text-white">{title}</p>
-              {description && <p className="mt-1 text-[0.8125rem] text-white/65">{description}</p>}
-            </div>
+        <Reveal className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center lg:gap-14">
+          <div className="max-w-2xl">
+            <p className="balance font-display text-display-lg font-bold text-white">{title}</p>
+            {description && (
+              <p className="pretty mt-3 text-[0.9375rem] leading-relaxed text-white/70">
+                {description}
+              </p>
+            )}
           </div>
-          <Button href={href} variant="primary" className="w-full shrink-0 sm:w-auto">
+          <Button
+            href={href}
+            variant="inverted"
+            size="lg"
+            withArrow
+            className="w-full shrink-0 sm:w-auto"
+          >
             {buttonLabel}
           </Button>
         </Reveal>

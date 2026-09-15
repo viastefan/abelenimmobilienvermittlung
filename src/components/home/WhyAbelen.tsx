@@ -4,7 +4,7 @@ import { whyAbelen } from "@/data/services";
 
 export function WhyAbelen() {
   return (
-    <section className="border-y border-border bg-surface-warm py-16 lg:py-20">
+    <section className="bg-surface-warm py-16 lg:py-20">
       <Container>
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {whyAbelen.map((item, index) => (

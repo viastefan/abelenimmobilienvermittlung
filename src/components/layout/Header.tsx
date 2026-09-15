@@ -57,7 +57,7 @@ export function Header() {
   return (
     <div className="sticky top-0 z-50 lg:top-[-40px]">
       {/* Infoleiste */}
-      <div className="hidden border-b border-border bg-white lg:block">
+      <div className="hidden bg-surface-warm lg:block">
         <Container className="flex h-10 items-center justify-between text-[0.8125rem] text-text-muted">
           <div className="flex items-center gap-5">
             <span>
@@ -129,13 +129,13 @@ export function Header() {
 
                   {item.children && (
                     <div className="pointer-events-none absolute left-1/2 top-full z-10 w-60 -translate-x-1/2 translate-y-1 pt-3 opacity-0 transition-all duration-200 ease-smooth group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                      <ul className="rounded-[14px] border border-border bg-white/95 p-1.5 shadow-lift backdrop-blur-xl">
+                      <ul className="rounded-[24px] bg-white shadow-soft/95 p-1.5 shadow-lift backdrop-blur-xl">
                         {item.children.map((child) => (
                           <li key={child.href}>
                             <Link
                               href={child.href}
                               aria-current={isActive(child.href) ? "page" : undefined}
-                              className={`block rounded-[10px] px-3 py-2.5 text-[0.875rem] font-medium transition-colors duration-200 ${
+                              className={`block rounded-[14px] px-3 py-2.5 text-[0.875rem] font-medium transition-colors duration-200 ${
                                 isActive(child.href)
                                   ? "bg-accent-soft text-accent-deep"
                                   : "text-text-muted hover:bg-surface-cool hover:text-ink"
@@ -155,7 +155,7 @@ export function Header() {
 
           <ContactButton
             options={{ title: "Kontakt aufnehmen" }}
-            className="hidden shrink-0 items-center gap-2.5 rounded-[10px] bg-accent-deep px-5 py-3 text-sm font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-dark lg:inline-flex"
+            className="hidden shrink-0 items-center gap-2.5 rounded-[14px] bg-accent-deep px-5 py-3 text-sm font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-dark lg:inline-flex"
           >
             <MessageSquare className="h-4 w-4" aria-hidden="true" />
             Kontakt aufnehmen
@@ -181,30 +181,38 @@ export function Header() {
       <div
         id="mobile-nav"
         inert={!open}
-        className={`fixed inset-x-0 bottom-0 top-[72px] z-40 overflow-y-auto overscroll-contain border-t border-border bg-white pb-safe transition-all duration-300 ease-smooth lg:hidden ${
-          open ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
+        className={`fixed inset-x-0 bottom-0 top-[72px] z-40 overflow-y-auto overscroll-contain bg-white pb-safe transition-all duration-300 ease-smooth lg:hidden ${
+          open ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-1.5 opacity-0"
         }`}
       >
-        <Container as="nav" aria-label="Mobile Navigation" className="flex flex-col pb-16 pt-4">
-          {primaryNav.map((item) => (
-            <div key={item.label} className="border-b border-border pb-3">
+        <Container as="nav" aria-label="Mobile Navigation" className="flex flex-col pb-16 pt-3">
+          {/* Die Einträge laufen gestaffelt ein, sobald das Feld offen ist —
+              erst dann, sonst stünde die Staffelung schon beim Schließen an. */}
+          {primaryNav.map((item, position) => (
+            <div
+              key={item.label}
+              className={`transition-all duration-300 ease-smooth ${
+                open ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
+              }`}
+              style={{ transitionDelay: open ? `${60 + position * 35}ms` : "0ms" }}
+            >
               <Link
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
-                className={`block py-3.5 font-display text-xl font-semibold ${
-                  isActive(item.href) ? "text-accent-deep" : "text-ink"
+                className={`block rounded-[24px] px-4 py-3.5 font-display text-xl font-semibold transition-colors duration-200 ${
+                  isActive(item.href) ? "bg-accent-soft text-accent-deep" : "text-ink active:bg-surface-warm"
                 }`}
               >
                 {item.label}
               </Link>
               {item.children && (
-                <ul className="mb-1 border-l-2 border-border pl-4">
+                <ul className="pl-4">
                   {item.children.map((child) => (
                     <li key={child.href}>
                       <Link
                         href={child.href}
                         aria-current={isActive(child.href) ? "page" : undefined}
-                        className={`block py-2.5 text-[0.9375rem] ${
+                        className={`block rounded-[24px] px-4 py-2.5 text-[0.9375rem] ${
                           isActive(child.href) ? "font-semibold text-accent-deep" : "text-text-muted"
                         }`}
                       >
@@ -220,14 +228,14 @@ export function Header() {
           <ContactButton
             options={{ title: "Kontakt aufnehmen" }}
             onActivate={() => setOpen(false)}
-            className="mt-8 inline-flex items-center justify-center gap-2 rounded-[11px] bg-accent-deep px-6 py-4 text-base font-semibold text-white"
+            className="mt-7 inline-flex items-center justify-center gap-2 rounded-[24px] bg-accent-deep px-6 py-4 text-base font-semibold text-white"
           >
             <MessageSquare className="h-4 w-4" aria-hidden="true" />
             Kontakt aufnehmen
           </ContactButton>
 
-          <div className="mt-8 text-sm text-text-muted">
-            <a href={`mailto:${site.email}`} className="flex items-center gap-3 py-2.5 font-semibold text-ink">
+          <div className="mt-6 text-sm text-text-muted">
+            <a href={`mailto:${site.email}`} className="flex items-center gap-3 px-4 py-2.5 font-semibold text-ink">
               <Mail className="h-4 w-4 text-accent-mid" aria-hidden="true" />
               {site.email}
             </a>
