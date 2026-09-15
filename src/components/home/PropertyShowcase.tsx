@@ -25,7 +25,8 @@ export async function PropertyShowcase() {
     city: property.city,
     statusLabel: property.statusLabel,
     priceLabel: property.priceLabel,
-    facts: propertyFacts(property),
+    // Der Ort steht bereits im Titel des Objekts.
+    facts: propertyFacts(property).filter((fact) => fact.icon !== "ort"),
     description: property.description.length > 0 ? property.description : [property.summary],
     image: resolveFirstImage(property.images),
   }));

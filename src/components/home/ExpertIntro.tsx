@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
+import { BrandWave } from "@/components/graphics/BrandWave";
 import { resolveImages } from "@/lib/imagery";
 import { getFeaturedActiveProperty } from "@/data/properties";
 import { regions } from "@/data/site";
@@ -15,17 +16,22 @@ import { ExpertProperty, type ExpertPropertyData } from "@/components/home/Exper
  * Daneben steht das aktuell angebotene Objekt, wie im alten Auftritt. Es ist
  * dasselbe, das `PropertyShowcase` weiter unten ausspart — so erscheint auf
  * der Startseite kein Objekt zweimal.
+ *
+ * Der Abschnitt steht auf `isolate`: die mitlaufende Karte ist ein
+ * positioniertes Element und würde sonst über den Grund des nächsten
+ * Abschnitts malen.
  */
 export async function ExpertIntro() {
   const property = await getFeaturedActiveProperty();
 
   return (
-    <section className="bg-white py-14 lg:py-20">
+    <section className="isolate bg-white py-14 lg:py-20">
       <Container className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:gap-16">
         <Reveal>
           <h2 className="balance font-display text-display-lg font-bold text-ink">
             Ihr Experte für Immobilien
           </h2>
+          <BrandWave className="mt-3 text-accent" />
 
           <p className="pretty mt-5 max-w-xl text-[1.0625rem] leading-relaxed text-text-muted">
             Das Büro für Immobilien Bewertung &amp; Vermittlung bietet Ihnen das{" "}
