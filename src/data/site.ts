@@ -63,34 +63,10 @@ export type NavItem = {
  */
 export const primaryNav: NavItem[] = [
   { label: "Start", href: "/" },
-  {
-    label: "Dienstleistungen",
-    href: "/leistungen",
-    children: [
-      { label: "Immobilienbewertung", href: "/bewertung" },
-      { label: "Immobilienverkauf", href: "/verkaufen" },
-      { label: "Vermietung", href: "/vermieten" },
-      { label: "Alle Leistungen", href: "/leistungen" },
-    ],
-  },
-  {
-    label: "Objekte & Referenzen",
-    href: "/immobilien",
-    children: [
-      { label: "Aktuelle Immobilien", href: "/immobilien" },
-      { label: "Referenzen", href: "/referenzen" },
-    ],
-  },
+  { label: "Dienstleistungen", href: "/leistungen" },
+  { label: "Immobilien", href: "/immobilien" },
+  { label: "Referenzen", href: "/referenzen" },
   { label: "Über Mich", href: "/ueber-mich" },
-  {
-    label: "Für Käufer & Verkäufer",
-    href: "/verkaufen",
-    children: [
-      { label: "Für Verkäufer", href: "/verkaufen" },
-      { label: "Für Käufer", href: "/kaufen" },
-      { label: "Immobilienbewertung", href: "/bewertung" },
-    ],
-  },
   { label: "Anlagen", href: "/anlagen" },
   { label: "Kontakt", href: "/kontakt" },
 ];

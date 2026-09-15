@@ -16,7 +16,7 @@ export function About() {
   const portrait = resolveImage(images.portrait);
 
   return (
-    <section className="bg-white py-20 lg:py-28">
+    <section className="bg-white py-14 lg:py-20">
       <Container className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-16">
         <Reveal>
           <Eyebrow>Über uns</Eyebrow>

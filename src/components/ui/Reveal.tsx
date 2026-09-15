@@ -60,8 +60,8 @@ export function Reveal({
     <Tag
       ref={ref}
       data-reveal=""
-      className={`transition-all duration-700 ease-smooth motion-reduce:transition-none ${
-        visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+      className={`transition-all duration-500 ease-smooth motion-reduce:transition-none ${
+        visible ? "translate-y-0 opacity-100" : "translate-y-2.5 opacity-0"
       } ${className}`}
       style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
     >

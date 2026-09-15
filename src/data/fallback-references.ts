@@ -24,10 +24,10 @@ export const fallbackReferences: ReferenceObject[] = [
     summary:
       "Charmante 2-Zimmer-Wohnung mit 55 m² Wohnfläche und Außenstellplatz in Haan, Kreis Mettmann — erfolgreich verkauft.",
     description: [
-      "Diese charmante 2-Zimmer-Wohnung in Haan, im Kreis Mettmann, wurde erfolgreich verkauft. Mit einer Wohnfläche von 55 m² inklusive eines Außenstellplatzes hat sie schnell ein neues Zuhause gefunden.",
+      "Die Immobilie verfügte über 2 Zimmer mit 55 m² Wohnfläche sowie einem Balkon und einem extra breiten Außenstellplatz.",
       "Haan ist eine beliebte Stadt, bekannt für ihre grüne Umgebung und die hervorragende Anbindung an Düsseldorf und Wuppertal. Die gute Infrastruktur mit vielfältigen Einkaufsmöglichkeiten, Restaurants und Freizeiteinrichtungen macht sie zu einem begehrten Wohnort.",
     ],
-    equipment: ["Zwei Zimmer", "Außenstellplatz"],
+    equipment: ["Zwei Zimmer", "Balkon", "Extra breiter Außenstellplatz"],
     location: "Haan im Kreis Mettmann — grüne Umgebung, gute Anbindung an Düsseldorf und Wuppertal.",
     published: true,
     sortOrder: 0,

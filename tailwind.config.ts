@@ -61,10 +61,10 @@ const config: Config = {
         sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
       },
       fontSize: {
-        "display-xl": ["clamp(2.125rem, 3.2vw, 2.75rem)", { lineHeight: "1.14", letterSpacing: "-0.022em" }],
-        "display-lg": ["clamp(1.5rem, 2.1vw, 1.875rem)", { lineHeight: "1.24", letterSpacing: "-0.018em" }],
-        "display-md": ["clamp(1.375rem, 1.7vw, 1.625rem)", { lineHeight: "1.3", letterSpacing: "-0.014em" }],
-        "display-sm": ["clamp(1.0625rem, 1.2vw, 1.1875rem)", { lineHeight: "1.36", letterSpacing: "-0.008em" }],
+        "display-xl": ["clamp(2.125rem, 3.2vw, 2.75rem)", { lineHeight: "1.08", letterSpacing: "-0.03em" }],
+        "display-lg": ["clamp(1.5rem, 2.1vw, 1.875rem)", { lineHeight: "1.18", letterSpacing: "-0.025em" }],
+        "display-md": ["clamp(1.375rem, 1.7vw, 1.625rem)", { lineHeight: "1.24", letterSpacing: "-0.02em" }],
+        "display-sm": ["clamp(1.0625rem, 1.2vw, 1.1875rem)", { lineHeight: "1.3", letterSpacing: "-0.012em" }],
         label: ["0.6875rem", { lineHeight: "1", letterSpacing: "0.16em" }],
       },
       maxWidth: {

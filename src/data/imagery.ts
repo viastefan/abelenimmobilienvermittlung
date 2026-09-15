@@ -21,8 +21,8 @@ export const images = {
   heroWohnstrasse: siteMedia.heroKey,
   /** Startseite „Über uns“ und Seite „Über uns“: Portrait Silke Abelen. */
   portrait: siteMedia.portrait,
-  /** Startseite „Persönlich, Verlässlich“: dasselbe Schlüsselmotiv wie im Hero, als Foto statt Vollflächenbild. */
-  personalService: siteMedia.heroKeyPhoto,
+  /** Startseite „Persönlich, Verlässlich“: Luftbild von Leverkusen. */
+  personalService: "/images/stadtbild-leverkusen.png",
   /** Seite „Über Mich“, Tätigkeitsgebiet: Laptop-Arbeitsplatz. */
   ueberMichArbeitsplatz: siteMedia.contactIntro,
   /** Seite Bewertung. */

@@ -5,19 +5,31 @@ import { SiteImage } from "@/components/graphics/SiteImage";
 import { resolveImage } from "@/lib/imagery";
 import { images } from "@/data/imagery";
 
-/** Text wörtlich von der Startseite des bisherigen Auftritts übernommen. */
+/**
+ * Text wörtlich von der Startseite des bisherigen Auftritts übernommen.
+ *
+ * Vollflächiges Foto statt Karte neben Text — dieselbe Bildsprache wie im
+ * Hero, damit die Seite an dieser Stelle nicht wie ein zweiter, kleinerer
+ * Aufmacher wirkt, sondern wie eine bewusste Wiederholung desselben Motivs.
+ */
 export function PersonalService() {
   const image = resolveImage(images.personalService);
 
   return (
-    <section className="bg-ink-deep py-20 lg:py-28">
-      <Container className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
-        <Reveal>
+    <section className="relative isolate overflow-hidden bg-ink-deep py-20 lg:py-28">
+      <div className="absolute inset-0" aria-hidden="true">
+        <SiteImage src={image} sizes="100vw" label="Leverkusen" alt="" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink-deep via-ink-deep/85 to-ink-deep/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-deep/40 via-transparent to-ink-deep/20" />
+      </div>
+
+      <Container className="relative">
+        <Reveal className="max-w-xl">
           <h2 className="balance font-display text-display-lg font-bold text-white">
             Persönlich, Verlässlich…
           </h2>
 
-          <div className="pretty mt-5 max-w-xl space-y-4 text-[0.9375rem] leading-relaxed text-white/75">
+          <div className="pretty mt-5 space-y-4 text-[0.9375rem] leading-relaxed text-white/80">
             <p>
               …mit viel Erfahrung in der Immobilienvermarktung. Ein Vermittler, der den Erwerb
               oder Verkauf auch aus einer anderen Perspektive beleuchtet? Wir arbeiten
@@ -41,17 +53,6 @@ export function PersonalService() {
           <Button href="/ueber-mich" variant="inverted" className="mt-7">
             Über mich
           </Button>
-        </Reveal>
-
-        <Reveal delay={120}>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[14px] bg-white/5">
-            <SiteImage
-              src={image}
-              sizes="(min-width: 1024px) 45vw, 100vw"
-              label="Silke Abelen"
-              alt="Schlüsselübergabe — persönliche Begleitung durch Silke Abelen"
-            />
-          </div>
         </Reveal>
       </Container>
     </section>

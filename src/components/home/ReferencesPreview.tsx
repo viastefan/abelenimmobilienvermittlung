@@ -12,14 +12,14 @@ export async function ReferencesPreview() {
   if (references.length === 0) return null;
 
   return (
-    <section className="overflow-hidden bg-surface-warm py-20 lg:py-28">
+    <section className="overflow-hidden bg-surface-warm py-14 lg:py-20">
       <Container>
         <Reveal className="relative">
           <SectionHeading
             eyebrow="Referenzen"
             align="center"
             title="Erfolgreich vermittelt"
-            description="Ein Auszug aus den Objekten, die wir in Leverkusen und Umgebung begleitet haben."
+            description="Suchen auch Sie einen Partner, der Ihre Immobilie zuverlässig und zügig verkauft? Wir helfen Ihnen gerne weiter und freuen uns darauf, auch Ihre Erfolgsgeschichte zu schreiben."
           />
           <div className="mt-6 flex justify-center lg:absolute lg:right-0 lg:top-1/2 lg:mt-0 lg:-translate-y-1/2">
             <Button href="/referenzen" variant="secondary" className="text-[0.8125rem]">
