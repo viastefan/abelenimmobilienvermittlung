@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SlideArrow } from "@/components/ui/SlideArrow";
 import { SiteImage } from "@/components/graphics/SiteImage";
+import { BrandWave } from "@/components/graphics/BrandWave";
 import { useSnapTrack } from "@/components/ui/useSnapTrack";
 import { PropertyFacts, type PropertyFact } from "@/components/property/PropertyFacts";
 
@@ -22,11 +23,13 @@ export type ShowcaseSlide = {
 
 /**
  * Die angebotenen Objekte als Diashow — Bild links, Text rechts, wie im
- * bisherigen Auftritt. Gewischt wird nativ (Scroll-Snap), die Pfeile
- * schieben nur weiter und laufen am Ende wieder von vorn los.
+ * bisherigen Auftritt.
  *
- * Die Pfeile liegen in der Textspalte, nicht auf dem Bild: dort verdecken
- * sie keine Aufnahme und stehen bei Zähler und Angaben, zu denen sie gehören.
+ * Überschrift und Pfeile stehen über der Spur, nicht darin: mitgeschobene
+ * Bedienelemente wandern beim Blättern aus dem Bild, und der Betrachter
+ * greift ins Leere. Die Aufnahme trägt keinen Schlagschatten — er reichte
+ * über die Kante der Spur hinaus und sah aus wie eine zweite, halb
+ * verdeckte Fläche.
  */
 export function PropertyShowcaseSlider({ slides }: { slides: ShowcaseSlide[] }) {
   const { trackRef, index, goTo, dragging, dragProps } = useSnapTrack<HTMLUListElement>(
@@ -37,11 +40,27 @@ export function PropertyShowcaseSlider({ slides }: { slides: ShowcaseSlide[] }) 
   return (
     <section className="overflow-hidden bg-surface-cool py-14 lg:py-20">
       <Container>
-        <Reveal>
+        <Reveal className="flex items-end justify-between gap-6">
+          <div>
+            <h2 className="balance font-display text-display-lg font-bold text-ink">
+              Weiter Objekte zu verkaufen
+            </h2>
+            <BrandWave className="mt-3 text-accent" />
+          </div>
+
+          {many && (
+            <div className="flex shrink-0 gap-2">
+              <SlideArrow direction="prev" subject="Objekt" onClick={() => goTo(index - 1)} />
+              <SlideArrow direction="next" subject="Objekt" onClick={() => goTo(index + 1)} />
+            </div>
+          )}
+        </Reveal>
+
+        <Reveal delay={80}>
           <ul
             ref={trackRef}
             {...dragProps}
-            className={`no-scrollbar flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain ${
+            className={`no-scrollbar mt-9 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain ${
               dragging ? "cursor-grabbing select-none" : many ? "lg:cursor-grab" : ""
             }`}
             aria-label="Angebotene Objekte"
@@ -52,7 +71,7 @@ export function PropertyShowcaseSlider({ slides }: { slides: ShowcaseSlide[] }) 
               return (
                 <li key={slide.slug} className="w-full shrink-0 grow-0 basis-full snap-center">
                   <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14">
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-surface-mist shadow-lift">
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-surface-mist">
                       <SiteImage
                         src={slide.image}
                         sizes="(min-width: 1024px) 52vw, 100vw"
@@ -66,34 +85,16 @@ export function PropertyShowcaseSlider({ slides }: { slides: ShowcaseSlide[] }) 
                     </div>
 
                     <div>
-                      {many && (
-                        <div className="flex items-center justify-between gap-4">
-                          <span className="text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-accent-deep">
-                            Objekt {String(position + 1).padStart(2, "0")} /{" "}
-                            {String(slides.length).padStart(2, "0")}
-                          </span>
-                          <div className="flex gap-2">
-                            <SlideArrow
-                              direction="prev"
-                              subject="Objekt"
-                              active={current}
-                              onClick={() => goTo(position - 1)}
-                            />
-                            <SlideArrow
-                              direction="next"
-                              subject="Objekt"
-                              active={current}
-                              onClick={() => goTo(position + 1)}
-                            />
-                          </div>
-                        </div>
-                      )}
-
-                      <h2 className={`balance font-display text-display-lg font-bold text-ink ${many ? "mt-5" : ""}`}>
-                        Weiter Objekte zu verkaufen in {slide.city}
-                      </h2>
-
-                      <div className="pretty mt-4 space-y-4 text-[0.9375rem] leading-relaxed text-text-muted">
+                      <h3 className="balance font-display text-display-md font-bold text-ink">
+                        <Link
+                          href={href}
+                          tabIndex={current ? undefined : -1}
+                          className="transition-colors duration-300 hover:text-accent-deep"
+                        >
+                          {slide.title}
+                        </Link>
+                      </h3>
+                      <div className="pretty mt-5 space-y-4 text-[0.9375rem] leading-relaxed text-text-muted">
                         {slide.description.map((paragraph) => (
                           <p key={paragraph.slice(0, 48)}>{paragraph}</p>
                         ))}

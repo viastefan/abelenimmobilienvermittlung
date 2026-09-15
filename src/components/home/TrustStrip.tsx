@@ -1,6 +1,7 @@
 import { Award, Home, Users } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
+import { BrandWaveRule } from "@/components/graphics/BrandWave";
 import { featureStrip } from "@/data/site";
 
 const icons = { users: Users, award: Award, home: Home } as const;
@@ -8,32 +9,33 @@ const icons = { users: Users, award: Award, home: Home } as const;
 /**
  * Die drei Zusagen unter dem Aufmacher.
  *
- * Als Karten auf warmem Grund, nicht als Zeile aus Symbol und Kleinschrift:
- * direkt unter dem Hero braucht die Seite eine Fläche, die etwas behauptet,
- * sonst liest sich der Abschnitt wie eine Fußnote.
+ * Ohne Karten, ohne Kacheln um die Symbole: drei gleiche Kästchen
+ * nebeneinander sehen aus wie auf jeder zweiten Website. Hier trägt die
+ * Schrift, und darunter läuft die Welle aus der Bildmarke über die ganze
+ * Breite — das Zeichen, das nur zu diesem Haus gehört.
  */
 export function TrustStrip() {
   return (
-    <section className="bg-surface-warm py-10 lg:py-14">
+    <section className="bg-surface-warm py-12 lg:py-16">
       <Container>
-        <ul className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+        <ul className="grid gap-8 sm:grid-cols-3 sm:gap-12">
           {featureStrip.map((item, index) => {
             const Icon = icons[item.icon];
             return (
-              <Reveal as="li" key={item.title} delay={index * 90} className="h-full">
-                <div className="group h-full rounded-[24px] bg-white p-6 shadow-soft transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:shadow-lift sm:p-7">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-[24px] bg-accent-soft text-accent-deep transition-colors duration-300 ease-smooth group-hover:bg-accent-tint">
-                    <Icon className="h-[22px] w-[22px]" strokeWidth={1.6} aria-hidden="true" />
-                  </span>
-                  <p className="mt-5 font-display text-display-sm font-bold text-ink">{item.title}</p>
-                  <p className="pretty mt-2 text-[0.9375rem] leading-relaxed text-text-muted">
-                    {item.description}
-                  </p>
-                </div>
+              <Reveal as="li" key={item.title} delay={index * 90}>
+                <Icon className="h-6 w-6 text-accent-mid" strokeWidth={1.4} aria-hidden="true" />
+                <p className="mt-4 font-display text-display-sm font-bold text-ink">{item.title}</p>
+                <p className="pretty mt-2 text-[0.9375rem] leading-relaxed text-text-muted">
+                  {item.description}
+                </p>
               </Reveal>
             );
           })}
         </ul>
+
+        <Reveal delay={280}>
+          <BrandWaveRule className="mt-10 text-accent/45 lg:mt-14" />
+        </Reveal>
       </Container>
     </section>
   );
