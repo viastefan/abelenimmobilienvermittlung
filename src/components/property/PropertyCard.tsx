@@ -33,7 +33,7 @@ export function PropertyCard({
   ];
 
   return (
-    <article className="group relative flex h-full w-full flex-col overflow-hidden rounded-[24px] bg-white shadow-soft transition-all duration-500 ease-smooth hover:-translate-y-1 hover:border-accent-light hover:shadow-lift">
+    <article className="group relative flex h-full w-full flex-col overflow-hidden rounded-[24px] bg-white shadow-soft ring-1 ring-border transition-all duration-500 ease-smooth hover:-translate-y-1 hover:ring-accent-light hover:shadow-lift">
       {images.length > 1 ? (
         <CardGallery
           images={images}

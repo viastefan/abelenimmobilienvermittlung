@@ -40,7 +40,7 @@ export default async function AdminDashboardPage() {
 
       <div className="mt-7 grid grid-cols-2 gap-4 lg:grid-cols-4">
         {stats.map((stat) => (
-          <div key={stat.label} className="rounded-[24px] bg-white shadow-soft p-5">
+          <div key={stat.label} className="rounded-[24px] bg-white shadow-soft ring-1 ring-border p-5">
             <stat.icon className="h-4 w-4 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
             <p className="mt-4 font-display text-[1.75rem] font-extrabold leading-none tabular-nums text-ink">
               {stat.value}

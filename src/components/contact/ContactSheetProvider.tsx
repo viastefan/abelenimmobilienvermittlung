@@ -153,7 +153,7 @@ function ContactRow({
     <a
       href={href}
       {...(autofocus ? { "data-autofocus": true } : {})}
-      className="group flex items-center gap-4 rounded-[24px] bg-white shadow-soft px-4 py-4 transition-all duration-200 hover:border-accent-light hover:bg-accent-tint"
+      className="group flex items-center gap-4 rounded-[24px] bg-white shadow-soft ring-1 ring-border px-4 py-4 transition-all duration-200 hover:ring-accent-light hover:bg-accent-tint"
     >
       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] bg-accent-soft text-accent-deep">
         <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" />

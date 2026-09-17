@@ -2,7 +2,7 @@ import { Clock, Mail, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
-import { BrandWave } from "@/components/graphics/BrandWave";
+import { HeadingRule } from "@/components/ui/HeadingRule";
 import { regions, site } from "@/data/site";
 
 /** Text wörtlich von der Startseite des bisherigen Auftritts übernommen. */
@@ -10,13 +10,13 @@ export function ContactIntro() {
   return (
     <section className="bg-white py-12 lg:py-16">
       <Container>
-        <Reveal className="overflow-hidden rounded-[24px] bg-surface-warm p-5 sm:rounded-[28px] sm:p-8 lg:p-10">
+        <Reveal className="-mx-6 overflow-hidden bg-surface-warm px-6 py-10 sm:mx-0 sm:rounded-[28px] sm:p-9 lg:p-12">
           <div className="grid gap-7 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12">
             <div>
               <h2 className="balance font-display text-display-lg font-bold text-ink">
                 Der Erste Schritt zur Kontaktaufnahme
               </h2>
-              <BrandWave className="mt-3 text-accent" />
+              <HeadingRule className="mt-5" />
 
               <div className="pretty mt-5 max-w-xl space-y-4 text-[0.9375rem] leading-relaxed text-text-muted">
                 <p>

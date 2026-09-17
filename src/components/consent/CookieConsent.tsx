@@ -63,7 +63,7 @@ export function CookieConsent() {
         }`}
         {...(banner ? {} : { "aria-hidden": true })}
       >
-        <div className="rounded-[24px] bg-white shadow-soft/95 p-5 shadow-lift backdrop-blur-xl pb-safe sm:pb-5">
+        <div className="rounded-[24px] bg-white/95 p-5 shadow-lift ring-1 ring-border backdrop-blur-xl pb-safe sm:pb-5">
           <div className="flex items-start gap-3">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[14px] bg-accent-soft text-accent-deep">
               <Cookie className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" />

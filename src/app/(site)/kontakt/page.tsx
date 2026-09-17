@@ -4,6 +4,7 @@ import { Clock, Mail, MapPin } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Container } from "@/components/ui/Container";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { ScrollSheet } from "@/components/contact/ScrollSheet";
 import { SocialLinks } from "@/components/layout/SocialLinks";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
@@ -28,7 +29,7 @@ export default function KontaktPage() {
       />
 
       <section className="py-14 lg:py-20">
-        <Container className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
+        <Container className="grid gap-10 lg:grid-cols-[minmax(0,0.68fr)_minmax(0,1.32fr)] lg:gap-16">
           <div>
             <h2 className="font-display text-display-sm font-bold text-ink">{site.owner}</h2>
             <p className="mt-1.5 text-[0.9375rem] text-text-muted">{site.legalName}</p>
@@ -78,11 +79,11 @@ export default function KontaktPage() {
             <SocialLinks className="mt-8 text-ink" iconClassName="h-[18px] w-[18px]" />
           </div>
 
-          <div className="rounded-[24px] bg-surface-warm p-6 sm:p-8">
+          <ScrollSheet label="Anfrage senden">
             <Suspense fallback={null}>
               <ContactForm />
             </Suspense>
-          </div>
+          </ScrollSheet>
         </Container>
       </section>
 

@@ -4,30 +4,38 @@ import { brandMedia } from "@/data/wix-media";
 
 /**
  * Qualifikationsnachweise, wie sie der bisherige Auftritt zeigt. Beide
- * Grafiken enthalten ihre Beschriftung selbst — eine zweite Zeile daneben
+ * Grafiken tragen ihre Beschriftung selbst — eine zweite Zeile daneben
  * würde dieselbe Aussage doppeln.
  *
- * Beide sitzen auf derselben hellen Fläche und in derselben Höhe. Frei auf
- * dem Foto stehend gehen sie auf dem Telefon unter; nebeneinander in
- * ungleichen Größen sehen sie nach Zufall aus, nicht nach Nachweis.
+ * Das quergestreckte Siegel steht auf hellem Grund und braucht deshalb eine
+ * weiße Unterlage, die es aber nur um zwei Pixel überragt. Die Plakette von
+ * ImmoScout24 ist freigestellt und steht ohne Unterlage — eine Fläche um
+ * eine Fläche sähe nach Aufkleber aus.
  */
 export function TrustBadges({ className = "" }: { className?: string }) {
   return (
-    <ul className={`flex flex-wrap items-stretch gap-2.5 sm:gap-3 ${className}`}>
-      {trustBadges.map((badge) => (
-        <li
-          key={badge.key}
-          className="flex items-center justify-center rounded-[24px] bg-white/95 px-4 py-3 shadow-lift backdrop-blur sm:rounded-[24px] sm:px-6 sm:py-4"
-        >
+    <ul className={`flex flex-wrap items-center gap-3 sm:gap-4 ${className}`}>
+      {trustBadges.map((badge) => {
+        const bild = (
           <Image
             src={brandMedia[badge.key]}
             alt={badge.alt}
             width={badge.width}
             height={badge.height}
-            className="h-12 w-auto sm:h-16 lg:h-[4.5rem]"
+            className="h-12 w-auto sm:h-[3.75rem] lg:h-16"
           />
-        </li>
-      ))}
+        );
+
+        return badge.shape === "lockup" ? (
+          <li key={badge.key} className="flex rounded-[8px] bg-white p-[2px] shadow-soft">
+            {bild}
+          </li>
+        ) : (
+          <li key={badge.key} className="flex">
+            {bild}
+          </li>
+        );
+      })}
     </ul>
   );
 }

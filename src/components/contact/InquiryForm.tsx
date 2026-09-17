@@ -8,7 +8,7 @@ import { contactInterests, defaultContactInterest } from "@/data/contact";
 type Status = "idle" | "loading" | "success" | "error";
 
 const fieldClass =
-  "w-full rounded-[14px] bg-white px-4 py-3 text-[0.9375rem] text-ink shadow-soft outline-none transition-shadow duration-200 placeholder:text-text-subtle focus:ring-2 focus:ring-accent-deep";
+  "w-full rounded-[14px] bg-white px-4 py-3.5 text-[1rem] text-ink shadow-soft outline-none ring-1 ring-border transition-shadow duration-200 placeholder:text-text-subtle focus:ring-2 focus:ring-accent-deep sm:text-[0.9375rem]";
 
 /**
  * Anfrageformular — identisch auf der Kontaktseite und in der Kontakt-Sheet.
@@ -94,7 +94,7 @@ export function InquiryForm({
         </p>
       )}
 
-      <div className={`grid gap-4 ${compact ? "sm:grid-cols-2" : "gap-5 sm:grid-cols-2"}`}>
+      <div className={`grid gap-4 ${compact ? "sm:grid-cols-2" : "sm:grid-cols-2 sm:gap-5"}`}>
         <Field label="Vorname" name="firstName" autoComplete="given-name" required autoFocus={autoFocus} />
         <Field label="Nachname" name="lastName" autoComplete="family-name" required />
         <Field label="E-Mail" name="email" type="email" autoComplete="email" required />
@@ -113,17 +113,24 @@ export function InquiryForm({
 
       <fieldset>
         <legend className="mb-3 text-sm font-semibold text-ink">Ich interessiere mich für</legend>
-        <div className="flex flex-wrap gap-2">
-          {contactInterests.map((item) => (
+        {/* Zwei Spalten auf dem Telefon, eine Schiene am Rechner. Bei
+            ungerader Anzahl nimmt der letzte Eintrag die ganze Zeile, sonst
+            stünde er allein neben einer Lücke. */}
+        <div className="grid grid-cols-2 gap-1 rounded-[14px] bg-surface-mist p-1 sm:auto-cols-fr sm:grid-flow-col sm:grid-cols-none">
+          {contactInterests.map((item, position) => (
             <button
               key={item.value}
               type="button"
               onClick={() => setInterest(item.value)}
               aria-pressed={interest === item.value}
-              className={`rounded-[14px] px-4 py-2.5 text-[0.8125rem] font-semibold transition-all duration-200 ${
+              className={`rounded-[11px] px-4 py-2.5 text-[0.8125rem] font-semibold transition-all duration-200 ${
+                contactInterests.length % 2 === 1 && position === contactInterests.length - 1
+                  ? "col-span-2 sm:col-span-1"
+                  : ""
+              } ${
                 interest === item.value
-                  ? "bg-accent-deep text-white shadow-soft"
-                  : "bg-white text-text-muted shadow-soft hover:text-accent-deep"
+                  ? "bg-white text-accent-deep shadow-soft"
+                  : "text-text-muted hover:text-ink"
               }`}
             >
               {item.label}
@@ -139,7 +146,7 @@ export function InquiryForm({
         <textarea
           id="inquiry-message"
           name="message"
-          rows={compact ? 4 : 5}
+          rows={compact ? 4 : 6}
           required
           className={fieldClass}
           placeholder="Erzählen Sie uns kurz von Ihrer Immobilie oder Ihrem Anliegen."
@@ -157,7 +164,7 @@ export function InquiryForm({
           type="checkbox"
           name="consent"
           required
-          className="mt-0.5 h-5 w-5 shrink-0 rounded-[6px] border-border-strong text-accent-deep focus:ring-accent"
+          className="mt-0.5 h-5 w-5 shrink-0 rounded-[6px] border-border-strong text-accent-deep focus:ring-accent-deep"
         />
         <span>
           Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verarbeitet
