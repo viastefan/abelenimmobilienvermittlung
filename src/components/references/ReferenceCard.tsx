@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CalendarRange, DoorOpen, Ruler } from "lucide-react";
+import { ArrowRight, CalendarRange, DoorOpen, MapPin, Ruler } from "lucide-react";
 import { SiteImage } from "@/components/graphics/SiteImage";
 import { CardGallery } from "@/components/property/CardGallery";
 import type { ReferenceObject } from "@/types/reference";
@@ -54,7 +54,8 @@ export function ReferenceCard({
       </span>
 
       <div className={`flex flex-1 flex-col ${compact ? "p-5" : "p-6"}`}>
-        <span className="inline-flex w-fit items-center rounded-full bg-accent-soft px-2.5 py-1 text-[0.6875rem] font-semibold text-accent-deep">
+        <span className="inline-flex w-fit items-center gap-1.5 text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-accent-deep">
+          <MapPin className="h-3.5 w-3.5" strokeWidth={1.8} aria-hidden="true" />
           {reference.region}
         </span>
 
@@ -67,6 +68,12 @@ export function ReferenceCard({
             {reference.title}
           </Link>
         </h3>
+
+        {/* Zwei Zeilen zur Lage — sie steht in jeder Karte, damit niemand
+            erst die Detailseite öffnen muss, um zu wissen, wo das Objekt liegt. */}
+        <p className="pretty mt-2 line-clamp-2 text-[0.8125rem] leading-relaxed text-text-muted">
+          {reference.location}
+        </p>
 
         <div className="mt-4 flex flex-wrap gap-2">
           {facts.map((fact) => (

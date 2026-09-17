@@ -82,7 +82,7 @@ export default async function PropertyDetailPage({
 
           <Container className="absolute inset-x-0 top-0 pt-6">
             <Link
-              href="/immobilien"
+              href="/referenzen"
               className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2.5 text-[0.8125rem] font-semibold text-white backdrop-blur transition-colors duration-200 hover:bg-white/20"
             >
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />

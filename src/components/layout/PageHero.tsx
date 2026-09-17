@@ -47,7 +47,7 @@ export function PageHero({
       <Container className="relative">
         <div
           className={`flex flex-col py-12 lg:py-16 ${
-            hasMedia ? "lg:min-h-[21rem] lg:w-[52%] lg:justify-center" : "max-w-3xl"
+            hasMedia ? "max-lg:pb-0 lg:min-h-[21rem] lg:w-[52%] lg:justify-center" : "max-w-3xl"
           }`}
         >
           {breadcrumbs && breadcrumbs.length > 0 && (

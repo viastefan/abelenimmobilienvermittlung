@@ -71,7 +71,7 @@ export default async function KaufenPage() {
           <Container>
             <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
               <SectionHeading eyebrow="Aktuelle Objekte" size="lg" title="Verfügbare Immobilien" />
-              <Button href="/immobilien" variant="secondary" withArrow className="group shrink-0">
+              <Button href="/referenzen" variant="secondary" withArrow className="group shrink-0">
                 Alle Immobilien
               </Button>
             </div>

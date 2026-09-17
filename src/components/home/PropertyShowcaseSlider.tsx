@@ -110,7 +110,7 @@ export function PropertyShowcaseSlider({ slides }: { slides: ShowcaseSlide[] }) 
                           </p>
                         </div>
                         <Link
-                          href="/immobilien"
+                          href="/referenzen"
                           tabIndex={current ? undefined : -1}
                           className="text-[0.875rem] font-semibold text-accent-deep transition-colors duration-300 hover:text-accent-dark"
                         >

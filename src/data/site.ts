@@ -75,8 +75,7 @@ export type NavItem = {
 export const primaryNav: NavItem[] = [
   { label: "Start", href: "/" },
   { label: "Dienstleistungen", href: "/leistungen" },
-  { label: "Immobilien", href: "/immobilien" },
-  { label: "Referenzen", href: "/referenzen" },
+  { label: "Objekte & Referenzen", href: "/referenzen" },
   { label: "Über Mich", href: "/ueber-mich" },
   { label: "Anlagen", href: "/anlagen" },
   { label: "Kontakt", href: "/kontakt" },
@@ -86,8 +85,7 @@ export const primaryNav: NavItem[] = [
 export const footerNav: NavItem[] = [
   { label: "Start", href: "/" },
   { label: "Dienstleistungen", href: "/leistungen" },
-  { label: "Aktuelle Immobilien", href: "/immobilien" },
-  { label: "Referenzen", href: "/referenzen" },
+  { label: "Objekte & Referenzen", href: "/referenzen" },
   { label: "Über Mich", href: "/ueber-mich" },
   { label: "Anlagen", href: "/anlagen" },
   { label: "Kontakt", href: "/kontakt" },

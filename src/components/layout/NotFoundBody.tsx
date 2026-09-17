@@ -18,7 +18,7 @@ export function NotFoundBody() {
           <Button href="/" variant="primary">
             Zur Startseite
           </Button>
-          <Button href="/immobilien" variant="secondary">
+          <Button href="/referenzen" variant="secondary">
             Immobilien ansehen
           </Button>
         </div>
