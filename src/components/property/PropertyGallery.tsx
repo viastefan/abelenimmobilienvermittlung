@@ -1,8 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Expand, X } from "lucide-react";
+import { ImagePlaceholder } from "@/components/graphics/ImagePlaceholder";
+import { PhotoImage } from "@/components/graphics/PhotoImage";
 
 /**
  * Bildergalerie eines Objekts.
@@ -92,12 +93,13 @@ export function PropertyGallery({
               aria-label={`Bild ${position + 1} von ${images.length} groß ansehen`}
               className="group relative block aspect-[4/3] w-full overflow-hidden rounded-[24px] bg-surface-mist"
             >
-              <Image
+              <PhotoImage
                 src={image}
                 alt={`${title} in ${city} — Bild ${position + 1}`}
                 fill
                 sizes="(min-width: 1024px) 32vw, (min-width: 640px) 46vw, 84vw"
                 className="object-cover transition-transform duration-[900ms] ease-smooth group-hover:scale-[1.05]"
+                fallback={<ImagePlaceholder />}
               />
               <span
                 className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/85 text-ink opacity-0 backdrop-blur transition-opacity duration-300 group-hover:opacity-100"
@@ -142,13 +144,14 @@ export function PropertyGallery({
           >
             {images.map((image, position) => (
               <div key={image} className="relative h-full w-full shrink-0 grow-0 basis-full snap-center">
-                <Image
+                <PhotoImage
                   src={image}
                   alt={`${title} in ${city} — Bild ${position + 1}`}
                   fill
                   sizes="100vw"
                   className="object-contain"
                   priority={position === index}
+                  fallback={<ImagePlaceholder />}
                 />
               </div>
             ))}

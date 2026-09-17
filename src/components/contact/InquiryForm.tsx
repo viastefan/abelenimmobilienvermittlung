@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { contactInterests, defaultContactInterest } from "@/data/contact";
+import { site } from "@/data/site";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -169,10 +170,24 @@ export function InquiryForm({
         </span>
       </label>
 
+      {/* Geht das Formular nicht durch, ist die Anfrage sonst verloren: hier
+          stehen deshalb Telefonnummer und E-Mail direkt daneben, wählbar und
+          anklickbar, statt der bloßen Bitte, sich anders zu melden. */}
       {status === "error" && errorMessage && (
-        <p role="alert" className="rounded-[14px] bg-warning-soft px-4 py-3 text-sm text-warning">
-          {errorMessage}
-        </p>
+        <div role="alert" className="rounded-[14px] bg-warning-soft px-4 py-3 text-sm text-warning">
+          <p>{errorMessage}</p>
+          <p className="mt-2">
+            Sie erreichen uns auch direkt:{" "}
+            <a href={site.phoneHref} className="font-semibold underline underline-offset-2">
+              {site.phone}
+            </a>{" "}
+            oder{" "}
+            <a href={`mailto:${site.email}`} className="font-semibold underline underline-offset-2">
+              {site.email}
+            </a>
+            .
+          </p>
+        </div>
       )}
 
       <button

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { PhotoImage } from "@/components/graphics/PhotoImage";
 import { brandMedia } from "@/data/wix-media";
 type MarkProps = {
   className?: string;
@@ -48,18 +48,25 @@ type LogoProps = {
 };
 
 export function Logo({ className = "", inverted = false, compact = false }: LogoProps) {
+  const markSize = compact ? "h-10 w-10" : "h-11 w-11 sm:h-[3.25rem] sm:w-[3.25rem]";
+
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
       {/* Originalgrafik statt der nachgezeichneten Marke. Die Schrift daneben
           bleibt gesetzt: als Text ist sie in jeder Größe scharf, lässt sich
-          vorlesen und passt ihre Farbe dem Untergrund an. */}
-      <Image
+          vorlesen und passt ihre Farbe dem Untergrund an.
+          Liefert der fremde Server die Grafik nicht aus, springt die
+          gezeichnete Marke ein — im Kopf der Website darf kein Loch sein. */}
+      <PhotoImage
         src={brandMedia.mark}
         alt=""
         width={1000}
         height={1000}
         priority
-        className={`${compact ? "h-10 w-10" : "h-11 w-11 sm:h-[3.25rem] sm:w-[3.25rem]"} shrink-0 object-contain`}
+        className={`${markSize} shrink-0 object-contain`}
+        fallback={
+          <LogoMark className={`${markSize} shrink-0 ${inverted ? "text-white" : "text-accent"}`} />
+        }
       />
       <span
         className={`flex flex-col font-display leading-[1.32] ${

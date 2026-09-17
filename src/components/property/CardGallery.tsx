@@ -1,8 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ImagePlaceholder } from "@/components/graphics/ImagePlaceholder";
+import { PhotoImage } from "@/components/graphics/PhotoImage";
 
 /**
  * Bildwechsler auf einer Objektkarte.
@@ -67,13 +68,14 @@ export function CardGallery({
       >
         {images.map((image, position) => (
           <div key={image} className="relative h-full w-full shrink-0 grow-0 basis-full snap-center">
-            <Image
+            <PhotoImage
               src={image}
               alt={position === 0 ? alt : ""}
               fill
               sizes={sizes}
               className="object-cover"
               priority={false}
+              fallback={<ImagePlaceholder />}
             />
           </div>
         ))}
