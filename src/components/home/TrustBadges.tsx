@@ -7,16 +7,17 @@ import { PhotoImage } from "@/components/graphics/PhotoImage";
 
 /**
  * Qualifikationsnachweise, wie sie der bisherige Auftritt zeigt. Beide
- * Grafiken enthalten ihre Beschriftung selbst — eine zweite Zeile daneben
+ * Grafiken tragen ihre Beschriftung selbst — eine zweite Zeile daneben
  * würde dieselbe Aussage doppeln.
  *
- * Beide sitzen auf derselben hellen Fläche und in derselben Höhe. Frei auf
- * dem Foto stehend gehen sie auf dem Telefon unter; nebeneinander in
- * ungleichen Größen sehen sie nach Zufall aus, nicht nach Nachweis.
+ * Das quergestreckte Siegel steht auf hellem Grund und braucht deshalb eine
+ * weiße Unterlage, die es aber nur um zwei Pixel überragt. Die Plakette von
+ * ImmoScout24 ist freigestellt und steht ohne Unterlage — eine Fläche um
+ * eine Fläche sähe nach Aufkleber aus.
  */
 export function TrustBadges({ className = "" }: { className?: string }) {
   return (
-    <ul className={`flex flex-wrap items-stretch gap-2.5 sm:gap-3 ${className}`}>
+    <ul className={`flex flex-wrap items-center gap-3 sm:gap-4 ${className}`}>
       {trustBadges.map((badge) => (
         <TrustBadge key={badge.key} badge={badge} />
       ))}
@@ -26,23 +27,27 @@ export function TrustBadges({ className = "" }: { className?: string }) {
 
 /**
  * Ein Nachweis verschwindet ganz, wenn seine Grafik nicht lädt: Die Aussage
- * steckt im Bild: eine leere weiße Kachel behauptete ein Siegel, das
+ * steckt im Bild — eine leere weiße Kachel behauptete ein Siegel, das
  * niemand sieht.
  */
 function TrustBadge({ badge }: { badge: (typeof trustBadges)[number] }) {
   const [failed, setFailed] = useState(false);
   if (failed) return null;
 
-  return (
-    <li className="flex items-center justify-center rounded-[24px] bg-white/95 px-4 py-3 shadow-lift backdrop-blur sm:rounded-[24px] sm:px-6 sm:py-4">
-      <PhotoImage
-        src={brandMedia[badge.key]}
-        alt={badge.alt}
-        width={badge.width}
-        height={badge.height}
-        className="h-12 w-auto sm:h-16 lg:h-[4.5rem]"
-        onFailed={() => setFailed(true)}
-      />
-    </li>
+  const bild = (
+    <PhotoImage
+      src={brandMedia[badge.key]}
+      alt={badge.alt}
+      width={badge.width}
+      height={badge.height}
+      className="h-12 w-auto sm:h-[3.75rem] lg:h-16"
+      onFailed={() => setFailed(true)}
+    />
+  );
+
+  return badge.shape === "lockup" ? (
+    <li className="flex rounded-[8px] bg-white p-[2px] shadow-soft">{bild}</li>
+  ) : (
+    <li className="flex">{bild}</li>
   );
 }

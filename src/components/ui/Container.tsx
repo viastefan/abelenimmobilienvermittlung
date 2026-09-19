@@ -14,6 +14,6 @@ export function Container({
   children: ReactNode;
 }) {
   return (
-    <Tag className={`mx-auto w-full max-w-content px-4 sm:px-6 lg:px-10 ${className}`}>{children}</Tag>
+    <Tag className={`mx-auto w-full max-w-content px-6 lg:px-10 ${className}`}>{children}</Tag>
   );
 }

@@ -24,6 +24,8 @@ const nextConfig = {
    */
   async redirects() {
     return [
+      // Objekte und Referenzen stehen jetzt auf einer Seite.
+      { source: "/immobilien", destination: "/referenzen", permanent: true },
       { source: "/ueber-silke-abelen", destination: "/ueber-mich", permanent: true },
       { source: "/dienstleistungen", destination: "/leistungen", permanent: true },
       { source: "/anlagen-immobilienverkauf", destination: "/anlagen", permanent: true },

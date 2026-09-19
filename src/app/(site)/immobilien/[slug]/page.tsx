@@ -82,7 +82,7 @@ export default async function PropertyDetailPage({
 
           <Container className="absolute inset-x-0 top-0 pt-6">
             <Link
-              href="/immobilien"
+              href="/referenzen"
               className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2.5 text-[0.8125rem] font-semibold text-white backdrop-blur transition-colors duration-200 hover:bg-white/20"
             >
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -128,7 +128,7 @@ export default async function PropertyDetailPage({
 
         {/* Eckdaten überlappen den Kopfbereich — wie eine Karte auf dem Foto. */}
         <Container>
-          <div className="relative -mt-10 rounded-[24px] bg-white shadow-soft p-6 shadow-lift lg:-mt-14 lg:p-8">
+          <div className="relative -mt-10 rounded-[24px] bg-white shadow-soft ring-1 ring-border p-6 shadow-lift lg:-mt-14 lg:p-8">
             <dl className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-6">
               {keyFacts.map((fact) => (
                 <div key={fact.label}>

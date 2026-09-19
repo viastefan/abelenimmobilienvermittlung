@@ -41,13 +41,13 @@ export function KeyValueListEditor({
               name={labelFieldName}
               defaultValue={item.label}
               placeholder={labelPlaceholder}
-              className="w-1/2 rounded-[14px] bg-white shadow-soft px-3 py-2 text-[0.8125rem] text-ink transition-colors focus:border-accent focus:outline-none"
+              className="w-1/2 rounded-[14px] bg-white shadow-soft ring-1 ring-border px-3 py-2 text-[0.8125rem] text-ink transition-colors focus:outline-none"
             />
             <input
               name={valueFieldName}
               defaultValue={item.value}
               placeholder={valuePlaceholder}
-              className="w-1/2 rounded-[14px] bg-white shadow-soft px-3 py-2 text-[0.8125rem] text-ink transition-colors focus:border-accent focus:outline-none"
+              className="w-1/2 rounded-[14px] bg-white shadow-soft ring-1 ring-border px-3 py-2 text-[0.8125rem] text-ink transition-colors focus:outline-none"
             />
             <button
               type="button"

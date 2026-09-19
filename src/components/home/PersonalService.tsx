@@ -2,7 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SiteImage } from "@/components/graphics/SiteImage";
-import { BrandWave } from "@/components/graphics/BrandWave";
+import { HeadingRule } from "@/components/ui/HeadingRule";
 import { resolveImage } from "@/lib/imagery";
 import { images } from "@/data/imagery";
 
@@ -36,7 +36,7 @@ export function PersonalService() {
           <h2 className="balance font-display text-display-lg font-bold text-white">
             Persönlich, Verlässlich…
           </h2>
-          <BrandWave className="mt-3 text-accent" />
+          <HeadingRule light className="mt-5" />
 
           <div className="pretty mt-6 space-y-4 text-[0.9375rem] leading-relaxed text-white/80">
             <p>

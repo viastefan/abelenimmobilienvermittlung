@@ -81,7 +81,7 @@ export function PropertyGallery({
 
   return (
     <>
-      <ul className="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 pb-1 scroll-pl-4 sm:px-6 sm:scroll-pl-6 lg:gap-4 lg:px-10 lg:scroll-pl-10">
+      <ul className="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-6 pb-1 scroll-pl-6 lg:gap-4 lg:px-10 lg:scroll-pl-10">
         {images.map((image, position) => (
           <li
             key={image}

@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 /** Gemeinsame Bausteine des Admin-Panels — ruhig, flach, ohne Zierrat. */
 
 export const inputClass =
-  "w-full rounded-[14px] bg-white shadow-soft px-3.5 py-2.5 text-[0.875rem] text-ink transition-colors placeholder:text-text-subtle focus:border-accent focus:outline-none";
+  "w-full rounded-[14px] bg-white shadow-soft ring-1 ring-border px-3.5 py-2.5 text-[0.875rem] text-ink transition-colors placeholder:text-text-subtle focus:outline-none";
 
 export const selectClass = `${inputClass} appearance-none bg-[length:16px] bg-[right_0.85rem_center] bg-no-repeat pr-10`;
 
@@ -40,7 +40,7 @@ export function Panel({
   className?: string;
 }) {
   return (
-    <section className={`rounded-[24px] bg-white shadow-soft p-6 ${className}`}>
+    <section className={`rounded-[24px] bg-white shadow-soft ring-1 ring-border p-6 ${className}`}>
       {title && (
         <header className="mb-5">
           <h2 className="font-display text-[0.9375rem] font-bold text-ink">{title}</h2>
@@ -79,7 +79,7 @@ export const adminButton = {
   primary: `${buttonBase} bg-accent-deep text-white hover:bg-accent-dark`,
   secondary: `${buttonBase} border border-border-strong bg-white text-ink hover:border-accent hover:text-accent-deep`,
   ghost: `${buttonBase} text-text-muted hover:bg-surface-cool hover:text-ink`,
-  danger: `${buttonBase} bg-white shadow-soft text-warning hover:border-warning hover:bg-warning-soft`,
+  danger: `${buttonBase} bg-white shadow-soft ring-1 ring-border text-warning hover:ring-warning hover:bg-warning-soft`,
 } as const;
 
 export function AdminLink({

@@ -109,7 +109,7 @@ export default function LeistungenPage() {
               const Icon = icons[item.icon];
               return (
                 <Reveal key={item.title} delay={index * 90} className="h-full">
-                  <article className="flex h-full flex-col rounded-[24px] bg-white shadow-soft p-7">
+                  <article className="flex h-full flex-col rounded-[24px] bg-white shadow-soft ring-1 ring-border p-7">
                     <span className="flex items-center gap-3.5">
                       <Icon className="h-7 w-7 shrink-0 text-accent-mid" strokeWidth={1.4} aria-hidden="true" />
                       <h2 className="font-display text-[1.125rem] font-bold text-ink">{item.title}</h2>

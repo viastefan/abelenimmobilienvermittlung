@@ -48,7 +48,7 @@ export default async function AdminInquiriesPage({
       {/* Segmentierte Auswahl wie in den Systemeinstellungen. */}
       <nav
         aria-label="Anfragen filtern"
-        className="mt-7 inline-flex rounded-[14px] bg-white shadow-soft p-1"
+        className="mt-7 inline-flex rounded-[14px] bg-white shadow-soft ring-1 ring-border p-1"
       >
         {segments.map((segment) => (
           <Link
@@ -81,7 +81,7 @@ export default async function AdminInquiriesPage({
       ) : (
         <ul className="mt-7 space-y-4">
           {visible.map((inquiry) => (
-            <li key={inquiry.id} className="overflow-hidden rounded-[24px] bg-white shadow-soft">
+            <li key={inquiry.id} className="overflow-hidden rounded-[24px] bg-white shadow-soft ring-1 ring-border">
               <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border px-5 py-4">
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2.5">

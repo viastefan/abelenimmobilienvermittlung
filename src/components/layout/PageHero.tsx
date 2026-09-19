@@ -47,7 +47,7 @@ export function PageHero({
       <Container className="relative">
         <div
           className={`flex flex-col py-12 lg:py-16 ${
-            hasMedia ? "lg:min-h-[21rem] lg:w-[52%] lg:justify-center" : "max-w-3xl"
+            hasMedia ? "max-lg:pb-0 lg:min-h-[21rem] lg:w-[52%] lg:justify-center" : "max-w-3xl"
           }`}
         >
           {breadcrumbs && breadcrumbs.length > 0 && (
@@ -85,7 +85,7 @@ export function PageHero({
           )}
 
           {hasMedia && (
-            <div className="relative -mx-4 mt-8 aspect-[16/10] overflow-hidden sm:-mx-6 sm:rounded-[24px] lg:hidden">
+            <div className="relative -mx-6 mt-8 aspect-[16/10] overflow-hidden sm:rounded-[24px] lg:hidden">
               <SiteImage src={image} sizes="100vw" label={eyebrow} alt={imageAlt ?? ""} />
             </div>
           )}

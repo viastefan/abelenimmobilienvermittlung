@@ -51,7 +51,7 @@ export function Hero() {
             <Button href="/bewertung" variant="primary" size="lg" withArrow className="w-full sm:w-auto">
               Immobilie bewerten
             </Button>
-            <Button href="/immobilien" variant="secondaryInverted" size="lg" className="w-full sm:w-auto">
+            <Button href="/referenzen" variant="secondaryInverted" size="lg" className="w-full sm:w-auto">
               Objekte ansehen
             </Button>
           </div>

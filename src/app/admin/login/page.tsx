@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const inputClass =
-  "w-full rounded-[14px] border border-white/15 bg-white/[0.06] px-3.5 py-2.5 text-[0.875rem] text-white transition-colors placeholder:text-white/30 focus:border-accent focus:outline-none";
+  "w-full rounded-[14px] border border-white/15 bg-white/[0.06] px-3.5 py-2.5 text-[0.875rem] text-white transition-colors placeholder:text-white/30 focus:outline-none";
 
 export default async function AdminLoginPage({
   searchParams,

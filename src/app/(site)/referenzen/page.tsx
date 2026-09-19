@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/PageHero";
 import { Container } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
+import { PropertyCard } from "@/components/property/PropertyCard";
+import { PropertyCtaCard } from "@/components/property/PropertyCtaCard";
 import { ReferenceGrid, type ReferenceCardItem } from "@/components/references/ReferenceGrid";
 import { TestimonialCard } from "@/components/references/TestimonialCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -9,20 +12,33 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
 import { getPublishedReferences } from "@/data/references";
+import { getPublishedProperties } from "@/data/properties";
 import { resolveImages, resolveImage } from "@/lib/imagery";
 import { images } from "@/data/imagery";
 
 export const metadata: Metadata = pageSeo({
-  title: "Referenzen — erfolgreich vermittelte Immobilien",
+  title: "Objekte & Referenzen — aktuelle Angebote und vermittelte Immobilien",
   description:
-    "Ein Auszug erfolgreich verkaufter und vermieteter Immobilien in Leverkusen und Umgebung — Einfamilienhäuser, Reihenhäuser, Wohnungen und Mehrfamilienhäuser.",
+    "Aktuelle Immobilienangebote und ein Auszug erfolgreich vermittelter Objekte in Leverkusen und Umgebung — persönlich geprüft und betreut.",
   path: "/referenzen",
 });
 
 export const revalidate = 60;
 
-export default async function ReferenzenPage() {
-  const references = await getPublishedReferences();
+/**
+ * Objekte und Referenzen auf einer Seite, wie im bisherigen Auftritt: oben
+ * das, was zu haben ist, darunter das, was vermittelt wurde. Wer sucht,
+ * sieht beides in einem Zug — getrennte Seiten zwangen zum Hin und Her.
+ *
+ * `/immobilien` leitet hierher; die Objektseiten darunter bleiben, wo sie
+ * sind.
+ */
+export default async function ObjekteUndReferenzenPage() {
+  const [references, properties] = await Promise.all([
+    getPublishedReferences(),
+    getPublishedProperties(),
+  ]);
+
   const items: ReferenceCardItem[] = references.map((item) => ({
     ...item,
     resolvedImages: resolveImages(item.images),
@@ -37,41 +53,78 @@ export default async function ReferenzenPage() {
   return (
     <>
       <PageHero
-        eyebrow="Referenzen"
         title={
           <>
-            Erfolgreich vermittelte
-            <br className="hidden sm:block" /> Immobilien
+            Objekte
+            <br className="hidden sm:block" /> &amp; Referenzen
           </>
         }
-        description="Ein Auszug unserer erfolgreich verkauften und vermieteten Immobilien in Leverkusen und Umgebung."
-        breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Referenzen" }]}
+        description="Aktuelle Angebote und ein Auszug erfolgreich verkaufter und vermieteter Immobilien in Leverkusen und Umgebung."
+        breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Objekte & Referenzen" }]}
         withMedia
         image={resolveImage(images.referenzen)}
         imageAlt="Wohnhäuser in Leverkusen, wie sie regelmäßig vermittelt werden"
       />
 
-      <section className="py-14 lg:py-20">
+      <section id="angebote" className="py-14 lg:py-20">
         <Container>
-          <ReferenceGrid references={items} />
+          <SectionHeading
+            size="lg"
+            title="Aktuell im Angebot"
+            description="Persönlich geprüft und betreut. Neue Objekte ergänzen wir fortlaufend."
+          />
 
-          <p className="mt-14 max-w-2xl text-[0.8125rem] leading-relaxed text-text-subtle">
-            Hinweis: Aus Rücksicht auf unsere Auftraggeberinnen und Auftraggeber zeigen wir
-            Referenzobjekte ohne Adresse und ohne veröffentlichten Kaufpreis. Gerne sprechen wir im
-            persönlichen Gespräch über vergleichbare Objekte in Ihrer Lage.
-          </p>
+          {properties.length > 0 ? (
+            <div
+              className={`mt-10 grid gap-6 sm:grid-cols-2 ${
+                properties.length >= 3 ? "lg:grid-cols-3" : ""
+              }`}
+            >
+              {properties.map((property) => (
+                <PropertyCard
+                  key={property.slug}
+                  property={property}
+                  images={resolveImages(property.images)}
+                />
+              ))}
+              {properties.length < 3 && <PropertyCtaCard />}
+            </div>
+          ) : (
+            <div className="mt-10 rounded-[24px] bg-surface-warm p-10 text-center">
+              <p className="mx-auto max-w-lg text-[1.0625rem] leading-relaxed text-text-muted">
+                Aktuell ist kein Objekt online. Sprechen Sie uns gerne direkt an — wir beraten Sie
+                auch zu Immobilien, die noch nicht veröffentlicht sind.
+              </p>
+              <Button href="/kontakt" variant="primary" withArrow className="mt-8">
+                Kontakt aufnehmen
+              </Button>
+            </div>
+          )}
+        </Container>
+      </section>
+
+      <section id="referenzen" className="bg-surface-warm py-14 lg:py-20">
+        <Container>
+          <SectionHeading
+            size="lg"
+            title="Erfolgreich vermittelt"
+            description="Ein Auszug unserer verkauften und vermieteten Immobilien in Leverkusen und Umgebung."
+          />
+          <div className="mt-10">
+            <ReferenceGrid references={items} />
+          </div>
         </Container>
       </section>
 
       {testimonials.length > 0 && (
-        <section className="bg-surface-warm py-14 lg:py-20">
+        <section className="py-14 lg:py-20">
           <Container>
             <SectionHeading
-              eyebrow="Kundenmeinungen"
+              size="lg"
               title="Was Auftraggeberinnen und Auftraggeber sagen"
               description="Rückmeldungen aus abgeschlossenen Vermittlungen — unverändert übernommen."
             />
-            <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <div className="mt-10 grid gap-5 lg:grid-cols-2">
               {testimonials.map((item) => (
                 <TestimonialCard
                   key={item.slug}
@@ -94,7 +147,7 @@ export default async function ReferenzenPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: "Start", path: "/" },
-          { name: "Referenzen", path: "/referenzen" },
+          { name: "Objekte & Referenzen", path: "/referenzen" },
         ])}
       />
     </>

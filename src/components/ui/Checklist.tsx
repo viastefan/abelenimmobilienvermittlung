@@ -31,7 +31,7 @@ export function Checklist({
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {groups.map((group, index) => (
             <Reveal key={group.title} delay={index * 90} className="h-full">
-              <div className="flex h-full flex-col rounded-[14px] bg-white shadow-soft p-6">
+              <div className="flex h-full flex-col rounded-[14px] bg-white shadow-soft ring-1 ring-border p-6">
                 <h3 className="font-display text-[0.9375rem] font-bold text-ink">{group.title}</h3>
                 <ul className="mt-4 space-y-2.5">
                   {group.items.map((item) => (
