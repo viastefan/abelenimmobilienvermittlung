@@ -10,14 +10,15 @@ import { PhotoImage } from "@/components/graphics/PhotoImage";
  * Grafiken tragen ihre Beschriftung selbst — eine zweite Zeile daneben
  * würde dieselbe Aussage doppeln.
  *
- * Das quergestreckte Siegel steht auf hellem Grund und braucht deshalb eine
- * weiße Unterlage, die es aber nur um zwei Pixel überragt. Die Plakette von
- * ImmoScout24 ist freigestellt und steht ohne Unterlage — eine Fläche um
- * eine Fläche sähe nach Aufkleber aus.
+ * Sie sind der einzige belegte Fremdnachweis auf der Startseite und stehen
+ * deshalb groß genug, dass die Schrift im Siegel lesbar bleibt. Das
+ * quergestreckte Siegel sitzt auf einer weißen Karte, die ihm Luft lässt;
+ * die freigestellte Plakette von ImmoScout24 steht ohne Unterlage — eine
+ * Fläche um eine Fläche sähe nach Aufkleber aus.
  */
 export function TrustBadges({ className = "" }: { className?: string }) {
   return (
-    <ul className={`flex flex-wrap items-center gap-3 sm:gap-4 ${className}`}>
+    <ul className={`flex flex-wrap items-center gap-4 sm:gap-5 ${className}`}>
       {trustBadges.map((badge) => (
         <TrustBadge key={badge.key} badge={badge} />
       ))}
@@ -40,13 +41,13 @@ function TrustBadge({ badge }: { badge: (typeof trustBadges)[number] }) {
       alt={badge.alt}
       width={badge.width}
       height={badge.height}
-      className="h-12 w-auto sm:h-[3.75rem] lg:h-16"
+      className="h-16 w-auto sm:h-[4.75rem] lg:h-[5.25rem]"
       onFailed={() => setFailed(true)}
     />
   );
 
   return badge.shape === "lockup" ? (
-    <li className="flex rounded-[8px] bg-white p-[2px] shadow-soft">{bild}</li>
+    <li className="flex rounded-[12px] bg-white px-3 py-2 shadow-lift">{bild}</li>
   ) : (
     <li className="flex">{bild}</li>
   );

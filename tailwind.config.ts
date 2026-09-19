@@ -22,6 +22,11 @@ const config: Config = {
         "surface-warm": "#FBFCFC",
         // Light turquoise — used sparingly behind cards and quiet panels.
         "surface-soft": "#EAF8F8",
+        // Warmes Sandweiß. Der einzige warme Ton der Palette: er trägt den
+        // Aufmacher, damit die Startseite nicht mit einer kalten Fläche
+        // beginnt. Für Text ist er nie Grund genug — dafür bleibt Weiß.
+        "surface-sand": "#FBF6F0",
+        "surface-sand-deep": "#F5EDE4",
         "surface-mist": "#F1F5F8",
         "surface-cool": "#F3F6F8",
         text: {
