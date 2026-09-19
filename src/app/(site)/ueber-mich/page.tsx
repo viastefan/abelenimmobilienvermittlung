@@ -59,7 +59,7 @@ export default function UeberMichPage() {
       />
 
       <section className="py-16 lg:py-20">
-        <Container className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
+        <Container className="grid gap-12 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:items-start lg:gap-16">
           <Reveal>
             <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-surface-mist">
               <SiteImage
@@ -69,34 +69,7 @@ export default function UeberMichPage() {
                 alt={`${site.owner}, ${site.ownerRole}`}
               />
             </div>
-            <TrustBadges className="mt-6" />
-
-            {/* Der direkte Draht steht nur hier. Silke Abelen arbeitet als
-                Einzelne, nicht als Firma — ihre Nummer gehört deshalb nicht
-                in Kopfzeile, Fußzeile und jede Objektseite. */}
-            <div className="mt-6 rounded-[24px] bg-surface-warm p-6">
-              <p className="font-display text-[0.9375rem] font-bold text-ink">Direkter Draht</p>
-              <ul className="mt-4 space-y-3.5">
-                <ContactLine
-                  href={site.phoneHref}
-                  icon={Smartphone}
-                  label="Mobil"
-                  value={site.phone}
-                />
-                <ContactLine
-                  href={site.landlineHref}
-                  icon={Phone}
-                  label="Telefon"
-                  value={site.landline}
-                />
-                <ContactLine
-                  href={`mailto:${site.email}`}
-                  icon={Mail}
-                  label="E-Mail"
-                  value={site.email}
-                />
-              </ul>
-            </div>
+            <TrustBadges className="mt-7" />
           </Reveal>
 
           <Reveal delay={100}>
@@ -135,6 +108,41 @@ export default function UeberMichPage() {
             <Button href="/kontakt" variant="primary" withArrow className="mt-10">
               Persönliches Gespräch vereinbaren
             </Button>
+          </Reveal>
+        </Container>
+
+        {/* Der direkte Draht steht nur hier. Silke Abelen arbeitet als
+            Einzelne, nicht als Firma — ihre Nummer gehört deshalb nicht in
+            Kopfzeile, Fußzeile und jede Objektseite.
+
+            Er steht quer unter beiden Spalten, nicht in der linken: dort
+            machte er die eine Spalte so viel länger als die andere, dass
+            neben ihm eine leere Fläche über die halbe Seitenbreite blieb. */}
+        <Container className="mt-14 lg:mt-16">
+          <Reveal>
+            <div className="rounded-[24px] bg-surface-warm p-7 lg:p-9">
+              <p className="font-display text-[1.0625rem] font-bold text-ink">Direkter Draht</p>
+              <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+                <ContactLine
+                  href={site.phoneHref}
+                  icon={Smartphone}
+                  label="Mobil"
+                  value={site.phone}
+                />
+                <ContactLine
+                  href={site.landlineHref}
+                  icon={Phone}
+                  label="Telefon"
+                  value={site.landline}
+                />
+                <ContactLine
+                  href={`mailto:${site.email}`}
+                  icon={Mail}
+                  label="E-Mail"
+                  value={site.email}
+                />
+              </ul>
+            </div>
           </Reveal>
         </Container>
       </section>

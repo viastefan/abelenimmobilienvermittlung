@@ -1,7 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
-import { HeadingRule } from "@/components/ui/HeadingRule";
 import { resolveImages } from "@/lib/imagery";
 import { getFeaturedActiveProperty } from "@/data/properties";
 import { regions } from "@/data/site";
@@ -31,7 +30,6 @@ export async function ExpertIntro() {
           <h2 className="balance font-display text-display-lg font-bold text-ink">
             Ihr Experte für Immobilien
           </h2>
-          <HeadingRule className="mt-5" />
 
           <p className="pretty mt-5 max-w-xl text-[1.0625rem] leading-relaxed text-text-muted">
             Das Büro für Immobilien Bewertung &amp; Vermittlung bietet Ihnen das{" "}

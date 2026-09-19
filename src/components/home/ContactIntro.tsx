@@ -2,7 +2,6 @@ import { Clock, Mail, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
-import { HeadingRule } from "@/components/ui/HeadingRule";
 import { regions, site } from "@/data/site";
 
 /** Text wörtlich von der Startseite des bisherigen Auftritts übernommen. */
@@ -16,7 +15,6 @@ export function ContactIntro() {
               <h2 className="balance font-display text-display-lg font-bold text-ink">
                 Der Erste Schritt zur Kontaktaufnahme
               </h2>
-              <HeadingRule className="mt-5" />
 
               <div className="pretty mt-5 max-w-xl space-y-4 text-[0.9375rem] leading-relaxed text-text-muted">
                 <p>

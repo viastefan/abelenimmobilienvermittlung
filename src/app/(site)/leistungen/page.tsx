@@ -47,14 +47,19 @@ export default function LeistungenPage() {
         image={resolveImage(images.leistungen)}
       />
 
+      {/* Überschrift links, Fließtext rechts. Über die volle Breite gesetzt
+          bliebe rechts neben dem Textblock die halbe Seite leer; in voller
+          Breite gesetzt würden die Zeilen zu lang zum Lesen. */}
       <section className="py-12 lg:py-16">
-        <Container>
-          <Eyebrow>Warum Begleitung</Eyebrow>
-          <h2 className="balance mt-3 max-w-3xl font-display text-display-lg font-bold text-ink">
-            Kauf und Verkauf sind Entscheidungen, die man selten trifft
-          </h2>
+        <Container className="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+          <div>
+            <Eyebrow>Warum Begleitung</Eyebrow>
+            <h2 className="balance mt-3 font-display text-display-lg font-bold text-ink">
+              Kauf und Verkauf sind Entscheidungen, die man selten trifft
+            </h2>
+          </div>
 
-          <div className="mt-6 max-w-3xl space-y-6 text-[1.0625rem] leading-relaxed text-text-muted">
+          <div className="space-y-6 text-[1.0625rem] leading-relaxed text-text-muted">
             <p className="pretty">
               Die Statistik zeigt: Die Mehrheit der Menschen kauft oder verkauft nur wenige Male, oft
               sogar nur ein einziges Mal im Leben, eine Immobilie. Fast immer geht es dabei um sehr
@@ -151,7 +156,7 @@ export default function LeistungenPage() {
       {/* Die drei eigenen Seiten — sie führen den obigen Überblick aus. */}
       <section className="py-14 lg:py-20">
         <Container>
-          <h2 className="font-display text-display-sm font-bold text-ink">Im Einzelnen</h2>
+          <h2 className="balance font-display text-display-lg font-bold text-ink">Im Einzelnen</h2>
           <div className="mt-8 space-y-3">
             {services.map((service) => (
               <div key={service.slug} className="grid gap-5 rounded-[24px] bg-surface-warm p-6 md:grid-cols-[1fr_auto] md:items-center md:gap-10 md:p-8">
