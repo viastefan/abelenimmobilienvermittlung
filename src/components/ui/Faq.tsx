@@ -20,7 +20,7 @@ export function Faq({
   className?: string;
 }) {
   return (
-    <section className={`bg-white py-16 lg:py-20 ${className}`}>
+    <section className={`bg-white py-14 lg:py-20 ${className}`}>
       <Container className="max-w-3xl">
         <Reveal>
           <SectionHeading eyebrow={eyebrow} title={title} />

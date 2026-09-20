@@ -28,13 +28,17 @@ export default function AnlagenPage() {
         breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Anlagen" }]}
       />
 
+      {/* Überschrift links, Text rechts: als einzelne schmale Spalte blieb
+          die halbe Seite daneben leer. */}
       <section className="py-14 lg:py-20">
-        <Container>
-          <Reveal className="max-w-prose">
-            <h2 className="font-display text-display-sm font-bold text-ink">
+        <Container className="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+          <Reveal>
+            <h2 className="balance font-display text-display-lg font-bold text-ink">
               Warum die Unterlagen den Verkauf entscheiden
             </h2>
-            <div className="mt-5 space-y-5 text-[1.0625rem] leading-relaxed text-text-muted">
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="space-y-5 text-[1.0625rem] leading-relaxed text-text-muted">
               <p className="pretty">
                 Kaufinteressenten entscheiden nicht nach dem Exposé, sondern nach dem, was sie
                 nachlesen können. Fehlt eine Angabe, entsteht Unsicherheit — und Unsicherheit

@@ -11,22 +11,21 @@ const ALT = "Hand mit einem Wohnungsschlüssel vor hellem Himmel";
 /**
  * Aufmacher der Startseite.
  *
- * Das Foto liegt über die volle Breite dahinter. Lesbar wird die Schrift
- * nicht dadurch, dass das Bild abgedunkelt wird — das kostete Foto und
- * Stimmung zugleich —, sondern durch einen hellen Schleier, der nur dort
- * deckt, wo Text steht, und zur anderen Seite hin aufklart. Die Schrift
- * steht dunkel darauf: dunkel auf hell liest sich ruhiger als hell auf
- * dunkel, und das Foto bleibt ein Foto.
+ * Das Foto liegt ganzflächig dahinter und bleibt ein Foto: kein heller
+ * Schleier davor, der es wegwischt, sondern eine ruhige Abdunklung, die
+ * gerade so weit geht, dass weiße Schrift sicher darauf steht. Die
+ * Abdunklung ist neutral gehalten und nicht in der Markenfarbe — eine
+ * eingefärbte Fläche legt sich über die Farben des Fotos, eine neutrale
+ * nimmt ihnen nur Helligkeit.
  *
- * Der Schleier läuft auf großen Schirmen nach rechts aus, auf dem Telefon
- * nach unten — dort steht der Text oben, und das Bild trägt die untere
- * Hälfte.
+ * Unter dem Text liegt sie etwas dichter als am rechten Rand, damit das
+ * Motiv dort offen bleibt.
  */
 export function Hero() {
   const image = resolveImage(images.heroWohnstrasse);
 
   return (
-    <section className="relative isolate overflow-hidden bg-surface-sand">
+    <section className="relative isolate overflow-hidden bg-ink-deep">
       <div className="absolute inset-0" aria-hidden="true">
         <SiteImage
           src={image}
@@ -34,28 +33,28 @@ export function Hero() {
           sizes="100vw"
           label="Leverkusen & Umgebung"
           alt=""
-          className="object-[72%_50%] lg:object-[62%_50%]"
+          className="object-[68%_50%] lg:object-[60%_45%]"
         />
 
-        {/* Telefon: von oben herab deckend. */}
-        <div className="absolute inset-0 bg-gradient-to-b from-surface-sand via-surface-sand/90 to-surface-sand/30 lg:hidden" />
-        {/* Ab groß: von links her deckend, nach rechts offen. */}
-        <div className="absolute inset-0 hidden bg-gradient-to-r from-surface-sand from-25% via-surface-sand/85 via-65% to-transparent lg:block" />
-        {/* Weicher Auslauf zur Kante, damit der Abschnitt nicht abgeschnitten wirkt. */}
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-surface-sand to-transparent" />
+        {/* Grundschleier: nimmt Helligkeit, keine Farbe. */}
+        <div className="absolute inset-0 bg-black/30" />
+        {/* Unter der Schrift etwas dichter, nach rechts hin offen. */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent" />
+        {/* Der Fuß trägt die Nachweise — dort ein wenig mehr Halt. */}
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/45 to-transparent" />
       </div>
 
       <Container className="relative">
-        <div className="flex min-h-[34rem] max-w-[34rem] flex-col justify-center py-16 sm:min-h-[38rem] lg:min-h-[42rem] lg:max-w-[45rem] lg:py-20">
-          <span className="inline-flex w-fit items-center rounded-full bg-white/85 px-4 py-2 text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-accent-deep shadow-soft backdrop-blur">
-            Leverkusen &amp; Umgebung
+        <div className="flex min-h-[32rem] max-w-[46rem] flex-col justify-center py-16 sm:min-h-[36rem] lg:min-h-[40rem] lg:py-20">
+          <span className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-white/80">
+            Ihr Partner für Immobilienkauf und -verkauf
           </span>
 
-          <h1 className="mt-6 font-display text-[clamp(1.875rem,5vw,3.5rem)] font-extrabold leading-[1.1] tracking-[-0.022em] text-ink [hyphens:auto]">
+          <h1 className="mt-5 font-display text-[clamp(2rem,5vw,3.5rem)] font-extrabold leading-[1.08] tracking-[-0.022em] text-white [hyphens:auto]">
             {site.taglineAufmacher}
           </h1>
 
-          <p className="pretty mt-6 max-w-[32rem] text-[1.0625rem] font-medium leading-relaxed text-ink/75 sm:text-[1.125rem]">
+          <p className="pretty mt-6 max-w-[34rem] text-[1.0625rem] leading-relaxed text-white/85 sm:text-[1.125rem]">
             Die Mehrheit der Immobilienbesitzer verkauft eine Immobilie häufig nur ein einziges Mal
             im Leben. Dabei geht es fast immer um hohe Werte.
           </p>
@@ -64,7 +63,7 @@ export function Hero() {
             <Button href="/bewertung" variant="primary" size="lg" withArrow className="w-full sm:w-auto">
               Immobilie bewerten
             </Button>
-            <Button href="/referenzen" variant="inverted" size="lg" className="w-full shadow-soft sm:w-auto">
+            <Button href="/referenzen" variant="inverted" size="lg" className="w-full sm:w-auto">
               Objekte ansehen
             </Button>
           </div>

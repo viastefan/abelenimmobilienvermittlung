@@ -58,7 +58,7 @@ export default function UeberMichPage() {
         breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Über uns" }]}
       />
 
-      <section className="py-16 lg:py-20">
+      <section className="py-14 lg:py-20">
         <Container className="grid gap-12 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:items-start lg:gap-16">
           <Reveal>
             <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-surface-mist">
@@ -148,7 +148,7 @@ export default function UeberMichPage() {
       </section>
 
 
-      <section className="bg-white py-16 lg:py-20">
+      <section className="bg-white py-14 lg:py-20">
         <Container>
           <Reveal>
             <SectionHeading

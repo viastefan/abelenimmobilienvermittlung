@@ -41,13 +41,15 @@ function TrustBadge({ badge }: { badge: (typeof trustBadges)[number] }) {
       alt={badge.alt}
       width={badge.width}
       height={badge.height}
-      className="h-16 w-auto sm:h-[4.75rem] lg:h-[5.25rem]"
+      className="h-14 w-auto sm:h-16 lg:h-[4.5rem]"
       onFailed={() => setFailed(true)}
     />
   );
 
+  // Die Unterlage ist eine Pille, keine Karte: so steht der Nachweis auf der
+  // bisherigen Website, und das runde Medaillon links sitzt darin bündig.
   return badge.shape === "lockup" ? (
-    <li className="flex rounded-[12px] bg-white px-3 py-2 shadow-lift">{bild}</li>
+    <li className="flex rounded-full bg-white/95 py-1.5 pl-1.5 pr-6 shadow-soft">{bild}</li>
   ) : (
     <li className="flex">{bild}</li>
   );

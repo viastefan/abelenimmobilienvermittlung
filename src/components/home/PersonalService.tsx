@@ -17,7 +17,7 @@ export function PersonalService() {
   const image = resolveImage(images.personalService);
 
   return (
-    <section className="relative isolate overflow-hidden bg-ink-deep py-16 lg:py-24">
+    <section className="relative isolate overflow-hidden bg-ink-deep py-14 lg:py-20">
       <div className="absolute inset-0" aria-hidden="true">
         <SiteImage
           src={image}

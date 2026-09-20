@@ -47,7 +47,7 @@ export default async function KaufenPage() {
         description="Gemeinsam finden wir heraus, welche Immobilie wirklich zu Ihren Vorstellungen und Bedürfnissen passt — mit ehrlicher Beratung statt Verkaufsdruck."
       />
 
-      <section className="py-16 lg:py-20">
+      <section className="py-14 lg:py-20">
         <Container>
           <SectionHeading eyebrow="So gehen wir vor" size="lg" title="Klar, ehrlich, persönlich." />
           <div className="mt-14 grid gap-x-10 gap-y-12 pt-12 sm:grid-cols-2">
@@ -67,7 +67,7 @@ export default async function KaufenPage() {
       </section>
 
       {activeProperties.length > 0 && (
-        <section className="bg-surface py-16 lg:py-20">
+        <section className="bg-surface py-14 lg:py-20">
           <Container>
             <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
               <SectionHeading eyebrow="Aktuelle Objekte" size="lg" title="Verfügbare Immobilien" />

@@ -7,9 +7,9 @@ import { regions, site } from "@/data/site";
 /** Text wörtlich von der Startseite des bisherigen Auftritts übernommen. */
 export function ContactIntro() {
   return (
-    <section className="bg-white py-12 lg:py-16">
+    <section className="bg-white py-14 lg:py-20">
       <Container>
-        <Reveal className="-mx-6 overflow-hidden bg-surface-warm px-6 py-10 sm:mx-0 sm:rounded-[28px] sm:p-9 lg:p-12">
+        <Reveal className="-mx-6 overflow-hidden bg-surface-warm px-6 py-8 sm:mx-0 sm:rounded-[28px] sm:p-7 lg:p-9">
           <div className="grid gap-7 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12">
             <div>
               <h2 className="balance font-display text-display-lg font-bold text-ink">

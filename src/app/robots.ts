@@ -6,7 +6,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: "/api/",
+      // Das Panel ist ohnehin geschützt; es soll gar nicht erst besucht werden.
+      disallow: ["/api/", "/admin", "/admin/"],
     },
     sitemap: new URL("/sitemap.xml", site.url).toString(),
   };

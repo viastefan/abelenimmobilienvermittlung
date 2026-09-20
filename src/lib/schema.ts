@@ -1,4 +1,4 @@
-import { regions, site } from "@/data/site";
+import { regions, site, socials } from "@/data/site";
 import type { Property } from "@/types/property";
 
 export function organizationSchema() {
@@ -18,7 +18,19 @@ export function organizationSchema() {
       },
     ],
     email: site.email,
-    image: `${site.url}/og-image.png`,
+    // Das Vorschaubild erzeugt `src/app/opengraph-image.tsx` zur Laufzeit.
+    // Hier stand einmal `/og-image.png` — eine Datei, die es nie gab; die
+    // strukturierten Daten verwiesen damit auf eine 404.
+    image: `${site.url}/opengraph-image`,
+    logo: `${site.url}/icon-512.png`,
+    // Das Festnetz steht im Impressum und ist damit ohnehin öffentlich; für
+    // die lokale Suche ist eine erreichbare Nummer eines der wichtigsten
+    // Merkmale. Die Mobilnummer bleibt bewusst draußen (siehe `site.ts`).
+    telephone: site.landline.replace(/\s|\//g, ""),
+    faxNumber: site.fax.replace(/\s|\//g, ""),
+    priceRange: "$$",
+    currenciesAccepted: "EUR",
+    availableLanguage: "de",
     address: {
       "@type": "PostalAddress",
       streetAddress: site.address.street,
@@ -36,8 +48,56 @@ export function organizationSchema() {
       name: site.owner,
       jobTitle: site.ownerRole,
     },
-    knowsAbout: ["Immobilienbewertung", "Immobilienverkauf", "Vermietung"],
+    knowsAbout: [
+      "Immobilienbewertung",
+      "Immobilienverkauf",
+      "Vermietung",
+      "Marktwertermittlung",
+      "Immobilienvermittlung",
+    ],
     slogan: site.tagline,
+    // Leere Einträge würden als tote Verweise ausgeliefert.
+    ...(socials.some((s) => s.href.trim())
+      ? { sameAs: socials.filter((s) => s.href.trim()).map((s) => s.href) }
+      : {}),
+  };
+}
+
+/**
+ * Die Website als Ganzes. Google nutzt sie, um den Namen der Seite in den
+ * Ergebnissen zu setzen, statt ihn aus dem Titel zu raten.
+ */
+export function websiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: site.name,
+    alternateName: site.shortName,
+    url: site.url,
+    inLanguage: "de-DE",
+    publisher: { "@type": "Organization", name: site.legalName },
+  };
+}
+
+/** Eine einzelne Seite mit ihrem Platz im Auftritt. */
+export function webPageSchema({
+  name,
+  description,
+  path,
+}: {
+  name: string;
+  description: string;
+  path: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name,
+    description,
+    url: new URL(path, site.url).toString(),
+    inLanguage: "de-DE",
+    isPartOf: { "@type": "WebSite", name: site.name, url: site.url },
+    about: { "@type": "RealEstateAgent", name: site.name },
   };
 }
 

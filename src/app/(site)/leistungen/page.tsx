@@ -50,7 +50,7 @@ export default function LeistungenPage() {
       {/* Überschrift links, Fließtext rechts. Über die volle Breite gesetzt
           bliebe rechts neben dem Textblock die halbe Seite leer; in voller
           Breite gesetzt würden die Zeilen zu lang zum Lesen. */}
-      <section className="py-12 lg:py-16">
+      <section className="py-14 lg:py-20">
         <Container className="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
           <div>
             <Eyebrow>Warum Begleitung</Eyebrow>
@@ -86,7 +86,7 @@ export default function LeistungenPage() {
         </Container>
       </section>
 
-      <section className="bg-surface-cool py-12 lg:py-16">
+      <section className="bg-surface-cool py-14 lg:py-20">
         <Container>
           <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
             <Reveal>

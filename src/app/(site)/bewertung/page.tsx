@@ -71,7 +71,7 @@ export default function BewertungPage() {
         imageAlt="Einfamilienhaus in Leverkusen — typisches Bewertungsobjekt"
       />
 
-      <section className="py-16 lg:py-20">
+      <section className="py-14 lg:py-20">
         <Container>
           <Reveal>
             <SectionHeading
@@ -110,7 +110,7 @@ export default function BewertungPage() {
         steps={valuationSteps}
       />
 
-      <section className="bg-surface-cool py-16 lg:py-20">
+      <section className="bg-surface-cool py-14 lg:py-20">
         <Container>
           <Reveal>
             <SectionHeading

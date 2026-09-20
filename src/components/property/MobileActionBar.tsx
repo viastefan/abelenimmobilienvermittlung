@@ -31,6 +31,7 @@ export function MobileActionBar({
       <div className="h-[5.5rem] lg:hidden" aria-hidden="true" />
 
       <div
+        data-objektleiste=""
         className={`fixed inset-x-0 bottom-0 z-[70] bg-white/95 px-4 pt-3 shadow-[0_-8px_32px_-16px_rgba(16,43,78,0.35)] backdrop-blur-xl transition-transform duration-500 ease-smooth pb-safe lg:hidden ${
           visible ? "translate-y-0" : "translate-y-full"
         }`}

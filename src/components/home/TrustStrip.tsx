@@ -14,7 +14,7 @@ const icons = { users: Users, award: Award, home: Home } as const;
  */
 export function TrustStrip() {
   return (
-    <section className="bg-white py-12 lg:py-16">
+    <section className="bg-white py-14 lg:py-20">
       <Container>
         <ul className="grid divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
           {featureStrip.map((item, index) => {

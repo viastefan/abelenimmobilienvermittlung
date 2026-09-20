@@ -22,7 +22,7 @@ export function CtaSection({
   href?: string;
 }) {
   return (
-    <section className="bg-ink-deep py-10 lg:py-14">
+    <section className="bg-ink-deep py-14 lg:py-20">
       <Container>
         <Reveal className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center lg:gap-14">
           <div className="max-w-2xl">

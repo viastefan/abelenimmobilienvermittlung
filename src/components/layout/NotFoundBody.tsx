@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/Button";
 /** Shared by the site-level and the root 404, so both read the same. */
 export function NotFoundBody() {
   return (
-    <section className="flex min-h-[55vh] items-center py-16 lg:py-20">
+    <section className="flex min-h-[55vh] items-center py-14 lg:py-20">
       <Container className="max-w-xl text-center">
         <p className="font-display text-label font-bold uppercase text-accent-deep">404</p>
         <h1 className="balance mt-4 font-display text-display-md font-bold text-ink">

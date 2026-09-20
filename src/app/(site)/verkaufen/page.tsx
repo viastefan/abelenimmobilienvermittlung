@@ -70,7 +70,7 @@ export default function VerkaufenPage() {
         imageAlt="Reihenhäuser in Leverkusen — typisches Verkaufsobjekt"
       />
 
-      <section className="py-16 lg:py-20">
+      <section className="py-14 lg:py-20">
         <Container>
           <Reveal>
             <SectionHeading

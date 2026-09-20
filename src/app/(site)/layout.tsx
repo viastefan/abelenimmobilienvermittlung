@@ -2,6 +2,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ContactSheetProvider } from "@/components/contact/ContactSheetProvider";
 import { CookieConsent } from "@/components/consent/CookieConsent";
+import { FloatingActions } from "@/components/layout/FloatingActions";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -19,6 +20,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         </main>
         <Footer />
       </div>
+      <FloatingActions />
       <CookieConsent />
     </ContactSheetProvider>
   );

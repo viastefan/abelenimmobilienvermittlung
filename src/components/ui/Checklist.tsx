@@ -22,7 +22,7 @@ export function Checklist({
   className?: string;
 }) {
   return (
-    <section className={`bg-surface-cool py-16 lg:py-20 ${className}`}>
+    <section className={`bg-surface-cool py-14 lg:py-20 ${className}`}>
       <Container>
         <Reveal>
           <SectionHeading eyebrow={eyebrow} title={title} description={description} />
