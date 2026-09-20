@@ -4,6 +4,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { resolveImages } from "@/lib/imagery";
 import { getFeaturedActiveProperty } from "@/data/properties";
 import { regions } from "@/data/site";
+import { ServiceAreaMap } from "@/components/map/ServiceAreaMap";
 import { propertyFacts } from "@/lib/property-facts";
 import { ExpertProperty, type ExpertPropertyData } from "@/components/home/ExpertProperty";
 
@@ -82,6 +83,12 @@ export async function ExpertIntro() {
               <span className="font-semibold text-ink">{regions.join(", ")}</span>.
             </p>
           </div>
+
+          {/* Die Karte steht hier, weil der Satz darüber neun Orte aufzählt:
+              als Aufzählung muss man sie kennen, um sie einordnen zu können,
+              als Fläche sieht man auf einen Blick, wie weit das Gebiet
+              reicht. Sie wiederholt den Text nicht, sie zeigt ihn. */}
+          <ServiceAreaMap className="mt-8 max-w-xl" />
 
           <Button href="/ueber-mich" variant="secondary" withArrow className="mt-7">
             Mehr über uns

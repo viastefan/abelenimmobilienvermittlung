@@ -51,17 +51,21 @@ export function FloatingActions() {
         }`}
         style={{ bottom: abstand }}
       >
+        {/* Klein und rund: eine Marke am Rand, kein zweiter Knopf, der um
+            Aufmerksamkeit mit dem Kontakt streitet. Die Beschriftung fährt
+            beim Überfahren aus, angeklickt wird die Karte groß. */}
         <button
           type="button"
           onClick={() => setKarteOffen(true)}
-          className="pointer-events-auto inline-flex items-center gap-2.5 rounded-full bg-white/95 py-3 pl-3.5 pr-5 text-[0.875rem] font-semibold text-ink shadow-lift ring-1 ring-border backdrop-blur transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:text-accent-deep"
+          className="group/gebiet pointer-events-auto flex h-12 items-center rounded-full bg-white/95 pl-[0.3125rem] pr-[0.3125rem] shadow-lift ring-1 ring-border backdrop-blur transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:pr-4 focus-visible:pr-4"
           aria-label="Tätigkeitsgebiet auf der Karte ansehen"
         >
-          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent-deep">
-            <MapPin className="h-4 w-4" strokeWidth={1.9} aria-hidden="true" />
+          <span className="flex h-[2.375rem] w-[2.375rem] shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent-deep">
+            <MapPin className="h-[1.125rem] w-[1.125rem]" strokeWidth={1.9} aria-hidden="true" />
           </span>
-          <span className="hidden sm:inline">Tätigkeitsgebiet</span>
-          <span className="sm:hidden">Gebiet</span>
+          <span className="max-w-0 overflow-hidden whitespace-nowrap text-[0.875rem] font-semibold text-ink opacity-0 transition-all duration-300 ease-smooth group-hover/gebiet:ml-2.5 group-hover/gebiet:max-w-[10rem] group-hover/gebiet:opacity-100 group-focus-visible/gebiet:ml-2.5 group-focus-visible/gebiet:max-w-[10rem] group-focus-visible/gebiet:opacity-100">
+            Tätigkeitsgebiet
+          </span>
         </button>
 
         <ContactButton
