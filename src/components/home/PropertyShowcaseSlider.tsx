@@ -46,12 +46,20 @@ export function PropertyShowcaseSlider({ slides }: { slides: ShowcaseSlide[] }) 
             </h2>
           </div>
 
-          {many && (
-            <div className="flex shrink-0 gap-2">
-              <SlideArrow direction="prev" subject="Objekt" onClick={() => goTo(index - 1)} />
-              <SlideArrow direction="next" subject="Objekt" onClick={() => goTo(index + 1)} />
-            </div>
-          )}
+          <div className="flex shrink-0 items-center gap-5">
+            <Link
+              href="/referenzen"
+              className="hidden text-[0.875rem] font-semibold text-accent-deep transition-colors duration-300 hover:text-accent-dark sm:inline"
+            >
+              Alle Objekte &amp; Referenzen
+            </Link>
+            {many && (
+              <div className="flex shrink-0 gap-2">
+                <SlideArrow direction="prev" subject="Objekt" onClick={() => goTo(index - 1)} />
+                <SlideArrow direction="next" subject="Objekt" onClick={() => goTo(index + 1)} />
+              </div>
+            )}
+          </div>
         </Reveal>
 
         <Reveal delay={80}>
@@ -100,31 +108,28 @@ export function PropertyShowcaseSlider({ slides }: { slides: ShowcaseSlide[] }) 
 
                       <PropertyFacts facts={slide.facts} className="mt-7" />
 
-                      <div className="mt-7 flex flex-wrap items-end justify-between gap-x-4 gap-y-2">
+                      {/* Preis und Knopf gehören zusammen und stehen auf
+                          einer Linie. Der Sammel-Link stand hier einmal
+                          rechts daneben und hing dort ohne Bezug in der
+                          Fläche; er steht jetzt oben bei der Überschrift,
+                          wo er den ganzen Abschnitt meint. */}
+                      <div className="mt-7 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-t border-border pt-6">
                         <div>
                           <p className="text-[0.75rem] font-medium text-text-subtle">Kaufpreis</p>
                           <p className="mt-0.5 font-display text-display-md font-extrabold text-ink">
                             {slide.priceLabel}
                           </p>
                         </div>
-                        <Link
-                          href="/referenzen"
+                        <Button
+                          href={href}
+                          variant="primary"
+                          withArrow
                           tabIndex={current ? undefined : -1}
-                          className="text-[0.875rem] font-semibold text-accent-deep transition-colors duration-300 hover:text-accent-dark"
+                          className="w-full sm:w-auto"
                         >
-                          Alle Objekte &amp; Referenzen
-                        </Link>
+                          Objekt ansehen
+                        </Button>
                       </div>
-
-                      <Button
-                        href={href}
-                        variant="primary"
-                        withArrow
-                        tabIndex={current ? undefined : -1}
-                        className="mt-5 w-full sm:w-auto"
-                      >
-                        Objekt ansehen
-                      </Button>
                     </div>
                   </div>
                 </li>

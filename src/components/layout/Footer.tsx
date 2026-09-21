@@ -67,8 +67,17 @@ export function Footer() {
 
       <div>
         <Container className="flex flex-col-reverse items-center justify-between gap-4 py-6 text-[0.8125rem] text-text-subtle sm:flex-row">
+          {/* Der Name führt ins Panel. Kein Menüpunkt und kein Hinweis
+              darauf, was dahinter liegt: Wer es braucht, weiß es; für alle
+              anderen bleibt es eine Zeile im Kleingedruckten. */}
           <p>
-            © {new Date().getFullYear()} {site.legalName}
+            © {new Date().getFullYear()} {site.legalName.replace(` – ${site.owner}`, "")} –{" "}
+            <Link
+              href="/admin"
+              className="underline-offset-2 transition-colors duration-200 hover:text-accent-deep hover:underline"
+            >
+              {site.owner}
+            </Link>
           </p>
           <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             {legalNav.map((item) => (
