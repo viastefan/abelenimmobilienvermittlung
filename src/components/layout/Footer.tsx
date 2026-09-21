@@ -33,7 +33,7 @@ export function Footer() {
         <div>
           <Logo />
           <p className="mt-5 max-w-xs text-[0.8125rem] leading-relaxed text-text-muted">
-            Ihr Partner für die Bewertung, Vermittlung und Vermietung von Immobilien in Leverkusen
+            Ihr Partner für die Bewertung und Vermittlung von Immobilien in Leverkusen
             und Umgebung.
           </p>
           <SocialLinks className="mt-6 text-ink" iconClassName="h-[18px] w-[18px]" />

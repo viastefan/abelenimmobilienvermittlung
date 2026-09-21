@@ -11,7 +11,7 @@ import { pageSeo } from "@/lib/seo";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = pageSeo({
-  title: "Immobilien in Leverkusen — Bewertung, Verkauf & Vermietung",
+  title: "Immobilien in Leverkusen — Bewertung, Verkauf & Vermittlung",
   description: site.description,
   path: "/",
 });
@@ -43,7 +43,7 @@ export default function HomePage() {
 
       <JsonLd
         data={webPageSchema({
-          name: "Immobilien in Leverkusen — Bewertung, Verkauf & Vermietung",
+          name: "Immobilien in Leverkusen — Bewertung, Verkauf & Vermittlung",
           description: site.description,
           path: "/",
         })}

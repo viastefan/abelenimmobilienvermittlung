@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MapPin, MessageSquare } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, MapPin, TrendingUp } from "lucide-react";
 import { Sheet } from "@/components/ui/Sheet";
 import { ServiceAreaMap } from "@/components/map/ServiceAreaMap";
-import { ContactButton } from "@/components/contact/ContactButton";
 import { servicePlaces } from "@/data/service-area";
 import { site } from "@/data/site";
 
 /**
  * Die beiden ständig erreichbaren Schaltflächen am unteren Rand: links das
- * Tätigkeitsgebiet, rechts der Weg zur Anfrage.
+ * Tätigkeitsgebiet, rechts die Frage nach dem Wert.
  *
  * Sie erscheinen erst, wenn der Aufmacher durchgescrollt ist. Gleich beim
  * Öffnen der Seite lägen sie über dem ersten Eindruck und über dem
@@ -68,17 +68,31 @@ export function FloatingActions() {
           </span>
         </button>
 
-        <ContactButton
-          options={{ title: "Kontakt aufnehmen" }}
-          ariaLabel="Kontakt aufnehmen"
-          className="pointer-events-auto inline-flex items-center gap-2.5 rounded-full bg-accent-deep py-3 pl-3.5 pr-5 text-[0.875rem] font-semibold text-white shadow-lift transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-dark"
+        {/* Nicht noch einmal „Kontakt aufnehmen“: derselbe Knopf steht schon
+            oben in der Kopfzeile, und zweimal dasselbe auf einem Bildschirm
+            hilft niemandem weiter. Hier steht die Frage, mit der die meisten
+            auf diese Seite kommen — die Antwort darauf führt ohnehin zum
+            Gespräch. */}
+        <Link
+          href="/bewertung"
+          className="group/wert pointer-events-auto inline-flex items-center gap-3 rounded-full bg-accent-deep py-2.5 pl-3 pr-5 text-left shadow-lift transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-dark"
         >
-          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/15">
-            <MessageSquare className="h-4 w-4" strokeWidth={1.9} aria-hidden="true" />
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 text-white">
+            <TrendingUp className="h-[1.125rem] w-[1.125rem]" strokeWidth={1.9} aria-hidden="true" />
           </span>
-          <span className="hidden sm:inline">Kontakt aufnehmen</span>
-          <span className="sm:hidden">Kontakt</span>
-        </ContactButton>
+          <span className="min-w-0">
+            <span className="block text-[0.9375rem] font-semibold leading-tight text-white">
+              Was ist Ihre Immobilie wert?
+            </span>
+            <span className="mt-0.5 hidden text-[0.75rem] leading-tight text-white/75 sm:block">
+              Einschätzung in der Regel innerhalb einer Woche
+            </span>
+          </span>
+          <ArrowRight
+            className="hidden h-4 w-4 shrink-0 text-white transition-transform duration-300 ease-smooth group-hover/wert:translate-x-1 sm:block"
+            aria-hidden="true"
+          />
+        </Link>
       </div>
 
       <Sheet

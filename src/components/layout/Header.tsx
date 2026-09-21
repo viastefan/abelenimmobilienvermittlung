@@ -85,14 +85,14 @@ export function Header() {
       >
         <Container
           className={`flex items-center justify-between gap-6 transition-all duration-500 ease-smooth ${
-            compact ? "h-[64px] lg:h-[68px]" : "h-[72px] lg:h-[84px]"
+            compact ? "h-[64px] lg:h-[68px]" : "h-[80px] lg:h-[96px]"
           }`}
         >
           <Link
             href="/"
             aria-label={`${site.legalName} — Startseite`}
             className={`shrink-0 origin-left transition-all duration-500 ease-smooth hover:opacity-80 ${
-              compact ? "lg:scale-[0.9]" : ""
+              compact ? "lg:scale-[0.82]" : "scale-[1.06] lg:scale-[1.12]"
             }`}
           >
             <Logo />

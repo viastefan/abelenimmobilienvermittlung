@@ -23,7 +23,6 @@ export const metadata: Metadata = {
     "Immobilienbewertung Leverkusen",
     "Immobilienmakler Leverkusen",
     "Immobilie verkaufen Leverkusen",
-    "Immobilie vermieten Leverkusen",
     "Immobilienvermittlung Leverkusen",
     "Immobilien kaufen Leverkusen",
   ],

@@ -10,7 +10,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "",
     "/bewertung",
     "/verkaufen",
-    "/vermieten",
     "/kaufen",
     "/leistungen",
     "/anlagen",

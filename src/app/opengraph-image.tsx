@@ -72,7 +72,7 @@ export default function OpengraphImage() {
             <span>die Werte schafft</span>
           </div>
           <div style={{ fontSize: 24, color: "rgba(255,255,255,0.6)", marginTop: 28, display: "flex" }}>
-            Bewertung · Verkauf · Vermietung — {site.address.locality}
+            Bewertung · Verkauf · Vermittlung — {site.address.locality}
           </div>
         </div>
       </div>

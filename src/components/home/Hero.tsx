@@ -36,12 +36,10 @@ export function Hero() {
           className="object-[68%_50%] lg:object-[60%_45%]"
         />
 
-        {/* Grundschleier: nimmt Helligkeit, keine Farbe. */}
-        <div className="absolute inset-0 bg-black/30" />
-        {/* Unter der Schrift etwas dichter, nach rechts hin offen. */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent" />
-        {/* Der Fuß trägt die Nachweise — dort ein wenig mehr Halt. */}
-        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/45 to-transparent" />
+        {/* Eine gleichmäßige Abdunklung über das ganze Bild — kein Verlauf
+            und keine Farbe. Übereinandergelegte Verläufe wirkten wie eine
+            Einfärbung; schlicht dunkler bleibt das Foto ein Foto. */}
+        <div className="absolute inset-0 bg-black/45" />
       </div>
 
       <Container className="relative">
@@ -50,8 +48,12 @@ export function Hero() {
             Ihr Partner für Immobilienkauf und -verkauf
           </span>
 
+          {/* Der Umbruch steht fest hinter dem Komma: von selbst brach die
+              Zeile hinter „die“, und ein Artikel am Zeilenende liest sich
+              wie ein Stolperstein. Auf schmalen Geräten bricht sie frei. */}
           <h1 className="mt-5 font-display text-[clamp(2rem,5vw,3.5rem)] font-extrabold leading-[1.08] tracking-[-0.022em] text-white [hyphens:auto]">
-            {site.taglineAufmacher}
+            Immobilien&shy;vermittlung,
+            <br className="hidden sm:block" /> die Werte schafft
           </h1>
 
           <p className="pretty mt-6 max-w-[34rem] text-[1.0625rem] leading-relaxed text-white/85 sm:text-[1.125rem]">

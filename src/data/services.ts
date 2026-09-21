@@ -19,16 +19,6 @@ export const services = [
     cta: "Immobilie verkaufen",
     href: "/verkaufen",
   },
-  {
-    number: "03",
-    slug: "vermieten",
-    icon: "key",
-    title: "Vermietung",
-    description:
-      "Wir finden den passenden Mieter für Ihre Immobilie — schnell, sicher und unkompliziert.",
-    cta: "Immobilie vermieten",
-    href: "/vermieten",
-  },
 ] as const;
 
 export const whyAbelen = [
@@ -55,7 +45,7 @@ export const whyAbelen = [
  * beschreibt — Wortlaut übernommen.
  *
  * Bewusst andere Dreiteilung als `services` weiter oben: dort stehen die
- * Seiten, auf die verlinkt wird (Bewertung, Verkauf, Vermietung), hier das,
+ * Seiten, auf die verlinkt wird (Bewertung, Verkauf), hier das,
  * was Silke Abelen selbst über ihre Arbeit geschrieben hat.
  */
 type Dienstleistung = {

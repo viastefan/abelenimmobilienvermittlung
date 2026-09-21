@@ -208,7 +208,7 @@ export function Sheet({
           </button>
         </div>
 
-        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 pb-6">{children}</div>
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 pb-6 pt-1">{children}</div>
 
         {footer && <div className="shrink-0 bg-surface-warm px-6 py-4 pb-safe sm:pb-4">{footer}</div>}
       </div>

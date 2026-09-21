@@ -26,6 +26,8 @@ const nextConfig = {
     return [
       // Objekte und Referenzen stehen jetzt auf einer Seite.
       { source: "/immobilien", destination: "/referenzen", permanent: true },
+      // Vermietung gehört nicht zum Angebot; die Seite ist entfallen.
+      { source: "/vermieten", destination: "/leistungen", permanent: true },
       { source: "/ueber-silke-abelen", destination: "/ueber-mich", permanent: true },
       { source: "/dienstleistungen", destination: "/leistungen", permanent: true },
       { source: "/anlagen-immobilienverkauf", destination: "/anlagen", permanent: true },

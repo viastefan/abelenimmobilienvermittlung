@@ -77,39 +77,5 @@ export const sellingSteps: Step[] = [
   },
 ];
 
-/** Ablauf einer Vermietung. */
-export const rentingSteps: Step[] = [
-  {
-    number: "01",
-    title: "Mietpreis einschätzen",
-    description: "Wir ermitteln eine marktgerechte Miete — hoch genug für Sie, realistisch genug für eine schnelle Vermietung.",
-  },
-  {
-    number: "02",
-    title: "Passenden Mieter finden",
-    description: "Wir erstellen das Exposé, veröffentlichen es und sprechen gezielt geeignete Interessenten an.",
-  },
-  {
-    number: "03",
-    title: "Besichtigungen",
-    description: "Terminkoordination und Durchführung übernehmen wir — Sie müssen nicht vor Ort sein.",
-  },
-  {
-    number: "04",
-    title: "Kommunikation",
-    description: "Alle Anfragen laufen über uns. Sie erhalten regelmäßig eine kompakte Rückmeldung zum Stand.",
-  },
-  {
-    number: "05",
-    title: "Auswahl",
-    description: "Selbstauskunft, Einkommensnachweise und Bonität werden geprüft. Sie erhalten eine geprüfte Vorauswahl.",
-  },
-  {
-    number: "06",
-    title: "Vertragsabwicklung",
-    description: "Mietvertrag, Übergabeprotokoll und Schlüsselübergabe — sauber dokumentiert und rechtssicher.",
-  },
-];
-
 /** Rückwärtskompatibler Export für den allgemeinen Ablauf. */
 export const processSteps = sellingSteps;

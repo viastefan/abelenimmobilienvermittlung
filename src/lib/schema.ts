@@ -51,7 +51,6 @@ export function organizationSchema() {
     knowsAbout: [
       "Immobilienbewertung",
       "Immobilienverkauf",
-      "Vermietung",
       "Marktwertermittlung",
       "Immobilienvermittlung",
     ],

@@ -2,7 +2,6 @@
 export const contactInterests = [
   { value: "bewertung", label: "Immobilienbewertung" },
   { value: "verkaufen", label: "Verkauf" },
-  { value: "vermieten", label: "Vermietung" },
   { value: "kaufen", label: "Immobiliensuche" },
   { value: "sonstiges", label: "Sonstiges" },
 ] as const;

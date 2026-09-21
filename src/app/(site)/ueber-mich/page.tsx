@@ -18,7 +18,7 @@ import { regions, site } from "@/data/site";
 export const metadata: Metadata = pageSeo({
   title: "Über uns — Silke Abelen",
   description:
-    "Silke Abelen begleitet Eigentümerinnen und Eigentümer in Leverkusen und Umgebung — persönlich, transparent und mit langjähriger Erfahrung in Bewertung, Verkauf und Vermietung.",
+    "Silke Abelen begleitet Eigentümerinnen und Eigentümer in Leverkusen und Umgebung — persönlich, transparent und mit langjähriger Erfahrung in Bewertung, Verkauf und Vermittlung.",
   path: "/ueber-mich",
 });
 

@@ -13,7 +13,7 @@ export const site = {
    */
   taglineAufmacher: "Immobilien\u00ADvermittlung, die Werte schafft",
   description:
-    "Wir sind Ihr zuverlässiger Partner für die Bewertung, Vermittlung und Vermietung von Immobilien in Leverkusen und Umgebung.",
+    "Wir sind Ihr zuverlässiger Partner für die Bewertung und Vermittlung von Immobilien in Leverkusen und Umgebung.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.abelen-immobilien.de",
   /**
    * Mobilnummer. Steht bewusst nur auf „Über mich“: Silke Abelen arbeitet
@@ -77,6 +77,7 @@ export const primaryNav: NavItem[] = [
   { label: "Dienstleistungen", href: "/leistungen" },
   { label: "Objekte & Referenzen", href: "/referenzen" },
   { label: "Über Mich", href: "/ueber-mich" },
+  { label: "Für Käufer & Verkäufer", href: "/kaufen" },
   { label: "Anlagen", href: "/anlagen" },
   { label: "Kontakt", href: "/kontakt" },
 ];
@@ -87,6 +88,7 @@ export const footerNav: NavItem[] = [
   { label: "Dienstleistungen", href: "/leistungen" },
   { label: "Objekte & Referenzen", href: "/referenzen" },
   { label: "Über Mich", href: "/ueber-mich" },
+  { label: "Für Käufer & Verkäufer", href: "/kaufen" },
   { label: "Anlagen", href: "/anlagen" },
   { label: "Kontakt", href: "/kontakt" },
 ];
@@ -94,7 +96,6 @@ export const footerNav: NavItem[] = [
 export const leistungenNav: NavItem[] = [
   { label: "Immobilienbewertung", href: "/bewertung" },
   { label: "Immobilienverkauf", href: "/verkaufen" },
-  { label: "Vermietung", href: "/vermieten" },
   { label: "Immobilie kaufen", href: "/kaufen" },
   { label: "Unterlagen für den Verkauf", href: "/anlagen" },
   { label: "Alle Leistungen", href: "/leistungen" },

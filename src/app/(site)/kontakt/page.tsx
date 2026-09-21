@@ -24,7 +24,7 @@ export default function KontaktPage() {
       <PageHero
         eyebrow="Kontakt"
         title="Sprechen wir über Ihre Immobilie."
-        description="Ob Bewertung, Verkauf, Vermietung oder eine erste Einschätzung — schreiben Sie uns über das Formular oder per E-Mail."
+        description="Ob Bewertung, Verkauf oder eine erste Einschätzung — schreiben Sie uns über das Formular oder per E-Mail."
         breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Kontakt" }]}
       />
 

@@ -4,7 +4,7 @@ export type FaqItem = {
 };
 
 /**
- * Fachliche Inhalte zu Bewertung, Verkauf und Vermietung.
+ * Fachliche Inhalte zu Bewertung und Verkauf.
  *
  * Bewusst ohne Angaben, die sich häufig ändern (Steuersätze, Provisionshöhen)
  * oder die nur das Büro selbst kennt. Wo auf Gesetze verwiesen wird, ist die
@@ -35,7 +35,7 @@ export const bewertungFaq: FaqItem[] = [
   {
     question: "Bin ich nach der Bewertung zu etwas verpflichtet?",
     answer:
-      "Nein. Die Einschätzung ist eine Entscheidungsgrundlage — ob und wann Sie verkaufen oder vermieten, entscheiden allein Sie.",
+      "Nein. Die Einschätzung ist eine Entscheidungsgrundlage — ob und wann Sie verkaufen, entscheiden allein Sie.",
   },
 ];
 
@@ -64,29 +64,6 @@ export const verkaufenFaq: FaqItem[] = [
     question: "Was passiert beim Notartermin?",
     answer:
       "Der Notar verliest den Kaufvertrag vollständig und beurkundet ihn. Der Entwurf muss Verbrauchern mindestens zwei Wochen vorher vorliegen. Anschließend veranlasst der Notar Auflassungsvormerkung, Lastenfreistellung und Eigentumsumschreibung — die Schlüsselübergabe erfolgt üblicherweise nach vollständiger Kaufpreiszahlung.",
-  },
-];
-
-export const vermietenFaq: FaqItem[] = [
-  {
-    question: "Wer zahlt die Provision bei einer Vermietung?",
-    answer:
-      "Bei der Vermietung von Wohnraum gilt das Bestellerprinzip: Die Provision zahlt, wer den Makler beauftragt hat (§ 2 Abs. 1a Wohnungsvermittlungsgesetz). Bei einem Vermietungsauftrag ist das die Eigentümerseite.",
-  },
-  {
-    question: "Wie wird die Miete festgelegt?",
-    answer:
-      "Grundlage sind Vergleichsmieten für ähnliche Objekte in vergleichbarer Lage und Ausstattung. In Gebieten mit Mietpreisbremse gelten zusätzliche Obergrenzen für die Wiedervermietung — das prüfen wir vor der Veröffentlichung.",
-  },
-  {
-    question: "Welche Unterlagen verlangen Sie von Interessenten?",
-    answer:
-      "Mieterselbstauskunft, Einkommensnachweise der letzten drei Monate, eine Bonitätsauskunft und in der Regel eine Mietschuldenfreiheitsbescheinigung. Erhoben wird nur, was für die Entscheidung erforderlich ist.",
-  },
-  {
-    question: "Wie lange dauert es, bis vermietet ist?",
-    answer:
-      "In Leverkusen und Umgebung ist die Nachfrage nach Wohnraum hoch — der Zeitaufwand liegt weniger im Finden als im Auswählen. Wir bündeln Besichtigungen und legen Ihnen eine geprüfte Vorauswahl vor.",
   },
 ];
 
