@@ -32,8 +32,9 @@ const nextConfig = {
       { source: "/dienstleistungen", destination: "/leistungen", permanent: true },
       { source: "/anlagen-immobilienverkauf", destination: "/anlagen", permanent: true },
       {
+        // „Für Käufer & Verkäufer“ — die Seite gibt es hier wieder.
         source: "/dienstleistungen-kaufberatung-verkaufsberatung",
-        destination: "/leistungen",
+        destination: "/kaufen",
         permanent: true,
       },
       // Objektseiten hießen dort /objektansicht/<titel>.

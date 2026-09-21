@@ -82,3 +82,31 @@ export const dienstleistungen: Dienstleistung[] = [
     body: "Ein starkes Netzwerk ist unerlässlich. Durch unsere enge Zusammenarbeit mit lokalen Notaren, Finanzierungsexperten, Energieberatern, Haushaltsauflösern, Umzugsunternehmen und für Immobilienbewertung können wir nahezu alle Fragen zuverlässig für Sie klären.",
   },
 ];
+
+/**
+ * Leistungen für Käuferinnen und Käufer sowie für Verkäuferinnen und
+ * Verkäufer — Bezeichnungen und Reihenfolge wörtlich vom bisherigen
+ * Auftritt, Seite „Für Käufer & Verkäufer“.
+ */
+export const fuerKaeufer = [
+  "Interessentenkartei",
+  "Vorauswahl von Objekten",
+  "Schlüsselübergabe",
+  "Besichtigungstermine",
+  "Wertmitteilung",
+  "Regionales Netzwerk",
+] as const;
+
+export const fuerVerkaeufer = [
+  "Immobilienbewertung",
+  "Fachdienliche Vermarktung",
+  "Fotografie & Exposé",
+  "Regionales Netzwerk",
+  "Inserate",
+  "Diskrete Vermittlung",
+  "Open-House-Besichtigungen",
+  "Koordinierung Notartermin",
+  "Vermittlung Energieausweis",
+  "Prüfung Finanzierungsnachweis",
+  "Nach dem Verkauf",
+] as const;

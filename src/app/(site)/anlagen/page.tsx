@@ -22,9 +22,9 @@ export default function AnlagenPage() {
   return (
     <>
       <PageHero
-        eyebrow="Anlagen"
-        title="Welche Unterlagen Sie für den Verkauf brauchen."
-        description="Der Verkauf beginnt mit den Dokumenten. Wer sie früh zusammenhat, verkauft schneller — und beantwortet die Fragen ernsthafter Interessenten aus dem Stand."
+        eyebrow="Damit sind Sie vorbereitet"
+        title="Unterlagen die benötigt werden"
+        description="Der Verkauf einer Immobilie ist ein komplexer Prozess, der nicht nur Verhandlungsgeschick und Marktkenntnis erfordert, sondern auch eine Vielzahl an Unterlagen. Vollständige und gut aufbereitete Dokumente sorgen dafür, dass Kaufinteressenten ein klares Bild vom Objekt erhalten und alle rechtlichen Fragen geklärt sind."
         breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Anlagen" }]}
       />
 
@@ -34,20 +34,20 @@ export default function AnlagenPage() {
         <Container className="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
           <Reveal>
             <h2 className="balance font-display text-display-lg font-bold text-ink">
-              Warum die Unterlagen den Verkauf entscheiden
+              Die ersten Schritte vor dem Verkauf
             </h2>
           </Reveal>
           <Reveal delay={80}>
             <div className="space-y-5 text-[1.0625rem] leading-relaxed text-text-muted">
               <p className="pretty">
-                Kaufinteressenten entscheiden nicht nach dem Exposé, sondern nach dem, was sie
-                nachlesen können. Fehlt eine Angabe, entsteht Unsicherheit — und Unsicherheit
-                drückt den Preis oder verzögert den Abschluss.
+                Liegen bei Ihnen, für die zu verkaufende Immobilie keine Baugenehmigungen vor, wird
+                bei dem zuständigen Bauamt eine Einsicht in die Bauakte angefordert. Der Gesetzgeber
+                sieht nicht für alle Unterlagen eine Aufbewahrungspflicht vor, so dass keine Gewähr
+                für die Vollständigkeit einer Bauakte gegeben werden kann.
               </p>
               <p className="pretty">
-                Auch die Bank des Käufers braucht Unterlagen: ohne Grundbuchauszug, Flurkarte und
-                Flächenberechnung gibt es keine Finanzierungszusage. Wir stellen die Liste
-                gemeinsam mit Ihnen zusammen und holen ein, was fehlt.
+                Die Datenbeschaffung kann einige Zeit in Anspruch nehmen, dies muss bei der
+                Vermarktung von Immobilien mit berücksichtigt werden.
               </p>
             </div>
           </Reveal>
@@ -57,7 +57,7 @@ export default function AnlagenPage() {
       <Checklist
         eyebrow="Checkliste"
         title="Unterlagen im Überblick"
-        description="Was für jede Immobilie gebraucht wird — und was bei Eigentumswohnungen und vermieteten Objekten dazukommt."
+        description="Grundlegende Dokumente, Unterlagen bei Wohnungs- oder Teileigentum und die Auskünfte, die bei den Städten angefordert werden."
         groups={verkaufsUnterlagen}
       />
 

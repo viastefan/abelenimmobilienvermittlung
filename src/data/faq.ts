@@ -71,34 +71,55 @@ export const faqDisclaimer =
   "Die Angaben auf dieser Seite dienen der allgemeinen Orientierung und ersetzen keine Rechts- oder Steuerberatung im Einzelfall.";
 
 /** Unterlagen, die für einen Verkauf zusammengestellt werden. */
+/**
+ * Die Unterlagen, gruppiert wie auf dem bisherigen Auftritt: was für jedes
+ * Objekt gilt, was bei Wohnungs- und Teileigentum dazukommt, und was bei
+ * den Städten angefordert werden muss. Wortlaut und Reihenfolge sind von
+ * dort übernommen.
+ */
 export const verkaufsUnterlagen = [
   {
-    title: "Für jede Immobilie",
+    title: "Grundlegende Dokumente",
+    lead: "Für jeden Immobilienverkauf werden bestimmte Basisunterlagen benötigt. Sie bilden die Grundlage für die Bewertung der Immobilie und die rechtliche Absicherung des Verkaufs.",
     items: [
-      "Grundbuchauszug (aktuell, nicht älter als drei Monate)",
-      "Flurkarte / Lageplan",
-      "Grundrisse aller Geschosse",
-      "Wohn- und Nutzflächenberechnung",
+      "Grundbuchauszüge Abt. I und II (Eigentumsverhältnisse & Belastungen)",
+      "Grundrisse des Gebäudes",
+      "Baubeschreibungen",
+      "Wohnflächenberechnung bzw. umbauter Raum",
+      "Baugenehmigungen aller baulichen Anlagen (soweit vorhanden)",
       "Energieausweis",
-      "Nachweise über Modernisierungen und Reparaturen",
+      "ggf. Denkmalschutzauskunft",
+      "Kopie der Gebäudeversicherung",
+      "ggf. Mietverträge (bei vermieteten Objekten)",
+      "Auflistung der Modernisierungsmaßnahmen",
+      "Informationen zu bekannten Mängeln oder Schäden",
     ],
   },
   {
-    title: "Zusätzlich bei Eigentumswohnungen",
+    title: "Unterlagen bei Wohnungs- oder Teileigentum",
+    lead: "Wenn Sie eine Eigentumswohnung oder ein Teileigentum verkaufen möchten, sind zusätzliche Unterlagen erforderlich, die Auskunft über die Eigentümergemeinschaft geben.",
     items: [
-      "Teilungserklärung mit Aufteilungsplan",
-      "Protokolle der letzten drei Eigentümerversammlungen",
-      "Aktueller Wirtschaftsplan und Hausgeldabrechnung",
-      "Höhe der Instandhaltungsrücklage",
+      "Nebenkostenabrechnung",
+      "Teilungserklärung",
+      "Aufteilungspläne",
+      "Abgeschlossenheitsbescheinigung",
+      "Kontaktdaten der Hausverwaltung",
+      "Protokolle der Eigentümerversammlungen (der letzten drei Jahre)",
+      "Wirtschaftsplan",
+      "Informationen zur Instandhaltungsrücklage",
     ],
   },
   {
-    title: "Zusätzlich bei vermieteten Objekten",
+    title: "Unterlagenanforderung bei den Städten",
+    lead: "Zusätzlich werden verschiedene behördliche Auskünfte benötigt, die in der Regel direkt bei den Städten oder Gemeinden angefordert werden.",
     items: [
-      "Mietverträge und Nachträge",
-      "Mietaufstellung mit Nettokaltmieten",
-      "Nebenkostenabrechnungen der letzten zwei Jahre",
-      "Angaben zu Kautionen",
+      "Auszug aus der Liegenschaftskarte (Flurkarte)",
+      "Auskunft aus dem Baulastenverzeichnis",
+      "Auskunft aus dem Altlastenkataster",
+      "Informationen zu Anliegerbeiträgen (z. B. Erschließungs- und Kanalanschlussgebühren)",
+      "Auskunft zur Wohnungsbindung (Belegungs- und Mietbindung)",
+      "ggf. Denkmalschutzauskunft",
+      "Einsicht in die Bauakte",
     ],
   },
 ];

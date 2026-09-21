@@ -8,6 +8,8 @@ import { Reveal } from "@/components/ui/Reveal";
 
 export type ChecklistGroup = {
   title: string;
+  /** Ein Satz, der sagt, wofür die Gruppe gebraucht wird. */
+  lead?: string;
   items: readonly string[];
 };
 
@@ -93,6 +95,11 @@ export function Checklist({
             <Reveal key={group.title} delay={index * 90} className="h-full">
               <div className="flex h-full flex-col rounded-[14px] bg-white shadow-soft ring-1 ring-border p-6">
                 <h3 className="font-display text-[0.9375rem] font-bold text-ink">{group.title}</h3>
+                {group.lead && (
+                  <p className="pretty mt-2.5 text-[0.8125rem] leading-relaxed text-text-muted">
+                    {group.lead}
+                  </p>
+                )}
                 <ul className="mt-4 space-y-1">
                   {group.items.map((item) => {
                     const schluessel = `${group.title}::${item}`;

@@ -91,9 +91,8 @@ export default function LeistungenPage() {
           <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
             <Reveal>
               <SectionHeading
-                eyebrow="Meine Dienstleistungen"
                 size="lg"
-                title="Eine Übersicht — von der ersten Beratung bis zur Vermittlung"
+                title="Meine Dienstleistungen"
                 description="Der Kauf oder Verkauf einer Immobilie ist eine der wichtigsten Entscheidungen in Ihrem Leben. Hier finden Sie eine Übersicht unserer professionellen Dienstleistungen, die Sie bei jedem Schritt unterstützen – von der ersten Beratung über die Preisgestaltung bis zur erfolgreichen Vermittlung."
               />
             </Reveal>
