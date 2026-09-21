@@ -114,24 +114,23 @@ export function InquiryForm({
 
       <fieldset>
         <legend className="mb-3 text-sm font-semibold text-ink">Ich interessiere mich für</legend>
-        {/* Zwei Spalten auf dem Telefon, eine Schiene am Rechner. Bei
-            ungerader Anzahl nimmt der letzte Eintrag die ganze Zeile, sonst
-            stünde er allein neben einer Lücke. */}
-        <div className="grid grid-cols-2 gap-1 rounded-[14px] bg-surface-mist p-1 sm:auto-cols-fr sm:grid-flow-col sm:grid-cols-none">
-          {contactInterests.map((item, position) => (
+        {/* Jeder Eintrag so breit wie sein Wort, Umbruch wo nötig.
+            Vorher lagen sie in einer Schiene aus gleich breiten Spalten —
+            aber „Immobilienbewertung“ braucht doppelt so viel Platz wie
+            „Verkauf“, und in der schmalen Formularspalte lief die Schiene
+            deshalb über den Rand hinaus. Gleiche Breiten vertragen nur
+            gleich lange Wörter. */}
+        <div className="flex flex-wrap gap-2">
+          {contactInterests.map((item) => (
             <button
               key={item.value}
               type="button"
               onClick={() => setInterest(item.value)}
               aria-pressed={interest === item.value}
-              className={`rounded-[11px] px-4 py-2.5 text-[0.8125rem] font-semibold transition-all duration-200 ${
-                contactInterests.length % 2 === 1 && position === contactInterests.length - 1
-                  ? "col-span-2 sm:col-span-1"
-                  : ""
-              } ${
+              className={`rounded-full px-4 py-2.5 text-[0.8125rem] font-semibold transition-all duration-200 ${
                 interest === item.value
-                  ? "bg-white text-accent-deep shadow-soft"
-                  : "text-text-muted hover:text-ink"
+                  ? "bg-accent-deep text-white shadow-soft"
+                  : "bg-surface-mist text-text-muted hover:bg-accent-soft hover:text-accent-deep"
               }`}
             >
               {item.label}
