@@ -1,22 +1,16 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Building2, ExternalLink, Inbox, LayoutDashboard, LogOut, Star } from "lucide-react";
+import { ExternalLink, LogOut } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { countNewInquiries } from "@/lib/admin/inquiries-data";
 import { LogoMark } from "@/components/layout/Logo";
+import { AdminNav } from "@/components/admin/AdminNav";
 import { signOut } from "../actions";
 
 export const metadata = {
   title: "Admin — Abelen Immobilien",
   robots: { index: false, follow: false },
 };
-
-const navItems = [
-  { href: "/admin", label: "Übersicht", icon: LayoutDashboard },
-  { href: "/admin/immobilien", label: "Immobilien", icon: Building2 },
-  { href: "/admin/referenzen", label: "Referenzen", icon: Star },
-  { href: "/admin/anfragen", label: "Anfragen", icon: Inbox, badge: true },
-];
 
 export default async function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
@@ -43,23 +37,7 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
           </Link>
         </div>
 
-        <nav className="flex-1 space-y-0.5 px-3" aria-label="Admin-Navigation">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="flex items-center gap-3 rounded-[14px] px-3 py-2.5 text-[0.8125rem] font-medium text-white/65 transition-colors duration-200 hover:bg-white/10 hover:text-white"
-            >
-              <item.icon className="h-4 w-4" strokeWidth={1.6} aria-hidden="true" />
-              <span className="flex-1">{item.label}</span>
-              {item.badge && openInquiries > 0 && (
-                <span className="rounded-full bg-accent px-2 py-0.5 text-[0.6875rem] font-bold tabular-nums text-ink-deep">
-                  {openInquiries}
-                </span>
-              )}
-            </Link>
-          ))}
-        </nav>
+        <AdminNav offeneAnfragen={openInquiries} variant="spalte" />
 
         <div className="border-t border-white/10 p-3">
           <Link
@@ -85,29 +63,35 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
       </aside>
 
       <div className="flex min-h-screen flex-1 flex-col">
-        <header className="flex items-center justify-between gap-4 bg-ink-deep px-4 py-3 lg:hidden">
-          <Link href="/admin" className="flex items-center gap-2.5">
-            <LogoMark className="h-7 w-7 text-accent" />
-            <span className="text-[0.8125rem] font-bold text-white">Redaktion</span>
-          </Link>
-          <nav className="flex items-center gap-3 text-[0.75rem]" aria-label="Admin-Navigation">
-            {navItems.map((item) => (
-              <Link key={item.href} href={item.href} className="text-white/65 hover:text-white">
-                {item.label}
-                {item.badge && openInquiries > 0 && (
-                  <span className="ml-1 rounded-full bg-accent px-1.5 py-0.5 text-[0.625rem] font-bold tabular-nums text-ink-deep">
-                    {openInquiries}
-                  </span>
-                )}
+        <div className="lg:hidden">
+          <header className="flex items-center justify-between gap-4 bg-ink-deep px-4 py-3">
+            <Link href="/admin" className="flex items-center gap-2.5">
+              <LogoMark className="h-7 w-7 text-accent" />
+              <span className="text-[0.8125rem] font-bold text-white">Redaktion</span>
+            </Link>
+            <div className="flex items-center gap-1">
+              <Link
+                href="/"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 rounded-[12px] px-3 py-2 text-[0.75rem] text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+              >
+                <ExternalLink className="h-4 w-4" strokeWidth={1.6} aria-hidden="true" />
+                <span className="sr-only">Website ansehen</span>
               </Link>
-            ))}
-            <form action={signOut}>
-              <button type="submit" className="text-white/65 hover:text-white">
-                Abmelden
-              </button>
-            </form>
-          </nav>
-        </header>
+              <form action={signOut}>
+                <button
+                  type="submit"
+                  className="flex items-center gap-2 rounded-[12px] px-3 py-2 text-[0.75rem] text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+                >
+                  <LogOut className="h-4 w-4" strokeWidth={1.6} aria-hidden="true" />
+                  Abmelden
+                </button>
+              </form>
+            </div>
+          </header>
+          <AdminNav offeneAnfragen={openInquiries} variant="leiste" />
+        </div>
 
         <main className="flex-1 px-4 py-8 sm:px-7 lg:px-9">{children}</main>
       </div>

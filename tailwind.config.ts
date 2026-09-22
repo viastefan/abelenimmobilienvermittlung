@@ -29,10 +29,19 @@ const config: Config = {
         "surface-sand-deep": "#F5EDE4",
         "surface-mist": "#F1F5F8",
         "surface-cool": "#F3F6F8",
+        /**
+         * Die drei Textstufen halten auf jedem Grund der Palette mindestens
+         * 4,5:1 — also auch auf den hellen Flächen `surface-mist` und
+         * `surface-cool`, nicht nur auf Weiß. Die beiden leiseren Stufen
+         * lagen darunter: `muted` bei 4,17 und `subtle` bei 2,71. Beide
+         * tragen kleine, aber tragende Beschriftungen — „Kaufpreis“,
+         * „E-Mail“, den Weg über der Überschrift —, die niemand raten soll.
+         * Der Abstand zwischen den Stufen bleibt, sie sitzen nur tiefer.
+         */
         text: {
           DEFAULT: "#19324D",
-          muted: "#687789",
-          subtle: "#8A97A6",
+          muted: "#5C6B7D",
+          subtle: "#627081",
         },
         border: {
           DEFAULT: "#E2E9ED",
@@ -43,8 +52,10 @@ const config: Config = {
           DEFAULT: "#65C6C7",
           light: "#A5DEDF",
           mid: "#2E9D9C",
-          // Interactive turquoise — passes AA on white for text and buttons.
-          deep: "#1C8480",
+          // Interactive turquoise. Trägt 4,5:1 nicht nur auf Weiß, sondern
+          // auch auf `accent-soft` — dort steht es als Ortsangabe auf den
+          // Objektkarten und lag mit dem alten Wert bei 4,14.
+          deep: "#197774",
           dark: "#166B68",
           soft: "#EAF8F8",
           tint: "#F4FBFB",
@@ -56,8 +67,14 @@ const config: Config = {
           DEFAULT: "#1B7A7D",
           soft: "#EAF8F8",
         },
+        /**
+         * Warnton. Er steht fast immer auf seiner eigenen weichen Fläche —
+         * als Fehlermeldung im Panel und als Abzeichen „Reserviert“ — und
+         * lag dort bei 3,77. Auf Weiß reichte es knapp, auf dem eigenen
+         * Grund nicht: genau dort steht er aber.
+         */
         warning: {
-          DEFAULT: "#B4611C",
+          DEFAULT: "#9B5318",
           soft: "#F6E9D9",
         },
       },

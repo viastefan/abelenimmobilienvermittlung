@@ -57,7 +57,13 @@ export function PageHero({
                   <li key={crumb.label} className="flex items-center gap-1.5">
                     {index > 0 && <ChevronRight className="h-3 w-3" aria-hidden="true" />}
                     {crumb.href ? (
-                      <Link href={crumb.href} className="transition-colors hover:text-accent-deep">
+                      /* Etwas Luft über und unter dem Wort: der Weg steht
+                         in 12 Pixeln, und ohne Innenabstand ist er auf dem
+                         Telefon kaum zu treffen. */
+                      <Link
+                        href={crumb.href}
+                        className="inline-block py-1 transition-colors hover:text-accent-deep"
+                      >
                         {crumb.label}
                       </Link>
                     ) : (

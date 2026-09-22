@@ -192,7 +192,7 @@ export function ExpertProperty({ property }: { property: ExpertPropertyData }) {
           </div>
           <Link
             href={href}
-            className="text-[0.875rem] font-semibold text-accent-deep transition-colors duration-300 hover:text-accent-dark"
+            className="-my-1 inline-block py-1 text-[0.875rem] font-semibold text-accent-deep transition-colors duration-300 hover:text-accent-dark"
           >
             Zum Objekt
           </Link>

@@ -10,12 +10,16 @@ function FooterColumn({ title, items }: { title: string; items: { label: string;
   return (
     <nav aria-label={title}>
       <p className="font-display text-[0.9375rem] font-bold text-ink">{title}</p>
-      <ul className="mt-5 space-y-3">
+      {/* Der Innenabstand steht am Link, nicht am Listenpunkt: angetippt wird
+          der Link, und mit 13 Pixeln Schrift war er 18 Pixel hoch — zu wenig
+          für einen Daumen. Der Abstand zwischen den Zeilen wandert dafür in
+          die Zeile hinein, das Bild bleibt also dasselbe. */}
+      <ul className="mt-4 space-y-0.5">
         {items.map((item) => (
           <li key={item.href}>
             <Link
               href={item.href}
-              className="text-[0.8125rem] text-text-muted transition-colors duration-200 hover:text-accent-deep"
+              className="inline-block py-1.5 text-[0.8125rem] text-text-muted transition-colors duration-200 hover:text-accent-deep"
             >
               {item.label}
             </Link>
@@ -44,9 +48,12 @@ export function Footer() {
 
         <div>
           <p className="font-display text-[0.9375rem] font-bold text-ink">Kontakt</p>
-          <ul className="mt-5 space-y-3 text-[0.8125rem] text-text-muted">
+          <ul className="mt-4 space-y-2 text-[0.8125rem] text-text-muted">
             <li>
-              <a href={`mailto:${site.email}`} className="inline-flex items-center gap-3 transition-colors hover:text-accent-deep">
+              <a
+                href={`mailto:${site.email}`}
+                className="inline-flex items-center gap-3 py-1 transition-colors hover:text-accent-deep"
+              >
                 <Mail className="h-4 w-4 shrink-0 text-accent-mid" aria-hidden="true" />
                 {site.email}
               </a>
@@ -79,16 +86,19 @@ export function Footer() {
               {site.owner}
             </Link>
           </p>
-          <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+          <ul className="flex flex-wrap items-center justify-center gap-x-6">
             {legalNav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="transition-colors hover:text-accent-deep">
+                <Link
+                  href={item.href}
+                  className="inline-block py-1.5 transition-colors hover:text-accent-deep"
+                >
                   {item.label}
                 </Link>
               </li>
             ))}
             <li>
-              <ConsentSettingsLink className="transition-colors hover:text-accent-deep" />
+              <ConsentSettingsLink className="inline-block py-1.5 transition-colors hover:text-accent-deep" />
             </li>
           </ul>
         </Container>
