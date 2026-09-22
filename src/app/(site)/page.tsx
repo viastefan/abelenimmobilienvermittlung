@@ -4,7 +4,6 @@ import { ExpertIntro } from "@/components/home/ExpertIntro";
 import { PropertyShowcase } from "@/components/home/PropertyShowcase";
 import { PersonalService } from "@/components/home/PersonalService";
 import { ContactIntro } from "@/components/home/ContactIntro";
-import { CtaSection } from "@/components/home/CtaSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { webPageSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
@@ -32,12 +31,14 @@ export default function HomePage() {
       <Hero />
       <ExpertIntro />
       <PropertyShowcase />
-      <PersonalService />
-      <CtaSection
-        title="Sie planen eine Immobilie zu verkaufen oder brauchen Hilfe das passende zu finden?"
-        description={null}
-        buttonLabel="Immobilie verkaufen"
-        href="/verkaufen"
+      {/* Der Abschluss steht im selben Abschnitt: als eigener Block stand er
+          als zweite dunkle Fläche darunter, mit einer Kante dazwischen. */}
+      <PersonalService
+        cta={{
+          title: "Sie planen eine Immobilie zu verkaufen oder brauchen Hilfe das passende zu finden?",
+          buttonLabel: "Immobilie verkaufen",
+          href: "/verkaufen",
+        }}
       />
       <ContactIntro />
 

@@ -89,6 +89,35 @@
   .section-warm {
     @apply bg-surface-warm;
   }
+
+  /* Weiße Schrift auf einem hellen Foto. Ein Schleier über dem Bild macht
+     sie ebenfalls lesbar, nimmt dem Foto dabei aber seine Farbe; ein
+     Schatten an der Schrift lässt das Bild, wie es ist, und legt nur unter
+     die Buchstaben, was sie zum Stehen brauchen. */
+  .on-photo {
+    text-shadow: 0 1px 2px rgba(11, 37, 69, 0.38), 0 10px 30px rgba(11, 37, 69, 0.3);
+  }
+
+  /* Eine Linie, die sich selbst zieht.
+     `pathLength="1"` im SVG macht jede Länge gleich: ein kurzer Strich
+     braucht damit genauso lange wie ein langer, und die Zeichnung entsteht
+     gleichmäßig statt in Sprüngen. */
+  .draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+
+  .draw-on {
+    animation: zeichnen 0.9s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+}
+
+/* Steht bewusst außerhalb der Ebenen: Tailwind gibt eigene Keyframes nur
+   heraus, wenn eine seiner `animate-`-Klassen sie anfordert. */
+@keyframes zeichnen {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

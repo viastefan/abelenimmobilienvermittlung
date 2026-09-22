@@ -62,11 +62,15 @@ export function PropertyShowcaseSlider({ slides }: { slides: ShowcaseSlide[] }) 
           </div>
         </Reveal>
 
-        <Reveal delay={80}>
+        {/* Der Ausschnitt schneidet die Spur ab; geschoben wird die Liste
+            darin. Eine eigene Scrollfläche stand hier einmal — sie nahm am
+            Rechner den seitlichen Anteil jeder Trackpad-Geste auf und
+            blätterte weiter, während man die Seite hinunterscrollte. */}
+        <Reveal delay={80} className="mt-9 overflow-hidden">
           <ul
             ref={trackRef}
             {...dragProps}
-            className={`no-scrollbar mt-9 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain ${
+            className={`flex ${
               dragging ? "cursor-grabbing select-none" : many ? "lg:cursor-grab" : ""
             }`}
             aria-label="Angebotene Objekte"
@@ -75,7 +79,7 @@ export function PropertyShowcaseSlider({ slides }: { slides: ShowcaseSlide[] }) 
               const current = position === index;
               const href = `/immobilien/${slide.slug}`;
               return (
-                <li key={slide.slug} className="w-full shrink-0 grow-0 basis-full snap-center">
+                <li key={slide.slug} className="w-full shrink-0 grow-0 basis-full">
                   <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14">
                     <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-surface-mist">
                       <SiteImage

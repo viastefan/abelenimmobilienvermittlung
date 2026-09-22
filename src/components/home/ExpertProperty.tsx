@@ -43,18 +43,18 @@ export function ExpertProperty({ property }: { property: ExpertPropertyData }) {
 
   return (
     <article className="overflow-hidden rounded-[24px] bg-white shadow-lift sm:rounded-[28px]">
-      <div className="relative aspect-[4/3] bg-surface-mist">
+      <div className="relative aspect-[4/3] overflow-hidden bg-surface-mist">
         {property.images.length > 0 ? (
           <ul
             ref={trackRef}
             {...dragProps}
-            className={`no-scrollbar flex h-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain ${
+            className={`flex h-full ${
               dragging ? "cursor-grabbing select-none" : many ? "lg:cursor-grab" : ""
             }`}
             aria-label={`Aufnahmen: ${property.title}`}
           >
             {property.images.map((image, position) => (
-              <li key={image} className="relative h-full w-full shrink-0 grow-0 basis-full snap-center">
+              <li key={image} className="relative h-full w-full shrink-0 grow-0 basis-full">
                 <SiteImage
                   src={image}
                   sizes="(min-width: 1024px) 44vw, 100vw"

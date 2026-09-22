@@ -1,4 +1,4 @@
-import { ImagePlaceholder } from "@/components/graphics/ImagePlaceholder";
+import { ImagePlaceholder, type PlaceholderTone } from "@/components/graphics/ImagePlaceholder";
 import { PhotoImage } from "@/components/graphics/PhotoImage";
 
 /**
@@ -17,6 +17,8 @@ export function SiteImage({
   label,
   sizes = "100vw",
   priority = false,
+  /** Dunkel überall dort, wo weiße Schrift auf dem Bild steht. */
+  tone = "light",
   className = "",
 }: {
   src?: string;
@@ -24,6 +26,7 @@ export function SiteImage({
   label?: string;
   sizes?: string;
   priority?: boolean;
+  tone?: PlaceholderTone;
   className?: string;
 }) {
   if (src) {
@@ -37,7 +40,7 @@ export function SiteImage({
         className={`object-cover ${className}`}
         fallback={
           <>
-            <ImagePlaceholder label={label} className={className} />
+            <ImagePlaceholder label={label} tone={tone} className={className} />
             <span className="sr-only">{alt}</span>
           </>
         }
@@ -47,7 +50,7 @@ export function SiteImage({
 
   return (
     <>
-      <ImagePlaceholder label={label} className={className} />
+      <ImagePlaceholder label={label} tone={tone} className={className} />
       <span className="sr-only">{alt}</span>
     </>
   );
