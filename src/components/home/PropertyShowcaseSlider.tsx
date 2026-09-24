@@ -42,7 +42,7 @@ export function PropertyShowcaseSlider({ slides }: { slides: ShowcaseSlide[] }) 
         <Reveal className="flex items-end justify-between gap-6">
           <div>
             <h2 className="balance font-display text-display-lg font-bold text-ink">
-              Weiter Objekte zu verkaufen
+              Weitere Objekte zu verkaufen
             </h2>
           </div>
 

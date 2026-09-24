@@ -76,11 +76,17 @@ export function Footer() {
         <Container className="flex flex-col-reverse items-center justify-between gap-4 py-6 text-[0.8125rem] text-text-subtle sm:flex-row">
           {/* Der Name führt ins Panel. Kein Menüpunkt und kein Hinweis
               darauf, was dahinter liegt: Wer es braucht, weiß es; für alle
-              anderen bleibt es eine Zeile im Kleingedruckten. */}
+              anderen bleibt es eine Zeile im Kleingedruckten.
+
+              Nicht vorab geladen: sonst holte jeder Besucher, der bis hier
+              scrollt, im Hintergrund das Panel — und löste damit jedes Mal
+              eine Anmeldeprüfung bei der Datenbank aus, für eine Seite, die
+              er nie öffnet. */}
           <p>
             © {new Date().getFullYear()} {site.legalName.replace(` – ${site.owner}`, "")} –{" "}
             <Link
               href="/admin"
+              prefetch={false}
               className="underline-offset-2 transition-colors duration-200 hover:text-accent-deep hover:underline"
             >
               {site.owner}

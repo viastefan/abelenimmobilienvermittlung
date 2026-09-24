@@ -14,6 +14,7 @@ import { pageSeo } from "@/lib/seo";
 import { resolveFirstImage, resolveImage } from "@/lib/imagery";
 import { getAllPropertySlugs, getPropertyBySlug } from "@/data/properties";
 import { site } from "@/data/site";
+import { zusammenhalten } from "@/lib/typografie";
 
 export const revalidate = 60;
 
@@ -136,7 +137,7 @@ export default async function PropertyDetailPage({
                     {fact.label}
                   </dt>
                   <dd className="mt-1.5 font-display text-[1.0625rem] font-extrabold leading-tight text-ink">
-                    {fact.value}
+                    {zusammenhalten(fact.value)}
                   </dd>
                 </div>
               ))}
@@ -199,7 +200,7 @@ export default async function PropertyDetailPage({
                       className="flex items-baseline justify-between gap-6 rounded-[14px] px-4 py-3.5 odd:bg-surface-warm"
                     >
                       <dt className="text-[0.9375rem] text-text-muted">{feature.label}</dt>
-                      <dd className="text-right text-[0.9375rem] font-semibold text-ink">{feature.value}</dd>
+                      <dd className="text-right text-[0.9375rem] font-semibold text-ink">{zusammenhalten(feature.value)}</dd>
                     </div>
                   ))}
                 </dl>
@@ -215,7 +216,7 @@ export default async function PropertyDetailPage({
                       <dt className="text-[0.8125rem] font-medium text-text-subtle">
                         {item.label}
                       </dt>
-                      <dd className="mt-1.5 text-[0.9375rem] font-semibold text-ink">{item.value}</dd>
+                      <dd className="mt-1.5 text-[0.9375rem] font-semibold text-ink">{zusammenhalten(item.value)}</dd>
                     </div>
                   ))}
                 </dl>

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Car, DoorOpen, LandPlot, MapPin, Ruler } from "lucide-react";
+import { zusammenhalten } from "@/lib/typografie";
 
 /**
  * Die Symbole liegen hier, nicht bei den Daten: eine Komponente lässt sich
@@ -52,7 +53,7 @@ export function PropertyFacts({
             <div className="min-w-0">
               <dt className="text-[0.75rem] font-medium text-text-subtle">{fact.label}</dt>
               <dd className="mt-0.5 font-display text-[0.9375rem] font-bold leading-snug text-ink">
-                {fact.value}
+                {zusammenhalten(fact.value)}
               </dd>
             </div>
           </div>

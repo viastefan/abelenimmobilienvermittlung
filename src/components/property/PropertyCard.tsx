@@ -3,6 +3,7 @@ import { ArrowUpRight, CalendarRange, DoorOpen, Ruler } from "lucide-react";
 import { SiteImage } from "@/components/graphics/SiteImage";
 import { CardGallery } from "@/components/property/CardGallery";
 import type { Property } from "@/types/property";
+import { zusammenhalten } from "@/lib/typografie";
 
 const statusTone: Record<string, string> = {
   "zu-verkaufen": "bg-white/90 text-ink",
@@ -83,7 +84,7 @@ export function PropertyCard({
               className="inline-flex items-center gap-1.5 rounded-[14px] bg-surface-cool px-2.5 py-1.5 text-[0.75rem] font-medium text-text-muted"
             >
               <item.icon className="h-3.5 w-3.5 text-accent-mid" strokeWidth={1.8} aria-hidden="true" />
-              {item.value}
+              {zusammenhalten(item.value)}
             </span>
           ))}
         </div>

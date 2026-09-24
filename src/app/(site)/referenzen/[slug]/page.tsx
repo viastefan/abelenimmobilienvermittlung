@@ -12,6 +12,7 @@ import { breadcrumbSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
 import { getAllReferenceSlugs, getReferenceBySlug } from "@/data/references";
 import { resolveFirstImage, resolveImages } from "@/lib/imagery";
+import { zusammenhalten } from "@/lib/typografie";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -111,7 +112,7 @@ export default async function ReferenceDetailPage({ params }: Params) {
                     {fact.label}
                   </dt>
                   <dd className="mt-1.5 font-display text-[1.0625rem] font-extrabold leading-tight text-ink">
-                    {fact.value}
+                    {zusammenhalten(fact.value)}
                   </dd>
                 </div>
               ))}

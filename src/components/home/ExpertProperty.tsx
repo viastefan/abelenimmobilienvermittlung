@@ -8,6 +8,7 @@ import { SlideArrow } from "@/components/ui/SlideArrow";
 import { SiteImage } from "@/components/graphics/SiteImage";
 import { useSnapTrack } from "@/components/ui/useSnapTrack";
 import { PropertyFacts, type PropertyFact } from "@/components/property/PropertyFacts";
+import { zusammenhalten } from "@/lib/typografie";
 
 export type ExpertPropertyData = {
   slug: string;
@@ -160,7 +161,7 @@ export function ExpertProperty({ property }: { property: ExpertPropertyData }) {
                     <div key={detail.label} className="flex justify-between gap-4">
                       <dt className="text-[0.8125rem] text-text-muted">{detail.label}</dt>
                       <dd className="text-right text-[0.8125rem] font-semibold text-ink">
-                        {detail.value}
+                        {zusammenhalten(detail.value)}
                       </dd>
                     </div>
                   ))}

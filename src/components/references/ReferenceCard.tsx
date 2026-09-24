@@ -3,6 +3,7 @@ import { ArrowRight, CalendarRange, DoorOpen, MapPin, Ruler } from "lucide-react
 import { SiteImage } from "@/components/graphics/SiteImage";
 import { CardGallery } from "@/components/property/CardGallery";
 import type { ReferenceObject } from "@/types/reference";
+import { zusammenhalten } from "@/lib/typografie";
 
 /**
  * Referenzkarte — eine Gestaltung für Übersicht und Startseiten-Galerie.
@@ -82,7 +83,7 @@ export function ReferenceCard({
               className="inline-flex items-center gap-1.5 rounded-[14px] bg-surface-cool px-2.5 py-1.5 text-[0.75rem] font-medium text-text-muted"
             >
               <fact.icon className="h-3.5 w-3.5 text-accent-mid" strokeWidth={1.8} aria-hidden="true" />
-              {fact.value}
+              {zusammenhalten(fact.value)}
             </span>
           ))}
         </div>

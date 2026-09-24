@@ -19,6 +19,13 @@ const PADDING = 78;
  * Die Punkte sitzen auf ihren echten Koordinaten, die gekennzeichnete
  * Fläche umschließt sie.
  *
+ * Die Namen stehen nicht in der Zeichnung, sondern darüber. Die Zeichnung
+ * wächst und schrumpft mit ihrer Fläche, und Schrift in ihr schrumpfte mit:
+ * am Telefon, wo die Karte halb so breit ist wie am Rechner, kamen die Orte
+ * auf sechs Pixel. Darüber gelegt behalten sie ihre Schriftgröße, wie breit
+ * die Karte auch steht, und ein Saum in der Farbe des Grunds löst sie von
+ * der Grenzlinie, auf der manche von ihnen liegen.
+ *
  * Die Bewegung erklärt die Karte, statt sie zu schmücken: erst zieht sich
  * die Grenze des Gebiets, dann setzen sich die Orte hinein — von Leverkusen
  * aus nach außen, in der Reihenfolge ihrer Entfernung. Sie läuft einmal,
@@ -78,7 +85,7 @@ export function ServiceAreaMap({ className = "" }: { className?: string }) {
     <figure
       ref={ref}
       data-laeuft={laeuft ? "" : undefined}
-      className={`group/karte overflow-hidden rounded-[24px] bg-surface-mist ring-1 ring-border ${className}`}
+      className={`group/karte relative overflow-hidden rounded-[24px] bg-surface-mist ring-1 ring-border ${className}`}
     >
       <svg
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
@@ -173,30 +180,49 @@ export function ServiceAreaMap({ className = "" }: { className?: string }) {
                 stroke={place.focus || place.seat ? "#FFFFFF" : "#1C8480"}
                 strokeWidth={place.focus || place.seat ? 2.5 : 2}
               />
-              <text
-                x={place.x}
-                y={place.y - (gross ? 17 : 13)}
-                textAnchor="middle"
-                className={`font-display ${gross ? "text-[15px] font-bold" : "text-[13px] font-semibold"}`}
-                fill={gross ? "#102B4E" : "#465A6E"}
-              >
-                {place.name}
-              </text>
-              {place.seat && (
-                <text
-                  x={place.x}
-                  y={place.y + 24}
-                  textAnchor="middle"
-                  className="text-[11px] font-semibold uppercase tracking-[0.1em]"
-                  fill="#1C8480"
-                >
-                  Büro
-                </text>
-              )}
             </g>
           );
         })}
       </svg>
+
+      {/* Die Namen stehen über der Zeichnung, damit sie ihre Größe behalten
+          — Vorlesern nennt das `aria-label` oben dieselben Orte schon. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        {places.map((place) => {
+          const gross = place.focus || place.seat;
+          const stufe = reihenfolge.get(place.name) ?? 0;
+          return (
+            <div
+              key={place.name}
+              className="k-ort absolute"
+              style={{
+                left: `${(place.x / WIDTH) * 100}%`,
+                top: `${(place.y / HEIGHT) * 100}%`,
+                animationDelay: `${900 + stufe * 105}ms`,
+              }}
+            >
+              <span
+                className={`absolute whitespace-nowrap font-display leading-none [text-shadow:0_0_2px_#F1F5F8,0_0_3px_#F1F5F8,0_0_6px_#F1F5F8] ${
+                  place.beschriftung === "links"
+                    ? "right-[8px] top-0 -translate-y-1/2"
+                    : `left-0 -translate-x-1/2 ${gross ? "bottom-[9px]" : "bottom-[7px]"}`
+                } ${
+                  gross
+                    ? "text-[13px] font-bold text-ink sm:text-[14px]"
+                    : "text-[11px] font-semibold text-text-muted min-[360px]:text-[12px] sm:text-[13px]"
+                }`}
+              >
+                {place.name}
+              </span>
+              {place.seat && (
+                <span className="absolute left-0 top-[9px] -translate-x-1/2 whitespace-nowrap text-[10px] font-semibold uppercase leading-none tracking-[0.1em] text-accent-deep [text-shadow:0_0_2px_#F1F5F8,0_0_4px_#F1F5F8]">
+                  Büro
+                </span>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </figure>
   );
 }

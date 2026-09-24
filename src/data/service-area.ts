@@ -14,13 +14,20 @@ export type ServicePlace = {
   seat?: boolean;
   /** Der namengebende Schwerpunkt des Gebiets. */
   focus?: boolean;
+  /**
+   * Wo der Name am Punkt steht. Üblich ist darüber; wo ein Nachbar zu nah
+   * liegt, weicht er zur Seite aus — so wie auf jeder gedruckten Karte.
+   */
+  beschriftung?: "links";
 };
 
 export const servicePlaces: ServicePlace[] = [
   { name: "Düsseldorf", lat: 51.2277, lon: 6.7735 },
   { name: "Kreis Mettmann", lat: 51.2512, lon: 6.9748 },
   { name: "Wuppertal", lat: 51.2562, lon: 7.1508 },
-  { name: "Solingen", lat: 51.1712, lon: 7.0837 },
+  // Remscheid liegt auf fast gleicher Höhe dicht daneben — am Telefon
+  // träfen sich die beiden Namen über den Punkten.
+  { name: "Solingen", lat: 51.1712, lon: 7.0837, beschriftung: "links" },
   { name: "Remscheid", lat: 51.1797, lon: 7.1968 },
   { name: "Wermelskirchen", lat: 51.1386, lon: 7.2191 },
   { name: "Burscheid", lat: 51.0881, lon: 7.1189 },
