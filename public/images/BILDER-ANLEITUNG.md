@@ -9,27 +9,25 @@ verschwinden die Bilder. Dafür gibt es den Umschalter unten.
 
 ## Alle Bilder ins Projekt holen
 
+Das erledigt die GitHub Action „Bilder sichern“ (`.github/workflows/bilder-sichern.yml`)
+von selbst: Sie läuft, sobald sich `src/data/wix-media.ts` oder das Skript
+ändert, lädt jedes eingetragene Bild — derzeit 40 Dateien — nach
+`public/images/wix/`, verkleinert es auf höchstens 2560 Pixel und legt das
+Ergebnis als eigenen Commit auf denselben Zweig.
+
+Von Hand geht es genauso:
+
 ```bash
 npm run bilder
 ```
 
-Das Skript lädt jedes in `src/data/wix-media.ts` eingetragene Bild — derzeit
-39 Dateien — nach `public/images/wix/`. Vorhandene Dateien überspringt es;
-mit `npm run bilder -- --neu` lädt es sie neu.
+Vorhandene Dateien überspringt das Skript; mit `npm run bilder -- --neu` lädt
+es sie neu. Danach die Dateien und `src/data/wix-lokal.ts` committen.
 
-Danach umschalten:
-
-```bash
-# .env.local
-NEXT_PUBLIC_BILDER_LOKAL=1
-```
-
-Dieselbe Variable auch bei Vercel setzen (Project → Settings → Environment
-Variables), damit die veröffentlichte Website ebenfalls die lokalen Kopien
-verwendet. Am Code muss dafür nichts geändert werden.
-
-Danach die Dateien committen und pushen. `public/` gehört mit ins
-Repository — Vercel baut daraus.
+Umschalten muss man nichts. `src/data/wix-lokal.ts` listet, welche Kopien es
+gibt, und die Website liefert jede davon aus dem Projekt statt von Wix —
+auch die Fotos der Objekte in der Datenbank, deren Adressen noch auf Wix
+zeigen. Was nicht auf der Liste steht, kommt weiter von Wix.
 
 ## Ein einzelnes Bild austauschen
 

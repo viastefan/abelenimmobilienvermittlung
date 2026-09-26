@@ -77,14 +77,11 @@ der alten Adressen automatisch:
 
 ### Bilder ins Projekt holen
 
-```bash
-npm run bilder
-```
-
-Holt alle 39 Bilder des alten Auftritts nach `public/images/wix/`.
-Danach `NEXT_PUBLIC_BILDER_LOKAL=1` setzen (lokal und bei Vercel),
-committen und pushen. Ab dann hängt die Website an keinem Wix-Server
-mehr. Details: `public/images/BILDER-ANLEITUNG.md`.
+Erledigt die GitHub Action „Bilder sichern“ von selbst: Sie holt alle 40
+Bilder des alten Auftritts nach `public/images/wix/` und legt sie im
+Repository ab. Ab dann liefert die Website jedes davon aus dem Projekt —
+auch die Objektfotos in der Datenbank. Eine Umgebungsvariable braucht es
+nicht mehr. Details: `public/images/BILDER-ANLEITUNG.md`.
 
 ---
 

@@ -1,0 +1,60 @@
+name: Bilder sichern
+
+# Holt die Bilder des bisherigen Wix-Auftritts ins Repository, damit die
+# Website nach der Kündigung bei Wix an keinem fremden Server mehr hängt.
+# Läuft, sobald sich die Bilderliste oder das Skript ändert, und legt das
+# Ergebnis als eigenen Commit auf denselben Zweig.
+
+on:
+  push:
+    branches: ["main", "festagclaude/**"]
+    paths:
+      - "src/data/wix-media.ts"
+      - "scripts/bilder-holen.mjs"
+      - ".github/workflows/bilder-sichern.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bilder-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  holen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # sharp kommt über Next.js mit — es verkleinert die Originale.
+      - name: Abhängigkeiten
+        run: npm ci --no-audit --no-fund
+
+      - name: Bilder holen
+        id: holen
+        run: node scripts/bilder-holen.mjs || echo "fehler=1" >> "$GITHUB_OUTPUT"
+
+      - name: Ergebnis ablegen
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/images/wix src/data/wix-lokal.ts
+          if git diff --cached --quiet; then
+            echo "Nichts Neues — alle Bilder liegen bereits im Projekt."
+          else
+            git commit -m "Bilder des Wix-Auftritts ins Projekt geholt"
+            git push
+          fi
+
+      - name: Fehlgeschlagene Bilder melden
+        if: steps.holen.outputs.fehler == '1'
+        run: |
+          echo "::error::Nicht alle Bilder konnten geholt werden — siehe Schritt 'Bilder holen'."
+          exit 1
