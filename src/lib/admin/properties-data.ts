@@ -13,6 +13,8 @@ export async function getAllPropertiesAdmin(): Promise<Property[]> {
   const { data, error } = await supabase
     .from("properties")
     .select("*")
+    // Dieselbe Reihenfolge wie auf der Website — was hier vorn steht, steht dort vorn.
+    .order("sort_order", { ascending: true })
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -29,12 +31,4 @@ export async function getPropertyByIdAdmin(id: string): Promise<Property | undef
 
   if (error || !data) return undefined;
   return mapRowToProperty(data);
-}
-
-export async function slugExists(slug: string, excludeId?: string): Promise<boolean> {
-  const supabase = await createClient();
-  let query = supabase.from("properties").select("id").eq("slug", slug);
-  if (excludeId) query = query.neq("id", excludeId);
-  const { data } = await query.maybeSingle();
-  return Boolean(data);
 }

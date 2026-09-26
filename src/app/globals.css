@@ -120,6 +120,60 @@
   }
 }
 
+/* App: kurze, weiche Einblendungen. Sie sagen „das ist neu da“, nicht mehr. */
+.toast-rein {
+  animation: toastRein 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.menue-rein {
+  animation: menueRein 0.16s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.dialog-rein[open] {
+  animation: dialogRein 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.seite-rein {
+  animation: seiteRein 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes toastRein {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+}
+
+@keyframes menueRein {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.97);
+  }
+}
+
+@keyframes dialogRein {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+}
+
+@keyframes seiteRein {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes laden {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(320%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

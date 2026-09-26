@@ -4,31 +4,64 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { getSupabaseEnv } from "@/lib/supabase/env";
-import { slugExists } from "@/lib/admin/properties-data";
-import { parseKeyValueList, parseLines, slugify } from "@/lib/admin/form";
+import { deutscheZahl, parseKeyValueList, parseLines, slugify } from "@/lib/admin/form";
+import { ausweisarten, energieSchreiben, type Ausweisart } from "@/lib/admin/energie";
+import { verschieben } from "@/lib/admin/reihenfolge";
+import { fotosAufraeumen } from "@/lib/admin/speicher";
+import { freieAdresse } from "@/lib/admin/adresse";
+import { ABGELAUFEN, angemeldet } from "@/lib/admin/sitzung";
+import type { FormularErgebnis } from "@/components/admin/Formular";
+
+/**
+ * Was die App auf dem Server tut.
+ *
+ * Fehlermeldungen sagen, was zu tun ist — nie, was in der Datenbank schief
+ * lief. Das steht im Protokoll des Servers, wo es jemand lesen kann, der
+ * damit etwas anfangen kann.
+ */
+
+const fehler = (text: string, feld?: string): FormularErgebnis => ({ ok: false, fehler: text, feld, zeit: Date.now() });
+const NOCHMAL = "Das hat gerade nicht geklappt. Bitte versuchen Sie es in einem Moment noch einmal.";
+
+function text(daten: FormData, name: string) {
+  return String(daten.get(name) ?? "").trim();
+}
+
+/** App und Website neu aufbauen — die App vollständig, die Website dort, wo Objekte stehen. */
+function allesAktualisieren(...pfade: string[]) {
+  revalidatePath("/admin", "layout");
+  revalidatePath("/");
+  revalidatePath("/referenzen");
+  revalidatePath("/kaufen");
+  for (const pfad of pfade) revalidatePath(pfad);
+}
+
+/* ---------------------------------------------------------------- Zugang */
 
 export async function signIn(formData: FormData) {
-  const email = String(formData.get("email") ?? "").trim();
+  const email = text(formData, "email");
   const password = String(formData.get("password") ?? "");
-  const next = String(formData.get("next") ?? "/admin");
+  const next = text(formData, "next") || "/admin";
+  const zurueck = (meldung: string) =>
+    redirect(`/admin/login?error=${encodeURIComponent(meldung)}&email=${encodeURIComponent(email)}`);
 
   if (!getSupabaseEnv()) {
-    redirect(
-      `/admin/login?error=${encodeURIComponent(
-        "Die Datenbank ist nicht verbunden. Bitte die Supabase-Umgebungsvariablen im Hosting hinterlegen."
-      )}`
-    );
+    zurueck("Die Anmeldung ist gerade nicht erreichbar. Bitte versuchen Sie es in ein paar Minuten noch einmal.");
   }
-
   if (!email || !password) {
-    redirect(`/admin/login?error=${encodeURIComponent("Bitte E-Mail und Passwort eingeben.")}`);
+    zurueck("Bitte geben Sie Ihre E-Mail-Adresse und Ihr Passwort ein.");
   }
 
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) {
-    redirect(`/admin/login?error=${encodeURIComponent("E-Mail oder Passwort ist falsch.")}`);
+    if (error.status !== 400) console.error("Anmeldung fehlgeschlagen:", error.message);
+    zurueck(
+      error.status === 400
+        ? "E-Mail-Adresse oder Passwort stimmen nicht. Bitte prüfen Sie beides."
+        : "Die Anmeldung ist gerade nicht erreichbar. Bitte versuchen Sie es in ein paar Minuten noch einmal."
+    );
   }
 
   redirect(next.startsWith("/admin") ? next : "/admin");
@@ -37,137 +70,218 @@ export async function signIn(formData: FormData) {
 export async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
-  redirect("/admin/login");
+  redirect("/admin/login?abgemeldet=1");
 }
 
-export type PropertyFormResult = { error?: string } | void;
+export async function passwortAendern(_vorher: FormularErgebnis, formData: FormData): Promise<FormularErgebnis> {
+  const passwort = String(formData.get("passwort") ?? "");
+  const wiederholung = String(formData.get("passwort_wiederholen") ?? "");
 
-function buildPropertyPayload(formData: FormData) {
-  const title = String(formData.get("title") ?? "").trim();
-  const city = String(formData.get("city") ?? "").trim();
-  const slugInput = String(formData.get("slug") ?? "").trim();
-  const status = String(formData.get("status") ?? "zu-verkaufen");
-  const price = Number(formData.get("price") ?? 0);
-  const livingSpace = Number(formData.get("living_space") ?? 0);
-  const rooms = Number(formData.get("rooms") ?? 0);
-  const summary = String(formData.get("summary") ?? "").trim();
-  const location = String(formData.get("location") ?? "").trim();
-  const heroNote = String(formData.get("hero_note") ?? "").trim();
-  const images = parseLines(formData.get("images"));
-  const description = parseLines(formData.get("description"));
-  const equipment = parseLines(formData.get("equipment"));
-  const featured = formData.get("featured") === "on";
-  const published = formData.get("published") === "on";
-  const features = parseKeyValueList(formData, "feature_label", "feature_value");
-  const energy = parseKeyValueList(formData, "energy_label", "energy_value");
+  if (passwort.length < 8) return fehler("Bitte wählen Sie mindestens acht Zeichen.", "passwort");
+  if (passwort !== wiederholung) return fehler("Die beiden Eingaben sind nicht gleich.", "passwort_wiederholen");
 
-  if (!title || !city || !summary) {
-    return { error: "Titel, Ort und Zusammenfassung sind Pflichtfelder." } as const;
+  const supabase = await angemeldet();
+  if (!supabase) return fehler(ABGELAUFEN);
+  const { error } = await supabase.auth.updateUser({ password: passwort });
+
+  if (error) {
+    if (error.code === "same_password") return fehler("Das ist bereits Ihr Passwort.", "passwort");
+    if (error.code === "weak_password") return fehler("Dieses Passwort ist zu leicht zu erraten. Bitte wählen Sie ein anderes.", "passwort");
+    console.error("Passwort nicht geändert:", error.message);
+    return fehler(NOCHMAL);
   }
 
-  const slug = slugify(slugInput || title);
-  if (!slug) {
-    return { error: "Bitte einen gültigen Titel oder Slug angeben." } as const;
-  }
+  return { ok: true, zeit: Date.now(), meldung: "Ihr neues Passwort gilt ab sofort." };
+}
+
+/* --------------------------------------------------------------- Objekte */
+
+const statusWerte = ["zu-verkaufen", "reserviert", "verkauft"] as const;
+const hauptangaben = /^(wohnfläche|zimmer)$/i;
+
+function objektDaten(formData: FormData) {
+  const title = text(formData, "title").replace(/\s+/g, " ");
+  const city = text(formData, "city");
+  const price = deutscheZahl(formData.get("price"));
+  const summary = text(formData, "summary");
+  const status = text(formData, "status");
+  const ausweis = text(formData, "energie_ausweis");
+
+  if (!title) return { ok: false, fehler: "Bitte geben Sie dem Objekt einen Titel.", feld: "title" } as const;
+  if (!city) return { ok: false, fehler: "Bitte nennen Sie den Ort des Objekts.", feld: "city" } as const;
+  if (!price) return { ok: false, fehler: "Bitte tragen Sie den Kaufpreis ein.", feld: "price" } as const;
+  if (!summary) return { ok: false, fehler: "Bitte schreiben Sie ein, zwei Sätze als Kurzbeschreibung.", feld: "summary" } as const;
 
   return {
-    payload: {
+    ok: true,
+    daten: {
       title,
       city,
-      slug,
-      status,
       price,
-      living_space: livingSpace,
-      rooms,
+      status: (statusWerte as readonly string[]).includes(status) ? status : "zu-verkaufen",
+      living_space: deutscheZahl(formData.get("living_space")) ?? 0,
+      rooms: deutscheZahl(formData.get("rooms")) ?? 0,
+      hero_note: text(formData, "hero_note") || null,
       summary,
-      location,
-      hero_note: heroNote || null,
-      images,
-      description,
-      equipment,
-      featured,
-      published,
-      features: features as unknown as never,
-      energy: energy as unknown as never,
+      description: parseLines(formData.get("description")),
+      location: text(formData, "location"),
+      equipment: formData.getAll("equipment").map(String).filter(Boolean),
+      images: formData.getAll("images").map(String).filter(Boolean),
+      // Wohnfläche und Zimmer stehen in eigenen Feldern; doppelt geführt, liefen sie auseinander.
+      features: parseKeyValueList(formData, "angabe_label", "angabe_wert").filter((eintrag) => !hauptangaben.test(eintrag.label)),
+      energy: energieSchreiben({
+        ausweis: ausweisarten.some((art) => art.value === ausweis) ? (ausweis as Ausweisart) : "",
+        kennwert: text(formData, "energie_kennwert"),
+        klasse: text(formData, "energie_klasse"),
+        traeger: text(formData, "energie_traeger"),
+        baujahr: text(formData, "energie_baujahr"),
+        weitere: parseKeyValueList(formData, "energie_weitere_label", "energie_weitere_wert"),
+      }),
+      published: formData.get("published") === "on",
+      featured: formData.get("featured") === "on",
     },
   } as const;
 }
 
-export async function createProperty(_prevState: PropertyFormResult, formData: FormData): Promise<PropertyFormResult> {
-  const result = buildPropertyPayload(formData);
-  if ("error" in result) return { error: result.error };
+export async function objektAnlegen(_vorher: FormularErgebnis, formData: FormData): Promise<FormularErgebnis> {
+  const ergebnis = objektDaten(formData);
+  if (!ergebnis.ok) return fehler(ergebnis.fehler, ergebnis.feld);
 
-  if (await slugExists(result.payload.slug)) {
-    return { error: `Der Slug "${result.payload.slug}" wird bereits verwendet.` };
+  const supabase = await angemeldet();
+  if (!supabase) return fehler(ABGELAUFEN);
+  const slug = await freieAdresse(supabase, "properties", slugify(ergebnis.daten.title));
+  // Neue Objekte stehen vorn — dort sucht man sie nach dem Anlegen.
+  const { data: vorderstes } = await supabase
+    .from("properties")
+    .select("sort_order")
+    .order("sort_order", { ascending: true })
+    .limit(1)
+    .maybeSingle();
+
+  const { data, error } = await supabase
+    .from("properties")
+    .insert({
+      ...ergebnis.daten,
+      features: ergebnis.daten.features as never,
+      energy: ergebnis.daten.energy as never,
+      slug,
+      sort_order: (vorderstes?.sort_order ?? 1) - 1,
+    })
+    .select("id")
+    .single();
+
+  if (error || !data) {
+    console.error("Objekt nicht angelegt:", error?.message);
+    return fehler(NOCHMAL);
   }
 
-  const supabase = await createClient();
-  const { error } = await supabase.from("properties").insert(result.payload);
+  allesAktualisieren(`/immobilien/${slug}`);
+  redirect(`/admin/immobilien/${data.id}?angelegt=1`);
+}
+
+export async function objektSpeichern(id: string, _vorher: FormularErgebnis, formData: FormData): Promise<FormularErgebnis> {
+  const ergebnis = objektDaten(formData);
+  if (!ergebnis.ok) return fehler(ergebnis.fehler, ergebnis.feld);
+
+  const supabase = await angemeldet();
+  if (!supabase) return fehler(ABGELAUFEN);
+  const { data: bisher } = await supabase.from("properties").select("slug, published, images").eq("id", id).maybeSingle();
+  if (!bisher) return fehler("Dieses Objekt gibt es nicht mehr — vielleicht wurde es gerade gelöscht.");
+
+  // Die Adresse folgt dem Titel, solange das Objekt nicht online ist. Danach
+  // bleibt sie: Links in Mails, bei Google und in Portalen führen sonst ins Leere.
+  const slug = bisher.published
+    ? bisher.slug
+    : await freieAdresse(supabase, "properties", slugify(ergebnis.daten.title), id);
+
+  const { data: geaendert, error } = await supabase
+    .from("properties")
+    .update({
+      ...ergebnis.daten,
+      features: ergebnis.daten.features as never,
+      energy: ergebnis.daten.energy as never,
+      slug,
+    })
+    .eq("id", id)
+    .select("id");
 
   if (error) {
-    return { error: `Speichern fehlgeschlagen: ${error.message}` };
+    console.error("Objekt nicht gespeichert:", error.message);
+    return fehler(NOCHMAL);
   }
+  if (!geaendert?.length) return fehler(ABGELAUFEN);
 
-  revalidatePath("/admin/immobilien");
-  revalidatePath("/immobilien");
-  revalidatePath("/");
-  redirect("/admin/immobilien");
+  await fotosAufraeumen(supabase, bisher.images ?? [], ergebnis.daten.images);
+  allesAktualisieren(`/immobilien/${bisher.slug}`, `/immobilien/${slug}`);
+
+  return {
+    ok: true,
+    zeit: Date.now(),
+    meldung: ergebnis.daten.published ? "Gespeichert — die Website ist aktuell." : "Gespeichert. Das Objekt ist noch offline.",
+  };
 }
 
-export async function updateProperty(
-  id: string,
-  _prevState: PropertyFormResult,
-  formData: FormData
-): Promise<PropertyFormResult> {
-  const result = buildPropertyPayload(formData);
-  if ("error" in result) return { error: result.error };
-
-  if (await slugExists(result.payload.slug, id)) {
-    return { error: `Der Slug "${result.payload.slug}" wird bereits verwendet.` };
-  }
-
-  const supabase = await createClient();
-  const { error } = await supabase.from("properties").update(result.payload).eq("id", id);
-
+export async function objektLoeschen(id: string) {
+  const supabase = await angemeldet();
+  if (!supabase) throw new Error("Nicht angemeldet");
+  const { data: bisher } = await supabase.from("properties").select("slug, images").eq("id", id).maybeSingle();
+  const { data: geloescht, error } = await supabase.from("properties").delete().eq("id", id).select("id");
   if (error) {
-    return { error: `Speichern fehlgeschlagen: ${error.message}` };
+    console.error("Objekt nicht gelöscht:", error.message);
+    throw new Error("Löschen fehlgeschlagen");
   }
+  if (!geloescht?.length) throw new Error("Nichts gelöscht");
 
-  revalidatePath("/admin/immobilien");
-  revalidatePath("/immobilien");
-  revalidatePath(`/immobilien/${result.payload.slug}`);
-  revalidatePath("/");
-  redirect("/admin/immobilien");
+  if (bisher) await fotosAufraeumen(supabase, bisher.images ?? [], []);
+  allesAktualisieren(bisher ? `/immobilien/${bisher.slug}` : "/");
+  return { ok: true };
 }
 
-export async function deleteProperty(id: string) {
-  const supabase = await createClient();
-  const { error } = await supabase.from("properties").delete().eq("id", id);
-
+export async function objektOnline(id: string, online: boolean) {
+  const supabase = await angemeldet();
+  if (!supabase) throw new Error("Nicht angemeldet");
+  const { data, error } = await supabase.from("properties").update({ published: online }).eq("id", id).select("slug").maybeSingle();
   if (error) {
-    throw new Error(`Löschen fehlgeschlagen: ${error.message}`);
+    console.error("Sichtbarkeit nicht geändert:", error.message);
+    throw new Error("Sichtbarkeit nicht geändert");
   }
-
-  revalidatePath("/admin/immobilien");
-  revalidatePath("/immobilien");
-  revalidatePath("/");
+  allesAktualisieren(data ? `/immobilien/${data.slug}` : "/");
 }
 
-export async function togglePublished(id: string, published: boolean) {
-  const supabase = await createClient();
-  const { error } = await supabase.from("properties").update({ published }).eq("id", id);
-  if (error) throw new Error(error.message);
-
-  revalidatePath("/admin/immobilien");
-  revalidatePath("/immobilien");
-  revalidatePath("/");
+export async function objektHervorheben(id: string, hervorheben: boolean) {
+  const supabase = await angemeldet();
+  if (!supabase) throw new Error("Nicht angemeldet");
+  const { error } = await supabase.from("properties").update({ featured: hervorheben }).eq("id", id);
+  if (error) {
+    console.error("Hervorhebung nicht geändert:", error.message);
+    throw new Error("Hervorhebung nicht geändert");
+  }
+  allesAktualisieren();
 }
 
-export async function toggleFeatured(id: string, featured: boolean) {
-  const supabase = await createClient();
-  const { error } = await supabase.from("properties").update({ featured }).eq("id", id);
-  if (error) throw new Error(error.message);
+export async function objektVerschieben(id: string, richtung: -1 | 1) {
+  const supabase = await angemeldet();
+  if (!supabase) throw new Error("Nicht angemeldet");
+  const { data, error } = await supabase
+    .from("properties")
+    .select("id, sort_order")
+    .order("sort_order", { ascending: true })
+    .order("created_at", { ascending: false });
+  if (error || !data) throw new Error("Reihenfolge nicht geladen");
 
-  revalidatePath("/admin/immobilien");
-  revalidatePath("/");
+  const neu = verschieben(
+    data.map((zeile) => zeile.id),
+    id,
+    richtung
+  );
+  if (!neu) return;
+
+  await Promise.all(
+    neu.map((zeilenId, index) =>
+      data.find((zeile) => zeile.id === zeilenId)?.sort_order === index
+        ? null
+        : supabase.from("properties").update({ sort_order: index }).eq("id", zeilenId)
+    )
+  );
+  allesAktualisieren();
 }

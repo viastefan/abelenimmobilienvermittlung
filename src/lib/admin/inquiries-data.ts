@@ -18,6 +18,13 @@ export async function getInquiriesAdmin(): Promise<Inquiry[]> {
   return data.map(mapRowToInquiry);
 }
 
+export async function getInquiryByIdAdmin(id: string): Promise<Inquiry | undefined> {
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("inquiries").select("*").eq("id", id).maybeSingle();
+  if (error || !data) return undefined;
+  return mapRowToInquiry(data);
+}
+
 export async function countNewInquiries(): Promise<number> {
   const supabase = await createClient();
   const { count, error } = await supabase

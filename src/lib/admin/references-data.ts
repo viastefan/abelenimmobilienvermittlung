@@ -29,11 +29,3 @@ export async function getReferenceByIdAdmin(id: string): Promise<ReferenceObject
   if (error || !data) return undefined;
   return mapRowToReference(data);
 }
-
-export async function referenceSlugExists(slug: string, excludeId?: string): Promise<boolean> {
-  const supabase = await createClient();
-  let query = supabase.from("reference_objects").select("id").eq("slug", slug);
-  if (excludeId) query = query.neq("id", excludeId);
-  const { data } = await query.maybeSingle();
-  return Boolean(data);
-}

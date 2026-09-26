@@ -1,111 +1,126 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import { CircleAlert } from "lucide-react";
 import { LogoMark } from "@/components/layout/Logo";
-import { getSupabaseEnv } from "@/lib/supabase/env";
+import { eingabeZeile, knopf } from "@/components/admin/ui";
+import { siteMedia } from "@/data/wix-media";
+import { site } from "@/data/site";
+import { support } from "@/data/support";
 import { signIn } from "../actions";
 
-export const metadata: Metadata = {
-  title: "Anmelden",
-  robots: { index: false, follow: false },
-};
+export const metadata: Metadata = { title: "Anmelden" };
 
-const inputClass =
-  "w-full rounded-[14px] border border-white/15 bg-white/[0.06] px-3.5 py-2.5 text-[0.875rem] text-white transition-colors placeholder:text-white/30 focus:outline-none";
-
+/**
+ * Die Tür zur App. Links das Motiv der Website, rechts genau zwei Felder.
+ * Technisches steht hier nicht mehr: fehlt die Verbindung, heißt es „gerade
+ * nicht erreichbar“ — was dahintersteckt, steht im Protokoll des Servers.
+ */
 export default async function AdminLoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; next?: string }>;
+  searchParams: Promise<{ error?: string; next?: string; email?: string; abgemeldet?: string }>;
 }) {
-  const { error, next } = await searchParams;
-  const configured = Boolean(getSupabaseEnv());
+  const { error, next, email, abgemeldet } = await searchParams;
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-ink-deep px-6">
-      <div
-        className="pointer-events-none absolute left-1/2 top-0 h-[28rem] w-[46rem] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"
-        aria-hidden="true"
-      />
-
-      <div className="relative w-full max-w-[22rem]">
-        <div className="flex items-center gap-3">
-          <LogoMark className="h-9 w-9 text-accent" />
-          <span className="flex flex-col leading-tight">
-            <span className="text-[0.875rem] font-bold text-white">Silke Abelen</span>
-            <span className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-white/40">Redaktion</span>
+    <div className="grid min-h-screen bg-white lg:grid-cols-[1.08fr_1fr]">
+      <aside className="relative hidden overflow-hidden bg-ink-deep lg:block">
+        <Image src={siteMedia.heroKeyPhoto} alt="" fill priority sizes="55vw" className="object-cover opacity-80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-deep via-ink-deep/55 to-ink-deep/25" aria-hidden="true" />
+        <div className="relative flex h-full flex-col justify-between p-12 xl:p-16">
+          <span className="flex items-center gap-3 text-white">
+            <LogoMark className="h-10 w-10 text-accent" />
+            <span className="flex flex-col leading-tight">
+              <span className="font-display text-[1rem] font-extrabold">{site.owner}</span>
+              <span className="text-[0.8125rem] text-white/60">Immobilien</span>
+            </span>
           </span>
-        </div>
-
-        <h1 className="mt-8 font-display text-[1.375rem] font-extrabold tracking-[-0.015em] text-white">
-          Anmelden
-        </h1>
-        <p className="mt-1.5 text-[0.8125rem] text-white/50">
-          Immobilien und Referenzen der Website pflegen.
-        </p>
-
-        {!configured && (
-          <div className="mt-7 rounded-[14px] border border-white/15 bg-white/[0.06] p-5">
-            <p className="text-[0.875rem] font-bold text-white">Datenbank nicht verbunden</p>
-            <p className="mt-2 text-[0.8125rem] leading-relaxed text-white/60">
-              Für die Anmeldung fehlen die Umgebungsvariablen{" "}
-              <code className="text-white/80">NEXT_PUBLIC_SUPABASE_URL</code> und{" "}
-              <code className="text-white/80">NEXT_PUBLIC_SUPABASE_ANON_KEY</code>. Sie werden im
-              Hosting hinterlegt; danach ist ein neuer Deploy nötig.
+          <div className="max-w-md">
+            <p className="font-display text-[2.5rem] font-extrabold leading-[1.05] tracking-[-0.035em] text-white">
+              Ihre Objekte.
+              <br />
+              Ihre Website.
+            </p>
+            <p className="mt-4 text-[1.0625rem] leading-relaxed text-white/70">
+              Preise, Fotos und Anfragen an einem Ort — geändert in zwei Minuten, sofort online.
             </p>
           </div>
-        )}
+        </div>
+      </aside>
 
-        <form action={signIn} className={`mt-7 space-y-4 ${configured ? "" : "pointer-events-none opacity-40"}`}>
-          <input type="hidden" name="next" value={next ?? "/admin"} />
+      <main className="flex items-center justify-center px-6 py-12 sm:px-10">
+        <div className="w-full max-w-[23rem]">
+          <span className="mb-12 flex items-center gap-3 lg:hidden">
+            <span className="flex h-11 w-11 items-center justify-center rounded-[13px] bg-ink-deep">
+              <LogoMark className="h-7 w-7 text-accent" />
+            </span>
+            <span className="flex flex-col leading-tight">
+              <span className="font-display text-[1rem] font-extrabold text-ink">{site.owner}</span>
+              <span className="text-[0.8125rem] text-text-subtle">Immobilien</span>
+            </span>
+          </span>
 
-          <div>
-            <label htmlFor="email" className="mb-1.5 block text-[0.75rem] font-semibold text-white/70">
-              E-Mail
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autoComplete="username"
-              disabled={!configured}
-              className={inputClass}
-            />
-          </div>
+          <h1 className="font-display text-[1.875rem] font-extrabold leading-tight tracking-[-0.03em] text-ink">Willkommen zurück</h1>
+          <p className="mt-2 text-[0.9375rem] leading-relaxed text-text-muted">Melden Sie sich an, um Ihre Objekte zu pflegen.</p>
 
-          <div>
-            <label htmlFor="password" className="mb-1.5 block text-[0.75rem] font-semibold text-white/70">
-              Passwort
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              autoComplete="current-password"
-              disabled={!configured}
-              className={inputClass}
-            />
-          </div>
+          {abgemeldet && !error && (
+            <p className="mt-6 rounded-[14px] bg-accent-soft px-4 py-3 text-[0.875rem] text-accent-dark">Sie sind abgemeldet. Bis bald!</p>
+          )}
 
           {error && (
-            <p role="alert" className="rounded-[14px] bg-white/10 px-3.5 py-2.5 text-[0.8125rem] text-accent-light">
+            <p role="alert" className="mt-6 flex gap-2.5 rounded-[14px] bg-warning-soft px-4 py-3 text-[0.875rem] leading-relaxed text-warning">
+              <CircleAlert className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={2.2} aria-hidden="true" />
               {error}
             </p>
           )}
 
-          <button
-            type="submit"
-            disabled={!configured}
-            className="w-full rounded-[14px] bg-accent-deep py-3 text-[0.875rem] font-semibold text-white transition-colors duration-200 hover:bg-accent-dark"
-          >
-            Anmelden
-          </button>
-        </form>
+          <form action={signIn} className="mt-8 space-y-5">
+            <input type="hidden" name="next" value={next ?? "/admin"} />
+            <div>
+              <label htmlFor="email" className="mb-2 block text-[0.875rem] font-semibold text-ink">
+                E-Mail-Adresse
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autoComplete="username"
+                defaultValue={email}
+                autoFocus={!email}
+                className={eingabeZeile}
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="mb-2 block text-[0.875rem] font-semibold text-ink">
+                Passwort
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                autoComplete="current-password"
+                autoFocus={Boolean(email)}
+                className={eingabeZeile}
+              />
+            </div>
+            <button type="submit" className={`${knopf.primaer} w-full`}>
+              Anmelden
+            </button>
+          </form>
 
-        <p className="mt-8 text-[0.75rem] text-white/35">
-          Passwort vergessen? Im Supabase-Dashboard unter Authentication zurücksetzen.
-        </p>
-      </div>
+          <p className="mt-8 text-center text-[0.875rem] text-text-muted">
+            Passwort vergessen?{" "}
+            <a
+              href={`mailto:${support.email}?subject=${encodeURIComponent("Neues Passwort für die App")}`}
+              className="font-semibold text-accent-deep underline-offset-4 hover:underline"
+            >
+              Kurze Nachricht genügt
+            </a>
+          </p>
+        </div>
+      </main>
     </div>
   );
 }
