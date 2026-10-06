@@ -311,6 +311,22 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
   font-size: 6.6pt; color: var(--muted);
   border-top: 0.7pt solid var(--border); padding-top: 3.4mm;
 }
+/* --- Bildschirme der App ------------------------------------------------ */
+.shot {
+  overflow: hidden;
+  border-radius: 3.2mm;
+  border: 0.8pt solid var(--border-str);
+  background: #F3F6F8;
+  box-shadow: 0 5mm 12mm -7mm rgba(11,37,69,0.32);
+}
+.shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.shot.rechner { aspect-ratio: 1600 / 790; }
+.shot.telefon { aspect-ratio: 620 / 860; border-radius: 4.6mm; }
+.shot.unten img { object-position: bottom; }
+.shots-telefon { display: flex; gap: 6mm; margin-top: 7mm; }
+.shots-telefon figure { flex: 1; min-width: 0; }
+figcaption { font-size: 7.4pt; color: var(--muted); margin-top: 2.6mm; line-height: 1.45; }
+figcaption b { display: block; font-size: 8.2pt; font-weight: 800; color: var(--ink); letter-spacing: -0.01em; margin-bottom: 0.6mm; }
 </style>
 </head>
 <body>
@@ -347,8 +363,8 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
         </span>
       </div>
       <div class="cover-meta">
-        <strong>Angebot 2026-09</strong>
-        26. September 2026<br>
+        <strong>Angebot 2026-10</strong>
+        6. Oktober 2026<br>
         Stefan Dirnberger
       </div>
     </div>
@@ -358,28 +374,28 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
       <h1 class="h-xl" style="margin-top:5mm">Neue Website<br>und eigene App</h1>
       <div class="cover-rule"></div>
       <p class="cover-for">
-        Ihr Auftritt neu gebaut — und ein Zugang, mit dem Sie Preise, Objekte und
-        Fotos <b>selbst ändern</b>. In zwei Minuten, von jedem Gerät.
-        Die Website ist sofort aktuell.
+        Ihr Auftritt neu gebaut — und eine App, mit der Sie Objekte, Preise, Fotos,
+        Referenzen und Anfragen <b>selbst führen</b>. Vom Telefon oder vom Rechner,
+        in Minuten. Die Website ist sofort aktuell.
       </p>
 
       <div class="cover-figures">
         <div class="fig-box">
           <span class="cap">Website + App</span>
-          <div class="num">1.499 <small>€</small></div>
+          <div class="num">10.000 <small>€</small></div>
           <div class="sub">einmalig, fertig eingerichtet</div>
         </div>
         <div class="fig-sep"></div>
         <div class="fig-box">
           <span class="cap">Betrieb</span>
           <div class="num">79 <small>€ / Jahr</small></div>
-          <div class="sub">bisher 200 € bei Wix</div>
+          <div class="sub">statt 200 € bei Wix</div>
         </div>
         <div class="fig-sep"></div>
         <div class="fig-box">
-          <span class="cap">Pflege durch Sie</span>
+          <span class="cap">Jede Änderung</span>
           <div class="num">0 <small>€</small></div>
-          <div class="sub">jede Preisänderung selbst</div>
+          <div class="sub">Sie pflegen alles selbst</div>
         </div>
       </div>
     </div>
@@ -407,21 +423,22 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
         <div class="k">App</div>
         <div class="t">Ihr Zugang</div>
         <div class="u">abelen-immobilien.vercel.app/admin</div>
-        <div class="d">Zugang ist eingerichtet. Wir gehen ihn gemeinsam einmal durch.</div>
+        <div class="d">Ihr Zugang ist eingerichtet. Wir gehen die App gemeinsam einmal durch.</div>
       </a>
     </div>
 
     <div class="toc">
       <div class="i"><div class="n">02</div><div class="t">Was sich für<br>Sie ändert</div></div>
-      <div class="i"><div class="n">03</div><div class="t">Was enthalten<br>ist</div></div>
-      <div class="i"><div class="n">04</div><div class="t">Was es<br>kostet</div></div>
-      <div class="i"><div class="n">05</div><div class="t">Wie es<br>weitergeht</div></div>
+      <div class="i"><div class="n">03</div><div class="t">So sieht<br>Ihre App aus</div></div>
+      <div class="i"><div class="n">04</div><div class="t">Was enthalten<br>ist</div></div>
+      <div class="i"><div class="n">05</div><div class="t">Was es<br>kostet</div></div>
+      <div class="i"><div class="n">06</div><div class="t">Wie es<br>weitergeht</div></div>
     </div>
   </div>
 
   <div class="cover-foot">
     <span>Angebot für Silke Abelen · Büro für Immobilien Bewertung &amp; Vermittlung, Leichlingen</span>
-    <span>Seite 1 von 5</span>
+    <span>Seite 1 von 6</span>
   </div>
 </div>
 
@@ -432,13 +449,13 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
   <div class="pad">
     <div class="sheet-head">
       <span class="who">Angebot · Neue Website und eigene App</span>
-      <span class="what">Silke Abelen · September 2026</span>
+      <span class="what">Silke Abelen · Oktober 2026</span>
     </div>
 
     <span class="label">Der Unterschied</span>
     <h2 class="h-lg" style="margin-top:4.6mm">Was sich für Sie ändert</h2>
     <p class="lead" style="margin-top:5mm; max-width:140mm">
-      Vier Dinge, die Sie im Alltag merken. Alles andere bleibt, wie Sie es kennen —
+      Fünf Dinge, die Sie im Alltag merken. Alles andere bleibt, wie Ihre Kunden es kennen —
       die Texte stammen zum größten Teil wörtlich von Ihrem bisherigen Auftritt.
     </p>
 
@@ -446,11 +463,11 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
       <div class="point">
         <div class="n">01</div>
         <div class="body">
-          <div class="h-sm">Sie pflegen die Inhalte selbst</div>
+          <div class="h-sm">Sie führen Ihre Website selbst</div>
           <p>
             Preise, Objekte, Fotos und Referenzen ändern Sie in der App — <span class="keep">in
-            zwei Minuten</span>, vom Rechner oder vom Telefon. Die Website ist sofort aktuell.
-            Kein Anruf, keine Wartezeit, keine Rechnung für eine Preisänderung.
+            zwei Minuten</span>, vom Telefon oder vom Rechner. Die Website ist sofort aktuell.
+            Kein Anruf, keine Wartezeit, keine Rechnung für eine Änderung.
           </p>
         </div>
       </div>
@@ -458,12 +475,12 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
       <div class="point">
         <div class="n">02</div>
         <div class="body">
-          <div class="h-sm">Anfragen laufen an einer Stelle auf</div>
+          <div class="h-sm">Jede Anfrage an einem Ort</div>
           <p>
-            Jede Anfrage aus dem Kontaktformular liegt in der App: mit Anliegen, Datum,
-            Status und Platz für eine Notiz. <span class="keep">Zusätzlich kommt sie per
-            Mail.</span> So geht keine im Postfach unter — und Sie sehen auf einen Blick,
-            was noch offen ist.
+            Anfragen aus dem Kontaktformular stehen geordnet in der App — mit Anliegen,
+            Kontaktdaten und Ihrem Stand: neu, in Arbeit, erledigt. <span class="keep">Antworten
+            ist ein Tipp</span>: die E-Mail steht mit Betreff und Anrede bereit. Zusätzlich
+            kommt jede Anfrage per Mail.
           </p>
         </div>
       </div>
@@ -471,13 +488,11 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
       <div class="point">
         <div class="n">03</div>
         <div class="body">
-          <div class="h-sm">Schneller, fürs Telefon gebaut, bei Google auffindbar</div>
+          <div class="h-sm">Fotos direkt vom Telefon</div>
           <p>
-            Die Seite ist für das Telefon entworfen, nicht dafür verkleinert. Jede Seite
-            hat Titel, Beschreibung und strukturierte Daten; Sitemap und Weiterleitungen
-            sind eingerichtet. <span class="keep">Ihre alten Adressen führen automatisch
-            auf die neuen Seiten</span> — beim Umzug geht kein Besucher und keine
-            Google-Platzierung verloren.
+            Aufnehmen, hochladen, fertig. <span class="keep">Die App verkleinert große Handyfotos
+            selbst</span>, damit die Website schnell bleibt. Titelbild und Reihenfolge legen
+            Sie mit einem Fingertipp fest.
           </p>
         </div>
       </div>
@@ -485,50 +500,95 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
       <div class="point">
         <div class="n">04</div>
         <div class="body">
-          <div class="h-sm">Hosting: 79 € im Jahr statt 200 €</div>
+          <div class="h-sm">Schneller, fürs Telefon gebaut, bei Google auffindbar</div>
           <p>
-            <span class="keep">121 € weniger — jedes Jahr.</span> Serverstandort Frankfurt,
-            Verschlüsselung und Updates der Plattform sind enthalten. Kein Baukasten-Abo,
-            das jährlich teurer wird.
+            Die Seite ist für das Telefon entworfen, nicht dafür verkleinert. Jede Seite hat
+            Titel, Beschreibung und strukturierte Daten. <span class="keep">Ihre alten Adressen
+            führen automatisch auf die neuen Seiten</span> — beim Umzug geht kein Besucher und
+            keine Google-Platzierung verloren.
+          </p>
+        </div>
+      </div>
+
+      <div class="point">
+        <div class="n">05</div>
+        <div class="body">
+          <div class="h-sm">Unabhängig — und günstiger im Betrieb</div>
+          <p>
+            Kein Baukasten mehr: Website, Fotos und Daten liegen auf Servern in Frankfurt,
+            jedes Bild im eigenen Projekt. <span class="keep">Betrieb: 79 € im Jahr statt
+            200 €</span> — Verschlüsselung und Updates der Plattform inklusive.
           </p>
         </div>
       </div>
     </div>
-
-    <div class="callout">
-      <div class="h-sm">Offen gesagt: ganz fertig ist sie noch nicht</div>
-      <p>
-        An der einen oder anderen Ecke sieht man das. Schauen Sie trotzdem gern schon
-        rein und sagen Sie mir, was Ihnen auffällt — genau dafür ist der Link da.
-        Zwei Zusagen möchte ich außerdem einmal von Ihnen bestätigt haben: „Antwort in
-        der Regel innerhalb eines Werktages“ und „Marktpreiseinschätzung in der Regel
-        innerhalb einer Woche“. Sind die Fristen zu knapp, ändere ich sie überall
-        gleichzeitig.
-      </p>
-    </div>
   </div>
 
   <div class="foot">
-    <span>Angebot 2026-09 · Website und App für Silke Abelen</span>
-    <span>Seite 2 von 5</span>
+    <span>Angebot 2026-10 · Website und App für Silke Abelen</span>
+    <span>Seite 2 von 6</span>
   </div>
 </div>
 
 <!-- ====================================================================
-     Seite 3 — Leistungsumfang
+     Seite 3 — So sieht Ihre App aus
 ==================================================================== -->
 <div class="page">
   <div class="pad">
     <div class="sheet-head">
       <span class="who">Angebot · Neue Website und eigene App</span>
-      <span class="what">Silke Abelen · September 2026</span>
+      <span class="what">Silke Abelen · Oktober 2026</span>
+    </div>
+
+    <span class="label">Ihre App</span>
+    <h2 class="h-lg" style="margin-top:4.6mm">So sieht Ihre App aus</h2>
+    <p class="lead" style="margin-top:5mm; max-width:146mm">
+      Gebaut für genau eine Nutzerin: Sie. Ohne Fachbegriffe, ohne Einstellungen, die man
+      erst verstehen muss — am Rechner wie am Telefon.
+    </p>
+
+    <figure style="margin-top:8mm">
+      <div class="shot rechner"><img src="assets/app-rechner.jpg" alt=""></div>
+      <figcaption><b>Die Übersicht am Rechner</b>Wartende Anfragen, was online ist, Ihre Objekte — auf einen Blick.</figcaption>
+    </figure>
+
+    <div class="shots-telefon">
+      <figure>
+        <div class="shot telefon"><img src="assets/app-telefon-start.jpg" alt=""></div>
+        <figcaption><b>Unterwegs</b>Dieselbe App auf dem Telefon, mit einem Tipp auf dem Startbildschirm.</figcaption>
+      </figure>
+      <figure>
+        <div class="shot telefon unten"><img src="assets/app-telefon-speichern.jpg" alt=""></div>
+        <figcaption><b>Speichern — sofort online</b>Preis geändert, gespeichert, die Website ist aktuell.</figcaption>
+      </figure>
+      <figure>
+        <div class="shot telefon"><img src="assets/app-telefon-anfrage.jpg" alt=""></div>
+        <figcaption><b>Eine Anfrage</b>Antworten und Anrufen mit einem Tipp, Stand und Notiz daneben.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Angebot 2026-10 · Website und App für Silke Abelen</span>
+    <span>Seite 3 von 6</span>
+  </div>
+</div>
+
+<!-- ====================================================================
+     Seite 4 — Leistungsumfang
+==================================================================== -->
+<div class="page">
+  <div class="pad">
+    <div class="sheet-head">
+      <span class="who">Angebot · Neue Website und eigene App</span>
+      <span class="what">Silke Abelen · Oktober 2026</span>
     </div>
 
     <span class="label">Leistungsumfang</span>
     <h2 class="h-lg" style="margin-top:4.6mm">Was enthalten ist</h2>
     <p class="lead" style="margin-top:5mm; max-width:140mm">
       Beides ist gebaut und läuft. Im Preis ist die fertige Einrichtung enthalten —
-      inklusive Umzug der Inhalte und Fotos Ihres bisherigen Auftritts.
+      mit dem Umzug aller Inhalte und Fotos Ihres bisherigen Auftritts.
     </p>
 
     <div class="cols">
@@ -562,36 +622,36 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
           <span class="h-sm">App</span>
         </div>
         <ul class="ticks">
-          <li><b>Immobilien</b> anlegen, bearbeiten, veröffentlichen, Reihenfolge ändern</li>
+          <li><b>Objekte</b> anlegen, ändern, online stellen, sortieren — mit Rückfrage vor dem Löschen</li>
           <li><b>Preis ändern</b> — ein Feld, speichern, fertig</li>
-          <li><b>Fotos</b> hochladen, sortieren, löschen</li>
-          <li><b>Referenzen</b> pflegen, inklusive Sterne, Zitat und Empfehlung</li>
-          <li><b>Anfragen</b> lesen, Status setzen, Notiz hinterlegen</li>
-          <li><b>Übersicht</b>: was gerade live ist, was zuletzt bearbeitet wurde</li>
-          <li><b>Anmeldung</b> mit E-Mail und Passwort — Ihr Zugang ist eingerichtet</li>
+          <li><b>Fotos vom Telefon</b>, Titelbild und Reihenfolge mit einem Fingertipp</li>
+          <li><b>Eckdaten, Ausstattung, Energieausweis</b> Feld für Feld, mit Vorschlägen</li>
+          <li><b>Referenzen</b> mit Kundenmeinung — Zitat, Sterne, Kurzurteil</li>
+          <li><b>Anfragen</b> als Posteingang — antworten, anrufen, Stand, Notiz</li>
+          <li><b>Passwort</b> selbst ändern, jederzeit</li>
           <li><b>Auf dem Startbildschirm</b> ablegbar, dann öffnet sie wie eine App</li>
         </ul>
       </div>
     </div>
 
     <div class="band">
-      <span class="label">Technik und Recht — im Betrieb enthalten</span>
+      <span class="label">Technik und Betrieb — enthalten</span>
       <div class="grid">
         <div class="cell">
           <div class="t">Server in Frankfurt</div>
-          <div class="d">Website und Anfragen liegen in deutschen Rechenzentren, verschlüsselt übertragen.</div>
+          <div class="d">Website, Fotos und Anfragen in deutschen Rechenzentren.</div>
+        </div>
+        <div class="cell">
+          <div class="t">Unabhängig von Wix</div>
+          <div class="d">Jedes Bild im eigenen Projekt, jede alte Adresse leitet weiter.</div>
+        </div>
+        <div class="cell">
+          <div class="t">Läuft auch in ruhigen Wochen</div>
+          <div class="d">Ein täglicher Dienst hält Ihre Daten erreichbar.</div>
         </div>
         <div class="cell">
           <div class="t">Keine Cookies</div>
-          <div class="d">Kein Tracking, keine Einwilligungs&shy;banner-Pflicht durch fremde Dienste.</div>
-        </div>
-        <div class="cell">
-          <div class="t">Alte Adressen führen weiter</div>
-          <div class="d">Jeder Link, der heute im Netz steht, führt auf die passende neue Seite.</div>
-        </div>
-        <div class="cell">
-          <div class="t">Bleibt erreichbar</div>
-          <div class="d">Fällt die Datenbank aus, zeigt die Website weiter Ihre Objekte — sie wird nur statisch.</div>
+          <div class="d">Kein Tracking, kein Einwilligungs&shy;banner für fremde Dienste.</div>
         </div>
       </div>
     </div>
@@ -606,19 +666,19 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
   </div>
 
   <div class="foot">
-    <span>Angebot 2026-09 · Website und App für Silke Abelen</span>
-    <span>Seite 3 von 5</span>
+    <span>Angebot 2026-10 · Website und App für Silke Abelen</span>
+    <span>Seite 4 von 6</span>
   </div>
 </div>
 
 <!-- ====================================================================
-     Seite 4 — Kosten
+     Seite 5 — Kosten
 ==================================================================== -->
 <div class="page">
   <div class="pad">
     <div class="sheet-head">
       <span class="who">Angebot · Neue Website und eigene App</span>
-      <span class="what">Silke Abelen · September 2026</span>
+      <span class="what">Silke Abelen · Oktober 2026</span>
     </div>
 
     <span class="label">Kosten</span>
@@ -632,18 +692,19 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
       <tr>
         <td>
           <div class="t">Website und App</div>
-          <div class="d">Entwicklung, Umzug der Inhalte und Fotos, Einrichtung von Domain,
-            Postfach-Anbindung und Ihrem Zugang. Einmalig.</div>
+          <div class="d">Entwicklung von Website und App, Umzug aller Inhalte und Fotos vom
+            bisherigen Auftritt, Einrichtung von Domain, Postfach-Anbindung und Ihrem Zugang,
+            persönliche Einweisung.</div>
         </td>
         <td class="r">
-          <div class="v">1.499 €</div>
+          <div class="v">10.000 €</div>
           <div class="p">einmalig</div>
         </td>
       </tr>
       <tr>
         <td>
           <div class="t">Betrieb und Hosting</div>
-          <div class="d">Server in Frankfurt, Datenbank und Bildspeicher für die App,
+          <div class="d">Server in Frankfurt, Datenbank und Fotospeicher für die App,
             Zertifikat, Updates der Plattform.</div>
         </td>
         <td class="r">
@@ -664,52 +725,51 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
 
     <div class="save">
       <div class="cell">
-        <div class="k">Im Oktober</div>
-        <div class="v">200 €</div>
-        <div class="d">Die Wix-Verlängerung entfällt. Stattdessen 79 € für das erste Jahr Betrieb.</div>
+        <div class="k">Einmalig</div>
+        <div class="v">10.000 €</div>
+        <div class="d">Website und App, fertig eingerichtet, mit Einweisung.</div>
       </div>
       <div class="cell">
-        <div class="k">Jedes Jahr</div>
-        <div class="v">121 €</div>
-        <div class="d">weniger als bisher — 79 € statt 200 €, vom ersten Jahr an.</div>
+        <div class="k">Im Jahr</div>
+        <div class="v">79 €</div>
+        <div class="d">Betrieb in Frankfurt — 121 € weniger als das Wix-Abo.</div>
       </div>
       <div class="cell">
-        <div class="k">In fünf Jahren</div>
-        <div class="v">605 €</div>
-        <div class="d">gespart gegenüber dem bisherigen Abo. Rund 40 % des Angebotspreises.</div>
+        <div class="k">Je Änderung</div>
+        <div class="v">0 €</div>
+        <div class="d">Preise, Fotos, Objekte: Sie ändern alles selbst.</div>
       </div>
     </div>
 
     <div class="callout" style="margin-top:10mm">
-      <div class="h-sm">Der Zeitpunkt passt gerade</div>
+      <div class="h-sm">Der Zeitpunkt passt</div>
       <p>
-        Im Oktober werden bei Wix wieder 200 € für ein weiteres Jahr fällig. Ziehen wir
-        vorher um, sind sie gespart — und das Angebot bezahlt sich zum Teil aus dem,
-        was Sie ohnehin ausgegeben hätten.
+        Im Oktober steht bei Wix die nächste Jahresgebühr an. Ziehen wir vor dem Stichtag
+        um, entfällt sie — und ab dann kostet der Betrieb 79 € statt 200 € im Jahr.
       </p>
     </div>
   </div>
 
   <div class="foot">
-    <span>Angebot 2026-09 · Website und App für Silke Abelen</span>
-    <span>Seite 4 von 5</span>
+    <span>Angebot 2026-10 · Website und App für Silke Abelen</span>
+    <span>Seite 5 von 6</span>
   </div>
 </div>
 
 <!-- ====================================================================
-     Seite 5 — Nächste Schritte und Unterschrift
+     Seite 6 — Nächste Schritte und Unterschrift
 ==================================================================== -->
 <div class="page">
   <div class="pad">
     <div class="sheet-head">
       <span class="who">Angebot · Neue Website und eigene App</span>
-      <span class="what">Silke Abelen · September 2026</span>
+      <span class="what">Silke Abelen · Oktober 2026</span>
     </div>
 
     <span class="label">Nächste Schritte</span>
     <h2 class="h-lg" style="margin-top:4.6mm">Wie es weitergeht</h2>
     <p class="lead" style="margin-top:5mm; max-width:140mm">
-      Drei Schritte. Den ersten können Sie sofort machen — der Link steht auf Seite 1.
+      Drei Schritte. Den ersten können Sie sofort machen — die Links stehen auf Seite&nbsp;1.
     </p>
 
     <div class="steps">
@@ -717,7 +777,7 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
         <div class="dot">1</div>
         <div>
           <div class="t">Reinschauen</div>
-          <div class="d">Website und App über die Links auf Seite 1, gern auch vom Telefon.
+          <div class="d">Website und App über die Links auf Seite&nbsp;1, gern auch vom Telefon.
             Sagen Sie mir, was Ihnen auffällt — und ob die Texte so stehen bleiben sollen.</div>
         </div>
       </div>
@@ -726,14 +786,14 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
         <div>
           <div class="t">Gemeinsam durchgehen</div>
           <div class="d">Eine halbe Stunde, in Ruhe: anmelden, einen Preis ändern, ein Foto
-            tauschen, eine Anfrage ansehen. Danach machen Sie das selbst — oder Sie
+            tauschen, eine Anfrage beantworten. Danach machen Sie das selbst — oder Sie
             schreiben mir weiterhin, ganz wie Sie möchten.</div>
         </div>
       </div>
       <div class="step">
         <div class="dot">3</div>
         <div>
-          <div class="t">Umziehen — vor Oktober</div>
+          <div class="t">Umziehen — vor der Wix-Verlängerung</div>
           <div class="d">Ich stelle <b>www.abelen-immobilien.de</b> auf die neue Seite um.
             Der Wechsel selbst dauert Minuten, die alten Adressen leiten ab dann weiter.
             Danach kündigen Sie das Wix-Abo, bevor es sich verlängert.</div>
@@ -742,11 +802,11 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
     </div>
 
     <div class="callout">
-      <div class="h-sm">Eine Kleinigkeit noch</div>
+      <div class="h-sm">Zwei Sätze brauchen Ihr OK</div>
       <p>
-        Ich bin ab sofort unter meiner Gmail-Adresse erreichbar — die unten steht.
-        <b>stefandirnberger@viawen.com</b> gibt es nicht mehr; meine letzte Mail kam
-        vermutlich deshalb nicht bei Ihnen an.
+        Die Website verspricht „Antwort in der Regel innerhalb eines Werktages“ und
+        „Marktpreiseinschätzung in der Regel innerhalb einer Woche“. Sind die Fristen zu
+        knapp, ändere ich sie überall gleichzeitig.
       </p>
     </div>
   </div>
@@ -764,8 +824,8 @@ ul.ticks li b { font-weight: 700; color: var(--ink); }
   </div>
 
   <div class="foot">
-    <span>Angebot 2026-09 · Website und App für Silke Abelen</span>
-    <span>Seite 5 von 5</span>
+    <span>Angebot 2026-10 · Website und App für Silke Abelen</span>
+    <span>Seite 6 von 6</span>
   </div>
 </div>
 
