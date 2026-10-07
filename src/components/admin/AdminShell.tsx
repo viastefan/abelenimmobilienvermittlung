@@ -5,6 +5,7 @@ import { LogoMark } from "@/components/layout/Logo";
 import { site } from "@/data/site";
 import { AdminNav } from "./AdminNav";
 import { ToastBereich } from "./Toast";
+import { Verbindung } from "./Verbindung";
 
 function Initialen({ className = "" }: { className?: string }) {
   const kuerzel = site.owner
@@ -112,6 +113,7 @@ export function AdminShell({
         </div>
 
         <AdminNav offeneAnfragen={offeneAnfragen} variant="leiste" />
+        <Verbindung />
       </div>
     </ToastBereich>
   );

@@ -3,6 +3,7 @@ import { describe, it } from "node:test";
 import { energieLesen, energieSchreiben, leereEnergieangaben } from "../src/lib/admin/energie.ts";
 import { fotoHerkunft, supabasePfad, zuLoeschendeFotos } from "../src/lib/admin/fotos.ts";
 import { deutscheZahl, preisAnzeigen, zahlAnzeigen } from "../src/lib/admin/form.ts";
+import { istEintragsId, nichtGeladen } from "../src/lib/admin/laden.ts";
 import { verschieben } from "../src/lib/admin/reihenfolge.ts";
 import { begruessung, heuteLang, wann } from "../src/lib/admin/zeit.ts";
 
@@ -155,5 +156,23 @@ describe("Zeitangaben in Leichlingen", () => {
   it("rechnet mit dem Kalendertag in Berlin: kurz nach Mitternacht ist heute", () => {
     // 25.09. 22:30 UTC = 26.09. 00:30 Berlin
     assert.equal(wann("2026-09-25T22:30:00Z", morgens), "Heute, 00:30");
+  });
+});
+
+describe("Laden in der App", () => {
+  it("erkennt die Kennung eines Eintrags", () => {
+    assert.equal(istEintragsId("3f2a9c1e-8b4d-4e6f-9a0b-1c2d3e4f5a6b"), true);
+    assert.equal(istEintragsId("3F2A9C1E-8B4D-4E6F-9A0B-1C2D3E4F5A6B"), true);
+  });
+
+  it("nimmt eine erfundene Adresse als „gibt es nicht“, nicht als Fehler", () => {
+    assert.equal(istEintragsId("neu"), false);
+    assert.equal(istEintragsId("haus-in-leverkusen"), false);
+    assert.equal(istEintragsId(""), false);
+    assert.equal(istEintragsId("3f2a9c1e-8b4d-4e6f-9a0b-1c2d3e4f5a6b-x"), false);
+  });
+
+  it("meldet eine stumme Datenbank, statt eine leere Liste vorzutäuschen", () => {
+    assert.throws(() => nichtGeladen("Objekte", { message: "timeout" }), /Objekte nicht geladen: timeout/);
   });
 });

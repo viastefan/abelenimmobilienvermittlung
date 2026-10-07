@@ -64,14 +64,20 @@ export function InquiryForm({
 
       if (!response.ok) {
         const data = (await response.json().catch(() => null)) as { error?: string } | null;
-        throw new Error(data?.error ?? "Ihre Anfrage konnte nicht gesendet werden.");
+        setStatus("error");
+        setErrorMessage(data?.error ?? "Ihre Anfrage konnte nicht gesendet werden.");
+        return;
       }
 
       form.reset();
       setStatus("success");
-    } catch (error) {
+    } catch {
+      // Ohne Netz meldet der Browser sich auf Englisch („Failed to fetch“) —
+      // das gehört nicht vor Besucher. Die Eingaben bleiben stehen.
       setStatus("error");
-      setErrorMessage(error instanceof Error ? error.message : "Unbekannter Fehler.");
+      setErrorMessage(
+        "Ihre Anfrage ist nicht angekommen — vermutlich war die Verbindung kurz weg. Ihre Eingaben stehen noch da, bitte senden Sie noch einmal."
+      );
     }
   }
 

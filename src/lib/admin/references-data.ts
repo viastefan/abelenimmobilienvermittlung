@@ -1,6 +1,7 @@
 import "server-only";
 import { createClient } from "@/lib/supabase/server";
 import { mapRowToReference, type ReferenceObject } from "@/types/reference";
+import { istEintragsId, nichtGeladen } from "./laden";
 
 /**
  * Angemeldete Lesezugriffe für das Admin-Panel — liefert alle Referenzen,
@@ -15,17 +16,14 @@ export async function getAllReferencesAdmin(): Promise<ReferenceObject[]> {
     .order("sort_order", { ascending: true })
     .order("created_at", { ascending: false });
 
-  if (error) {
-    console.error("Admin: Konnte Referenzen nicht laden:", error.message);
-    return [];
-  }
-
+  if (error) nichtGeladen("Referenzen", error);
   return data.map(mapRowToReference);
 }
 
 export async function getReferenceByIdAdmin(id: string): Promise<ReferenceObject | undefined> {
+  if (!istEintragsId(id)) return undefined;
   const supabase = await createClient();
   const { data, error } = await supabase.from("reference_objects").select("*").eq("id", id).maybeSingle();
-  if (error || !data) return undefined;
-  return mapRowToReference(data);
+  if (error) nichtGeladen("Referenz", error);
+  return data ? mapRowToReference(data) : undefined;
 }

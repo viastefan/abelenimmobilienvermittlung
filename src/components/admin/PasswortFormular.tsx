@@ -1,15 +1,15 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Eye, EyeOff, LoaderCircle } from "lucide-react";
 import { passwortAendern } from "@/app/admin/actions";
-import type { FormularErgebnis } from "./Formular";
+import { useSpeichern } from "./Formular";
 import { useToast } from "./Toast";
 import { Feld, eingabeZeile, klassen, knopf } from "./ui";
 
 /** Neues Passwort, zweimal eingetippt — mit Auge zum Nachsehen, was man getippt hat. */
 export function PasswortFormular() {
-  const [ergebnis, absenden, speichert] = useActionState<FormularErgebnis, FormData>(passwortAendern, null);
+  const [ergebnis, absenden, speichert] = useSpeichern(passwortAendern);
   const [sichtbar, setSichtbar] = useState(false);
   const formular = useRef<HTMLFormElement>(null);
   const zeigen = useToast();
@@ -28,7 +28,7 @@ export function PasswortFormular() {
   const art = sichtbar ? "text" : "password";
 
   return (
-    <form ref={formular} action={absenden} className="space-y-5">
+    <form ref={formular} onSubmit={absenden} className="space-y-5">
       <Feld label="Neues Passwort" htmlFor="passwort" hinweis="Mindestens acht Zeichen.">
         <div className="relative">
           <input

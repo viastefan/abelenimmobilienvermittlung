@@ -2,6 +2,7 @@
 
 import {
   createContext,
+  startTransition,
   useActionState,
   useCallback,
   useContext,
@@ -9,9 +10,11 @@ import {
   useLayoutEffect,
   useRef,
   useState,
+  type FormEvent,
   type ReactNode,
   type TextareaHTMLAttributes,
 } from "react";
+import { unstable_isUnrecognizedActionError, unstable_rethrow } from "next/navigation";
 import { LoaderCircle } from "lucide-react";
 import { useToast } from "./Toast";
 import { eingabe, klassen, knopf } from "./ui";
@@ -24,6 +27,9 @@ import { eingabe, klassen, knopf } from "./ui";
  * Nach dem Speichern bleibt die Seite offen und meldet kurz, dass die
  * Website aktuell ist. Strg/⌘ + S speichert am Rechner, und wer das Fenster
  * mit ungespeicherten Änderungen schließen will, wird vorher gefragt.
+ *
+ * Was auch passiert — Funkloch, Fehler, abgelaufene Anmeldung —, das
+ * Eingetippte bleibt stehen, bis es gespeichert ist.
  */
 
 export type FormularErgebnis = { ok: true; zeit: number; meldung?: string } | { ok: false; fehler: string; feld?: string; zeit: number } | null;
@@ -33,6 +39,52 @@ const GeaendertKontext = createContext<() => void>(() => {});
 /** Für Bausteine, deren Änderung kein Eingabeereignis auslöst — Fotos, Merkmale. */
 export function useGeaendert() {
   return useContext(GeaendertKontext);
+}
+
+/**
+ * Wenn das Speichern gar keine Antwort bekommt: kein Netz, oder die App wurde
+ * in der Zwischenzeit erneuert. Daraus wird eine Meldung wie jede andere.
+ * Die Weiterleitung nach dem Anlegen ist kein Fehler und geht durch.
+ */
+export function ohneAntwort(error: unknown): FormularErgebnis {
+  unstable_rethrow(error);
+  console.error(error);
+  const offline = typeof navigator !== "undefined" && navigator.onLine === false;
+  return {
+    ok: false,
+    zeit: Date.now(),
+    fehler: offline
+      ? "Keine Internetverbindung. Ihre Eingaben bleiben stehen — speichern Sie, sobald Sie wieder online sind."
+      : unstable_isUnrecognizedActionError(error)
+        ? "Die App wurde eben erneuert. Bitte laden Sie die Seite neu und speichern Sie dann noch einmal."
+        : "Das hat gerade nicht geklappt. Ihre Eingaben bleiben stehen — bitte speichern Sie gleich noch einmal.",
+  };
+}
+
+/**
+ * Absenden ohne Formular-Aktion: Ein Formular mit `action` setzt React nach
+ * jedem Absenden zurück — auch wenn das Speichern scheiterte. Die Eingaben
+ * wären dann weg, gerade wenn man sie noch braucht.
+ */
+export function useSpeichern(aktion: (vorher: FormularErgebnis, daten: FormData) => Promise<FormularErgebnis>) {
+  const [ergebnis, ausfuehren, speichert] = useActionState(async (vorher: FormularErgebnis, daten: FormData) => {
+    try {
+      return await aktion(vorher, daten);
+    } catch (error) {
+      return ohneAntwort(error);
+    }
+  }, null);
+
+  const absenden = useCallback(
+    (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const daten = new FormData(event.currentTarget);
+      startTransition(() => ausfuehren(daten));
+    },
+    [ausfuehren]
+  );
+
+  return [ergebnis, absenden, speichert] as const;
 }
 
 export function Formular({
@@ -51,7 +103,7 @@ export function Formular({
 }) {
   const [fassung, setFassung] = useState(0);
   const [geaendert, setGeaendert] = useState(false);
-  const [ergebnis, absenden, speichert] = useActionState(aktion, null);
+  const [ergebnis, absenden, speichert] = useSpeichern(aktion);
   const formular = useRef<HTMLFormElement>(null);
   const zeigen = useToast();
   const markieren = useCallback(() => setGeaendert(true), []);
@@ -98,15 +150,16 @@ export function Formular({
       <form
         key={fassung}
         ref={formular}
-        action={absenden}
+        onSubmit={absenden}
         onInput={markieren}
         onChange={markieren}
-        noValidate={false}
+        data-ungespeichert={geaendert || undefined}
         className="space-y-5 pb-36 lg:space-y-6"
       >
         {children}
 
         <div
+          data-leiste={leisteSichtbar || undefined}
           className={klassen(
             "fixed inset-x-0 bottom-[calc(4.75rem+env(safe-area-inset-bottom))] z-50 flex justify-center px-3 transition-all duration-300 ease-smooth lg:bottom-6 lg:left-[16.5rem] lg:px-8",
             leisteSichtbar ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"
