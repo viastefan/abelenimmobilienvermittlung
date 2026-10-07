@@ -12,16 +12,19 @@ export const metadata: Metadata = pageSeo({
 });
 
 /**
- * Allgemeine Geschäftsbedingungen — wörtlich der bisherige Auftritt.
+ * Allgemeine Geschäftsbedingungen — inhaltlich der bisherige Auftritt.
  *
- * Nur die Trennstriche aus dem alten Satz sind entfernt („Objekt- nachweise“
- * → „Objektnachweise“); am Wortlaut ändert das nichts.
+ * Geändert ist nur die Form: Die Trennstriche aus dem alten Satz sind
+ * entfernt („Objekt- nachweise“ → „Objektnachweise“), und wo „wir“ und „uns“
+ * standen, steht die Vertragspartei selbst — das Büro für
+ * Immobilienvermittlung Silke Abelen bzw. der Makler. Silke Abelen arbeitet
+ * allein; ein „wir“ gibt es auf der ganzen Website nicht.
  */
 const sections = [
   {
     title: "Vertraulichkeit",
     body: [
-      "Alle durch uns erteilten Informationen und Unterlagen inkl. unserer Objektnachweise sind ausschließlich für unseren Kunden bestimmt und dürfen nur mit schriftlicher Einwilligung des Büros für Immobilienvermittlung Silke Abelen an Dritte weitergegeben werden. Zuwiderhandlungen verpflichten ggf. den Weitergebenden im Falle des Zustandekommens eines Hauptvertrages (Miet-/Kaufvertrag) mit Dritten, zur Zahlung der Provision in der ursprünglich vereinbarten Höhe.",
+      "Alle vom Büro für Immobilienvermittlung Silke Abelen erteilten Informationen und Unterlagen inkl. der Objektnachweise sind ausschließlich für den jeweiligen Kunden bestimmt und dürfen nur mit schriftlicher Einwilligung des Büros für Immobilienvermittlung Silke Abelen an Dritte weitergegeben werden. Zuwiderhandlungen verpflichten ggf. den Weitergebenden im Falle des Zustandekommens eines Hauptvertrages (Miet-/Kaufvertrag) mit Dritten, zur Zahlung der Provision in der ursprünglich vereinbarten Höhe.",
     ],
   },
   {
@@ -33,19 +36,19 @@ const sections = [
   {
     title: "Haftungsbeschränkung",
     body: [
-      "Wir weisen darauf hin, dass die von uns weitergegebenen Objektinformationen, Unterlagen, Pläne, etc. vom Veräußerer bzw. Vermieter stammen. Eine Haftung für die Richtigkeit und Vollständigkeit der Angaben übernehmen wir daher nicht. Es obliegt daher auch unserem Kunden, die darin enthaltenen Objektinformationen und Angaben auf ihre Richtigkeit zu überprüfen. Im Übrigen haftet das Büro für Immobilienvermittlung Silke Abelen nur bei Vorsatz, grober Fahrlässigkeit, dem Fehlen garantierter Eigenschaften oder bei schuldhafter Verletzung einer Kardinalpflicht und nicht für leichte Fahrlässigkeit und Folgeschäden. Ansonsten nach den gesetzlichen Bestimmungen.",
+      "Die vom Büro für Immobilienvermittlung Silke Abelen weitergegebenen Objektinformationen, Unterlagen, Pläne etc. stammen vom Veräußerer bzw. Vermieter. Eine Haftung für die Richtigkeit und Vollständigkeit der Angaben wird daher nicht übernommen. Es obliegt daher auch dem Kunden, die darin enthaltenen Objektinformationen und Angaben auf ihre Richtigkeit zu überprüfen. Im Übrigen haftet das Büro für Immobilienvermittlung Silke Abelen nur bei Vorsatz, grober Fahrlässigkeit, dem Fehlen garantierter Eigenschaften oder bei schuldhafter Verletzung einer Kardinalpflicht und nicht für leichte Fahrlässigkeit und Folgeschäden. Ansonsten nach den gesetzlichen Bestimmungen.",
     ],
   },
   {
     title: "Drittanbieter",
     body: [
-      "Der Auftraggeber ist nicht berechtigt, während der Laufzeit des Hauptvertrages mit uns – andere Makler mit Nachweis- oder Vermittlungstätigkeit, betreffend das Vertragsobjekt, zu beauftragen. Bei schuldhaftem Verstoß gegen diese Regelung haftet der Kunde, gegenüber dem Büro für Immobilienvermittlung Silke Abelen, für die hierdurch entstehenden Schäden. Der Kunde ist verpflichtet, uns unverzüglich mitzuteilen, wenn und zu welchem Entgelt und mit welchen Beteiligten der Hauptvertrag geschlossen wurde. Die Auskunftsverpflichtung wird nicht dadurch berührt, dass der Hauptvertrag unter einer aufschiebenden Bedingung steht und diese noch nicht eingetreten ist.",
+      "Der Auftraggeber ist nicht berechtigt, während der Laufzeit des Hauptvertrages mit dem Büro für Immobilienvermittlung Silke Abelen – andere Makler mit Nachweis- oder Vermittlungstätigkeit, betreffend das Vertragsobjekt, zu beauftragen. Bei schuldhaftem Verstoß gegen diese Regelung haftet der Kunde, gegenüber dem Büro für Immobilienvermittlung Silke Abelen, für die hierdurch entstehenden Schäden. Der Kunde ist verpflichtet, dem Büro für Immobilienvermittlung Silke Abelen unverzüglich mitzuteilen, wenn und zu welchem Entgelt und mit welchen Beteiligten der Hauptvertrag geschlossen wurde. Die Auskunftsverpflichtung wird nicht dadurch berührt, dass der Hauptvertrag unter einer aufschiebenden Bedingung steht und diese noch nicht eingetreten ist.",
     ],
   },
   {
     title: "Vertragsabschluss",
     body: [
-      "Der Provisionsanspruch des Maklers entsteht mit Abschluss des rechtswirksamen Hauptvertrages. Die Provision ist verdient und fällig, sobald der Hauptvertrag (Miet-/Kaufvertrag) zustande gekommen ist. Sie ist innerhalb von 10 Tagen nach Rechnungsstellung zahlbar. Sollte durch unsere Nachweis- oder Vermittlungstätigkeit der gewünschte Hauptvertrag zustande kommen, ist eine Provision vom Auftraggeber an das Büro für Immobilienvermittlung Silke Abelen zu zahlen. Sowohl die Höhe der Provision, als auch die jeweilige Zahlung des Auftraggebers richtet sich nach der im Auftrag ausdrücklich genannten Provision.",
+      "Der Provisionsanspruch des Maklers entsteht mit Abschluss des rechtswirksamen Hauptvertrages. Die Provision ist verdient und fällig, sobald der Hauptvertrag (Miet-/Kaufvertrag) zustande gekommen ist. Sie ist innerhalb von 10 Tagen nach Rechnungsstellung zahlbar. Sollte durch die Nachweis- oder Vermittlungstätigkeit des Maklers der gewünschte Hauptvertrag zustande kommen, ist eine Provision vom Auftraggeber an das Büro für Immobilienvermittlung Silke Abelen zu zahlen. Sowohl die Höhe der Provision, als auch die jeweilige Zahlung des Auftraggebers richtet sich nach der im Auftrag ausdrücklich genannten Provision.",
     ],
   },
   {
@@ -63,13 +66,13 @@ const sections = [
   {
     title: "Gerichtsstand",
     body: [
-      `Der Gerichtsstand für alle Streitigkeiten ist ${site.legal.jurisdiction}, Deutschland. Es gilt deutsches Recht. Wir nehmen nicht an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teil.`,
+      `Der Gerichtsstand für alle Streitigkeiten ist ${site.legal.jurisdiction}, Deutschland. Es gilt deutsches Recht. Eine Teilnahme an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle erfolgt nicht.`,
     ],
   },
   {
     title: "Laufzeit",
     body: [
-      "Der Maklervertrag zwischen dem Kunden und uns kommt entweder durch schriftliche Vereinbarung oder durch die Inanspruchnahme unserer Maklertätigkeit auf der Grundlage bzw. in Kenntnis der für die erfolgreiche Vermittlung-/Nachweistätigkeit anfallenden Provisionsforderung zustande. Ergibt sich nicht aus den Umständen oder abweichenden Vereinbarungen etwas anderes, hat der Vertrag eine Laufzeit von sechs Monaten und verlängert sich jeweils automatisch um einen weiteren Monat, wenn nicht eine Vertragspartei mit einer Frist von einem Monat vor Vertragsende gekündigt hat.",
+      "Der Maklervertrag zwischen dem Kunden und dem Büro für Immobilienvermittlung Silke Abelen kommt entweder durch schriftliche Vereinbarung oder durch die Inanspruchnahme der Maklertätigkeit auf der Grundlage bzw. in Kenntnis der für die erfolgreiche Vermittlung-/Nachweistätigkeit anfallenden Provisionsforderung zustande. Ergibt sich nicht aus den Umständen oder abweichenden Vereinbarungen etwas anderes, hat der Vertrag eine Laufzeit von sechs Monaten und verlängert sich jeweils automatisch um einen weiteren Monat, wenn nicht eine Vertragspartei mit einer Frist von einem Monat vor Vertragsende gekündigt hat.",
     ],
   },
   {

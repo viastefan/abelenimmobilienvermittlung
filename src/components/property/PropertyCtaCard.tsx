@@ -7,7 +7,7 @@ import { ArrowRight, Search } from "lucide-react";
  */
 export function PropertyCtaCard({
   title = "Sie suchen etwas Bestimmtes?",
-  description = "Nicht jedes Objekt wird öffentlich beworben. Sagen Sie uns, wonach Sie suchen — wir melden uns, sobald etwas Passendes dabei ist.",
+  description = "Nicht jedes Objekt wird öffentlich beworben. Beschreiben Sie, wonach Sie suchen — sobald etwas Passendes dabei ist, erhalten Sie Nachricht.",
   href = "/kontakt?anliegen=kaufen",
   label = "Suchprofil hinterlegen",
 }: {

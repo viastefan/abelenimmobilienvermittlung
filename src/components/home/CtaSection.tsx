@@ -13,7 +13,7 @@ export function CtaSection({
   title = "Sie möchten wissen, was Ihre Immobilie wert ist?",
   // Kein Preisversprechen: Was eine Bewertung kostet, sagt Silke Abelen im
   // Gespräch — nicht die Website.
-  description = "Sprechen Sie uns an — wir schätzen ein, was in Ihrer Immobilie steckt.",
+  description = "Ein Gespräch genügt, um einzuschätzen, was in Ihrer Immobilie steckt.",
   buttonLabel = "Jetzt bewerten",
   href = "/bewertung",
 }: {

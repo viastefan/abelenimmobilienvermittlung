@@ -143,7 +143,7 @@ export default function BewertungPage() {
 
       <CtaSection
         title="Bereit für eine belastbare Einschätzung?"
-        description="Wir sehen uns Ihre Immobilie an und melden uns in der Regel innerhalb einer Woche."
+        description="Nach der Besichtigung Ihrer Immobilie erhalten Sie die Einschätzung in der Regel innerhalb einer Woche."
         buttonLabel="Bewertung anfragen"
         href="/kontakt?anliegen=bewertung"
       />

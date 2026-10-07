@@ -123,9 +123,9 @@ export default function ImpressumPage() {
               >
                 ec.europa.eu/consumers/odr
               </a>
-              . Unsere E-Mail-Adresse finden Sie oben im Impressum. Wir sind nicht bereit oder
-              verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
-              teilzunehmen.
+              . Die E-Mail-Adresse steht oben im Impressum. Zur Teilnahme an einem
+              Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle besteht weder
+              Bereitschaft noch Verpflichtung.
             </p>
           </div>
         </Container>

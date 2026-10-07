@@ -9,7 +9,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = pageSeo({
   title: "Datenschutzerklärung",
   description:
-    "Wie wir mit Ihren Daten umgehen: verantwortliche Stelle, Ihre Rechte, Server-Protokolle, Einwilligung und Kontaktformular.",
+    "Der Umgang mit Ihren Daten: verantwortliche Stelle, Ihre Rechte, Server-Protokolle, Einwilligung und Kontaktformular.",
   path: "/datenschutz",
 });
 
@@ -40,12 +40,12 @@ export default function DatenschutzPage() {
               <h3 className="font-display text-base font-bold text-ink">Datenschutz</h3>
               <p className="mt-3">
                 Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst.
-                Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der
-                gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung. Wenn Sie
+                Ihre personenbezogenen Daten werden vertraulich und entsprechend der gesetzlichen
+                Datenschutzvorschriften sowie dieser Datenschutzerklärung behandelt. Wenn Sie
                 diese Webseite benutzen, werden verschiedene personenbezogene Daten erhoben.
                 Personenbezogene Daten sind Daten, mit denen Sie persönlich identifiziert werden
-                können. Die vorliegende Datenschutzerklärung erläutert, welche Daten wir erheben und
-                wofür wir sie nutzen.
+                können. Die vorliegende Datenschutzerklärung erläutert, welche Daten erhoben werden
+                und wofür sie genutzt werden.
               </p>
             </div>
 
@@ -78,7 +78,7 @@ export default function DatenschutzPage() {
               <p className="mt-3">
                 Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung
                 möglich. Sie können eine bereits erteilte Einwilligung jederzeit widerrufen. Dazu
-                reicht eine formlose Mitteilung per E-Mail an uns. Die Rechtmäßigkeit der bis zum
+                reicht eine formlose Mitteilung per E-Mail an die oben genannte Adresse. Die Rechtmäßigkeit der bis zum
                 Widerruf erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.
               </p>
             </div>
@@ -91,7 +91,7 @@ export default function DatenschutzPage() {
                 Im Falle datenschutzrechtlicher Verstöße steht Ihnen als Betroffenen ein
                 Beschwerderecht bei der zuständigen Aufsichtsbehörde zu. Zuständige Aufsichtsbehörde
                 in datenschutzrechtlichen Fragen ist der Landesdatenschutzbeauftragte des
-                Bundeslandes, in dem unser Unternehmen seinen Sitz hat. Eine Liste der
+                Bundeslandes, in dem das Unternehmen seinen Sitz hat. Eine Liste der
                 Datenschutzbeauftragten sowie deren Kontaktdaten können Sie unter diesem Link
                 einsehen:{" "}
                 <a
@@ -108,14 +108,14 @@ export default function DatenschutzPage() {
 
           <div className="space-y-6">
             <h2 className="font-display text-xl font-bold text-ink">
-              3. Datenerfassung auf unserer Webseite
+              3. Datenerfassung auf dieser Webseite
             </h2>
 
             <div>
               <h3 className="font-display text-base font-bold text-ink">Server-Log-Dateien</h3>
               <p className="mt-3">
                 Der Provider der Seiten erhebt und speichert automatisch Informationen in so
-                genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies
+                genannten Server-Log-Dateien, die Ihr Browser automatisch übermittelt. Dies
                 sind: Browsertyp und Browserversion, verwendetes Betriebssystem, Referrer URL,
                 Hostname des zugreifenden Rechners, Uhrzeit der Serveranfrage und IP-Adresse. Eine
                 Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die
@@ -138,12 +138,13 @@ export default function DatenschutzPage() {
                 Diese Webseite setzt <strong className="font-semibold text-ink">keine Cookies</strong>{" "}
                 zu Werbe- oder Analysezwecken. Ihre Entscheidung aus dem Einwilligungsdialog wird
                 ausschließlich lokal in Ihrem Browser gespeichert (im sogenannten Local Storage) und
-                zu keinem Zeitpunkt an uns oder an Dritte übertragen. Löschen Sie die Daten Ihres
-                Browsers, ist auch Ihre Entscheidung gelöscht und wir fragen erneut.
+                zu keinem Zeitpunkt an die verantwortliche Stelle oder an Dritte übertragen. Löschen
+                Sie die Daten Ihres Browsers, ist auch Ihre Entscheidung gelöscht, und der Dialog
+                erscheint erneut.
               </p>
               <p className="mt-3">
-                Statistik und externe Inhalte laden wir ausschließlich nach Ihrer ausdrücklichen
-                Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Sie können Ihre Auswahl jederzeit ändern:{" "}
+                Statistik und externe Inhalte werden ausschließlich nach Ihrer ausdrücklichen
+                Einwilligung geladen (Art. 6 Abs. 1 lit. a DSGVO). Sie können Ihre Auswahl jederzeit ändern:{" "}
                 <ConsentSettingsLink className="link-underline" />.
               </p>
             </div>
@@ -151,18 +152,18 @@ export default function DatenschutzPage() {
             <div>
               <h3 className="font-display text-base font-bold text-ink">Kontaktformular</h3>
               <p className="mt-3">
-                Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus
-                dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks
-                Bearbeitung der Anfrage bei uns gespeichert. Die Verarbeitung der in das
+                Wenn Sie über das Kontaktformular eine Anfrage senden, werden Ihre Angaben aus dem
+                Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks
+                Bearbeitung der Anfrage gespeichert. Die Verarbeitung der in das
                 Kontaktformular eingegebenen Daten erfolgt somit ausschließlich auf Grundlage Ihrer
                 Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).
               </p>
               <p className="mt-3">
                 Die Anfragen werden bei der Supabase Inc. in einem Rechenzentrum in Frankfurt am
                 Main gespeichert; der Versand der Benachrichtigung erfolgt über die Resend, Inc. Mit
-                beiden Anbietern bestehen Verträge über die Auftragsverarbeitung. Wir bewahren Ihre
-                Anfrage auf, bis sie abschließend bearbeitet ist und keine gesetzlichen
-                Aufbewahrungspflichten entgegenstehen; danach löschen wir sie. Sie können die
+                beiden Anbietern bestehen Verträge über die Auftragsverarbeitung. Ihre Anfrage wird
+                aufbewahrt, bis sie abschließend bearbeitet ist und keine gesetzlichen
+                Aufbewahrungspflichten entgegenstehen; danach wird sie gelöscht. Sie können die
                 Löschung jederzeit formlos per E-Mail verlangen.
               </p>
             </div>
@@ -177,7 +178,7 @@ export default function DatenschutzPage() {
               <h3 className="font-display text-base font-bold text-ink">Schriftarten</h3>
               <p className="mt-3">
                 Diese Webseite nutzt zur einheitlichen Darstellung von Schriftarten die Schrift
-                Manrope. Sie ist lokal installiert und wird von unserem eigenen Server ausgeliefert.
+                Manrope. Sie ist lokal eingebunden und wird vom Server dieser Website ausgeliefert.
                 Es erfolgt keine Verbindung zu Servern von Google.
               </p>
             </div>
@@ -185,10 +186,9 @@ export default function DatenschutzPage() {
             <div>
               <h3 className="font-display text-base font-bold text-ink">Bilder</h3>
               <p className="mt-3">
-                Ein Teil der Objektfotos liegt noch in der Mediathek des bisherigen Auftritts bei
-                Wix.com. Diese Bilder werden von unserem eigenen Server abgerufen und an Sie
-                ausgeliefert — Ihr Browser baut dabei keine Verbindung zu Wix.com auf, Ihre
-                IP-Adresse wird dorthin nicht übermittelt.
+                Alle Fotos werden vom Server dieser Website ausgeliefert — Ihr Browser baut dabei
+                keine Verbindung zu anderen Anbietern wie Wix.com auf, Ihre IP-Adresse wird dorthin
+                nicht übermittelt.
               </p>
             </div>
 
@@ -198,7 +198,7 @@ export default function DatenschutzPage() {
               </h3>
               <p className="mt-3">
                 Diese Webseite bindet weder Google Maps noch YouTube noch Schaltflächen sozialer
-                Netzwerke ein. Die Verweise auf unsere Profile in den sozialen Netzwerken sind
+                Netzwerke ein. Die Verweise auf Profile in den sozialen Netzwerken sind
                 gewöhnliche Links: Eine Verbindung entsteht erst, wenn Sie einen davon anklicken.
               </p>
             </div>
@@ -217,22 +217,22 @@ export default function DatenschutzPage() {
               5. Hinweis zur Nutzung von Siegeln und Icons
             </h2>
             <p>
-              Auf dieser Website verwenden wir das ImmoScout24 Bronze Makler-Icon. Dieses Siegel
-              zeigt unsere vertrauensvolle Partnerschaft mit ImmoScout24, dem führenden
-              Immobilienportal in Deutschland. Es kennzeichnet uns als professionellen und
-              verlässlichen Immobilienvermittler. Daneben führen wir das Siegel „Geprüfte Kompetenz
-              in der Immobilienbewertung“ der Sprengnetter-Akademie.
+              Auf dieser Website wird das ImmoScout24 Bronze Makler-Icon verwendet. Das Siegel steht
+              für die vertrauensvolle Partnerschaft mit ImmoScout24, dem führenden Immobilienportal
+              in Deutschland, und kennzeichnet einen professionellen und verlässlichen
+              Immobilienvermittler. Daneben wird das Siegel „Geprüfte Kompetenz in der
+              Immobilienbewertung“ der Sprengnetter-Akademie geführt.
             </p>
             <p>
               Die übrigen Symbole auf dieser Webseite stammen aus der Sammlung Lucide und werden
-              gemäß deren ISC-Lizenz verwendet. Beide Siegel und alle Symbole werden von unserem
-              eigenen Server ausgeliefert.
+              gemäß deren ISC-Lizenz verwendet. Beide Siegel und alle Symbole werden vom Server
+              dieser Website ausgeliefert.
             </p>
           </div>
 
-          <div className="rounded-[24px] bg-surface-warm p-6 text-[0.875rem]">
+          <div className="rounded-[24px] bg-surface-warm p-6 text-[0.875rem] ring-1 ring-border">
             <p>
-              Fragen zum Umgang mit Ihren Daten beantworten wir gern —{" "}
+              Fragen zum Umgang mit Ihren Daten gern an{" "}
               <a href={`mailto:${site.email}`} className="link-underline">
                 {site.email}
               </a>{" "}

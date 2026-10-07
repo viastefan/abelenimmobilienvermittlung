@@ -155,7 +155,7 @@ export function ExpertProperty({ property }: { property: ExpertPropertyData }) {
             }`}
           >
             <div className="overflow-hidden">
-              <div className="rounded-[24px] bg-surface-warm p-5">
+              <div className="rounded-[24px] bg-surface-warm p-5 ring-1 ring-border">
                 <dl className="grid gap-x-5 gap-y-3 sm:grid-cols-2">
                   {property.details.map((detail) => (
                     <div key={detail.label} className="flex justify-between gap-4">

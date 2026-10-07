@@ -19,7 +19,7 @@ export const images = {
    * dann hängt die Startseite nicht mehr an einem fremden Dienst.
    */
   heroWohnstrasse: siteMedia.heroKey,
-  /** Startseite „Über uns“ und Seite „Über uns“: Portrait Silke Abelen. */
+  /** Startseite und Seite „Über mich“: Portrait Silke Abelen. */
   portrait: siteMedia.portrait,
   /** Startseite „Persönlich, Verlässlich“: Luftbild von Leverkusen. */
   personalService: "/images/stadtbild-leverkusen.png",

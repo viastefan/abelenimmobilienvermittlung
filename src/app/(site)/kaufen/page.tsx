@@ -17,7 +17,7 @@ import { fuerKaeufer, fuerVerkaeufer } from "@/data/services";
 export const metadata: Metadata = pageSeo({
   title: "Für Käufer & Verkäufer",
   description:
-    "Entdecken Sie, wie wir Ihnen dabei helfen können, stressfrei Ihre Traumimmobilie zu finden oder Ihre Immobilie zum besten Preis zu verkaufen.",
+    "Stressfrei die Traumimmobilie finden oder die eigene Immobilie zum besten Preis verkaufen — mit persönlicher Begleitung.",
   path: "/kaufen",
 });
 
@@ -38,9 +38,9 @@ export default async function KaeuferVerkaeuferPage() {
   return (
     <>
       <PageHero
-        eyebrow="Wir begleiten Sie mit Expertise und Leidenschaft."
+        eyebrow="Mit Expertise und Leidenschaft begleitet."
         title="Für Käufer & Verkäufer"
-        description="Entdecken Sie, wie wir Ihnen dabei helfen können, stressfrei Ihre Traumimmobilie zu finden oder Ihre Immobilie zum besten Preis zu verkaufen."
+        description="Stressfrei die Traumimmobilie finden oder die eigene Immobilie zum besten Preis verkaufen — mit persönlicher Begleitung."
         breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Für Käufer & Verkäufer" }]}
       />
 
@@ -51,7 +51,7 @@ export default async function KaeuferVerkaeuferPage() {
               eyebrow="Für Immobilienkäufer"
               size="lg"
               title="Ihr Weg zur Traumimmobilie"
-              description="Die Suche nach der richtigen Immobilie ist eine der wichtigsten Entscheidungen im Leben. Wir verstehen, dass Sie dabei einen starken Partner an Ihrer Seite brauchen. Mit unserer professionellen Kaufbegleitung finden wir nicht nur Ihr Wunschobjekt, sondern sorgen auch für einen reibungslosen und sicheren Kaufprozess – von der ersten Besichtigung bis zur Schlüsselübergabe."
+              description="Die Suche nach der richtigen Immobilie ist eine der wichtigsten Entscheidungen im Leben. Dabei braucht es einen starken Partner an Ihrer Seite. Eine professionelle Kaufbegleitung findet nicht nur Ihr Wunschobjekt, sondern sorgt auch für einen reibungslosen und sicheren Kaufprozess – von der ersten Besichtigung bis zur Schlüsselübergabe."
             />
           </Reveal>
           <Reveal delay={90}>
@@ -72,7 +72,7 @@ export default async function KaeuferVerkaeuferPage() {
                   <br className="hidden sm:block" /> in besten Händen
                 </>
               }
-              description="Sie möchten Ihre Immobilie stressfrei und zum bestmöglichen Preis verkaufen? Setzen Sie auf unsere langjährige Expertise in der Vermarktung. Wir übernehmen alle Aufgaben, von der fundierten Marktpreisanalyse über die Erstellung hochwertiger Exposés bis hin zur gezielten Bewerbung. So stellen wir sicher, dass Ihre Immobilie die richtigen Käufer erreicht und Sie das beste Ergebnis erzielen."
+              description="Sie möchten Ihre Immobilie stressfrei und zum bestmöglichen Preis verkaufen? Setzen Sie auf langjährige Expertise in der Vermarktung. Alle Aufgaben liegen in einer Hand — von der fundierten Marktpreisanalyse über die Erstellung hochwertiger Exposés bis hin zur gezielten Bewerbung. So erreicht Ihre Immobilie die richtigen Käufer, und Sie erzielen das beste Ergebnis."
             />
             <Button href="/anlagen" variant="secondary" withArrow className="mt-8">
               Unterlagen die benötigt werden

@@ -74,7 +74,7 @@ export function ContactSheetProvider({ children }: { children: ReactNode }) {
         footer={
           view === "menu" ? (
             <p className="text-[0.8125rem] leading-relaxed text-text-muted">
-              Wir melden uns in der Regel innerhalb eines Werktages persönlich zurück.
+              Persönliche Antwort in der Regel innerhalb eines Werktages.
             </p>
           ) : (
             <button

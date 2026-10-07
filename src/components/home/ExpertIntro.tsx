@@ -39,17 +39,16 @@ export async function ExpertIntro() {
 
           <div className="pretty mt-5 max-w-xl space-y-4 text-[0.9375rem] leading-relaxed text-text-muted">
             <p>
-              Unser Ziel ist es, unseren Kunden den bestmöglichen Service zu bieten und dabei
-              gemeinsam ein optimales Ergebnis zu erzielen. Zum erfolgreichen Verkauf gehören
+              Ziel ist es, jedem Kunden den bestmöglichen Service zu bieten und dabei gemeinsam
+              ein optimales Ergebnis zu erzielen. Zum erfolgreichen Verkauf gehören
               nicht nur professionelles Marketing, das Erstellen von Exposés und das Durchführen
               von Besichtigungsterminen.{" "}
               <span className="font-semibold text-ink">
                 Das Büro für Immobilien Bewertung &amp; Vermittlung bietet Ihnen das
                 Rundum-Sorglos-Paket.
               </span>{" "}
-              Wir übernehmen für Sie die gesamte Kommunikation mit den Kaufinteressenten und
-              präsentieren Ihnen am Ende unserer geordneten und jahrelang eingespielten Abläufe
-              den richtigen Käufer.
+              Die gesamte Kommunikation mit den Kaufinteressenten liegt in einer Hand, und am
+              Ende geordneter, über Jahre eingespielter Abläufe steht der richtige Käufer.
             </p>
           </div>
 
@@ -57,29 +56,27 @@ export async function ExpertIntro() {
               bekommt deshalb eine eigene Fläche statt einer Zeile im Fließtext. */}
           <blockquote className="mt-6 max-w-xl rounded-[24px] border-l-2 border-accent bg-accent-tint py-5 pl-6 pr-5">
             <p className="text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-accent-deep">
-              Unsere Philosophie
+              Die Philosophie
             </p>
             <p className="pretty mt-2.5 font-display text-[1.0625rem] font-semibold leading-relaxed text-ink">
-              „Wir möchten nicht nur Ihr Haus oder Ihre Wohnung verkaufen. Wichtig ist uns, Ihre
-              langfristige und nachhaltige Empfehlung&rdquo;.
+              „Nicht nur Ihr Haus oder Ihre Wohnung verkaufen — sondern Ihre langfristige und
+              nachhaltige Empfehlung gewinnen.&ldquo;
             </p>
           </blockquote>
 
           <div className="pretty mt-6 max-w-xl space-y-4 text-[0.9375rem] leading-relaxed text-text-muted">
             <p>
-              Natürlich können Sie sich ebenfalls auf unsere Zuverlässigkeit und schnelle
-              Reaktionszeiten verlassen. Wir gehen jeden Auftrag mit Engagement an, dabei spielt
-              es keine Rolle, wie hoch der Preis Ihrer Immobilie ist.
+              Natürlich können Sie sich auch auf Zuverlässigkeit und schnelle Reaktionszeiten
+              verlassen. Jeder Auftrag bekommt dasselbe Engagement — ganz gleich, wie hoch der
+              Preis Ihrer Immobilie ist.
             </p>
             <p>
-              Bei uns stehen Sie im Mittelpunkt, eine enge Zusammenarbeit ist dafür
-              Voraussetzung. Zudem legen wir Wert auf Transparenz und Integrität in allem, was wir
-              anfangen. Ehrliche und verlässliche Beratung und Unterstützung während des gesamten
+              Sie stehen im Mittelpunkt, eine enge Zusammenarbeit ist dafür Voraussetzung.
+              Transparenz und Integrität gelten bei jedem Schritt. Ehrliche und verlässliche Beratung und Unterstützung während des gesamten
               Kauf- oder Verkaufsprozesses sind selbstverständlich.
             </p>
             <p>
-              In den nachfolgenden Regionen sind wir tätig und freuen uns darauf, Ihnen mit
-              unserem Service vor Ort zur Seite zu stehen:{" "}
+              Tätig in den folgenden Regionen — mit persönlichem Service direkt vor Ort:{" "}
               <span className="font-semibold text-ink">{regions.join(", ")}</span>.
             </p>
           </div>
@@ -91,7 +88,7 @@ export async function ExpertIntro() {
           <ServiceAreaMap className="mt-8 max-w-xl" />
 
           <Button href="/ueber-mich" variant="secondary" withArrow className="mt-7">
-            Mehr über uns
+            Mehr über Silke Abelen
           </Button>
         </Reveal>
 

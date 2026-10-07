@@ -117,7 +117,7 @@ export default function AnlagenPage() {
 
       <CtaSection
         title="Sie wissen nicht, was Ihnen noch fehlt?"
-        description="Wir gehen die Liste gemeinsam durch und besorgen, was nicht vorliegt."
+        description="Die Liste wird gemeinsam durchgegangen, und was nicht vorliegt, wird besorgt."
         buttonLabel="Kontakt aufnehmen"
         href="/kontakt"
       />

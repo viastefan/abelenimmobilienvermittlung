@@ -153,7 +153,7 @@ export default async function ReferenceDetailPage({ params }: Params) {
           </div>
 
           <aside>
-            <div className="rounded-[24px] bg-surface-warm p-7">
+            <div className="rounded-[24px] bg-surface-warm p-7 ring-1 ring-border">
               <h2 className="font-display text-display-sm font-bold text-ink">Ausstattung</h2>
               <ul className="mt-5 space-y-3">
                 {item.equipment.map((feature) => (
@@ -195,7 +195,7 @@ export default async function ReferenceDetailPage({ params }: Params) {
 
       <CtaSection
         title="Sie möchten Ihre Immobilie ebenfalls verkaufen?"
-        description="Wir starten mit einer fundierten Einschätzung — persönlich und unverbindlich."
+        description="Am Anfang steht eine fundierte Einschätzung — persönlich und unverbindlich."
         buttonLabel="Immobilie bewerten"
         href="/bewertung"
       />

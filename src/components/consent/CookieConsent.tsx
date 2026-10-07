@@ -71,8 +71,8 @@ export function CookieConsent() {
             <div>
               <p className="font-display text-[0.9375rem] font-bold text-ink">Ihre Entscheidung</p>
               <p className="pretty mt-1.5 text-[0.8125rem] leading-relaxed text-text-muted">
-                Wir verwenden nur, was für diese Website nötig ist. Statistik und externe Inhalte
-                laden wir ausschließlich mit Ihrer Zustimmung. Details in der{" "}
+                Diese Website verwendet nur, was für sie nötig ist. Statistik und externe Inhalte
+                kommen ausschließlich mit Ihrer Zustimmung dazu. Details in der{" "}
                 <Link href="/datenschutz" className="font-semibold text-accent-deep underline underline-offset-2">
                   Datenschutzerklärung
                 </Link>
@@ -140,7 +140,7 @@ export function CookieConsent() {
           {consentCategories.map((category) => {
             const active = category.required || choice[category.key];
             return (
-              <li key={category.key} className="rounded-[24px] bg-surface-warm p-4">
+              <li key={category.key} className="rounded-[24px] bg-surface-warm p-4 ring-1 ring-border">
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <p className="font-display text-[0.9375rem] font-bold text-ink">{category.title}</p>
@@ -181,7 +181,7 @@ export function CookieConsent() {
         </ul>
 
         <p className="pretty mt-5 text-[0.8125rem] leading-relaxed text-text-subtle">
-          Stand heute setzen wir ausschließlich technisch notwendige Speicherungen ein. Statistik und
+          Stand heute kommen ausschließlich technisch notwendige Speicherungen zum Einsatz. Statistik und
           externe Inhalte sind vorbereitet, werden aber erst geladen, wenn Sie sie hier freigeben.
           Ihre Auswahl können Sie jederzeit über „Cookie-Einstellungen“ in der Fußzeile ändern.
         </p>

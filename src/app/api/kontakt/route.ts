@@ -149,7 +149,7 @@ export async function POST(request: Request) {
   // Nur wenn beide Wege versagen, ist die Anfrage wirklich verloren.
   if (!stored && !mailed) {
     return NextResponse.json(
-      { error: "Ihre Anfrage konnte nicht übermittelt werden. Bitte rufen Sie uns kurz an." },
+      { error: "Ihre Anfrage konnte nicht übermittelt werden. Bitte rufen Sie kurz an." },
       { status: 503 }
     );
   }

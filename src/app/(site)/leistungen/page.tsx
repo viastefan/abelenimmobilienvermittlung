@@ -6,7 +6,6 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
-import { WhyAbelen } from "@/components/home/WhyAbelen";
 import { CtaSection } from "@/components/home/CtaSection";
 import { ContactButton } from "@/components/contact/ContactButton";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -20,7 +19,7 @@ import { dienstleistungen, services } from "@/data/services";
 export const metadata: Metadata = pageSeo({
   title: "Dienstleistungen — Immobilienverkauf und Kauf",
   description:
-    "Immobiliensuche, Beratung und Bewertung, Netzwerk: Wir begleiten Sie sicher und kompetent durch Kauf und Verkauf Ihrer Immobilie.",
+    "Immobiliensuche, Beratung und Bewertung, Netzwerk: sichere und kompetente Begleitung durch Kauf und Verkauf Ihrer Immobilie.",
   path: "/leistungen",
 });
 
@@ -39,7 +38,7 @@ export default function LeistungenPage() {
         title={
           <>
             Immobilienverkauf? Kauf?
-            <br className="hidden sm:block" /> Wir begleiten Sie sicher und kompetent.
+            <br className="hidden sm:block" /> Sicher und kompetent begleitet.
           </>
         }
         breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Dienstleistungen" }]}
@@ -71,15 +70,14 @@ export default function LeistungenPage() {
               Erstellung von Exposés und die Durchführung von Besichtigungsterminen erfordert. Bei
               der Preisgestaltung, den Verkaufsverhandlungen und Notarterminen sind zudem
               Praxiserfahrung sowie spezielles Fachwissen in regionalen und formalen Abläufen
-              unerlässlich. Wir unterstützen Sie beim Verkauf Ihrer Immobilie, sei es ein
-              Zweifamilienhaus, Einfamilienhaus, eine Doppelhaushälfte, ein Reihenhaus, ein
-              Reiheneckhaus oder eine Wohnung, und begleiten Sie persönlich durch den gesamten
-              Prozess.
+              unerlässlich. Ob Zweifamilienhaus, Einfamilienhaus, Doppelhaushälfte, Reihenhaus,
+              Reiheneckhaus oder Wohnung: Sie erhalten Unterstützung beim Verkauf Ihrer Immobilie
+              und persönliche Begleitung durch den gesamten Prozess.
             </p>
             <p className="pretty">
-              Doch auch der Kauf einer Immobilie ist eine große Herausforderung. Wir stehen Ihnen bei
-              der Suche nach Ihrer Traumimmobilie zur Seite, helfen Ihnen bei der Auswahl, stellen
-              alle notwendigen Unterlagen für Finanzierungen zusammen und beraten Sie bei jedem
+              Doch auch der Kauf einer Immobilie ist eine große Herausforderung. Auch hier gibt es
+              Unterstützung: bei der Suche nach Ihrer Traumimmobilie, bei der Auswahl, beim
+              Zusammenstellen aller Unterlagen für die Finanzierung — und Beratung bei jedem
               Schritt.
             </p>
           </div>
@@ -93,7 +91,7 @@ export default function LeistungenPage() {
               <SectionHeading
                 size="lg"
                 title="Meine Dienstleistungen"
-                description="Der Kauf oder Verkauf einer Immobilie ist eine der wichtigsten Entscheidungen in Ihrem Leben. Hier finden Sie eine Übersicht unserer professionellen Dienstleistungen, die Sie bei jedem Schritt unterstützen – von der ersten Beratung über die Preisgestaltung bis zur erfolgreichen Vermittlung."
+                description="Der Kauf oder Verkauf einer Immobilie ist eine der wichtigsten Entscheidungen in Ihrem Leben. Hier finden Sie eine Übersicht der Dienstleistungen, die Sie bei jedem Schritt unterstützen – von der ersten Beratung über die Preisgestaltung bis zur erfolgreichen Vermittlung."
               />
             </Reveal>
             <Reveal delay={100}>
@@ -158,7 +156,10 @@ export default function LeistungenPage() {
           <h2 className="balance font-display text-display-lg font-bold text-ink">Im Einzelnen</h2>
           <div className="mt-8 space-y-3">
             {services.map((service) => (
-              <div key={service.slug} className="grid gap-5 rounded-[24px] bg-surface-warm p-6 md:grid-cols-[1fr_auto] md:items-center md:gap-10 md:p-8">
+              <div
+                key={service.slug}
+                className="grid gap-5 rounded-[24px] bg-white p-6 shadow-soft ring-1 ring-border md:grid-cols-[1fr_auto] md:items-center md:gap-10 md:p-8"
+              >
                 <div>
                   <h3 className="font-display text-[1.125rem] font-bold text-ink">{service.title}</h3>
                   <p className="pretty mt-2 max-w-2xl text-[0.9375rem] leading-relaxed text-text-muted">
@@ -167,7 +168,7 @@ export default function LeistungenPage() {
                 </div>
                 <Link
                   href={service.href}
-                  className="group inline-flex h-fit w-fit items-center gap-2 rounded-[14px] bg-white px-4 py-3 text-sm font-semibold text-accent-deep shadow-soft transition-all duration-300 ease-smooth hover:-translate-y-0.5"
+                  className="group inline-flex h-fit w-fit items-center gap-2 rounded-[14px] bg-surface-mist px-4 py-3 text-sm font-semibold text-accent-deep transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-soft"
                 >
                   {service.cta}
                   <ArrowRight
@@ -181,11 +182,9 @@ export default function LeistungenPage() {
         </Container>
       </section>
 
-      <WhyAbelen />
-
       <CtaSection
         title="Planen Sie, eine Immobilie zu kaufen oder zu verkaufen?"
-        description="Schreiben Sie uns — wir melden uns in der Regel innerhalb eines Werktages persönlich zurück."
+        description="Eine kurze Nachricht genügt — persönliche Antwort in der Regel innerhalb eines Werktages."
         buttonLabel="Kontakt aufnehmen"
         href="/kontakt"
       />
