@@ -70,6 +70,15 @@ export default async function PropertyDetailPage({
     if (keyFacts.length === 6) break;
   }
 
+  // Wohnfläche und Zimmer führt die App in eigenen Feldern, nicht in der Liste
+  // weiterer Angaben. Ältere Einträge tragen sie dort noch — das Feld gilt.
+  const weitereDaten = property.features.filter((feature) => !/^(wohnfläche|zimmer)$/i.test(feature.label.trim()));
+  const alleDaten = [
+    { label: "Wohnfläche", value: `ca. ${property.livingSpace.toString().replace(".", ",")} m²` },
+    { label: "Zimmer", value: property.rooms.toString().replace(".", ",") },
+    ...weitereDaten,
+  ];
+
   return (
     <>
       {/* Kopfbereich über die ganze Breite — das Objekt zuerst, alles andere danach. */}
@@ -190,11 +199,11 @@ export default async function PropertyDetailPage({
               <p className="pretty mt-5 text-[1.0625rem] leading-relaxed text-text-muted">{property.location}</p>
             </div>
 
-            {property.features.length > 0 && (
+            {weitereDaten.length > 0 && (
               <div className="mt-12">
                 <h2 className="font-display text-display-sm font-bold text-ink">Alle Objektdaten</h2>
                 <dl className="mt-5 grid gap-x-8 gap-y-1 sm:grid-cols-2">
-                  {property.features.map((feature) => (
+                  {alleDaten.map((feature) => (
                     <div
                       key={feature.label}
                       className="flex items-baseline justify-between gap-6 rounded-[14px] px-4 py-3.5 odd:bg-surface-warm"

@@ -1,17 +1,20 @@
-import { createReference } from "@/app/admin/reference-actions";
-import { ReferenceForm } from "@/components/admin/ReferenceForm";
-import { AdminPageHeader } from "@/components/admin/ui";
+import { randomUUID } from "node:crypto";
+import { ReferenceEditor } from "@/components/admin/ReferenceEditor";
+import { Seitenkopf } from "@/components/admin/ui";
+import { fotoSpeicher } from "@/lib/admin/speicher";
+import { referenzAnlegen } from "@/app/admin/reference-actions";
 
-export default function NewReferencePage() {
+export const metadata = { title: "Neue Referenz" };
+
+export default function NeueReferenz() {
   return (
-    <div>
-      <AdminPageHeader
-        title="Neue Referenz"
-        description="Ein vermitteltes Objekt für die Referenzen-Seite anlegen."
+    <>
+      <Seitenkopf
+        zurueck={{ href: "/admin/referenzen", label: "Referenzen" }}
+        titel="Neue Referenz"
+        unterzeile="Ein vermitteltes Objekt für die Seite „Objekte & Referenzen“ — gern mit der Meinung der Eigentümer."
       />
-      <div className="mt-7">
-        <ReferenceForm action={createReference} submitLabel="Referenz anlegen" />
-      </div>
-    </div>
+      <ReferenceEditor aktion={referenzAnlegen} speicher={fotoSpeicher()} ordner={randomUUID()} />
+    </>
   );
 }

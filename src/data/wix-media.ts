@@ -1,27 +1,34 @@
 /**
  * Bilder aus der Mediathek des bisherigen Wix-Auftritts.
  *
- * Die Dateien liegen weiterhin dort. Das ist bewusst ein Zwischenschritt:
- * Solange der Wix-Auftritt besteht, spart es das Umkopieren; sobald er
- * abgeschaltet wird, müssen die Dateien nach `public/images/` wandern
- * (siehe `public/images/BILDER-ANLEITUNG.md`).
+ * Jede Datei liegt zweimal: bei Wix und — sobald die GitHub Action „Bilder
+ * sichern“ gelaufen ist — als Kopie in `public/images/wix/`. Welche Kopien
+ * es gibt, steht in `wix-lokal.ts`. Für diese liefert die Website die Kopie
+ * aus, für alle anderen weiter die Adresse bei Wix. Kündigt Silke Abelen
+ * den Wix-Auftritt, hängt damit kein Bild mehr an einem fremden Server.
  */
+
+import { lokaleWixBilder } from "./wix-lokal.ts";
 
 const HOST = "https://static.wixstatic.com/media";
+const lokal = new Set(lokaleWixBilder);
+
+/** Baut die Adresse aus der Wix-Datei-ID — die Kopie im Projekt, wenn es sie gibt. */
+export function wixImage(fileId: string): string {
+  return lokal.has(fileId) ? `/images/wix/${fileId}` : `${HOST}/${fileId}`;
+}
 
 /**
- * Umschalter auf die lokalen Kopien.
+ * Schreibt eine vollständige Wix-Adresse auf die Kopie im Projekt um.
  *
- * Steht `NEXT_PUBLIC_BILDER_LOKAL=1`, liest die Website die Bilder aus
- * `public/images/wix/` statt von Wix. Die Dateien holt `npm run bilder`.
- * Damit hängt der Auftritt an keinem fremden Server mehr — ohne dass an
- * einer einzigen Stelle im Code etwas geändert werden müsste.
+ * Die Objekte in der Datenbank tragen noch die Adressen bei Wix. Umgeschrieben
+ * wird erst beim Ausliefern, nicht in der Datenbank: so bleibt jede Fassung
+ * der Website lauffähig, auch eine ältere ohne die Kopien.
  */
-const LOKAL = process.env.NEXT_PUBLIC_BILDER_LOKAL === "1";
-
-/** Baut die Adresse aus der Wix-Datei-ID. */
-export function wixImage(fileId: string): string {
-  return LOKAL ? `/images/wix/${fileId}` : `${HOST}/${fileId}`;
+export function lokalesBild(url: string): string {
+  if (!url.startsWith(`${HOST}/`)) return url;
+  const fileId = url.slice(HOST.length + 1);
+  return lokal.has(fileId) ? `/images/wix/${fileId}` : url;
 }
 
 /** Marke: Bildmarke, Wortmarke und die beiden Siegel der Aussteller. */

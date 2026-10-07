@@ -1,39 +1,45 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import { ExternalLink } from "lucide-react";
-import { PropertyForm } from "@/components/admin/PropertyForm";
+import { Globe } from "lucide-react";
+import { PropertyEditor } from "@/components/admin/PropertyEditor";
+import { MeldungAusAdresse } from "@/components/admin/Toast";
+import { OnlineChip, Seitenkopf, StatusChip, knopf } from "@/components/admin/ui";
 import { getPropertyByIdAdmin } from "@/lib/admin/properties-data";
-import { updateProperty } from "../../../actions";
+import { fotoSpeicher } from "@/lib/admin/speicher";
+import { objektSpeichern } from "../../../actions";
 
-export default async function EditPropertyPage({ params }: { params: Promise<{ id: string }> }) {
+export const metadata = { title: "Objekt bearbeiten" };
+
+export default async function ObjektBearbeiten({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const property = await getPropertyByIdAdmin(id);
-  if (!property) notFound();
-
-  const boundAction = updateProperty.bind(null, property.id);
+  const objekt = await getPropertyByIdAdmin(id);
+  if (!objekt) notFound();
 
   return (
-    <div>
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h1 className="font-display text-2xl font-semibold text-ink">{property.title}</h1>
-          <p className="mt-1 text-sm text-text-muted">{property.city}</p>
-        </div>
-        {property.published && (
-          <Link
-            href={`/immobilien/${property.slug}`}
-            target="_blank"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline"
-          >
-            Auf der Website ansehen
-            <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-          </Link>
-        )}
-      </div>
-
-      <div className="mt-8">
-        <PropertyForm property={property} action={boundAction} submitLabel="Änderungen speichern" />
-      </div>
-    </div>
+    <>
+      <Seitenkopf
+        zurueck={{ href: "/admin/immobilien", label: "Objekte" }}
+        titel={objekt.title}
+        unterzeile={
+          <span className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <StatusChip status={objekt.status} />
+            <OnlineChip online={objekt.published} />
+            <span>{objekt.city}</span>
+          </span>
+        }
+        aktion={
+          objekt.published ? (
+            <a href={`/immobilien/${objekt.slug}`} target="_blank" rel="noreferrer" className={knopf.zweit}>
+              <Globe className="h-[1.125rem] w-[1.125rem]" strokeWidth={1.9} aria-hidden="true" />
+              Auf der Website ansehen
+            </a>
+          ) : undefined
+        }
+      />
+      <PropertyEditor objekt={objekt} aktion={objektSpeichern.bind(null, objekt.id)} speicher={fotoSpeicher()} ordner={objekt.id} />
+      <Suspense>
+        <MeldungAusAdresse texte={{ angelegt: "Das Objekt ist angelegt." }} />
+      </Suspense>
+    </>
   );
 }

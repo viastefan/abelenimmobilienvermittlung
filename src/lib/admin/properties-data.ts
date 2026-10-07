@@ -1,6 +1,7 @@
 import "server-only";
 import { createClient } from "@/lib/supabase/server";
 import { mapRowToProperty, type Property } from "@/types/property";
+import { istEintragsId, nichtGeladen } from "./laden";
 
 /**
  * Authenticated reads for the admin dashboard — returns every listing
@@ -13,28 +14,19 @@ export async function getAllPropertiesAdmin(): Promise<Property[]> {
   const { data, error } = await supabase
     .from("properties")
     .select("*")
+    // Dieselbe Reihenfolge wie auf der Website — was hier vorn steht, steht dort vorn.
+    .order("sort_order", { ascending: true })
     .order("created_at", { ascending: false });
 
-  if (error) {
-    console.error("Admin: Konnte Immobilien nicht laden:", error.message);
-    return [];
-  }
-
+  if (error) nichtGeladen("Objekte", error);
   return data.map(mapRowToProperty);
 }
 
 export async function getPropertyByIdAdmin(id: string): Promise<Property | undefined> {
+  if (!istEintragsId(id)) return undefined;
   const supabase = await createClient();
   const { data, error } = await supabase.from("properties").select("*").eq("id", id).maybeSingle();
 
-  if (error || !data) return undefined;
-  return mapRowToProperty(data);
-}
-
-export async function slugExists(slug: string, excludeId?: string): Promise<boolean> {
-  const supabase = await createClient();
-  let query = supabase.from("properties").select("id").eq("slug", slug);
-  if (excludeId) query = query.neq("id", excludeId);
-  const { data } = await query.maybeSingle();
-  return Boolean(data);
+  if (error) nichtGeladen("Objekt", error);
+  return data ? mapRowToProperty(data) : undefined;
 }

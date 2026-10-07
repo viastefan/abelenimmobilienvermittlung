@@ -1,17 +1,20 @@
-import { PropertyForm } from "@/components/admin/PropertyForm";
-import { createProperty } from "../../../actions";
+import { randomUUID } from "node:crypto";
+import { PropertyEditor } from "@/components/admin/PropertyEditor";
+import { Seitenkopf } from "@/components/admin/ui";
+import { fotoSpeicher } from "@/lib/admin/speicher";
+import { objektAnlegen } from "../../../actions";
 
-export default function NewPropertyPage() {
+export const metadata = { title: "Neues Objekt" };
+
+export default function NeuesObjekt() {
   return (
-    <div>
-      <h1 className="font-display text-2xl font-semibold text-ink">Neue Immobilie</h1>
-      <p className="mt-1 text-sm text-text-muted">
-        Legen Sie ein neues Objekt an. Es wird erst nach Aktivierung von „Veröffentlicht“ auf der Website sichtbar.
-      </p>
-
-      <div className="mt-8">
-        <PropertyForm action={createProperty} submitLabel="Immobilie anlegen" />
-      </div>
-    </div>
+    <>
+      <Seitenkopf
+        zurueck={{ href: "/admin/immobilien", label: "Objekte" }}
+        titel="Neues Objekt"
+        unterzeile="Tragen Sie ein, was Sie schon wissen. Auf der Website erscheint es erst, wenn Sie es unten einschalten."
+      />
+      <PropertyEditor aktion={objektAnlegen} speicher={fotoSpeicher()} ordner={randomUUID()} />
+    </>
   );
 }

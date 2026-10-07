@@ -44,6 +44,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  // Als Datei statt `app/manifest.ts`: die Dateikonvention ließe sich in der
+  // App nicht überschreiben — dort gilt `app.webmanifest` (siehe admin/layout).
+  manifest: "/manifest.webmanifest",
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { lokalesBild } from "../data/wix-media.ts";
 
 /**
  * Photography drop-in.
@@ -35,9 +36,15 @@ export function publicImageExists(src?: string | null): boolean {
   return exists;
 }
 
-/** Returns the image path only when it can actually be rendered. */
+/**
+ * Returns the image path only when it can actually be rendered.
+ *
+ * Adressen des bisherigen Wix-Auftritts werden dabei auf die Kopie im
+ * Projekt umgeschrieben, sobald es sie gibt — siehe `lokalesBild`.
+ */
 export function resolveImage(src?: string | null): string | undefined {
-  return publicImageExists(src) ? src! : undefined;
+  const quelle = src ? lokalesBild(src) : src;
+  return publicImageExists(quelle) ? quelle! : undefined;
 }
 
 /** Resolves the first usable image from a list (e.g. a listing gallery). */

@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Angebot — Neue Website und eigene App · Silke Abelen</title>
+<link rel="stylesheet" href="assets/manrope.css">
+<style>
+/* ---------------------------------------------------------------------------
+   Angebot Website + App — Silke Abelen
+   Gesetzt in derselben Sprache wie die Website: Marine trägt Vertrauen,
+   Türkis trägt Persönlichkeit, Weiß trägt Ruhe. Türkis bedeckt nie eine
+   große Fläche — es steht als Akzent, Symbol, Linie.
+   Farben und Schrift sind wörtlich aus tailwind.config.ts übernommen.
+--------------------------------------------------------------------------- */
+:root {
+  --ink:        #0B2545;
+  --ink-soft:   #1B3D66;
+  --text:       #19324D;
+  --muted:      #5C6B7D;
+  --accent:     #65C6C7;
+  --accent-lt:  #A5DEDF;
+  --accent-dp:  #197774;
+  --sand:       #FBF6F0;
+  --sand-deep:  #F5EDE4;
+  --soft:       #EAF8F8;
+  --tint:       #F4FBFB;
+  --border:     #E2E9ED;
+  --border-str: #CFDBE2;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+a { color: inherit; text-decoration: none; }
+
+@page { size: A4; margin: 0; }
+
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body {
+  font-family: 'Manrope', system-ui, sans-serif;
+  color: var(--text);
+  background: #fff;
+  font-size: 9.6pt;
+  line-height: 1.58;
+  font-feature-settings: "ss01" on, "cv01" on;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Seitengerüst ------------------------------------------------------- */
+.page {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+  page-break-after: always;
+  background: #fff;
+}
+.page:last-child { page-break-after: auto; }
+
+.pad { padding: 17mm 17mm 0; }
+
+/* --- Typografie --------------------------------------------------------- */
+h1, h2, h3, h4 { color: var(--ink); font-weight: 800; letter-spacing: -0.028em; }
+
+.h-xl { font-size: 33pt; line-height: 1.04; letter-spacing: -0.035em; }
+.h-lg { font-size: 20pt; line-height: 1.12; letter-spacing: -0.03em; }
+.h-sm { font-size: 10.8pt; line-height: 1.28; letter-spacing: -0.016em; font-weight: 800; }
+
+.label {
+  font-size: 6.6pt;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.17em;
+  color: var(--accent-dp);
+}
+.label-on-dark { color: var(--accent); }
+
+.lead { font-size: 11pt; line-height: 1.5; color: var(--muted); letter-spacing: -0.012em; }
+
+/* --- Marke -------------------------------------------------------------- */
+.brand { display: flex; align-items: center; gap: 3.2mm; }
+.brand .mark { width: 12mm; height: 12mm; flex: none; }
+.brand .words { display: flex; flex-direction: column; line-height: 1.34; }
+.brand .words .top {
+  font-size: 6.5pt; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.115em;
+}
+.brand .words .name {
+  font-size: 8pt; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.115em;
+}
+.brand.on-dark .words { color: #fff; }
+.brand.on-dark .words .top { color: rgba(255,255,255,0.85); }
+
+/* --- Titelseite --------------------------------------------------------- */
+.cover-top {
+  position: relative;
+  background: var(--ink);
+  color: #fff;
+  padding: 16mm 17mm 17mm;
+  height: 176mm;
+  overflow: hidden;
+}
+/* Das Wellenmotiv der Marke, groß und leise — derselbe Strich, der im
+   Logo unter dem Dach steht. Ohne Dach: das steht schon oben links. */
+.cover-waves {
+  position: absolute; right: -14mm; bottom: -8mm;
+  width: 150mm; height: 96mm; opacity: 0.16;
+}
+.cover-glow {
+  position: absolute; left: -40mm; top: -50mm;
+  width: 130mm; height: 130mm; border-radius: 50%;
+  background: radial-gradient(circle, rgba(101,198,199,0.30) 0%, rgba(101,198,199,0) 70%);
+}
+.cover-head { position: relative; display: flex; justify-content: space-between; align-items: flex-start; }
+.cover-meta { text-align: right; font-size: 7pt; line-height: 1.7; color: rgba(255,255,255,0.72); }
+.cover-meta strong { color: #fff; font-weight: 700; display: block; letter-spacing: 0.02em; }
+
+.cover-body { position: relative; margin-top: 30mm; }
+.cover-body h1 { color: #fff; }
+.cover-rule { width: 22mm; height: 2.4pt; background: var(--accent); border-radius: 2pt; margin: 7mm 0 6mm; }
+.cover-for { font-size: 10.5pt; line-height: 1.5; color: rgba(255,255,255,0.88); max-width: 108mm; }
+.cover-for b { color: #fff; font-weight: 700; }
+
+/* Kennzahlen auf dem dunklen Block */
+.cover-figures { position: relative; display: flex; gap: 10mm; margin-top: 17mm; }
+.fig-box .cap {
+  font-size: 6.4pt; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.15em; color: var(--accent); display: block; margin-bottom: 2.4mm;
+}
+.fig-box .num {
+  font-size: 23pt; font-weight: 800; letter-spacing: -0.035em; color: #fff;
+  line-height: 1; font-variant-numeric: tabular-nums;
+}
+.fig-box .num small { font-size: 10pt; font-weight: 700; letter-spacing: -0.01em; }
+.fig-box .sub { font-size: 7.4pt; color: rgba(255,255,255,0.68); margin-top: 1.8mm; }
+.fig-sep { width: 0.6pt; background: rgba(255,255,255,0.16); align-self: stretch; }
+
+/* --- Link-Karten -------------------------------------------------------- */
+.cover-bottom { padding: 11mm 17mm 0; }
+.links { display: flex; gap: 5mm; }
+.link-card {
+  display: block;
+  flex: 1;
+  border: 0.9pt solid var(--border-str);
+  border-radius: 4mm;
+  padding: 6mm 6mm 5.4mm;
+  background: linear-gradient(180deg, #fff 0%, var(--tint) 100%);
+}
+.link-card .ico { width: 7mm; height: 7mm; margin-bottom: 3.4mm; display: block; }
+.link-card .k { font-size: 6.4pt; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-dp); }
+.link-card .t { font-size: 11.5pt; font-weight: 800; color: var(--ink); letter-spacing: -0.025em; margin-top: 1.6mm; }
+.link-card .u {
+  font-size: 8pt; font-weight: 700; color: var(--accent-dp);
+  margin-top: 2.6mm; word-break: break-all; line-height: 1.4;
+}
+.link-card .d { font-size: 7.6pt; color: var(--muted); margin-top: 2.2mm; line-height: 1.45; }
+
+/* Inhaltszeile — füllt den Fuß der Titelseite und sagt, was kommt. */
+.toc { display: flex; margin-top: 9mm; border-top: 0.7pt solid var(--border); }
+.toc .i { flex: 1; padding: 4.6mm 4mm 0 0; }
+.toc .i .n { font-size: 6.4pt; font-weight: 800; letter-spacing: 0.15em; color: var(--accent-dp); }
+.toc .i .t {
+  font-size: 8.4pt; font-weight: 700; color: var(--ink);
+  margin-top: 1.8mm; letter-spacing: -0.012em; line-height: 1.34;
+}
+
+.cover-foot {
+  position: absolute; left: 17mm; right: 17mm; bottom: 11mm;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  font-size: 7pt; color: var(--muted);
+  border-top: 0.7pt solid var(--border); padding-top: 4mm;
+}
+
+/* --- Kopf der Innenseiten ---------------------------------------------- */
+.sheet-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-bottom: 0.7pt solid var(--border); padding-bottom: 4mm; margin-bottom: 11mm;
+}
+.sheet-head .who { font-size: 7pt; font-weight: 700; color: var(--ink); letter-spacing: 0.04em; }
+.sheet-head .what { font-size: 7pt; color: var(--muted); }
+
+/* --- Nummerierte Punkte ------------------------------------------------- */
+.points { margin-top: 9mm; }
+.point {
+  display: grid; grid-template-columns: 13mm 1fr; gap: 0 5mm;
+  padding: 6.2mm 0;
+  border-top: 0.7pt solid var(--border);
+}
+.point:last-child { border-bottom: 0.7pt solid var(--border); }
+.point .n {
+  font-size: 15pt; font-weight: 800; color: var(--accent);
+  letter-spacing: -0.03em; line-height: 1; padding-top: 0.6mm;
+  font-variant-numeric: tabular-nums;
+}
+.point .body p { margin-top: 2.4mm; color: var(--muted); font-size: 9.4pt; max-width: 128mm; }
+.point .body .keep { color: var(--ink); font-weight: 700; }
+
+/* --- Hervorgehobener Kasten -------------------------------------------- */
+.callout {
+  margin-top: 9mm;
+  background: var(--sand);
+  border: 0.9pt solid var(--sand-deep);
+  border-radius: 4mm;
+  padding: 6.6mm 7.5mm;
+}
+.callout .h-sm { margin-bottom: 2.6mm; }
+.callout p { color: var(--muted); font-size: 9.2pt; max-width: 142mm; }
+.callout p b { color: var(--ink); font-weight: 700; }
+.callout.accent { background: var(--soft); border-color: var(--accent-lt); }
+
+/* --- Zwei Spalten mit Listen ------------------------------------------- */
+.cols { display: flex; gap: 9mm; margin-top: 7mm; }
+.col { flex: 1; }
+.col > .head { display: flex; align-items: center; gap: 2.8mm; padding-bottom: 3.4mm; border-bottom: 1.4pt solid var(--ink); }
+.col > .head .ico { width: 5.6mm; height: 5.6mm; flex: none; }
+.col > .head .h-sm { letter-spacing: -0.012em; }
+ul.ticks { list-style: none; margin-top: 4.4mm; }
+ul.ticks li {
+  position: relative; padding-left: 5.6mm; margin-bottom: 2.4mm;
+  font-size: 8.9pt; line-height: 1.44; color: var(--text);
+}
+ul.ticks li::before {
+  content: ""; position: absolute; left: 0; top: 1.4mm;
+  width: 2.6mm; height: 1.4mm;
+  border-left: 1.3pt solid var(--accent-dp); border-bottom: 1.3pt solid var(--accent-dp);
+  transform: rotate(-45deg);
+}
+ul.ticks li b { font-weight: 700; color: var(--ink); }
+
+/* --- Technik-Band ------------------------------------------------------- */
+.band {
+  margin-top: 8mm;
+  background: var(--ink);
+  border-radius: 4mm;
+  padding: 6.6mm 7.5mm;
+  color: #fff;
+}
+.band .label { color: var(--accent); }
+.band .grid { display: flex; gap: 6.5mm; margin-top: 5mm; }
+.band .cell { flex: 1; }
+/* Gleiche Grundlinie für alle vier Beschreibungen, auch wenn ein Titel umbricht. */
+.band .cell .t { font-size: 8.6pt; font-weight: 800; color: #fff; letter-spacing: -0.012em; min-height: 7.6mm; line-height: 1.2; }
+.band .cell .d { font-size: 7.6pt; color: rgba(255,255,255,0.68); line-height: 1.45; }
+
+/* --- Kostentabelle ----------------------------------------------------- */
+.cost { width: 100%; border-collapse: collapse; margin-top: 8mm; }
+.cost th {
+  text-align: left; font-size: 6.5pt; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.15em; color: var(--accent-dp);
+  padding-bottom: 3.2mm; border-bottom: 1.4pt solid var(--ink);
+}
+.cost th.r, .cost td.r { text-align: right; }
+.cost td { padding: 5.4mm 0; border-bottom: 0.7pt solid var(--border); vertical-align: top; }
+.cost td .t { font-size: 10.4pt; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; }
+.cost td .d { font-size: 7.8pt; color: var(--muted); margin-top: 1.4mm; max-width: 112mm; line-height: 1.45; }
+.cost td.r .v {
+  font-size: 14pt; font-weight: 800; color: var(--ink);
+  letter-spacing: -0.03em; white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+.cost td.r .p { font-size: 7.4pt; color: var(--muted); margin-top: 1mm; }
+.cost tr.was td { border-bottom: none; }
+.cost tr.was td .t { color: var(--muted); font-weight: 700; font-size: 9.4pt; }
+.cost tr.was td.r .v { color: var(--muted); font-size: 11pt; text-decoration: line-through; text-decoration-thickness: 0.8pt; }
+
+/* --- Ersparnis ---------------------------------------------------------- */
+.save { display: flex; gap: 5mm; margin-top: 9mm; }
+.save .cell {
+  flex: 1; border-radius: 4mm; padding: 6mm 6mm 5.6mm;
+  background: var(--soft); border: 0.9pt solid var(--accent-lt);
+}
+.save .cell .k { font-size: 6.4pt; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-dp); }
+.save .cell .v {
+  font-size: 21pt; font-weight: 800; color: var(--ink); letter-spacing: -0.035em;
+  line-height: 1; margin-top: 3mm; font-variant-numeric: tabular-nums;
+}
+.save .cell .d { font-size: 7.6pt; color: var(--muted); margin-top: 2.4mm; line-height: 1.45; }
+
+/* --- Schritte ----------------------------------------------------------- */
+.steps { margin-top: 9mm; }
+.step {
+  display: grid; grid-template-columns: 8mm 1fr; gap: 0 5mm;
+  padding: 6mm 0; border-top: 0.7pt solid var(--border);
+}
+.step:last-child { border-bottom: 0.7pt solid var(--border); }
+.step .dot {
+  width: 7mm; height: 7mm; border-radius: 50%;
+  background: var(--ink); color: #fff;
+  font-size: 8pt; font-weight: 800; line-height: 7mm; text-align: center;
+}
+.step .t { font-size: 10.4pt; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; }
+.step .d { font-size: 9pt; color: var(--muted); margin-top: 1.8mm; max-width: 138mm; line-height: 1.5; }
+.step .d b { color: var(--ink); font-weight: 700; }
+
+/* --- Signatur ----------------------------------------------------------- */
+.sign {
+  position: absolute; left: 17mm; right: 17mm; bottom: 20mm;
+  border-top: 0.7pt solid var(--border); padding-top: 6mm;
+  display: flex; justify-content: space-between; align-items: flex-end;
+}
+.sign .from .n { font-size: 10.4pt; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; }
+.sign .from .r { font-size: 7.6pt; color: var(--muted); margin-top: 1mm; }
+.sign .from .c { font-size: 8.4pt; font-weight: 700; color: var(--accent-dp); margin-top: 2.6mm; }
+.sign .note { font-size: 7pt; color: var(--muted); text-align: right; line-height: 1.65; max-width: 74mm; }
+.sign .note b { color: var(--ink); font-weight: 700; }
+
+/* --- Fußzeile der Innenseiten ------------------------------------------ */
+.foot {
+  position: absolute; left: 17mm; right: 17mm; bottom: 10mm;
+  display: flex; justify-content: space-between;
+  font-size: 6.6pt; color: var(--muted);
+  border-top: 0.7pt solid var(--border); padding-top: 3.4mm;
+}
+/* --- Bildschirme der App ------------------------------------------------ */
+.shot {
+  overflow: hidden;
+  border-radius: 3.2mm;
+  border: 0.8pt solid var(--border-str);
+  background: #F3F6F8;
+  box-shadow: 0 5mm 12mm -7mm rgba(11,37,69,0.32);
+}
+.shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.shot.rechner { aspect-ratio: 1600 / 790; }
+.shot.telefon { aspect-ratio: 620 / 860; border-radius: 4.6mm; }
+.shot.unten img { object-position: bottom; }
+.shots-telefon { display: flex; gap: 6mm; margin-top: 7mm; }
+.shots-telefon figure { flex: 1; min-width: 0; }
+figcaption { font-size: 7.4pt; color: var(--muted); margin-top: 2.6mm; line-height: 1.45; }
+figcaption b { display: block; font-size: 8.2pt; font-weight: 800; color: var(--ink); letter-spacing: -0.01em; margin-bottom: 0.6mm; }
+</style>
+</head>
+<body>
+
+<!-- ====================================================================
+     Seite 1 — Titel, Zahlen, die beiden Links
+==================================================================== -->
+<div class="page">
+  <div class="cover-top">
+    <div class="cover-glow"></div>
+    <svg class="cover-waves" viewBox="0 0 160 100" fill="none" aria-hidden="true">
+      <g stroke="#65C6C7" stroke-width="1.5" stroke-linecap="round" fill="none">
+        <path d="M0 14q10-9.5 20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0"/>
+        <path d="M-6 31q11-9.5 22 0t22 0t22 0t22 0t22 0t22 0t22 0t22 0"/>
+        <path d="M0 48q10-9.5 20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0"/>
+        <path d="M-4 65q11-9.5 22 0t22 0t22 0t22 0t22 0t22 0t22 0t22 0"/>
+        <path d="M2 82q10-9.5 20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0"/>
+      </g>
+    </svg>
+
+    <div class="cover-head">
+      <div class="brand on-dark">
+        <svg class="mark" viewBox="0 0 68 62" fill="none" aria-hidden="true">
+          <g stroke="#65C6C7" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M12 34.5V21.8L34 6l22 15.8v12.7"/>
+            <path d="M14 39.5q5-4.4 10 0t10 0t10 0t10 0"/>
+            <path d="M9 46.5q6.25-4.4 12.5 0t12.5 0t12.5 0t12.5 0"/>
+            <path d="M15 53.5q4.75-4.4 9.5 0t9.5 0t9.5 0t9.5 0"/>
+          </g>
+        </svg>
+        <span class="words">
+          <span class="top">Büro für Immobilien<br>Bewertung &amp; Vermittlung</span>
+          <span class="name">Silke Abelen</span>
+        </span>
+      </div>
+      <div class="cover-meta">
+        <strong>Angebot 2026-10</strong>
+        6. Oktober 2026<br>
+        Stefan Dirnberger
+      </div>
+    </div>
+
+    <div class="cover-body">
+      <span class="label label-on-dark">Angebot</span>
+      <h1 class="h-xl" style="margin-top:5mm">Neue Website<br>und eigene App</h1>
+      <div class="cover-rule"></div>
+      <p class="cover-for">
+        Ihr Auftritt neu gebaut — und eine App, mit der Sie Objekte, Preise, Fotos,
+        Referenzen und Anfragen <b>selbst führen</b>. Vom Telefon oder vom Rechner,
+        in Minuten. Die Website ist sofort aktuell.
+      </p>
+
+      <div class="cover-figures">
+        <div class="fig-box">
+          <span class="cap">Website + App</span>
+          <div class="num">10.000 <small>€</small></div>
+          <div class="sub">einmalig, fertig eingerichtet</div>
+        </div>
+        <div class="fig-sep"></div>
+        <div class="fig-box">
+          <span class="cap">Betrieb</span>
+          <div class="num">79 <small>€ / Jahr</small></div>
+          <div class="sub">statt 200 € bei Wix</div>
+        </div>
+        <div class="fig-sep"></div>
+        <div class="fig-box">
+          <span class="cap">Jede Änderung</span>
+          <div class="num">0 <small>€</small></div>
+          <div class="sub">Sie pflegen alles selbst</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <span class="label">Zum Ansehen</span>
+    <div class="links" style="margin-top:5mm">
+      <a class="link-card" href="https://abelen-immobilien.vercel.app">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#197774" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9.2"/>
+          <path d="M2.8 12h18.4M12 2.8a15 15 0 0 1 0 18.4M12 2.8a15 15 0 0 0 0 18.4"/>
+        </svg>
+        <div class="k">Website</div>
+        <div class="t">Der neue Auftritt</div>
+        <div class="u">abelen-immobilien.vercel.app</div>
+        <div class="d">Die Doppelhaushälfte steht mit den geänderten 395.000 € bereits drin.</div>
+      </a>
+      <a class="link-card" href="https://abelen-immobilien.vercel.app/admin">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#197774" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6.4" y="2.2" width="11.2" height="19.6" rx="2.6"/>
+          <path d="M10.6 5.4h2.8"/>
+          <circle cx="12" cy="18.2" r="1.05" fill="#197774" stroke="none"/>
+        </svg>
+        <div class="k">App</div>
+        <div class="t">Ihr Zugang</div>
+        <div class="u">abelen-immobilien.vercel.app/admin</div>
+        <div class="d">Ihr Zugang ist eingerichtet. Wir gehen die App gemeinsam einmal durch.</div>
+      </a>
+    </div>
+
+    <div class="toc">
+      <div class="i"><div class="n">02</div><div class="t">Was sich für<br>Sie ändert</div></div>
+      <div class="i"><div class="n">03</div><div class="t">So sieht<br>Ihre App aus</div></div>
+      <div class="i"><div class="n">04</div><div class="t">Was enthalten<br>ist</div></div>
+      <div class="i"><div class="n">05</div><div class="t">Was es<br>kostet</div></div>
+      <div class="i"><div class="n">06</div><div class="t">Wie es<br>weitergeht</div></div>
+    </div>
+  </div>
+
+  <div class="cover-foot">
+    <span>Angebot für Silke Abelen · Büro für Immobilien Bewertung &amp; Vermittlung, Leichlingen</span>
+    <span>Seite 1 von 6</span>
+  </div>
+</div>
+
+<!-- ====================================================================
+     Seite 2 — Was sich für Sie ändert
+==================================================================== -->
+<div class="page">
+  <div class="pad">
+    <div class="sheet-head">
+      <span class="who">Angebot · Neue Website und eigene App</span>
+      <span class="what">Silke Abelen · Oktober 2026</span>
+    </div>
+
+    <span class="label">Der Unterschied</span>
+    <h2 class="h-lg" style="margin-top:4.6mm">Was sich für Sie ändert</h2>
+    <p class="lead" style="margin-top:5mm; max-width:140mm">
+      Fünf Dinge, die Sie im Alltag merken. Alles andere bleibt, wie Ihre Kunden es kennen —
+      die Texte stammen zum größten Teil wörtlich von Ihrem bisherigen Auftritt.
+    </p>
+
+    <div class="points">
+      <div class="point">
+        <div class="n">01</div>
+        <div class="body">
+          <div class="h-sm">Sie führen Ihre Website selbst</div>
+          <p>
+            Preise, Objekte, Fotos und Referenzen ändern Sie in der App — <span class="keep">in
+            zwei Minuten</span>, vom Telefon oder vom Rechner. Die Website ist sofort aktuell.
+            Kein Anruf, keine Wartezeit, keine Rechnung für eine Änderung.
+          </p>
+        </div>
+      </div>
+
+      <div class="point">
+        <div class="n">02</div>
+        <div class="body">
+          <div class="h-sm">Jede Anfrage an einem Ort</div>
+          <p>
+            Anfragen aus dem Kontaktformular stehen geordnet in der App — mit Anliegen,
+            Kontaktdaten und Ihrem Stand: neu, in Arbeit, erledigt. <span class="keep">Antworten
+            ist ein Tipp</span>: die E-Mail steht mit Betreff und Anrede bereit. Zusätzlich
+            kommt jede Anfrage per Mail.
+          </p>
+        </div>
+      </div>
+
+      <div class="point">
+        <div class="n">03</div>
+        <div class="body">
+          <div class="h-sm">Fotos direkt vom Telefon</div>
+          <p>
+            Aufnehmen, hochladen, fertig. <span class="keep">Die App verkleinert große Handyfotos
+            selbst</span>, damit die Website schnell bleibt. Titelbild und Reihenfolge legen
+            Sie mit einem Fingertipp fest.
+          </p>
+        </div>
+      </div>
+
+      <div class="point">
+        <div class="n">04</div>
+        <div class="body">
+          <div class="h-sm">Schneller, fürs Telefon gebaut, bei Google auffindbar</div>
+          <p>
+            Die Seite ist für das Telefon entworfen, nicht dafür verkleinert. Jede Seite hat
+            Titel, Beschreibung und strukturierte Daten. <span class="keep">Ihre alten Adressen
+            führen automatisch auf die neuen Seiten</span> — beim Umzug geht kein Besucher und
+            keine Google-Platzierung verloren.
+          </p>
+        </div>
+      </div>
+
+      <div class="point">
+        <div class="n">05</div>
+        <div class="body">
+          <div class="h-sm">Unabhängig — und günstiger im Betrieb</div>
+          <p>
+            Kein Baukasten mehr: Website, Fotos und Daten liegen auf Servern in Frankfurt,
+            jedes Bild im eigenen Projekt. <span class="keep">Betrieb: 79 € im Jahr statt
+            200 €</span> — Verschlüsselung und Updates der Plattform inklusive.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Angebot 2026-10 · Website und App für Silke Abelen</span>
+    <span>Seite 2 von 6</span>
+  </div>
+</div>
+
+<!-- ====================================================================
+     Seite 3 — So sieht Ihre App aus
+==================================================================== -->
+<div class="page">
+  <div class="pad">
+    <div class="sheet-head">
+      <span class="who">Angebot · Neue Website und eigene App</span>
+      <span class="what">Silke Abelen · Oktober 2026</span>
+    </div>
+
+    <span class="label">Ihre App</span>
+    <h2 class="h-lg" style="margin-top:4.6mm">So sieht Ihre App aus</h2>
+    <p class="lead" style="margin-top:5mm; max-width:146mm">
+      Gebaut für genau eine Nutzerin: Sie. Ohne Fachbegriffe, ohne Einstellungen, die man
+      erst verstehen muss — am Rechner wie am Telefon.
+    </p>
+
+    <figure style="margin-top:8mm">
+      <div class="shot rechner"><img src="assets/app-rechner.jpg" alt=""></div>
+      <figcaption><b>Die Übersicht am Rechner</b>Wartende Anfragen, was online ist, Ihre Objekte — auf einen Blick.</figcaption>
+    </figure>
+
+    <div class="shots-telefon">
+      <figure>
+        <div class="shot telefon"><img src="assets/app-telefon-start.jpg" alt=""></div>
+        <figcaption><b>Unterwegs</b>Dieselbe App auf dem Telefon, mit einem Tipp auf dem Startbildschirm.</figcaption>
+      </figure>
+      <figure>
+        <div class="shot telefon unten"><img src="assets/app-telefon-speichern.jpg" alt=""></div>
+        <figcaption><b>Speichern — sofort online</b>Preis geändert, gespeichert, die Website ist aktuell.</figcaption>
+      </figure>
+      <figure>
+        <div class="shot telefon"><img src="assets/app-telefon-anfrage.jpg" alt=""></div>
+        <figcaption><b>Eine Anfrage</b>Antworten und Anrufen mit einem Tipp, Stand und Notiz daneben.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Angebot 2026-10 · Website und App für Silke Abelen</span>
+    <span>Seite 3 von 6</span>
+  </div>
+</div>
+
+<!-- ====================================================================
+     Seite 4 — Leistungsumfang
+==================================================================== -->
+<div class="page">
+  <div class="pad">
+    <div class="sheet-head">
+      <span class="who">Angebot · Neue Website und eigene App</span>
+      <span class="what">Silke Abelen · Oktober 2026</span>
+    </div>
+
+    <span class="label">Leistungsumfang</span>
+    <h2 class="h-lg" style="margin-top:4.6mm">Was enthalten ist</h2>
+    <p class="lead" style="margin-top:5mm; max-width:140mm">
+      Beides ist gebaut und läuft. Im Preis ist die fertige Einrichtung enthalten —
+      mit dem Umzug aller Inhalte und Fotos Ihres bisherigen Auftritts.
+    </p>
+
+    <div class="cols">
+      <div class="col">
+        <div class="head">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.4 9.6 12 3l8.6 6.6V20a1.2 1.2 0 0 1-1.2 1.2H4.6A1.2 1.2 0 0 1 3.4 20z"/>
+            <path d="M9.4 21.2v-7h5.2v7"/>
+          </svg>
+          <span class="h-sm">Website</span>
+        </div>
+        <ul class="ticks">
+          <li><b>Neun Seiten</b> — Start, Dienstleistungen, Objekte &amp; Referenzen, Über Mich, Für Käufer &amp; Verkäufer, Anlagen, Kontakt, Bewertung, Verkauf</li>
+          <li><b>Eigene Seite je Objekt</b> mit Fotogalerie, Eckdaten und Anfrage-Knopf</li>
+          <li><b>Referenzen</b> mit vermittelten Objekten und Kundenmeinung</li>
+          <li><b>Karte</b> Ihres Tätigkeitsgebiets von Leverkusen bis Wuppertal</li>
+          <li><b>Kontaktformular</b> mit Anliegen-Auswahl — auf jeder Seite erreichbar</li>
+          <li><b>Häufige Fragen</b> auf den Leistungsseiten, mit Fundstellen belegt</li>
+          <li><b>Impressum, Datenschutz, AGB</b> — Rechtstexte wörtlich übernommen</li>
+          <li><b>Ihre Siegel</b> von Sprengnetter und ImmoScout24</li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <div class="head">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6.6" y="2.4" width="10.8" height="19.2" rx="2.4"/>
+            <path d="M10.8 5.4h2.4"/>
+            <circle cx="12" cy="18" r="1" fill="#0B2545" stroke="none"/>
+          </svg>
+          <span class="h-sm">App</span>
+        </div>
+        <ul class="ticks">
+          <li><b>Objekte</b> anlegen, ändern, online stellen, sortieren — mit Rückfrage vor dem Löschen</li>
+          <li><b>Preis ändern</b> — ein Feld, speichern, fertig</li>
+          <li><b>Fotos vom Telefon</b>, Titelbild und Reihenfolge mit einem Fingertipp</li>
+          <li><b>Eckdaten, Ausstattung, Energieausweis</b> Feld für Feld, mit Vorschlägen</li>
+          <li><b>Referenzen</b> mit Kundenmeinung — Zitat, Sterne, Kurzurteil</li>
+          <li><b>Anfragen</b> als Posteingang — antworten, anrufen, Stand, Notiz</li>
+          <li><b>Passwort</b> selbst ändern, jederzeit</li>
+          <li><b>Auf dem Startbildschirm</b> ablegbar, dann öffnet sie wie eine App</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="band">
+      <span class="label">Technik und Betrieb — enthalten</span>
+      <div class="grid">
+        <div class="cell">
+          <div class="t">Server in Frankfurt</div>
+          <div class="d">Website, Fotos und Anfragen in deutschen Rechenzentren.</div>
+        </div>
+        <div class="cell">
+          <div class="t">Unabhängig von Wix</div>
+          <div class="d">Jedes Bild im eigenen Projekt, jede alte Adresse leitet weiter.</div>
+        </div>
+        <div class="cell">
+          <div class="t">Läuft auch in ruhigen Wochen</div>
+          <div class="d">Ein täglicher Dienst hält Ihre Daten erreichbar.</div>
+        </div>
+        <div class="cell">
+          <div class="t">Keine Cookies</div>
+          <div class="d">Kein Tracking, kein Einwilligungs&shy;banner für fremde Dienste.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout accent">
+      <div class="h-sm">Und wenn Sie etwas nicht selbst machen wollen</div>
+      <p>
+        Dann bleibt es, wie es war: Sie schreiben mir, ich mache es. Die App nimmt Ihnen
+        den Umweg über mich ab — sie schreibt ihn Ihnen nicht vor.
+      </p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Angebot 2026-10 · Website und App für Silke Abelen</span>
+    <span>Seite 4 von 6</span>
+  </div>
+</div>
+
+<!-- ====================================================================
+     Seite 5 — Kosten
+==================================================================== -->
+<div class="page">
+  <div class="pad">
+    <div class="sheet-head">
+      <span class="who">Angebot · Neue Website und eigene App</span>
+      <span class="what">Silke Abelen · Oktober 2026</span>
+    </div>
+
+    <span class="label">Kosten</span>
+    <h2 class="h-lg" style="margin-top:4.6mm">Was es kostet</h2>
+
+    <table class="cost">
+      <tr>
+        <th>Position</th>
+        <th class="r">Betrag</th>
+      </tr>
+      <tr>
+        <td>
+          <div class="t">Website und App</div>
+          <div class="d">Entwicklung von Website und App, Umzug aller Inhalte und Fotos vom
+            bisherigen Auftritt, Einrichtung von Domain, Postfach-Anbindung und Ihrem Zugang,
+            persönliche Einweisung.</div>
+        </td>
+        <td class="r">
+          <div class="v">10.000 €</div>
+          <div class="p">einmalig</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="t">Betrieb und Hosting</div>
+          <div class="d">Server in Frankfurt, Datenbank und Fotospeicher für die App,
+            Zertifikat, Updates der Plattform.</div>
+        </td>
+        <td class="r">
+          <div class="v">79 €</div>
+          <div class="p">pro Jahr</div>
+        </td>
+      </tr>
+      <tr class="was">
+        <td>
+          <div class="t">bisher: Wix-Abo</div>
+        </td>
+        <td class="r">
+          <div class="v">200 €</div>
+          <div class="p">pro Jahr</div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="save">
+      <div class="cell">
+        <div class="k">Einmalig</div>
+        <div class="v">10.000 €</div>
+        <div class="d">Website und App, fertig eingerichtet, mit Einweisung.</div>
+      </div>
+      <div class="cell">
+        <div class="k">Im Jahr</div>
+        <div class="v">79 €</div>
+        <div class="d">Betrieb in Frankfurt — 121 € weniger als das Wix-Abo.</div>
+      </div>
+      <div class="cell">
+        <div class="k">Je Änderung</div>
+        <div class="v">0 €</div>
+        <div class="d">Preise, Fotos, Objekte: Sie ändern alles selbst.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:10mm">
+      <div class="h-sm">Der Zeitpunkt passt</div>
+      <p>
+        Im Oktober steht bei Wix die nächste Jahresgebühr an. Ziehen wir vor dem Stichtag
+        um, entfällt sie — und ab dann kostet der Betrieb 79 € statt 200 € im Jahr.
+      </p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Angebot 2026-10 · Website und App für Silke Abelen</span>
+    <span>Seite 5 von 6</span>
+  </div>
+</div>
+
+<!-- ====================================================================
+     Seite 6 — Nächste Schritte und Unterschrift
+==================================================================== -->
+<div class="page">
+  <div class="pad">
+    <div class="sheet-head">
+      <span class="who">Angebot · Neue Website und eigene App</span>
+      <span class="what">Silke Abelen · Oktober 2026</span>
+    </div>
+
+    <span class="label">Nächste Schritte</span>
+    <h2 class="h-lg" style="margin-top:4.6mm">Wie es weitergeht</h2>
+    <p class="lead" style="margin-top:5mm; max-width:140mm">
+      Drei Schritte. Den ersten können Sie sofort machen — die Links stehen auf Seite&nbsp;1.
+    </p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="dot">1</div>
+        <div>
+          <div class="t">Reinschauen</div>
+          <div class="d">Website und App über die Links auf Seite&nbsp;1, gern auch vom Telefon.
+            Sagen Sie mir, was Ihnen auffällt — und ob die Texte so stehen bleiben sollen.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="dot">2</div>
+        <div>
+          <div class="t">Gemeinsam durchgehen</div>
+          <div class="d">Eine halbe Stunde, in Ruhe: anmelden, einen Preis ändern, ein Foto
+            tauschen, eine Anfrage beantworten. Danach machen Sie das selbst — oder Sie
+            schreiben mir weiterhin, ganz wie Sie möchten.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="dot">3</div>
+        <div>
+          <div class="t">Umziehen — vor der Wix-Verlängerung</div>
+          <div class="d">Ich stelle <b>www.abelen-immobilien.de</b> auf die neue Seite um.
+            Der Wechsel selbst dauert Minuten, die alten Adressen leiten ab dann weiter.
+            Danach kündigen Sie das Wix-Abo, bevor es sich verlängert.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="h-sm">Zwei Sätze brauchen Ihr OK</div>
+      <p>
+        Die Website verspricht „Antwort in der Regel innerhalb eines Werktages“ und
+        „Marktpreiseinschätzung in der Regel innerhalb einer Woche“. Sind die Fristen zu
+        knapp, ändere ich sie überall gleichzeitig.
+      </p>
+    </div>
+  </div>
+
+  <div class="sign">
+    <div class="from">
+      <div class="n">Stefan Dirnberger</div>
+      <div class="r">Entwicklung und Betreuung von Website und App</div>
+      <div class="c"><a href="mailto:dirnbergerstefan8@gmail.com">dirnbergerstefan8@gmail.com</a></div>
+    </div>
+    <div class="note">
+      Alle Beträge in Euro.<br>
+      Dieses Angebot gilt bis zum <b>31. Oktober 2026</b>.
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Angebot 2026-10 · Website und App für Silke Abelen</span>
+    <span>Seite 6 von 6</span>
+  </div>
+</div>
+
+</body>
+</html>

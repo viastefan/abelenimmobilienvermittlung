@@ -3,6 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: [
+      // Fotos aus der App: neue liegen bei Vercel Blob, ältere im Speicher der Datenbank.
+      {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+      },
       {
         protocol: "https",
         hostname: "*.supabase.co",
