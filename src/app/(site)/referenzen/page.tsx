@@ -71,7 +71,7 @@ export default async function ObjekteUndReferenzenPage() {
           <SectionHeading
             size="lg"
             title="Aktuell im Angebot"
-            description="Persönlich geprüft und betreut. Neue Objekte ergänzen wir fortlaufend."
+            description="Persönlich geprüft und betreut. Neue Objekte kommen fortlaufend dazu."
           />
 
           {properties.length > 0 ? (
@@ -90,9 +90,9 @@ export default async function ObjekteUndReferenzenPage() {
               {properties.length < 3 && <PropertyCtaCard />}
             </div>
           ) : (
-            <div className="mt-10 rounded-[24px] bg-surface-warm p-10 text-center">
+            <div className="mt-10 rounded-[24px] bg-surface-warm p-10 text-center ring-1 ring-border">
               <p className="mx-auto max-w-lg text-[1.0625rem] leading-relaxed text-text-muted">
-                Aktuell ist kein Objekt online. Sprechen Sie uns gerne direkt an — wir beraten Sie
+                Aktuell ist kein Objekt online. Fragen Sie gerne direkt nach — Beratung gibt es
                 auch zu Immobilien, die noch nicht veröffentlicht sind.
               </p>
               <Button href="/kontakt" variant="primary" withArrow className="mt-8">
@@ -108,7 +108,7 @@ export default async function ObjekteUndReferenzenPage() {
           <SectionHeading
             size="lg"
             title="Erfolgreich vermittelt"
-            description="Ein Auszug unserer verkauften und vermieteten Immobilien in Leverkusen und Umgebung."
+            description="Ein Auszug verkaufter und vermieteter Immobilien in Leverkusen und Umgebung."
           />
           <div className="mt-10">
             <ReferenceGrid references={items} />
@@ -139,7 +139,7 @@ export default async function ObjekteUndReferenzenPage() {
 
       <CtaSection
         title="Sie möchten Ihre Immobilie verkaufen oder vermieten?"
-        description="Wir finden den passenden Käufer oder Mieter — persönlich und regional."
+        description="Der passende Käufer oder Mieter für Ihre Immobilie — persönlich und regional gefunden."
         buttonLabel="Immobilie bewerten"
         href="/bewertung"
       />

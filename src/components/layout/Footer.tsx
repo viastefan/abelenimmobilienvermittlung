@@ -32,7 +32,7 @@ function FooterColumn({ title, items }: { title: string; items: { label: string;
 
 export function Footer() {
   return (
-    <footer className="bg-surface-warm">
+    <footer data-fusszeile className="bg-surface-warm">
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.1fr] lg:gap-10 lg:py-16">
         <div>
           <Logo />

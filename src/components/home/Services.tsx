@@ -15,7 +15,7 @@ export function Services() {
           <SectionHeading
             align="center"
             size="lg"
-            title="Was wir für Sie tun können"
+            title="Was Sie erwarten können"
           />
         </Reveal>
 

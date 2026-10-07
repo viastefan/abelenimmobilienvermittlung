@@ -150,7 +150,7 @@ export function ScrollSheet({ label, children }: { label: string; children: Reac
             ? `fixed inset-x-0 bottom-0 z-[61] max-h-[88vh] overflow-y-auto overscroll-contain rounded-t-[24px] bg-white pb-safe shadow-[0_-20px_60px_-28px_rgba(11,37,69,0.65)] ${
                 ziehend ? "" : "transition-transform duration-300 ease-smooth"
               }`
-            : "rounded-[24px] bg-surface-warm p-6 sm:p-8"
+            : "rounded-[24px] bg-surface-warm p-6 ring-1 ring-border sm:p-8"
         }
       >
         {schwebt && (

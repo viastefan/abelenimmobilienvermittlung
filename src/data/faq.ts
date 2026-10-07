@@ -15,7 +15,7 @@ export const bewertungFaq: FaqItem[] = [
   {
     question: "Was kostet eine Immobilienbewertung?",
     answer:
-      "Eine erste Einschätzung im Rahmen eines persönlichen Gesprächs ist unverbindlich. Ein förmliches Wertgutachten, etwa für eine Erbauseinandersetzung oder ein Gerichtsverfahren, ist eine eigene Leistung — dazu beraten wir Sie im Einzelfall.",
+      "Eine erste Einschätzung im Rahmen eines persönlichen Gesprächs ist unverbindlich. Ein förmliches Wertgutachten, etwa für eine Erbauseinandersetzung oder ein Gerichtsverfahren, ist eine eigene Leistung — dazu gibt es im Einzelfall eine Beratung.",
   },
   {
     question: "Wie lange dauert die Bewertung?",
@@ -25,7 +25,7 @@ export const bewertungFaq: FaqItem[] = [
   {
     question: "Welche Unterlagen werden für die Bewertung benötigt?",
     answer:
-      "Hilfreich sind Grundbuchauszug, Flurkarte, Grundrisse, Wohn- und Nutzflächenberechnung sowie der Energieausweis. Bei Eigentumswohnungen kommen Teilungserklärung, Wirtschaftsplan und die Protokolle der letzten Eigentümerversammlungen dazu. Fehlt etwas, unterstützen wir bei der Beschaffung.",
+      "Hilfreich sind Grundbuchauszug, Flurkarte, Grundrisse, Wohn- und Nutzflächenberechnung sowie der Energieausweis. Bei Eigentumswohnungen kommen Teilungserklärung, Wirtschaftsplan und die Protokolle der letzten Eigentümerversammlungen dazu. Fehlt etwas, gibt es Unterstützung bei der Beschaffung.",
   },
   {
     question: "Nach welchem Verfahren wird bewertet?",
@@ -53,7 +53,7 @@ export const verkaufenFaq: FaqItem[] = [
   {
     question: "Brauche ich einen Energieausweis?",
     answer:
-      "Ja. Der Energieausweis muss Interessenten spätestens bei der Besichtigung unaufgefordert vorgelegt und beim Verkauf übergeben werden; die Pflichtangaben daraus gehören bereits in die Anzeige (§ 80 Gebäudeenergiegesetz). Ist keiner vorhanden, kümmern wir uns rechtzeitig darum.",
+      "Ja. Der Energieausweis muss Interessenten spätestens bei der Besichtigung unaufgefordert vorgelegt und beim Verkauf übergeben werden; die Pflichtangaben daraus gehören bereits in die Anzeige (§ 80 Gebäudeenergiegesetz). Ist keiner vorhanden, wird er rechtzeitig beschafft.",
   },
   {
     question: "Kann ich verkaufen, wenn die Immobilie vermietet ist?",

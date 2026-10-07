@@ -221,7 +221,7 @@ export default async function PropertyDetailPage({
                 <h2 className="font-display text-display-sm font-bold text-ink">Energieinformationen</h2>
                 <dl className="mt-5 grid gap-4 sm:grid-cols-2">
                   {property.energy.map((item) => (
-                    <div key={item.label} className="rounded-[24px] bg-surface-warm p-5">
+                    <div key={item.label} className="rounded-[24px] bg-surface-warm p-5 ring-1 ring-border">
                       <dt className="text-[0.8125rem] font-medium text-text-subtle">
                         {item.label}
                       </dt>
@@ -233,7 +233,7 @@ export default async function PropertyDetailPage({
             )}
           </div>
 
-          <aside className="h-fit rounded-[24px] bg-surface-warm p-7 lg:sticky lg:top-32">
+          <aside className="h-fit rounded-[24px] bg-surface-warm p-7 ring-1 ring-border lg:sticky lg:top-32">
             <p className="text-[0.8125rem] font-medium text-text-subtle">Kaufpreis</p>
             <p className="mt-1.5 font-display text-[1.875rem] font-extrabold leading-none text-ink">
               {property.priceLabel}

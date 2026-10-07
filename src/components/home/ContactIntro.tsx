@@ -9,7 +9,7 @@ export function ContactIntro() {
   return (
     <section className="bg-white py-14 lg:py-20">
       <Container>
-        <Reveal className="-mx-6 overflow-hidden bg-surface-warm px-6 py-8 sm:mx-0 sm:rounded-[28px] sm:p-7 lg:p-9">
+        <Reveal className="-mx-6 overflow-hidden bg-surface-warm px-6 py-8 sm:mx-0 sm:rounded-[28px] sm:p-7 sm:ring-1 sm:ring-border lg:p-9">
           <div className="grid gap-7 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12">
             <div>
               <h2 className="balance font-display text-display-lg font-bold text-ink">
@@ -19,14 +19,13 @@ export function ContactIntro() {
               <div className="pretty mt-5 max-w-xl space-y-4 text-[0.9375rem] leading-relaxed text-text-muted">
                 <p>
                   Starten Sie jetzt! Ein Anruf oder eine E-Mail genügt, um Ihre Immobilie
-                  vorzustellen oder Ihre Immobilienwünsche im Detail persönlich mit uns zu
-                  besprechen.
+                  vorzustellen oder Ihre Immobilienwünsche im Detail persönlich zu besprechen.
                 </p>
                 <p>
                   <span className="font-semibold text-ink">Für Immobilienverkäufer bedeutet das:</span>{" "}
                   Nach Ihrer kurzen Vorstellung des Objekts und der Adressangabe erfolgt die
-                  Erstbesichtigung. Vor Ort gehen wir gemeinsam durch die Immobilie und klären
-                  wichtige Details wie Wohnfläche, Baujahr, vorhandene Baugenehmigungen,
+                  Erstbesichtigung. Bei einem gemeinsamen Rundgang vor Ort werden wichtige Details
+                  geklärt, etwa Wohnfläche, Baujahr, vorhandene Baugenehmigungen,
                   Eigentumsrechte oder letzte Renovierungen. Diese Informationen bilden die
                   Grundlage für eine erste Preisermittlung. Innerhalb von etwa einer Woche
                   erhalten Sie den ermittelten Marktpreis – entweder in einem persönlichen
@@ -34,10 +33,9 @@ export function ContactIntro() {
                 </p>
                 <p>
                   <span className="font-semibold text-ink">Für Immobilienkäufer wiederum gilt:</span>{" "}
-                  Sie sind auf der Suche nach einer Immobilie, die genau zu Ihnen passt? In
-                  persönlichen Gesprächen finden wir heraus, welche Wünsche und Anforderungen Sie
-                  haben. So stellen wir sicher, dass wir gemeinsam das passende Objekt für Sie
-                  finden.
+                  Sie sind auf der Suche nach einer Immobilie, die genau zu Ihnen passt?
+                  Persönliche Gespräche klären, welche Wünsche und Anforderungen Sie haben — so
+                  lässt sich gemeinsam das passende Objekt für Sie finden.
                 </p>
               </div>
             </div>
@@ -65,7 +63,7 @@ export function ContactIntro() {
 
                 <p className="mt-6 flex items-start gap-3 rounded-[14px] bg-surface-warm p-4 text-[0.8125rem] leading-relaxed text-text-muted">
                   <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent-mid" strokeWidth={1.6} aria-hidden="true" />
-                  Wir melden uns in der Regel innerhalb eines Werktages persönlich bei Ihnen zurück.
+                  Sie erhalten in der Regel innerhalb eines Werktages eine persönliche Antwort.
                 </p>
 
                 <Button href="/kontakt" variant="primary" withArrow className="mt-6 w-full sm:w-auto">

@@ -87,7 +87,7 @@ export function InquiryForm({
         <CheckCircle2 className="h-8 w-8 text-accent-deep" aria-hidden="true" />
         <h3 className="font-display text-[1.125rem] font-bold text-ink">Vielen Dank für Ihre Anfrage.</h3>
         <p className="text-[0.9375rem] leading-relaxed text-text-muted">
-          Wir melden uns in der Regel innerhalb eines Werktages persönlich bei Ihnen zurück.
+          Sie erhalten in der Regel innerhalb eines Werktages eine persönliche Antwort.
         </p>
       </div>
     );
@@ -115,7 +115,7 @@ export function InquiryForm({
         label="Adresse der Immobilie"
         name="address"
         autoComplete="street-address"
-        hint="Optional — hilft uns bei einer Einschätzung."
+        hint="Optional — hilft bei einer ersten Einschätzung."
       />
 
       <fieldset>
@@ -155,7 +155,7 @@ export function InquiryForm({
           rows={compact ? 4 : 6}
           required
           className={fieldClass}
-          placeholder="Erzählen Sie uns kurz von Ihrer Immobilie oder Ihrem Anliegen."
+          placeholder="Erzählen Sie kurz von Ihrer Immobilie oder Ihrem Anliegen."
         />
       </div>
 
@@ -189,7 +189,7 @@ export function InquiryForm({
         <div role="alert" className="rounded-[14px] bg-warning-soft px-4 py-3 text-sm text-warning">
           <p>{errorMessage}</p>
           <p className="mt-2">
-            Sie erreichen uns auch direkt:{" "}
+            Auch direkt erreichbar:{" "}
             <a href={site.phoneHref} className="font-semibold underline underline-offset-2">
               {site.phone}
             </a>{" "}

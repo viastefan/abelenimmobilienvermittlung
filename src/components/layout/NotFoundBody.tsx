@@ -12,7 +12,7 @@ export function NotFoundBody() {
         </h1>
         <p className="pretty mt-5 text-[0.9375rem] leading-relaxed text-text-muted">
           Möglicherweise wurde die Immobilie bereits vermittelt oder die Seite wurde verschoben.
-          Schauen Sie sich gerne unsere aktuellen Angebote an oder sprechen Sie uns direkt an.
+          Schauen Sie sich gerne die aktuellen Angebote an oder nehmen Sie direkt Kontakt auf.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button href="/" variant="primary">

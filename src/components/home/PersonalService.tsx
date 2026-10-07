@@ -2,30 +2,19 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SiteImage } from "@/components/graphics/SiteImage";
-import { HouseDraw } from "@/components/graphics/HouseDraw";
 import { resolveImage } from "@/lib/imagery";
 import { images } from "@/data/imagery";
 
 /**
- * Text wörtlich von der Startseite des bisherigen Auftritts übernommen.
- *
- * Der Abschnitt trägt den Abschluss der Startseite gleich mit. Vorher
- * standen hier zwei dunkle Blöcke untereinander — derselbe Farbton, aber
- * eine sichtbare Kante dazwischen, an der das Stadtbild abriss und flaches
- * Navy anfing. Das las sich wie ein Fehler. Jetzt ist es eine Fläche: das
- * Foto trägt den oberen Teil und läuft nach unten ins Navy aus, und der
- * Abschluss steht auf dem ruhigen Grund, den es dort hinterlässt.
+ * Inhaltlich der Text von der Startseite des bisherigen Auftritts — ohne
+ * „wir“: Silke Abelen arbeitet allein.
  *
  * Der Verlauf steht dicht über der linken Seite, wo der Text liegt, und
  * verblasst nach rechts, bis das Foto offen liegt — so ist die Schrift zu
- * lesen, ohne das Bild überall zuzudecken.
+ * lesen, ohne das Bild überall zuzudecken. Der Abschluss der Startseite
+ * steht nicht mehr hier, sondern als eigene Karte über der Fußzeile.
  */
-export function PersonalService({
-  cta,
-}: {
-  /** Der Abschluss der Seite. Ohne ihn endet der Abschnitt nach dem Text. */
-  cta?: { title: string; buttonLabel: string; href: string };
-}) {
+export function PersonalService() {
   const image = resolveImage(images.personalService);
 
   return (
@@ -40,10 +29,9 @@ export function PersonalService({
           className="object-[70%_50%] lg:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink-deep via-ink-deep/85 to-ink-deep/20" />
-        {/* Nach unten hin geht das Foto in die Farbe über. Der Abschluss
-            steht dadurch auf einer ruhigen Fläche, ohne dass eine Kante
-            nötig wäre. */}
-        <div className="absolute inset-0 bg-gradient-to-b from-ink-deep/25 via-ink-deep/55 to-ink-deep" />
+        {/* Nach unten hin dunkelt das Foto leicht ab, damit der Abschnitt
+            ruhig endet. */}
+        <div className="absolute inset-0 bg-gradient-to-b from-ink-deep/10 via-ink-deep/25 to-ink-deep/70" />
       </div>
 
       <Container className="relative">
@@ -55,21 +43,20 @@ export function PersonalService({
           <div className="pretty mt-6 space-y-4 text-[0.9375rem] leading-relaxed text-white/80">
             <p>
               …mit viel Erfahrung in der Immobilienvermarktung. Ein Vermittler, der den Erwerb
-              oder Verkauf auch aus einer anderen Perspektive beleuchtet? Wir arbeiten
-              unbürokratisch und lösungsorientiert. Hört sich gut an? Dann lassen Sie uns reden!
+              oder Verkauf auch aus einer anderen Perspektive beleuchtet? Unbürokratisch und
+              lösungsorientiert. Hört sich gut an? Ein Anruf genügt.
             </p>
             <p>
-              <span className="font-semibold text-white">Persönlicher Service:</span> Bei uns
-              stehen Sie im Mittelpunkt, eine enge Zusammenarbeit ist dafür Voraussetzung. Für
-              Ihren Immobilienverkauf bzw. Immobiliensuche möchten wir Ihre Bedürfnisse und
-              Wünsche verstehen, um einen perfekten Käufer oder ein perfektes Zuhause für Sie zu
-              finden.
+              <span className="font-semibold text-white">Persönlicher Service:</span> Sie
+              stehen im Mittelpunkt, eine enge Zusammenarbeit ist dafür Voraussetzung. Ob Verkauf
+              oder Suche — am Anfang steht das Verständnis für Ihre Bedürfnisse und Wünsche, um
+              einen perfekten Käufer oder ein perfektes Zuhause für Sie zu finden.
             </p>
             <p>
-              <span className="font-semibold text-white">Vertrauen und Integrität:</span> Wir
-              legen Wert auf Transparenz und Integrität in allem, was wir anfangen. Sie können
-              sich darauf verlassen, dass wir Ihnen ehrliche und verlässliche Beratung und
-              Unterstützung während des gesamten Kauf- oder Verkaufsprozesses bieten.
+              <span className="font-semibold text-white">Vertrauen und Integrität:</span>{" "}
+              Transparenz und Integrität gelten bei jedem Auftrag. Sie können sich auf ehrliche
+              und verlässliche Beratung und Unterstützung während des gesamten Kauf- oder
+              Verkaufsprozesses verlassen.
             </p>
           </div>
 
@@ -77,32 +64,6 @@ export function PersonalService({
             Über mich
           </Button>
         </Reveal>
-
-        {cta && (
-          /* Eine Haarlinie, kein Schnitt: sie gibt dem Abschluss seinen
-             eigenen Stand, ohne die Fläche zu teilen. */
-          <div className="border-t border-white/[0.09] py-12 lg:py-16">
-            <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16">
-              <Reveal>
-                <p className="balance font-display text-display-lg font-bold text-white">
-                  {cta.title}
-                </p>
-                <Button
-                  href={cta.href}
-                  variant="inverted"
-                  size="lg"
-                  withArrow
-                  className="mt-7 w-full sm:w-auto"
-                >
-                  {cta.buttonLabel}
-                </Button>
-              </Reveal>
-
-              {/* Das Haus der Marke, Strich für Strich gezeichnet. */}
-              <HouseDraw className="mx-auto h-40 w-auto text-accent/45 sm:h-48 lg:mx-0 lg:h-56" />
-            </div>
-          </div>
-        )}
       </Container>
     </section>
   );

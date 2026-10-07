@@ -18,8 +18,10 @@ const config: Config = {
       colors: {
         background: "#FFFFFF",
         surface: "#FFFFFF",
-        // Warm white — the quiet ground colour for alternating sections.
-        "surface-warm": "#FBFCFC",
+        // Kühles Hellgrau — Grund für abwechselnde Abschnitte und für Karten
+        // auf Weiß. Vorher #FBFCFC: von Weiß nicht zu unterscheiden, Karten
+        // und Abschnitte verschwammen. Jetzt dezent, aber zu sehen.
+        "surface-warm": "#F5F8FA",
         // Light turquoise — used sparingly behind cards and quiet panels.
         "surface-soft": "#EAF8F8",
         // Warmes Sandweiß. Der einzige warme Ton der Palette: er trägt den

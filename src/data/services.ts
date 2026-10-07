@@ -15,28 +15,9 @@ export const services = [
     icon: "handshake",
     title: "Immobilienverkauf",
     description:
-      "Wir begleiten Sie von der ersten Beratung bis zum erfolgreichen Verkauf Ihrer Immobilie.",
+      "Begleitung von der ersten Beratung bis zum erfolgreichen Verkauf Ihrer Immobilie.",
     cta: "Immobilie verkaufen",
     href: "/verkaufen",
-  },
-] as const;
-
-export const whyAbelen = [
-  {
-    title: "Persönlich",
-    description: "Direkter Kontakt und individuelle Betreuung — kein Callcenter, keine wechselnden Ansprechpartner.",
-  },
-  {
-    title: "Erfahren",
-    description: "Langjährige Erfahrung in der Immobilienvermittlung im Rheinland.",
-  },
-  {
-    title: "Regional",
-    description: "Fundierte Marktkenntnis in Leichlingen, Leverkusen, Solingen und der Region.",
-  },
-  {
-    title: "Verlässlich",
-    description: "Klare Kommunikation, feste Zusagen und schnelle Reaktionszeiten.",
   },
 ] as const;
 
@@ -63,7 +44,7 @@ export const dienstleistungen: Dienstleistung[] = [
     number: "01",
     title: "Immobiliensuche",
     icon: "search",
-    body: "Der Kauf einer Immobilie ist für die meisten Menschen die größte Investition ihres Lebens – und dabei können leicht Fehler passieren. Die Folgen sind oft langfristig und schwer zu korrigieren. Eine umfassende Vorbereitung ist daher unerlässlich: Der Marktwert sollte realistisch eingeschätzt, alle Folgekosten wie Umbau- und Sanierungsmaßnahmen berücksichtigt sowie Finanzierungen und Bankkonditionen sorgfältig zusammengestellt und verglichen werden. Wir achten darauf, Ihre Interessen zu wahren, damit Sie Ihr Traumhaus oder Ihre Traumwohnung zu einem fairen Preis finden und erfolgreich erwerben können.",
+    body: "Der Kauf einer Immobilie ist für die meisten Menschen die größte Investition ihres Lebens – und dabei können leicht Fehler passieren. Die Folgen sind oft langfristig und schwer zu korrigieren. Eine umfassende Vorbereitung ist daher unerlässlich: Der Marktwert sollte realistisch eingeschätzt, alle Folgekosten wie Umbau- und Sanierungsmaßnahmen berücksichtigt sowie Finanzierungen und Bankkonditionen sorgfältig zusammengestellt und verglichen werden. Im Mittelpunkt stehen dabei Ihre Interessen — damit Sie Ihr Traumhaus oder Ihre Traumwohnung zu einem fairen Preis finden und erfolgreich erwerben können.",
     href: "/kaufen",
     cta: "Für Käufer",
   },
@@ -71,7 +52,7 @@ export const dienstleistungen: Dienstleistung[] = [
     number: "02",
     title: "Beratung und Bewertung",
     icon: "home",
-    body: "Wir stehen Ihnen mit fundierter Beratung und Bewertung zur Seite, um sicherzustellen, dass Sie die bestmöglichen Entscheidungen treffen. Bei der Bewertung ermitteln wir den Verkehrswert (Marktwert) Ihrer Immobilie. Nutzen Sie die Gelegenheit, sich unkompliziert über das Potenzial Ihrer Immobilie klar zu werden, und nehmen Sie Kontakt zu uns auf.",
+    body: "Fundierte Beratung und Bewertung helfen Ihnen, die bestmöglichen Entscheidungen zu treffen. Bei der Bewertung wird der Verkehrswert (Marktwert) Ihrer Immobilie ermittelt. Nutzen Sie die Gelegenheit, sich unkompliziert über das Potenzial Ihrer Immobilie klar zu werden — eine kurze Nachricht genügt.",
     href: "/bewertung",
     cta: "Immobilie bewerten",
   },
@@ -79,7 +60,7 @@ export const dienstleistungen: Dienstleistung[] = [
     number: "03",
     title: "Netzwerk",
     icon: "network",
-    body: "Ein starkes Netzwerk ist unerlässlich. Durch unsere enge Zusammenarbeit mit lokalen Notaren, Finanzierungsexperten, Energieberatern, Haushaltsauflösern, Umzugsunternehmen und für Immobilienbewertung können wir nahezu alle Fragen zuverlässig für Sie klären.",
+    body: "Ein starkes Netzwerk ist unerlässlich. Dank enger Zusammenarbeit mit lokalen Notaren, Finanzierungsexperten, Energieberatern, Haushaltsauflösern, Umzugsunternehmen und Fachleuten für Immobilienbewertung lassen sich nahezu alle Fragen zuverlässig für Sie klären.",
   },
 ];
 

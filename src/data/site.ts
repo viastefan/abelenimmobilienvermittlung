@@ -13,7 +13,7 @@ export const site = {
    */
   taglineAufmacher: "Immobilien\u00ADvermittlung, die Werte schafft",
   description:
-    "Wir sind Ihr zuverlässiger Partner für die Bewertung und Vermittlung von Immobilien in Leverkusen und Umgebung.",
+    "Ihr zuverlässiger Partner für die Bewertung und Vermittlung von Immobilien in Leverkusen und Umgebung.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.abelen-immobilien.de",
   /**
    * Mobilnummer. Steht bewusst nur auf „Über mich“: Silke Abelen arbeitet
@@ -158,7 +158,7 @@ export const featureStrip = [
   {
     icon: "users",
     title: "Persönlich & nah",
-    description: "Wir nehmen uns Zeit für Ihr Anliegen.",
+    description: "Zeit für Ihr Anliegen.",
   },
   {
     icon: "award",

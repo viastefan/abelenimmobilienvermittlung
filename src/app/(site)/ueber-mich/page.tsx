@@ -16,7 +16,7 @@ import { images } from "@/data/imagery";
 import { regions, site } from "@/data/site";
 
 export const metadata: Metadata = pageSeo({
-  title: "Über uns — Silke Abelen",
+  title: "Über mich — Silke Abelen",
   description:
     "Silke Abelen begleitet Eigentümerinnen und Eigentümer in Leverkusen und Umgebung — persönlich, transparent und mit langjähriger Erfahrung in Bewertung, Verkauf und Vermittlung.",
   path: "/ueber-mich",
@@ -47,7 +47,7 @@ export default function UeberMichPage() {
   return (
     <>
       <PageHero
-        eyebrow="Über uns"
+        eyebrow="Über mich"
         title={
           <>
             Ihre Ansprechpartnerin
@@ -55,7 +55,7 @@ export default function UeberMichPage() {
           </>
         }
         description={`${site.owner} — ${site.ownerRole} des Büros für Immobilien Bewertung & Vermittlung.`}
-        breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Über uns" }]}
+        breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Über mich" }]}
       />
 
       <section className="py-14 lg:py-20">
@@ -120,7 +120,7 @@ export default function UeberMichPage() {
             neben ihm eine leere Fläche über die halbe Seitenbreite blieb. */}
         <Container className="mt-14 lg:mt-16">
           <Reveal>
-            <div className="rounded-[24px] bg-surface-warm p-7 lg:p-9">
+            <div className="rounded-[24px] bg-surface-warm p-7 ring-1 ring-border lg:p-9">
               <p className="font-display text-[1.0625rem] font-bold text-ink">Direkter Draht</p>
               <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
                 <ContactLine
@@ -153,8 +153,8 @@ export default function UeberMichPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Tätigkeitsgebiet"
-              title="Wo wir für Sie unterwegs sind"
-              description="Leverkusen ist unser Zuhause — vermittelt wird im gesamten Bergischen Rheinland und im angrenzenden Umland."
+              title="Unterwegs für Sie"
+              description="Zuhause in Leverkusen — vermittelt wird im gesamten Bergischen Rheinland und im angrenzenden Umland."
             />
             <ul className="mt-8 flex flex-wrap gap-3">
               {regions.map((region) => (
@@ -175,7 +175,7 @@ export default function UeberMichPage() {
       </section>
 
       <CtaSection
-        title="Sprechen wir über Ihre Immobilie."
+        title="Ein Gespräch über Ihre Immobilie?"
         description="Persönlich, unverbindlich und zu einem Zeitpunkt, der Ihnen passt."
         buttonLabel="Kontakt aufnehmen"
         href="/kontakt"
@@ -184,7 +184,7 @@ export default function UeberMichPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: "Start", path: "/" },
-          { name: "Über uns", path: "/ueber-mich" },
+          { name: "Über mich", path: "/ueber-mich" },
         ])}
       />
     </>

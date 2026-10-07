@@ -21,14 +21,14 @@ export const consentCategories = [
     key: "statistics",
     title: "Statistik",
     description:
-      "Anonyme Reichweitenmessung, damit wir erkennen, welche Inhalte gebraucht werden. Wird erst gesetzt, wenn Sie zustimmen.",
+      "Anonyme Reichweitenmessung, um zu erkennen, welche Inhalte gebraucht werden. Wird erst gesetzt, wenn Sie zustimmen.",
     required: false,
   },
   {
     key: "media",
     title: "Externe Inhalte",
     description:
-      "Karten, Videos und Objektansichten anderer Anbieter. Ohne Ihre Zustimmung laden wir diese Inhalte nicht und übermitteln auch keine IP-Adresse dorthin.",
+      "Karten, Videos und Objektansichten anderer Anbieter. Ohne Ihre Zustimmung werden diese Inhalte nicht geladen und keine IP-Adresse dorthin übermittelt.",
     required: false,
   },
 ] as const;

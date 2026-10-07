@@ -92,7 +92,7 @@ export function ReferenceGrid({ references }: { references: ReferenceCardItem[] 
         </div>
       ) : (
         <p className="mt-12 rounded-[24px] border border-dashed border-border bg-surface-warm p-10 text-center text-sm text-text-muted">
-          Für diese Auswahl liegen aktuell keine Referenzen vor. Sprechen Sie uns gerne direkt an.
+          Für diese Auswahl liegen aktuell keine Referenzen vor. Fragen Sie gerne direkt nach.
         </p>
       )}
 

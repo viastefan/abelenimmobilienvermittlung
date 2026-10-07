@@ -4,6 +4,7 @@ import { ExpertIntro } from "@/components/home/ExpertIntro";
 import { PropertyShowcase } from "@/components/home/PropertyShowcase";
 import { PersonalService } from "@/components/home/PersonalService";
 import { ContactIntro } from "@/components/home/ContactIntro";
+import { Abschluss } from "@/components/home/Abschluss";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { webPageSchema } from "@/lib/schema";
 import { pageSeo } from "@/lib/seo";
@@ -31,16 +32,16 @@ export default function HomePage() {
       <Hero />
       <ExpertIntro />
       <PropertyShowcase />
-      {/* Der Abschluss steht im selben Abschnitt: als eigener Block stand er
-          als zweite dunkle Fläche darunter, mit einer Kante dazwischen. */}
-      <PersonalService
-        cta={{
-          title: "Sie planen eine Immobilie zu verkaufen oder brauchen Hilfe das passende zu finden?",
-          buttonLabel: "Immobilie verkaufen",
-          href: "/verkaufen",
-        }}
-      />
+      <PersonalService />
       <ContactIntro />
+      {/* Der Abschluss steht ganz unten, als breite Karte über der Fußzeile —
+          direkt unter „Persönlich, Verlässlich…“ las er sich wie ein zweiter
+          Gedanke im selben Abschnitt. */}
+      <Abschluss
+        title="Sie planen eine Immobilie zu verkaufen oder brauchen Hilfe, das Passende zu finden?"
+        buttonLabel="Immobilie verkaufen"
+        href="/verkaufen"
+      />
 
       <JsonLd
         data={webPageSchema({

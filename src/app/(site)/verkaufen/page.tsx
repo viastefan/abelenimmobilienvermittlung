@@ -34,7 +34,7 @@ const benefits = [
   },
   {
     title: "Geprüfte Interessenten",
-    description: "Wir filtern ernsthafte Käufer heraus und ersparen Ihnen Termine, die zu nichts führen.",
+    description: "Ernsthafte Käufer werden vorab herausgefiltert — Termine, die zu nichts führen, bleiben Ihnen erspart.",
   },
   {
     title: "Eine feste Ansprechpartnerin",
@@ -74,7 +74,7 @@ export default function VerkaufenPage() {
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Warum mit uns verkaufen"
+              eyebrow="Warum mit Silke Abelen verkaufen"
               size="lg"
               title="Ein klarer Ablauf, keine Überraschungen."
             />
@@ -96,21 +96,21 @@ export default function VerkaufenPage() {
       <Steps
         eyebrow="Der Verkaufsprozess"
         title="In sieben Schritten zum Abschluss."
-        description="So sieht ein Verkauf bei uns aus — verständlich erklärt und jederzeit nachvollziehbar."
+        description="So läuft ein Verkauf ab — verständlich erklärt und jederzeit nachvollziehbar."
         steps={sellingSteps}
       />
 
       <Checklist
         eyebrow="Unterlagen"
-        title="Was wir für den Verkauf brauchen"
-        description="Vollständige Unterlagen vor dem ersten Besichtigungstermin verkürzen den Verkauf spürbar. Was fehlt, beschaffen wir gemeinsam."
+        title="Was für den Verkauf gebraucht wird"
+        description="Vollständige Unterlagen vor dem ersten Besichtigungstermin verkürzen den Verkauf spürbar. Was fehlt, wird gemeinsam beschafft."
         groups={verkaufsUnterlagen}
       />
 
       <Faq title="Fragen zum Immobilienverkauf" items={verkaufenFaq} />
 
       <CtaSection
-        title="Lassen Sie uns über Ihre Immobilie sprechen."
+        title="Ein Gespräch über Ihre Immobilie?"
         description="Unverbindlich, persönlich und ohne Verkaufsdruck."
         buttonLabel="Immobilie bewerten"
         href="/bewertung"
