@@ -20,7 +20,15 @@ export const fallbackReferences: ReferenceObject[] = [
     typeLabel: "Etagenwohnung",
     livingSpace: 52,
     rooms: 2,
-    images: [],
+    images: [
+      "/public/images/objekte/schlebusch-2-zimmer/01-haus-von-vorne.jpg",
+      "/public/images/objekte/schlebusch-2-zimmer/02-balkon.jpg",
+      "/public/images/objekte/schlebusch-2-zimmer/03-wohnzimmer.jpg",
+      "/public/images/objekte/schlebusch-2-zimmer/04-kueche.jpg",
+      "/public/images/objekte/schlebusch-2-zimmer/05-bad.jpg",
+      "/public/images/objekte/schlebusch-2-zimmer/06-treppenhaus.jpg",
+      "/public/images/objekte/schlebusch-2-zimmer/07-haus-von-hinten.jpg",
+    ],
     summary:
       "Helle, charaktervolle 2-Zimmer-Wohnung mit 52 m², Einbauküche und Außenstellplatz in einem gepflegten Mehrfamilienhaus in Leverkusen-Schlebusch — erfolgreich vermittelt.",
     description: [

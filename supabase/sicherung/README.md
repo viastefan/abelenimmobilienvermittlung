@@ -26,5 +26,5 @@ unabhängig davon, was mit dem Supabase-Projekt passiert.
    entsprechen den Spalten; `features`, `energy`, `description`, `equipment`,
    `images` und `testimonial` sind JSON- bzw. Array-Spalten).
 
-Die Bild-Adressen zeigen auf den bisherigen Wix-Server; die Kopien der Bilder
+Die Bild-Adressen der älteren Objekte zeigen auf den bisherigen Wix-Server (die beiden Schlebusch-Objekte liegen unter `public/images/objekte/`); die Kopien der Bilder
 liegen zusätzlich im Repository unter `public/images/wix/`.

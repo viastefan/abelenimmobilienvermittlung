@@ -99,7 +99,14 @@
       "location": "Leverkusen-Schlebusch, nahe dem Leverkusener Klinikum, mit guter Anbindung Richtung Köln und Düsseldorf.",
       "energy": [],
       "hero_note": null,
-      "images": [],
+      "images": [
+        "/public/images/objekte/schlebusch-klinikum/01-haus-von-vorne.jpg",
+        "/public/images/objekte/schlebusch-klinikum/02-essplatz.jpg",
+        "/public/images/objekte/schlebusch-klinikum/03-balkon.jpg",
+        "/public/images/objekte/schlebusch-klinikum/04-flur.jpg",
+        "/public/images/objekte/schlebusch-klinikum/05-badezimmer.jpg",
+        "/public/images/objekte/schlebusch-klinikum/06-gaeste-wc.jpg"
+      ],
       "featured": false,
       "published": true,
       "sort_order": 1
@@ -222,7 +229,15 @@
       "year": null,
       "plot": null,
       "parking": null,
-      "images": [],
+      "images": [
+        "/public/images/objekte/schlebusch-2-zimmer/01-haus-von-vorne.jpg",
+        "/public/images/objekte/schlebusch-2-zimmer/02-balkon.jpg",
+        "/public/images/objekte/schlebusch-2-zimmer/03-wohnzimmer.jpg",
+        "/public/images/objekte/schlebusch-2-zimmer/04-kueche.jpg",
+        "/public/images/objekte/schlebusch-2-zimmer/05-bad.jpg",
+        "/public/images/objekte/schlebusch-2-zimmer/06-treppenhaus.jpg",
+        "/public/images/objekte/schlebusch-2-zimmer/07-haus-von-hinten.jpg"
+      ],
       "summary": "Helle, charaktervolle 2-Zimmer-Wohnung mit 52 m², Einbauküche und Außenstellplatz in einem gepflegten Mehrfamilienhaus in Leverkusen-Schlebusch — erfolgreich vermittelt.",
       "description": [
         "Die Wohnung mit 52 m² Wohnfläche und zwei Zimmern lag in einem gepflegten Mehrfamilienhaus in Leverkusen-Schlebusch. Zur Ausstattung gehörten eine Einbauküche und ein Außenstellplatz."

@@ -60,7 +60,14 @@ export const fallbackProperties: Property[] = [
     priceLabel: formatPrice(272000),
     livingSpace: 80.73,
     rooms: 3,
-    images: [],
+    images: [
+      "/public/images/objekte/schlebusch-klinikum/01-haus-von-vorne.jpg",
+      "/public/images/objekte/schlebusch-klinikum/02-essplatz.jpg",
+      "/public/images/objekte/schlebusch-klinikum/03-balkon.jpg",
+      "/public/images/objekte/schlebusch-klinikum/04-flur.jpg",
+      "/public/images/objekte/schlebusch-klinikum/05-badezimmer.jpg",
+      "/public/images/objekte/schlebusch-klinikum/06-gaeste-wc.jpg",
+    ],
     summary:
       "Clever geschnittene 3-Zimmer-Wohnung mit ca. 80,73 m² im 1. OG/Hochparterre eines gepflegten Mehrfamilienhauses, nahe dem Leverkusener Klinikum. Einzel-Garage für 15.000 € zusätzlich.",
     description: [
