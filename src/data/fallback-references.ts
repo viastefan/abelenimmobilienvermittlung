@@ -11,6 +11,27 @@ import { objectMedia } from "@/data/wix-media";
  */
 export const fallbackReferences: ReferenceObject[] = [
   {
+    slug: "2-zimmer-wohnung-in-leverkusen-schlebusch",
+    id: "ref-2-zimmer-wohnung-in-leverkusen-schlebusch",
+    title: "Helle, charaktervolle 2-Zimmer-Eigentumswohnung in Leverkusen-Schlebusch",
+    region: "Leverkusen – Schlebusch",
+    category: "verkauf",
+    categoryLabel: referenceCategoryLabels.verkauf,
+    typeLabel: "Etagenwohnung",
+    livingSpace: 52,
+    rooms: 2,
+    images: [],
+    summary:
+      "Helle, charaktervolle 2-Zimmer-Wohnung mit 52 m², Einbauküche und Außenstellplatz in einem gepflegten Mehrfamilienhaus in Leverkusen-Schlebusch — erfolgreich vermittelt.",
+    description: [
+      "Die Wohnung mit 52 m² Wohnfläche und zwei Zimmern lag in einem gepflegten Mehrfamilienhaus in Leverkusen-Schlebusch. Zur Ausstattung gehörten eine Einbauküche und ein Außenstellplatz.",
+    ],
+    equipment: ["Zwei Zimmer", "Einbauküche", "Außenstellplatz"],
+    location: "Leverkusen-Schlebusch.",
+    published: true,
+    sortOrder: 0,
+  },
+  {
     slug: "2-zimmer-wohnung-in-haan",
     id: "ref-2-zimmer-wohnung-in-haan",
     title: "2-Zimmer-Wohnung in Haan",
@@ -30,7 +51,7 @@ export const fallbackReferences: ReferenceObject[] = [
     equipment: ["Zwei Zimmer", "Balkon", "Extra breiter Außenstellplatz"],
     location: "Haan im Kreis Mettmann — grüne Umgebung, gute Anbindung an Düsseldorf und Wuppertal.",
     published: true,
-    sortOrder: 0,
+    sortOrder: 1,
     testimonial: {
       quote:
         "Mit der Immobilienvermittlung Fr. S. Abelen erfährt man eine äußerst kompetente, erfahrene, zuverlässige, freundliche Unterstützung. Ich kann die Immobilienvermittlung von Fr. S. Abelen sehr weiter empfehlen.",
